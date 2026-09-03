@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mobilní menu — náhled</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Gloria+Hallelujah&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="wf-style.css?v=17" />
+<style>
+  html,body{margin:0;background:#1a1714;color:#ece6da;font-family:'Space Mono',ui-monospace,monospace;}
+  .head{padding:24px 28px 6px;}
+  .head h1{font-family:'Gloria Hallelujah',cursive;font-size:18px;margin:0 0 6px;}
+  .head h1 b{color:#e0542b;}
+  .head p{font-size:12.5px;color:#9a9384;margin:0;max-width:780px;line-height:1.6;}
+  .stage{display:flex;gap:44px;flex-wrap:wrap;align-items:flex-start;padding:26px 28px 60px;justify-content:center;}
+  .device{display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .device .lbl{font-size:11px;letter-spacing:1px;color:#cfc7b8;}
+  .device .lbl b{color:#e0542b;}
+  .bezel{background:#0c0b09;border:2px solid #3a352d;border-radius:40px;padding:14px;box-shadow:0 30px 70px rgba(0,0,0,.5);}
+  .screen{width:390px;height:780px;background:#100f0d;border-radius:26px;overflow:hidden;overflow-y:auto;}
+  .note{font-size:11px;color:#8c8576;max-width:360px;text-align:center;line-height:1.5;}
+  .legend{display:flex;flex-direction:column;gap:10px;max-width:300px;font-size:12px;color:#b9b2a5;line-height:1.5;}
+  .legend h3{font-family:'Gloria Hallelujah',cursive;font-size:15px;color:#ece6da;margin:0 0 2px;}
+  .legend .pt{display:flex;gap:9px;align-items:flex-start;}
+  .legend .pt b{color:#e0542b;font-weight:700;}
+</style>
+</head>
+<body class="app">
+  <div class="head">
+    <h1>Mobilní menu — <b>setlist</b></h1>
+    <p>Celoobrazovkové tmavé overlay (hamburger v hlavičce). Navigace jako <b>setlist koncertu</b> — číslované položky 01–06, rozbalovací podsekce u „Práce" a „Instalace", featured realizace, hlavní CTA na školení, kompletní kontakt a přepínač CZ/EN. Vše z hlavního menu + kontakt + jazyky na jednom místě.</p>
+  </div>
+
+  <div class="stage">
+    <div class="device">
+      <div class="lbl">overlay otevřené · <b>390 px</b></div>
+      <div class="bezel">
+        <div class="screen">
+          <div class="mobmenu preview">
+            <div class="mobmenu-bg"><img src="assets/projekty/ed-sheeran/cervena-show.jpg" alt="" /></div>
+            <div class="mobmenu-scrim"></div>
+            <div class="mobmenu-inner">
+              <div class="mobmenu-top">
+                <img class="brand-logo" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
+                <div class="mobmenu-top-r">
+                  <span class="czen"><span class="on">CZ</span><span>EN</span></span>
+                  <button class="mobmenu-close" aria-label="Zavřít">✕</button>
+                </div>
+              </div>
+              <div class="mobmenu-kick">Setlist · navigace</div>
+              <nav class="mobmenu-list">
+                <div class="mobitem exp">
+                  <div class="mobitem-row"><span class="mobitem-n">01</span><a class="mobitem-label" href="#">Práce</a><span class="mobitem-plus">–</span></div>
+                  <div class="mobitem-sub">
+                    <div class="mobsub-col"><h6>Přehled</h6><ul><li><a href="#">Celé portfolio</a></li><li><a href="#">Showreel</a></li><li><a href="#">Case studies</a></li></ul></div>
+                    <div class="mobsub-col"><h6>Podle typu</h6><ul><li><a href="#">Turné &amp; koncerty</a></li><li><a href="#">Festivaly</a></li><li><a href="#">TV &amp; broadcast</a></li><li><a href="#">Eventy &amp; korporát</a></li></ul></div>
+                  </div>
+                </div>
+                <div class="mobitem">
+                  <div class="mobitem-row"><span class="mobitem-n">02</span><a class="mobitem-label" href="#">Technologie</a></div>
+                </div>
+                <div class="mobitem">
+                  <div class="mobitem-row"><span class="mobitem-n">03</span><a class="mobitem-label" href="#">Instalace</a><span class="mobitem-plus">+</span></div>
+                  <div class="mobitem-sub">
+                    <div class="mobsub-col"><h6>Podle prostoru</h6><ul><li><a href="#">Divadla &amp; kulturní sály</a></li><li><a href="#">Arény &amp; stadiony</a></li><li><a href="#">Kluby &amp; music venues</a></li><li><a href="#">Hotely &amp; restaurace</a></li><li><a href="#">Konferenční prostory</a></li><li><a href="#">Kina · sakrální · auly</a></li></ul></div>
+                    <div class="mobsub-col"><h6>Jak to děláme</h6><ul><li><a href="#">Konzultace</a></li><li><a href="#">Akustická studie &amp; 3D</a></li><li><a href="#">Návrh &amp; realizace</a></li><li><a href="#">Oživení &amp; ladění</a></li><li><a href="#">Servis &amp; péče</a></li></ul></div>
+                  </div>
+                </div>
+                <div class="mobitem">
+                  <div class="mobitem-row"><span class="mobitem-n">04</span><a class="mobitem-label" href="#">Značky</a></div>
+                </div>
+                <div class="mobitem">
+                  <div class="mobitem-row"><span class="mobitem-n">05</span><a class="mobitem-label" href="#">Školení</a></div>
+                </div>
+                <div class="mobitem">
+                  <div class="mobitem-row"><span class="mobitem-n">06</span><a class="mobitem-label" href="#">Kontakt</a></div>
+                </div>
+              </nav>
+              <a class="mobmenu-feat" href="#">
+                <div class="mobmenu-feat-img"><img src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /></div>
+                <div class="mobmenu-feat-meta">
+                  <span class="tag acc">NEJNOVĚJŠÍ</span>
+                  <strong>HD Karlín — DiGiCo Quantum 7T</strong>
+                  <span class="mobmenu-feat-go">Zobrazit realizaci →</span>
+                </div>
+              </a>
+              <a class="mobmenu-cta" href="#">Přihlásit se na školení →</a>
+              <div class="mobmenu-contact">
+                <div class="mobmenu-cont-block">
+                  <div class="k">Kontakt</div>
+                  <a href="#">+420 ___ ___ ___</a>
+                  <a href="#">info@promusic.cz</a>
+                </div>
+                <div class="mobmenu-cont-block">
+                  <div class="k">Sídlo &amp; tréninkové centrum</div>
+                  <span>Horská 922, 541 01 Trutnov</span>
+                  <span class="muted">Po–Pá 8:00–16:30</span>
+                </div>
+                <div class="mobmenu-social">
+                  <a class="soc" href="#">FB</a><a class="soc" href="#">IG</a><a class="soc" href="#">YT</a><a class="soc" href="#">IN</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="note">scrollovatelné jako telefon · „Práce" rozbalené, „Instalace" sbalené</div>
+    </div>
+
+    <div class="legend">
+      <h3>Co menu řeší</h3>
+      <div class="pt"><b>›</b><span><b>Vše z hlavního menu</b> — Práce, Technologie, Instalace, Značky, Školení, Kontakt (číslováno jako setlist).</span></div>
+      <div class="pt"><b>›</b><span><b>Rozbalovací podsekce</b> u Práce a Instalace (totéž co desktop mega-menu) — tap na „+".</span></div>
+      <div class="pt"><b>›</b><span><b>Kontakt</b> přímo v menu — telefon, e-mail, sídlo Trutnov, sociální sítě.</span></div>
+      <div class="pt"><b>›</b><span><b>Přepínač CZ/EN</b> v hlavičce overlay.</span></div>
+      <div class="pt"><b>›</b><span><b>Featured realizace</b> + výrazné CTA na školení (hlavní konverze).</span></div>
+      <div class="pt"><b>›</b><span><b>Cool detail:</b> tmavé koncertní pozadí + číslování jako setlist + postupné naskakování položek při otevření.</span></div>
+    </div>
+  </div>
+  <script>
+    // aktivní accordion — otevřená vždy jen jedna podkategorie
+    document.querySelectorAll('.mobmenu-list .mobitem').forEach(function(item){
+      var row=item.querySelector('.mobitem-row');
+      var plus=item.querySelector('.mobitem-plus');
+      if(!plus) return;
+      row.style.cursor='pointer';
+      row.addEventListener('click', function(e){
+        e.preventDefault();
+        var isOpen=item.classList.contains('exp');
+        document.querySelectorAll('.mobmenu-list .mobitem.exp').forEach(function(o){
+          o.classList.remove('exp');
+          var p=o.querySelector('.mobitem-plus'); if(p) p.textContent='+';
+        });
+        if(!isOpen){ item.classList.add('exp'); plus.textContent='–'; }
+      });
+    });
+  </script>
+</body>
+</html>

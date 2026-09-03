@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ostatní
+node_modules/
+.env
+*.log

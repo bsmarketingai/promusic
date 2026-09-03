@@ -1,0 +1,41 @@
+/* PRO MUSIC — typografie
+   Display = Inter (ExtraBold/Black, těsný tracking, „artová" hi-fi typografie)
+   Body    = IBM Plex Sans (čtený text)
+   Mono    = Space Mono (eyebrow/štítky/data) */
+:root{
+  --pm-font-display: 'Archivo', 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --pm-font-body:    'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --pm-font-mono:    'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* fluid type scale */
+  --pm-text-display-1: clamp(3.25rem, 8vw, 8rem);    /* hero claim */
+  --pm-text-display-2: clamp(2.5rem, 5vw, 4.5rem);   /* statement */
+  --pm-text-h1:        clamp(2rem, 3.6vw, 3.25rem);
+  --pm-text-h2:        clamp(1.6rem, 2.6vw, 2.4rem);
+  --pm-text-h3:        1.5rem;
+  --pm-text-lg:        1.25rem;
+  --pm-text-body:      1.0625rem;  /* 17px */
+  --pm-text-sm:        0.9375rem;  /* 15px */
+  --pm-text-xs:        0.8125rem;  /* 13px */
+  --pm-text-eyebrow:   0.75rem;    /* 12px */
+
+  /* tracking */
+  --pm-tracking-display: -0.035em;
+  --pm-tracking-tight:   -0.02em;
+  --pm-tracking-normal:  0;
+  --pm-tracking-eyebrow: 0.2em;
+
+  /* leading */
+  --pm-leading-display: 1.02;
+  --pm-leading-tight:   1.05;
+  --pm-leading-snug:    1.25;
+  --pm-leading-body:    1.6;
+
+  /* weights */
+  --pm-weight-black:   900;
+  --pm-weight-display: 800;
+  --pm-weight-bold:    700;
+  --pm-weight-semi:    600;
+  --pm-weight-medium:  500;
+  --pm-weight-regular: 400;
+}

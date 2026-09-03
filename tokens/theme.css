@@ -1,0 +1,37 @@
+/* PRO MUSIC — SÉMANTICKÉ BARVY (theme layer)
+   ⚑ TŘI ŘÍDÍCÍ BARVY — měň jen tyto tři, propíšou se celým projektem:
+      --ui-primary    značková primární (nadpisy, akcenty struktury)
+      --ui-secondary  doplňková (informační prvky, alternativní akcent)
+      --ui-main       CTA barva (tlačítka, glow, vlny, aktivní stavy)
+   Vše ostatní jsou dopočítané aliasy. Design systém je přepisuje přes
+   inline style na <html> (viz ui-theme.js), takže stačí změnit kapátkem. */
+:root{
+  --ui-primary:   #e0542b;
+  --ui-secondary: #4f8fae;
+  --ui-main:      #e0542b;
+
+  /* dopočítané stavy MAIN (CTA) */
+  --ui-main-bright: color-mix(in srgb, var(--ui-main) 82%, #ffffff);
+  --ui-main-deep:   color-mix(in srgb, var(--ui-main) 78%, #000000);
+  --ui-main-tint:   color-mix(in srgb, var(--ui-main) 10%, transparent);
+  --ui-main-tint-2: color-mix(in srgb, var(--ui-main) 20%, transparent);
+  --ui-main-glow:   color-mix(in srgb, var(--ui-main) 45%, transparent);
+  /* světelné jádro glow efektů (outline-glow) — musí být odvozené, ne fixní! */
+  --ui-main-hi:     color-mix(in srgb, var(--ui-main) 45%, #ffffff);
+  --ui-main-hi-2:   color-mix(in srgb, var(--ui-main) 22%, #ffffff);
+
+  /* ===== MOSTY DO STÁVAJÍCÍHO SYSTÉMU =====
+     Historické proměnné míří na theme layer → jedna změna = celý web. */
+  --accent:        var(--ui-main);
+  --accent-hover:  var(--ui-main-bright);
+  --accent-press:  var(--ui-main-deep);
+  --accent-tint:   var(--ui-main-tint);
+  --accent-bright: var(--ui-main-bright);
+  --accent-deep:   var(--ui-main-deep);
+  --pm-accent:        var(--ui-main);
+  --pm-accent-bright: var(--ui-main-bright);
+  --pm-accent-deep:   var(--ui-main-deep);
+  --pm-accent-tint:   var(--ui-main-tint);
+  --pm-accent-tint-2: var(--ui-main-tint-2);
+  --pm-info:       var(--ui-secondary);
+}

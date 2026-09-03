@@ -1,0 +1,17 @@
+<!-- @dsCard group="Colors" viewport="700x170" subtitle="Hladiny textu na tmavém" name="Text na tmavém" -->
+<!DOCTYPE html><html lang="cs"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);padding:24px;}
+  .line{display:flex;align-items:baseline;gap:14px;padding:7px 0;border-bottom:1px solid var(--border);}
+  .label{font-family:var(--pm-font-mono);font-size:11px;color:var(--text-mute);width:120px;flex:none;}
+  .t1{color:var(--text);font-size:20px;font-weight:600;}
+  .t2{color:var(--text-soft);font-size:20px;}
+  .t3{color:var(--text-mute);font-size:20px;}
+  .t4{color:var(--text-faint);font-size:20px;}
+</style></head><body>
+  <div class="line"><span class="label">text · #ece6da</span><span class="t1">Primární text — nadpisy a důležité</span></div>
+  <div class="line"><span class="label">text-soft · #a39d90</span><span class="t2">Sekundární — popisky, leady</span></div>
+  <div class="line"><span class="label">text-mute · #7d7669</span><span class="t3">Terciární — meta, captiony</span></div>
+  <div class="line" style="border:0"><span class="label">text-faint · #564f45</span><span class="t4">Disabled / náznak</span></div>
+</body></html>

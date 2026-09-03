@@ -1,0 +1,16 @@
+/* PRO MUSIC — motion
+   Jazyk: STŘEDNĚ. Jemné fade-up, lehký parallax, pointer „švenk".
+   Žádné agresivní zoomy/bounces. Respektovat prefers-reduced-motion. */
+:root{
+  --pm-ease:      cubic-bezier(0.2, 0.7, 0.2, 1);    /* default */
+  --pm-ease-out:  cubic-bezier(0.16, 1, 0.3, 1);     /* entrance */
+  --pm-ease-in:   cubic-bezier(0.4, 0, 1, 1);
+
+  --pm-dur-fast:   0.15s;
+  --pm-dur:        0.3s;
+  --pm-dur-slow:   0.6s;
+  --pm-dur-slower: 0.8s;
+
+  --pm-lift:    translateY(-3px);   /* hover karet */
+  --pm-parallax-max: 14%;           /* strop parallax posunu */
+}

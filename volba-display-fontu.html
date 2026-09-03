@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — volba display fontu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet" />
+<style>
+  :root{--paper:#100f0d;--ink:#ece6da;--soft:#a39d90;--mute:#7d7669;--accent:#e0542b;--line:rgba(236,230,218,.14);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Space Mono',monospace;padding:0 0 80px;}
+  .head{max-width:1100px;margin:0 auto;padding:48px 32px 8px;}
+  .head .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .head h1{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:clamp(30px,4vw,48px);margin:14px 0 8px;}
+  .head p{color:var(--soft);max-width:70ch;line-height:1.6;font-size:14px;}
+  .opt{max-width:1100px;margin:0 auto;padding:34px 32px;border-bottom:1px solid var(--line);}
+  .opt-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+  .opt-name{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.04em;}
+  .opt-name b{color:var(--ink);font-size:16px;margin-right:10px;}
+  .opt-desc{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--mute);max-width:46ch;text-align:right;line-height:1.5;}
+  .disp{letter-spacing:-.03em;line-height:1.0;margin:0 0 10px;}
+  .h-xl{font-size:clamp(40px,6.5vw,84px);}
+  .h-md{font-size:clamp(22px,3vw,34px);color:var(--soft);letter-spacing:-.02em;}
+  .acc{color:var(--accent);}
+  .badge{display:inline-block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    border:1px solid var(--line);border-radius:5px;padding:3px 8px;color:var(--mute);margin-left:8px;}
+  .cur{border-left:3px solid var(--accent);}
+</style>
+</head>
+<body>
+  <div class="head">
+    <div class="eyebrow">Typografie · velké nadpisy</div>
+    <h1>Vyber display font pro nadpisy</h1>
+    <p>Všechny jsou příbuzné dnešnímu Interu (grotesk/sans), ale charakternější a méně okoukané. Každý je vykreslený na reálných nadpisech webu včetně české diakritiky. Napiš, které číslo se ti líbí — nasadím ho jako display font do celého projektu (Space Mono na štítky zůstává).</p>
+  </div>
+
+  <div class="opt cur">
+    <div class="opt-top"><div class="opt-name"><b>0 · Inter</b>ExtraBold <span class="badge">teď nasazené</span></div>
+      <div class="opt-desc">Současný stav. Čistý, ale velmi rozšířený — „bezpečná" volba, kterou používá většina webů.</div></div>
+    <div class="disp h-xl" style="font-family:'Inter',sans-serif;font-weight:800">Zvuk, který cítíš v hrudi.</div>
+    <div class="disp h-md" style="font-family:'Inter',sans-serif;font-weight:800">Proč školení v PRO MUSIC Academy</div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-top"><div class="opt-name"><b>1 · Space Grotesk</b>Medium / Bold</div>
+      <div class="opt-desc">Technický grotesk s lehce „proto" charakterem — sedí ke zvukové/AV technice. Distinktivní detaily (a, g, ť).</div></div>
+    <div class="disp h-xl" style="font-family:'Space Grotesk',sans-serif;font-weight:700">Zvuk, který cítíš v hrudi.</div>
+    <div class="disp h-md" style="font-family:'Space Grotesk',sans-serif;font-weight:700">Proč školení v PRO MUSIC Academy</div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-top"><div class="opt-name"><b>2 · Bricolage Grotesque</b>Bold / ExtraBold</div>
+      <div class="opt-desc">Současný „editorial" grotesk s charakterem — jemně nepravidelný, působí prémiově a lidsky, ne korporátně.</div></div>
+    <div class="disp h-xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800">Zvuk, který cítíš v hrudi.</div>
+    <div class="disp h-md" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800">Proč školení v PRO MUSIC Academy</div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-top"><div class="opt-name"><b>3 · Archivo</b>Bold / ExtraBold</div>
+      <div class="opt-desc">Grotesk navržený pro velké nadpisy. Sebevědomý, mírně sevřený — blízko Interu, ale s vlastní tváří.</div></div>
+    <div class="disp h-xl" style="font-family:'Archivo',sans-serif;font-weight:800">Zvuk, který cítíš v hrudi.</div>
+    <div class="disp h-md" style="font-family:'Archivo',sans-serif;font-weight:800">Proč školení v PRO MUSIC Academy</div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-top"><div class="opt-name"><b>4 · Familjen Grotesk</b>Bold</div>
+      <div class="opt-desc">Skandinávský grotesk — teplejší a měkčí než Inter, stále moderní a čitelný. Příjemný kompromis.</div></div>
+    <div class="disp h-xl" style="font-family:'Familjen Grotesk',sans-serif;font-weight:700">Zvuk, který cítíš v hrudi.</div>
+    <div class="disp h-md" style="font-family:'Familjen Grotesk',sans-serif;font-weight:700">Proč školení v PRO MUSIC Academy</div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-top"><div class="opt-name"><b>5 · Unbounded</b>Bold <span class="badge">nejvýraznější</span></div>
+      <div class="opt-desc">Hodně osobitý display font (od rumunské slévárny). Silný statement — pozor, dominantní; vhodné spíš na hero claim.</div></div>
+    <div class="disp h-xl" style="font-family:'Unbounded',sans-serif;font-weight:800">Zvuk, který cítíš v hrudi.</div>
+    <div class="disp h-md" style="font-family:'Unbounded',sans-serif;font-weight:700">Proč školení v PRO MUSIC Academy</div>
+  </div>
+
+  <div class="opt">
+    <div class="opt-top"><div class="opt-name"><b>6 · Anybody</b>Bold / ExtraBold</div>
+      <div class="opt-desc">Variabilní grotesk inspirovaný retro displeji — charakterní, hodí se k „show / pódium" světu, ale zůstává čitelný.</div></div>
+    <div class="disp h-xl" style="font-family:'Anybody',sans-serif;font-weight:800">Zvuk, který cítíš v hrudi.</div>
+    <div class="disp h-md" style="font-family:'Anybody',sans-serif;font-weight:800">Proč školení v PRO MUSIC Academy</div>
+  </div>
+
+</body>
+</html>

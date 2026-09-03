@@ -1,0 +1,43 @@
+/* PRO MUSIC — BREAKPOINTY (závazná definice)
+   XXS  0–419      (musí fungovat i pod 320 px)
+   XS   420–549
+   S    550–819
+   M    820–999
+   L    1000–1149  ← od L výš běží desktop navigace
+   XL   1150–1559
+   XXL  1560 a více
+   CSS proměnné nelze použít v @media → tokeny slouží jako dokumentace + JS. */
+:root{
+  --bp-xxs-max:  419px;
+  --bp-xs-min:   420px;
+  --bp-xs-max:   549px;
+  --bp-s-min:    550px;
+  --bp-s-max:    819px;
+  --bp-m-min:    820px;
+  --bp-m-max:    999px;
+  --bp-l-min:   1000px;
+  --bp-l-max:   1149px;
+  --bp-xl-min:  1150px;
+  --bp-xl-max:  1559px;
+  --bp-xxl-min: 1560px;
+
+  /* ⚑ hranice přepnutí navigace: M a níž = hamburger + FAB */
+  --bp-nav-max:  999px;
+  --bp-nav-min: 1000px;
+}
+
+/* ===== ZÁVAZNÁ SADA MEDIA QUERIES (kopíruj přesně) =====
+  @media(max-width:419px){}                        XXS  (i pod 320px)
+  @media(min-width:420px) and (max-width:549px){}  XS
+  @media(min-width:550px) and (max-width:819px){}  S
+  @media(min-width:820px) and (max-width:999px){}  M
+  @media(min-width:1000px) and (max-width:1149px){} L
+  @media(min-width:1150px) and (max-width:1559px){} XL
+  @media(min-width:1560px){}                       XXL
+
+  Kaskádové (mobile-last, používáme nejčastěji):
+  @media(max-width:999px){}   M a níž → hamburger + FAB, mobilní menu
+  @media(max-width:819px){}   S a níž → stack layoutů
+  @media(max-width:549px){}   XS a níž → 1 sloupec
+  @media(max-width:419px){}   XXS → minimalizovat, skrýt nepodstatné
+*/

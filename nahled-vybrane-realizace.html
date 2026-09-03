@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mobilní náhled — Vybrané realizace (420 px)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Gloria+Hallelujah&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="wf-style.css?v=17" />
+<style>
+  html,body{margin:0;background:#1a1714;color:#ece6da;font-family:'Space Mono',ui-monospace,monospace;}
+  .head{padding:24px 28px 6px;}
+  .head h1{font-family:'Gloria Hallelujah',cursive;font-size:18px;margin:0 0 6px;}
+  .head h1 b{color:#e0542b;}
+  .head p{font-size:12.5px;color:#9a9384;margin:0;max-width:760px;line-height:1.6;}
+  .stage{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;padding:26px 28px 60px;justify-content:center;}
+  .device{display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .device .lbl{font-size:11px;letter-spacing:1px;color:#cfc7b8;}
+  .device .lbl b{color:#e0542b;}
+  .bezel{background:#0c0b09;border:2px solid #3a352d;border-radius:34px;padding:14px;box-shadow:0 30px 70px rgba(0,0,0,.5);}
+  .screen{background:#070605;border-radius:20px;overflow:hidden;height:720px;overflow-y:auto;}
+  .screen-in{padding:16px;}
+  .demo-h{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#857e72;margin:2px 2px 12px;}
+  .demo-gap{height:16px;}
+  .note{font-size:11px;color:#8c8576;max-width:340px;text-align:center;line-height:1.5;}
+  /* notch */
+  .notch{height:6px;width:90px;background:#3a352d;border-radius:6px;margin:0 auto 10px;}
+</style>
+</head>
+<body class="app">
+  <div class="head">
+    <h1>Mobilní náhled — <b>Vybrané realizace</b></h1>
+    <p>Reálné chování při úzké šířce. Band se přeskládá do jednoho sloupce a <b>fotka jde NAD text</b> — nezávisle na tom, na které straně je na desktopu (oba příklady níže to ukazují). Rámy jsou scrollovatelné jako telefon.</p>
+  </div>
+  <div class="stage">
+
+    <div class="device">
+      <div class="lbl">šířka <b>420 px</b></div>
+      <div class="bezel" style="width:420px;">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="screen-in">
+            <div class="demo-h">02 · Vybrané realizace</div>
+            <!-- band A: desktop text vlevo → mobil fotka nahoře -->
+            <div class="fb-band narrow">
+              <div class="txt">
+                <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap"><span class="tag acc">TURNÉ / SVĚTLA</span></div>
+                <h3 class="hand">Ed Sheeran — Mathematics Tour</h3>
+                <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink-soft);margin:0 0 14px">Ayrton rig · stadiony Evropy</div>
+                <div class="lines"><div class="tl m"></div><div class="tl"></div><div class="tl s"></div></div>
+                <div style="margin-top:14px"><span class="btn">Případová studie →</span></div>
+              </div>
+              <div class="half">
+                <img src="assets/projekty/ed-sheeran/ohnostroj.jpg" alt="" />
+                <span class="bandlogo">▢ AYRTON</span>
+                <span class="imgcap" style="position:absolute">▦ Ed Sheeran · Cardiff</span>
+              </div>
+            </div>
+            <div class="demo-gap"></div>
+            <!-- band B: desktop fotka vlevo (flip) → mobil fotka NAD textem taky -->
+            <div class="fb-band narrow">
+              <div class="txt">
+                <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap"><span class="tag acc">ARÉNA / SVĚTLA</span></div>
+                <h3 class="hand">Ayrton Domino Profile, Košice</h3>
+                <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink-soft);margin:0 0 14px">multifunkční hala · projekce na led</div>
+                <div class="lines"><div class="tl m"></div><div class="tl"></div><div class="tl s"></div></div>
+                <div style="margin-top:14px"><span class="btn">Případová studie →</span></div>
+              </div>
+              <div class="half">
+                <img src="assets/projekty/steel-arena/projekce-barvy.jpg" alt="" />
+                <span class="bandlogo">▢ AYRTON DOMINO</span>
+                <span class="imgcap" style="position:absolute">▦ Steel Aréna Košice</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="note">fotka nahoře → titul → meta → text → CTA</div>
+    </div>
+
+    <div class="device">
+      <div class="lbl">šířka <b>375 px</b> (iPhone)</div>
+      <div class="bezel" style="width:375px;">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="screen-in">
+            <div class="demo-h">02 · Vybrané realizace</div>
+            <div class="fb-band narrow">
+              <div class="txt">
+                <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap"><span class="tag acc">TURNÉ / SVĚTLA</span></div>
+                <h3 class="hand">Ed Sheeran — Mathematics Tour</h3>
+                <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--ink-soft);margin:0 0 14px">Ayrton rig · stadiony Evropy</div>
+                <div class="lines"><div class="tl m"></div><div class="tl"></div><div class="tl s"></div></div>
+                <div style="margin-top:14px"><span class="btn">Případová studie →</span></div>
+              </div>
+              <div class="half">
+                <img src="assets/projekty/ed-sheeran/ohnostroj.jpg" alt="" />
+                <span class="bandlogo">▢ AYRTON</span>
+                <span class="imgcap" style="position:absolute">▦ Ed Sheeran · Cardiff</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="note">nejmenší běžná šířka — kontrola čitelnosti</div>
+    </div>
+
+  </div>
+</body>
+</html>

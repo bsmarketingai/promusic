@@ -1,0 +1,52 @@
+/* PRO MUSIC — barevný systém (dark-first, teplé neutrály + oranžový akcent)
+   Logo i celé UI vždy na tmavém pozadí. Světlý režim mimo rozsah. */
+:root{
+  /* ===== BASE NEUTRALS (teplá černá → teplá běl) ===== */
+  --pm-black:      #070605;   /* nejhlubší — kontrastní pruhy, patička */
+  --pm-paper:      #100f0d;   /* pozadí stránky */
+  --pm-surface-1:  #1a1813;   /* povrch karty */
+  --pm-surface-2:  #242019;   /* zvednutý povrch / výplň */
+  --pm-surface-3:  #2f2a22;   /* hover zvednutí */
+
+  --pm-white:      #ece6da;   /* primární text (teplá běl) */
+  --pm-ink-2:      #a39d90;   /* sekundární text */
+  --pm-ink-3:      #7d7669;   /* terciární / tlumený */
+  --pm-ink-4:      #564f45;   /* disabled / náznak */
+
+  --pm-line:       rgba(236,230,218,0.14);  /* vlasová linka */
+  --pm-line-2:     rgba(236,230,218,0.24);  /* silnější border */
+
+  /* ===== BRAND ACCENT (oranžová ze znaku) ===== */
+  --pm-accent:        #e0542b;   /* brand oranžová */
+  --pm-accent-bright: #f2693f;   /* hover */
+  --pm-accent-deep:   #b83f1c;   /* press */
+  --pm-accent-tint:   rgba(224,84,43,0.10);  /* jemné pozadí */
+  --pm-accent-tint-2: rgba(224,84,43,0.20);
+
+  /* ===== SÉMANTICKÉ ===== */
+  --pm-success: #4fae6e;
+  --pm-warning: #e0a52b;
+  --pm-danger:  #e0432b;
+  --pm-info:    #4f8fae;
+
+  /* ===== SÉMANTICKÉ ALIASY (používej tyhle v komponentách) ===== */
+  --bg:             var(--pm-paper);
+  --bg-deep:        var(--pm-black);
+  --surface:        var(--pm-surface-1);
+  --surface-raised: var(--pm-surface-2);
+  --surface-hover:  var(--pm-surface-3);
+
+  --text:        var(--pm-white);
+  --text-soft:   var(--pm-ink-2);
+  --text-mute:   var(--pm-ink-3);
+  --text-faint:  var(--pm-ink-4);
+
+  --border:        var(--pm-line);
+  --border-strong: var(--pm-line-2);
+
+  --accent:        var(--pm-accent);
+  --accent-hover:  var(--pm-accent-bright);
+  --accent-press:  var(--pm-accent-deep);
+  --accent-tint:   var(--pm-accent-tint);
+  --on-accent:     #ffffff;
+}

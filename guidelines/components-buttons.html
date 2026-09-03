@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x230" subtitle="Primární + sekundární, jeden rukopis hoveru" name="Tlačítka" -->
+<!DOCTYPE html><html lang="cs"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);padding:30px;}
+  .row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .lab{font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);margin:0 0 14px;}
+  .note{font-family:var(--pm-font-mono);font-size:11px;color:var(--text-mute);margin-top:22px;line-height:1.6;}
+  .btn{font-family:var(--pm-font-display);font-size:.95rem;font-weight:700;letter-spacing:-.01em;cursor:pointer;border:none;
+    display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:var(--pm-radius-pill);position:relative;
+    transition:background .3s,color .3s,box-shadow .3s;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+    background:radial-gradient(80px 80px at var(--mx,50%) var(--my,50%),#fff,var(--ui-main-hi-2) 35%,transparent 75%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+    opacity:0;transition:opacity .3s;pointer-events:none;}
+  .btn-primary:hover{background:var(--accent-hover);box-shadow:0 0 0 1px rgba(224,84,43,.4),0 0 26px rgba(224,84,43,.5);}
+  .btn-primary:hover::after{opacity:1;}
+  .btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--border-strong);}
+  .btn-ghost::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+    background:radial-gradient(70px 70px at var(--mx,50%) var(--my,50%),#f2693f,var(--accent) 38%,transparent 78%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+    opacity:0;transition:opacity .3s;pointer-events:none;}
+  .btn-ghost:hover{border-color:transparent;color:var(--accent);background:var(--accent-tint);box-shadow:0 0 22px rgba(224,84,43,.4);}
+  .btn-ghost:hover::before{opacity:1;}
+</style></head><body>
+  <p class="lab">Tlačítka</p>
+  <div class="row">
+    <button class="btn btn-primary">Probrat projekt →</button>
+    <button class="btn btn-ghost">Přehrát showreel ▶</button>
+  </div>
+  <div class="note">Primární = vyplněné oranžové, hover bez pohybu + bílý lit okraj.<br>Sekundární (ghost) = 1px oranžový okraj sledující kurzor. Najeď myší.</div>
+  <script>
+    document.querySelectorAll('.btn').forEach(function(b){
+      b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();
+        b.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+        b.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');});
+    });
+  </script>
+</body></html>

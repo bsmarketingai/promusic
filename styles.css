@@ -1,0 +1,249 @@
+/* PRO MUSIC — DESIGN SYSTEM · TOKENY (jediný soubor)
+   Vše: fonty, barvy, theme layer, breakpointy, typografie, spacing, motion.
+   Konzumenti linkují styles.css + ui.css — nic víc. */
+
+
+/* ══════════ tokens/fonts.css ══════════ */
+/* PRO MUSIC — webfonts
+   Display: Archivo (headery, Bold/ExtraBold — grotesk pro velké nadpisy)
+   Body:    IBM Plex Sans
+   Mono:    Space Mono (eyebrow, štítky, data) */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+/* ══════════ tokens/colors.css ══════════ */
+/* PRO MUSIC — barevný systém (dark-first, teplé neutrály + oranžový akcent)
+   Logo i celé UI vždy na tmavém pozadí. Světlý režim mimo rozsah. */
+:root{
+  /* ===== BASE NEUTRALS (teplá černá → teplá běl) ===== */
+  --pm-black:      #070605;   /* nejhlubší — kontrastní pruhy, patička */
+  --pm-paper:      #100f0d;   /* pozadí stránky */
+  --pm-surface-1:  #1a1813;   /* povrch karty */
+  --pm-surface-2:  #242019;   /* zvednutý povrch / výplň */
+  --pm-surface-3:  #2f2a22;   /* hover zvednutí */
+
+  --pm-white:      #ece6da;   /* primární text (teplá běl) */
+  --pm-ink-2:      #a39d90;   /* sekundární text */
+  --pm-ink-3:      #7d7669;   /* terciární / tlumený */
+  --pm-ink-4:      #564f45;   /* disabled / náznak */
+
+  --pm-line:       rgba(236,230,218,0.14);  /* vlasová linka */
+  --pm-line-2:     rgba(236,230,218,0.24);  /* silnější border */
+
+  /* ===== BRAND ACCENT (oranžová ze znaku) ===== */
+  --pm-accent:        #e0542b;   /* brand oranžová */
+  --pm-accent-bright: #f2693f;   /* hover */
+  --pm-accent-deep:   #b83f1c;   /* press */
+  --pm-accent-tint:   rgba(224,84,43,0.10);  /* jemné pozadí */
+  --pm-accent-tint-2: rgba(224,84,43,0.20);
+
+  /* ===== SÉMANTICKÉ ===== */
+  --pm-success: #4fae6e;
+  --pm-warning: #e0a52b;
+  --pm-danger:  #e0432b;
+  --pm-info:    #4f8fae;
+
+  /* ===== SÉMANTICKÉ ALIASY (používej tyhle v komponentách) ===== */
+  --bg:             var(--pm-paper);
+  --bg-deep:        var(--pm-black);
+  --surface:        var(--pm-surface-1);
+  --surface-raised: var(--pm-surface-2);
+  --surface-hover:  var(--pm-surface-3);
+
+  --text:        var(--pm-white);
+  --text-soft:   var(--pm-ink-2);
+  --text-mute:   var(--pm-ink-3);
+  --text-faint:  var(--pm-ink-4);
+
+  --border:        var(--pm-line);
+  --border-strong: var(--pm-line-2);
+
+  --accent:        var(--pm-accent);
+  --accent-hover:  var(--pm-accent-bright);
+  --accent-press:  var(--pm-accent-deep);
+  --accent-tint:   var(--pm-accent-tint);
+  --on-accent:     #ffffff;
+}
+
+/* ══════════ tokens/theme.css ══════════ */
+/* PRO MUSIC — SÉMANTICKÉ BARVY (theme layer)
+   ⚑ TŘI ŘÍDÍCÍ BARVY — měň jen tyto tři, propíšou se celým projektem:
+      --ui-primary    značková primární (nadpisy, akcenty struktury)
+      --ui-secondary  doplňková (informační prvky, alternativní akcent)
+      --ui-main       CTA barva (tlačítka, glow, vlny, aktivní stavy)
+   Vše ostatní jsou dopočítané aliasy. Design systém je přepisuje přes
+   inline style na <html> (viz ui-theme.js), takže stačí změnit kapátkem. */
+:root{
+  --ui-primary:   #e0542b;
+  --ui-secondary: #4f8fae;
+  --ui-main:      #e0542b;
+
+  /* dopočítané stavy MAIN (CTA) */
+  --ui-main-bright: color-mix(in srgb, var(--ui-main) 82%, #ffffff);
+  --ui-main-deep:   color-mix(in srgb, var(--ui-main) 78%, #000000);
+  --ui-main-tint:   color-mix(in srgb, var(--ui-main) 10%, transparent);
+  --ui-main-tint-2: color-mix(in srgb, var(--ui-main) 20%, transparent);
+  --ui-main-glow:   color-mix(in srgb, var(--ui-main) 45%, transparent);
+  /* světelné jádro glow efektů (outline-glow) — musí být odvozené, ne fixní! */
+  --ui-main-hi:     color-mix(in srgb, var(--ui-main) 45%, #ffffff);
+  --ui-main-hi-2:   color-mix(in srgb, var(--ui-main) 22%, #ffffff);
+
+  /* ===== MOSTY DO STÁVAJÍCÍHO SYSTÉMU =====
+     Historické proměnné míří na theme layer → jedna změna = celý web. */
+  --accent:        var(--ui-main);
+  --accent-hover:  var(--ui-main-bright);
+  --accent-press:  var(--ui-main-deep);
+  --accent-tint:   var(--ui-main-tint);
+  --accent-bright: var(--ui-main-bright);
+  --accent-deep:   var(--ui-main-deep);
+  --pm-accent:        var(--ui-main);
+  --pm-accent-bright: var(--ui-main-bright);
+  --pm-accent-deep:   var(--ui-main-deep);
+  --pm-accent-tint:   var(--ui-main-tint);
+  --pm-accent-tint-2: var(--ui-main-tint-2);
+  --pm-info:       var(--ui-secondary);
+}
+
+/* ══════════ tokens/breakpoints.css ══════════ */
+/* PRO MUSIC — BREAKPOINTY (závazná definice)
+   XXS  0–419      (musí fungovat i pod 320 px)
+   XS   420–549
+   S    550–819
+   M    820–999
+   L    1000–1149  ← od L výš běží desktop navigace
+   XL   1150–1559
+   XXL  1560 a více
+   CSS proměnné nelze použít v @media → tokeny slouží jako dokumentace + JS. */
+:root{
+  --bp-xxs-max:  419px;
+  --bp-xs-min:   420px;
+  --bp-xs-max:   549px;
+  --bp-s-min:    550px;
+  --bp-s-max:    819px;
+  --bp-m-min:    820px;
+  --bp-m-max:    999px;
+  --bp-l-min:   1000px;
+  --bp-l-max:   1149px;
+  --bp-xl-min:  1150px;
+  --bp-xl-max:  1559px;
+  --bp-xxl-min: 1560px;
+
+  /* ⚑ hranice přepnutí navigace: M a níž = hamburger + FAB */
+  --bp-nav-max:  999px;
+  --bp-nav-min: 1000px;
+}
+
+/* ===== ZÁVAZNÁ SADA MEDIA QUERIES (kopíruj přesně) =====
+  @media(max-width:419px){}                        XXS  (i pod 320px)
+  @media(min-width:420px) and (max-width:549px){}  XS
+  @media(min-width:550px) and (max-width:819px){}  S
+  @media(min-width:820px) and (max-width:999px){}  M
+  @media(min-width:1000px) and (max-width:1149px){} L
+  @media(min-width:1150px) and (max-width:1559px){} XL
+  @media(min-width:1560px){}                       XXL
+
+  Kaskádové (mobile-last, používáme nejčastěji):
+  @media(max-width:999px){}   M a níž → hamburger + FAB, mobilní menu
+  @media(max-width:819px){}   S a níž → stack layoutů
+  @media(max-width:549px){}   XS a níž → 1 sloupec
+  @media(max-width:419px){}   XXS → minimalizovat, skrýt nepodstatné
+*/
+
+/* ══════════ tokens/typography.css ══════════ */
+/* PRO MUSIC — typografie
+   Display = Inter (ExtraBold/Black, těsný tracking, „artová" hi-fi typografie)
+   Body    = IBM Plex Sans (čtený text)
+   Mono    = Space Mono (eyebrow/štítky/data) */
+:root{
+  --pm-font-display: 'Archivo', 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --pm-font-body:    'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --pm-font-mono:    'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* fluid type scale */
+  --pm-text-display-1: clamp(3.25rem, 8vw, 8rem);    /* hero claim */
+  --pm-text-display-2: clamp(2.5rem, 5vw, 4.5rem);   /* statement */
+  --pm-text-h1:        clamp(2rem, 3.6vw, 3.25rem);
+  --pm-text-h2:        clamp(1.6rem, 2.6vw, 2.4rem);
+  --pm-text-h3:        1.5rem;
+  --pm-text-lg:        1.25rem;
+  --pm-text-body:      1.0625rem;  /* 17px */
+  --pm-text-sm:        0.9375rem;  /* 15px */
+  --pm-text-xs:        0.8125rem;  /* 13px */
+  --pm-text-eyebrow:   0.75rem;    /* 12px */
+
+  /* tracking */
+  --pm-tracking-display: -0.035em;
+  --pm-tracking-tight:   -0.02em;
+  --pm-tracking-normal:  0;
+  --pm-tracking-eyebrow: 0.2em;
+
+  /* leading */
+  --pm-leading-display: 1.02;
+  --pm-leading-tight:   1.05;
+  --pm-leading-snug:    1.25;
+  --pm-leading-body:    1.6;
+
+  /* weights */
+  --pm-weight-black:   900;
+  --pm-weight-display: 800;
+  --pm-weight-bold:    700;
+  --pm-weight-semi:    600;
+  --pm-weight-medium:  500;
+  --pm-weight-regular: 400;
+}
+
+/* ══════════ tokens/spacing.css ══════════ */
+/* PRO MUSIC — spacing, radii, stíny, layout */
+:root{
+  /* spacing scale (4px base) */
+  --pm-space-1: 4px;
+  --pm-space-2: 8px;
+  --pm-space-3: 12px;
+  --pm-space-4: 16px;
+  --pm-space-5: 24px;
+  --pm-space-6: 32px;
+  --pm-space-7: 48px;
+  --pm-space-8: 64px;
+  --pm-space-9: 96px;
+  --pm-space-10: 128px;
+
+  /* radii */
+  --pm-radius-sm:   8px;
+  --pm-radius-md:   12px;
+  --pm-radius-lg:   18px;
+  --pm-radius-xl:   28px;
+  --pm-radius-pill: 999px;
+
+  /* layout */
+  --pm-container:      1200px;
+  --pm-container-wide: 1440px;
+  --pm-gutter:         clamp(20px, 4vw, 48px);
+
+  /* stíny (dark UI) */
+  --pm-shadow-sm:     0 2px 10px rgba(0,0,0,0.35);
+  --pm-shadow-md:     0 10px 34px rgba(0,0,0,0.45);
+  --pm-shadow-lg:     0 28px 70px rgba(0,0,0,0.55);
+  --pm-shadow-accent: 0 10px 34px rgba(224,84,43,0.28);
+
+  /* sémantické aliasy */
+  --radius:    var(--pm-radius-md);
+  --radius-lg: var(--pm-radius-lg);
+  --shadow:    var(--pm-shadow-md);
+}
+
+/* ══════════ tokens/motion.css ══════════ */
+/* PRO MUSIC — motion
+   Jazyk: STŘEDNĚ. Jemné fade-up, lehký parallax, pointer „švenk".
+   Žádné agresivní zoomy/bounces. Respektovat prefers-reduced-motion. */
+:root{
+  --pm-ease:      cubic-bezier(0.2, 0.7, 0.2, 1);    /* default */
+  --pm-ease-out:  cubic-bezier(0.16, 1, 0.3, 1);     /* entrance */
+  --pm-ease-in:   cubic-bezier(0.4, 0, 1, 1);
+
+  --pm-dur-fast:   0.15s;
+  --pm-dur:        0.3s;
+  --pm-dur-slow:   0.6s;
+  --pm-dur-slower: 0.8s;
+
+  --pm-lift:    translateY(-3px);   /* hover karet */
+  --pm-parallax-max: 14%;           /* strop parallax posunu */
+}

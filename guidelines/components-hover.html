@@ -1,0 +1,34 @@
+<!-- @dsCard group="Components" viewport="700x250" subtitle="Univerzální hover — světelný okraj u kurzoru (Apple iOS styl)" name="Hover: outline-glow" -->
+<!DOCTYPE html><html lang="cs"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);padding:30px;}
+  .lab{font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);margin:0 0 16px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .og{position:relative;border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);
+    padding:22px 20px;min-width:150px;color:var(--text-soft);font-family:var(--pm-font-mono);font-size:12px;cursor:pointer;
+    transition:background .3s,color .3s;}
+  .og strong{display:block;font-family:var(--pm-font-display);font-weight:700;font-size:1.05rem;color:var(--text);letter-spacing:-.01em;margin-bottom:6px;}
+  .og::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+    background:radial-gradient(140px 140px at var(--mx,50%) var(--my,50%),var(--ui-main-hi),#f2693f 30%,var(--accent) 55%,transparent 80%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+    opacity:0;transition:opacity .3s;pointer-events:none;}
+  .og:hover{border-color:transparent;background:var(--accent-tint);}
+  .og:hover::before{opacity:1;}
+  .note{font-family:var(--pm-font-mono);font-size:11px;color:var(--text-mute);margin-top:22px;line-height:1.6;}
+</style></head><body>
+  <p class="lab">class="outline-glow"</p>
+  <div class="row">
+    <div class="og"><strong>Karta</strong>najeď myší →</div>
+    <div class="og"><strong>Chip / filtr</strong>světlo u kurzoru</div>
+    <div class="og"><strong>Záložka</strong>1px okraj, bez pohybu</div>
+  </div>
+  <div class="note">Jeden efekt pro všechny orámované prvky — tlačítka, chipsy, karty, záložky.<br>Světlý bod okraje sleduje kurzor (--mx/--my). Žádný posun, ohleduplné k migréně.</div>
+  <script>
+    document.querySelectorAll('.og').forEach(function(b){
+      b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();
+        b.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+        b.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');});
+    });
+  </script>
+</body></html>

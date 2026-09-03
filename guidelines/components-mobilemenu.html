@@ -1,0 +1,50 @@
+<!-- @dsCard group="Components" viewport="700x300" subtitle="Filozofie: FAB vpravo dole, pořadí odspodu, silná typografie" name="Mobilní menu" -->
+<!DOCTYPE html><html lang="cs"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);padding:0;}
+  .stage{display:flex;gap:26px;padding:26px;align-items:flex-start;}
+  .phone{width:230px;flex:none;height:420px;border:2px solid #2a2620;border-radius:30px;padding:12px;background:#0c0b09;position:relative;overflow:hidden;}
+  .scr{position:absolute;inset:12px;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,rgba(8,7,5,.8),rgba(8,7,5,.95));display:flex;flex-direction:column;padding:16px;}
+  .logo{font-family:var(--pm-font-mono);font-weight:700;color:#fff;font-size:15px;letter-spacing:1px;}
+  .logo b{color:var(--accent);}
+  .top{display:flex;justify-content:space-between;align-items:center;}
+  .x{width:30px;height:30px;border:1.5px solid var(--border-strong);border-radius:50%;color:var(--text-soft);display:flex;align-items:center;justify-content:center;font-size:13px;}
+  .contact{margin-top:14px;font-family:var(--pm-font-display);font-weight:700;font-size:14px;color:var(--text);line-height:1.4;}
+  .contact .k{font-family:var(--pm-font-mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .cta{margin-top:12px;background:var(--accent);color:#fff;text-align:center;border-radius:999px;padding:11px;font-family:var(--pm-font-display);font-weight:700;font-size:13px;}
+  .list{margin-top:auto;display:flex;flex-direction:column;}
+  .it{display:flex;align-items:center;gap:11px;padding:9px 0;border-top:1px solid rgba(236,230,218,.1);}
+  .it .n{font-family:var(--pm-font-mono);font-size:10px;font-weight:700;color:var(--accent);width:20px;}
+  .it .l{font-family:var(--pm-font-display);font-weight:800;font-size:22px;letter-spacing:-.02em;}
+  .fab{position:absolute;right:16px;bottom:16px;width:46px;height:46px;border-radius:50%;background:var(--accent);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(224,84,43,.5);}
+  .fab span{display:block;width:18px;height:2px;background:#fff;box-shadow:0 5px 0 #fff,0 -5px 0 #fff;}
+  .notes{flex:1;font-family:var(--pm-font-mono);font-size:12px;color:var(--text-soft);line-height:1.7;}
+  .notes b{color:var(--text);}
+  .notes .h{font-family:var(--pm-font-display);font-weight:800;font-size:16px;color:var(--text);letter-spacing:-.01em;margin:0 0 10px;}
+</style></head><body>
+  <div class="stage">
+    <div class="phone"><div class="scr">
+      <div class="top"><div class="logo">PRO&nbsp;<b>MUSIC</b></div><div class="x">✕</div></div>
+      <div class="contact"><div class="k">Kontakt</div>+420 775 328 292<br>support@promusic.cz</div>
+      <div class="cta">Probrat projekt →</div>
+      <div class="list">
+        <div class="it"><span class="n">06</span><span class="l">Kontakt</span></div>
+        <div class="it"><span class="n">05</span><span class="l">Školení</span></div>
+        <div class="it"><span class="n">02</span><span class="l">Technologie</span></div>
+        <div class="it"><span class="n">01</span><span class="l">Realizace</span></div>
+      </div>
+      <div class="fab"><span></span></div>
+    </div></div>
+    <div class="notes">
+      <p class="h">Filozofie mobilního menu</p>
+      › <b>FAB vpravo dole</b> — na dosah palce pravé ruky, respektuje Safari lištu (safe-area).<br>
+      › <b>Pořadí odspodu nahoru</b> — 01 dole (palec), čísla stoupají; kontakt &amp; CTA nahoře.<br>
+      › <b>Silná typografie</b> (Archivo Bold) na položky, podsekce i kontakt.<br>
+      › <b>Velké logo</b> integrované do hlavičky menu.<br>
+      › <b>CTA „Probrat projekt"</b> vždy přítomné.<br>
+      › Aktivuje se ≤1000px (desktop nav se skryje).
+    </div>
+  </div>
+</body></html>

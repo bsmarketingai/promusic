@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — Design systém</title>
+<script src="ui-theme.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=10" />
+<link rel="stylesheet" href="ui.css?v=3" />
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);-webkit-font-smoothing:antialiased}
+  .ds-wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,44px)}
+  /* header */
+  .ds-top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+  .ds-top .ds-wrap{display:flex;align-items:center;gap:20px;height:70px}
+  .ds-top img{height:26px}
+  .ds-badge{margin-left:auto;font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute)}
+  /* sections */
+  .ds-hero{padding:clamp(48px,7vw,96px) 0 clamp(30px,4vw,56px);border-bottom:1px solid var(--border)}
+  .ds-hero h1{font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.035em;line-height:1.02;
+    font-size:clamp(2.6rem,6vw,5rem);margin:16px 0 0}
+  .ds-hero p{font-size:1.15rem;color:var(--text-soft);max-width:62ch;line-height:1.6;margin:20px 0 0}
+  .ds-hero p b{color:var(--text)}
+  .eyebrow{font-family:var(--pm-font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  section.ds-blk{padding:clamp(44px,6vw,80px) 0;border-bottom:1px solid var(--border)}
+  .ds-head{display:flex;align-items:baseline;gap:16px;margin-bottom:30px}
+  .ds-head .n{font-family:var(--pm-font-mono);font-size:12px;color:var(--accent);font-weight:700;flex:none}
+  .ds-head h2{font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.03em;font-size:clamp(1.6rem,2.6vw,2.3rem);margin:0;flex:none}
+  .ds-head .rule{flex:1;height:1px;background:var(--border)}
+  .sub{font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);margin:30px 0 14px}
+  .row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .grid{display:grid;gap:16px}
+  .note{font-family:var(--pm-font-mono);font-size:11.5px;color:var(--text-mute);line-height:1.7;margin-top:16px}
+  code{font-family:var(--pm-font-mono);font-size:.85em;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 6px;color:var(--accent)}
+
+  /* ===== THEME PICKER ===== */
+  .theme-panel{border:1px solid var(--border);border-radius:var(--pm-radius-lg);background:var(--surface);padding:clamp(20px,3vw,32px)}
+  .pickers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.pickers{grid-template-columns:1fr}}
+  .picker{display:flex;flex-direction:column;gap:10px}
+  .picker .pk-name{font-family:var(--pm-font-display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
+  .picker .pk-role{font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute)}
+  .pk-row{display:flex;align-items:center;gap:12px}
+  .pk-swatch{position:relative;width:62px;height:62px;flex:none;border-radius:12px;border:1px solid var(--border-strong);overflow:hidden;cursor:pointer}
+  .pk-swatch input{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);border:0;padding:0;cursor:pointer;background:none}
+  .pk-hex{font-family:var(--pm-font-mono);font-size:12px;color:var(--text-soft);background:var(--bg);
+    border:1px solid var(--border-strong);border-radius:6px;padding:9px 11px;width:110px;text-transform:uppercase}
+  .theme-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;padding-top:22px;border-top:1px solid var(--border);align-items:center}
+  .theme-status{font-family:var(--pm-font-mono);font-size:11px;color:var(--accent);margin-left:auto}
+  .presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+  .preset{cursor:pointer;display:flex;align-items:center;gap:8px;background:transparent;color:var(--text-soft);
+    border:1px solid var(--border-strong);border-radius:var(--pm-radius-pill);padding:7px 13px;
+    font-family:var(--pm-font-mono);font-size:11px;transition:border-color .2s,color .2s}
+  .preset:hover{border-color:var(--accent);color:var(--text)}
+  .preset i{width:12px;height:12px;border-radius:3px;display:block}
+
+  /* swatch grids */
+  .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
+  .sw{border:1px solid var(--border);border-radius:var(--pm-radius-md);overflow:hidden}
+  .sw .chip{height:74px}
+  .sw .meta{padding:10px 12px;background:var(--surface)}
+  .sw .nm{font-family:var(--pm-font-mono);font-size:11px;font-weight:700}
+  .sw .vl{font-family:var(--pm-font-mono);font-size:10.5px;color:var(--text-mute);margin-top:3px}
+
+  /* component demo shells */
+  .demo{border:1px solid var(--border);border-radius:var(--pm-radius-lg);background:var(--surface);padding:clamp(20px,3vw,30px)}
+  .demo + .demo{margin-top:16px}
+  .demo-t{font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);margin:0 0 18px}
+  /* breakpoints table */
+  .bp-tbl{width:100%;border-collapse:collapse;font-family:var(--pm-font-mono);font-size:12.5px}
+  .bp-tbl th,.bp-tbl td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--border)}
+  .bp-tbl th{color:var(--text-mute);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .bp-tbl td:first-child{color:var(--accent);font-weight:700}
+  .bp-tbl tr.hl td{background:var(--ui-main-tint)}
+  /* type specimen */
+  .spec{border:1px solid var(--border);border-radius:var(--pm-radius-lg);overflow:hidden}
+  .spec .r{display:flex;align-items:baseline;gap:22px;padding:20px 24px;border-bottom:1px solid var(--border)}
+  .spec .r:last-child{border:0}
+  .spec .lbl{font-family:var(--pm-font-mono);font-size:10.5px;color:var(--text-mute);width:158px;flex:none;line-height:1.55}
+</style>
+</head>
+<body>
+
+<header class="ds-top"><div class="ds-wrap">
+  <img src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
+  <span class="ds-badge">Design systém · v2</span>
+</div></header>
+
+<div class="ds-wrap">
+
+  <section class="ds-hero">
+    <div class="eyebrow">Foundations · komponenty · theming</div>
+    <h1>Design systém<br>PRO MUSIC.</h1>
+    <p>Jeden zdroj pravdy pro celý web. <b>Změň barvu kapátkem níže a propíše se okamžitě celým projektem</b> — všechny stránky čtou stejné tokeny. Komponenty mají prefix <code>ui-</code> a importují se jedním skriptem.</p>
+  </section>
+
+  <!-- 01 THEMING -->
+  <section class="ds-blk">
+    <div class="ds-head"><span class="n">01</span><h2>Barevné schéma</h2><span class="rule"></span></div>
+    <div class="theme-panel">
+      <div class="pickers">
+        <div class="picker">
+          <div><div class="pk-name">Primary</div><div class="pk-role">značková primární</div></div>
+          <div class="pk-row">
+            <label class="pk-swatch" style="background:var(--ui-primary)"><input type="color" data-var="primary" /></label>
+            <input class="pk-hex" data-hex="primary" spellcheck="false" />
+          </div>
+        </div>
+        <div class="picker">
+          <div><div class="pk-name">Secondary</div><div class="pk-role">doplňková / informační</div></div>
+          <div class="pk-row">
+            <label class="pk-swatch" style="background:var(--ui-secondary)"><input type="color" data-var="secondary" /></label>
+            <input class="pk-hex" data-hex="secondary" spellcheck="false" />
+          </div>
+        </div>
+        <div class="picker">
+          <div><div class="pk-name">Main <span style="color:var(--accent)">★ CTA</span></div><div class="pk-role">tlačítka · glow · vlny</div></div>
+          <div class="pk-row">
+            <label class="pk-swatch" style="background:var(--ui-main)"><input type="color" data-var="main" /></label>
+            <input class="pk-hex" data-hex="main" spellcheck="false" />
+          </div>
+        </div>
+      </div>
+
+      <div class="presets">
+        <button class="preset" data-preset="#e0542b,#4f8fae,#e0542b"><i style="background:#e0542b"></i>PRO MUSIC (default)</button>
+        <button class="preset" data-preset="#c9a227,#4f8fae,#c9a227"><i style="background:#c9a227"></i>Zlatá</button>
+        <button class="preset" data-preset="#3fb27f,#4f8fae,#3fb27f"><i style="background:#3fb27f"></i>Zelená</button>
+        <button class="preset" data-preset="#c0398f,#6a5acd,#c0398f"><i style="background:#c0398f"></i>Magenta</button>
+        <button class="preset" data-preset="#2f6de0,#4f8fae,#2f6de0"><i style="background:#2f6de0"></i>Modrá</button>
+      </div>
+
+      <div class="theme-actions">
+        <ui-button variant="ghost" id="btnReset">Vrátit výchozí</ui-button>
+        <ui-button variant="primary" href="index.html">Zkontrolovat na webu →</ui-button>
+        <span class="theme-status" id="themeStatus"></span>
+      </div>
+      <div class="note">Uloží se do prohlížeče a aplikuje na <b>všech stránkách projektu</b> (homepage, case studies, segmenty, značky). Odvozené stavy (hover, press, tint, glow) se dopočítají automaticky přes <code>color-mix()</code>.</div>
+    </div>
+
+    <div class="sub">Odvozené stavy z Main</div>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:var(--ui-main)"></div><div class="meta"><div class="nm">main</div><div class="vl">--ui-main</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ui-main-bright)"></div><div class="meta"><div class="nm">hover</div><div class="vl">+82% white</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ui-main-deep)"></div><div class="meta"><div class="nm">press</div><div class="vl">+78% black</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ui-main-tint);border-bottom:1px solid var(--border)"></div><div class="meta"><div class="nm">tint 10%</div><div class="vl">podklady</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ui-secondary)"></div><div class="meta"><div class="nm">secondary</div><div class="vl">--ui-secondary</div></div></div>
+    </div>
+
+    <div class="sub">Neutrály (dark-first, fixní)</div>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:var(--pm-black)"></div><div class="meta"><div class="nm">black</div><div class="vl">#070605</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--pm-paper)"></div><div class="meta"><div class="nm">paper</div><div class="vl">#100f0d</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--pm-surface-1)"></div><div class="meta"><div class="nm">surface-1</div><div class="vl">#1a1813</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--pm-surface-2)"></div><div class="meta"><div class="nm">surface-2</div><div class="vl">#242019</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--pm-white)"></div><div class="meta"><div class="nm">text</div><div class="vl">#ece6da</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--pm-ink-2)"></div><div class="meta"><div class="nm">text-soft</div><div class="vl">#a39d90</div></div></div>
+    </div>
+  </section>
+
+  <!-- 02 BREAKPOINTS -->
+  <section class="ds-blk">
+    <div class="ds-head"><span class="n">02</span><h2>Breakpointy</h2><span class="rule"></span></div>
+    <table class="bp-tbl">
+      <thead><tr><th>Token</th><th>Hodnota</th><th>Účel</th></tr></thead>
+      <tbody>
+        <tr><td>XXS</td><td>0 – 419 px</td><td>musí fungovat i pod 320 px — minimalizovat, skrýt nepodstatné</td></tr>
+        <tr><td>XS</td><td>420 – 549 px</td><td>telefon — 1 sloupec</td></tr>
+        <tr><td>S</td><td>550 – 819 px</td><td>velký telefon — stack layoutů, showreel 2 sloupce</td></tr>
+        <tr class="hl"><td>M</td><td>820 – 999 px</td><td>tablet — ⚑ poslední pásmo s hamburgerem + FAB</td></tr>
+        <tr class="hl"><td>L</td><td>1000 – 1149 px</td><td>⚑ od zde běží desktop navigace (stažené mezery)</td></tr>
+        <tr><td>XL</td><td>1150 – 1559 px</td><td>desktop — container 1280</td></tr>
+        <tr><td>XXL</td><td>1560 px a více</td><td>široký desktop — container-wide 1520</td></tr>
+      </tbody>
+    </table>
+    <div class="note">Definováno v <code>tokens/breakpoints.css</code>. CSS proměnné nelze použít v <code>@media</code> — tokeny slouží jako závazná dokumentace, media queries kopíruj přesně dle tabulky.</div>
+  </section>
+
+  <!-- 03 TYPOGRAFIE -->
+  <section class="ds-blk">
+    <div class="ds-head"><span class="n">03</span><h2>Typografie</h2><span class="rule"></span></div>
+    <div class="spec">
+      <div class="r"><span class="lbl">Display<br>Archivo 800<br>tracking −.035em</span>
+        <span style="font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.035em;line-height:1.02;font-size:clamp(34px,4.6vw,58px)">Zvuk, který cítíš v hrudi.</span></div>
+      <div class="r"><span class="lbl">Heading<br>Archivo 800</span>
+        <span style="font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.02em;font-size:26px">Vybrané realizace</span></div>
+      <div class="r"><span class="lbl">Body<br>IBM Plex Sans 400/700<br>17px / 1.6</span>
+        <span style="font-family:var(--pm-font-body);font-size:17px;line-height:1.6;color:var(--text-soft);max-width:52ch">Dodáváme špičkové profesionální technologie — a <b style="color:var(--text)">rozumíme tomu, aby to celé fungovalo</b>.</span></div>
+      <div class="r"><span class="lbl">Mono<br>Space Mono 700<br>eyebrow / data</span>
+        <span style="font-family:var(--pm-font-mono);font-size:12px;letter-spacing:.14em;color:var(--text-soft)">PROFESIONÁLNÍ AUDIO · OD 1997 · 28 LET · 17 ZEMÍ</span></div>
+    </div>
+  </section>
+
+  <!-- 04 KOMPONENTY -->
+  <section class="ds-blk">
+    <div class="ds-head"><span class="n">04</span><h2>Komponenty <code>ui-*</code></h2><span class="rule"></span></div>
+
+    <div class="demo">
+      <p class="demo-t">ui-button · varianty a stavy</p>
+      <div class="row">
+        <ui-button variant="primary">Probrat projekt →</ui-button>
+        <ui-button variant="primary" size="lg">Velké CTA →</ui-button>
+        <ui-button variant="ghost">Přehrát showreel ▶</ui-button>
+        <ui-button variant="ghost" size="lg">Sekundární velké</ui-button>
+        <ui-button variant="primary" disabled>Disabled</ui-button>
+      </div>
+      <div class="note">Hover = <b>outline-glow</b> (světelný okraj sledující kurzor, bez pohybu). Primární má bílý lesk, ghost oranžový okraj. Jeden rukopis pro celý web.</div>
+    </div>
+
+    <div class="demo">
+      <p class="demo-t">ui-input · ui-search · ui-dropdown</p>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+        <ui-input label="Jméno" placeholder="Jan Novák"></ui-input>
+        <ui-input label="E-mail" type="email" placeholder="jan@firma.cz" hint="Odpovídáme do 24 h"></ui-input>
+        <div><div style="font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px">Typ prostoru</div>
+        <ui-dropdown label="Vyberte prostor" items="Divadlo|Aréna|Kulturní dům|Broadcast studio|Klub"></ui-dropdown></div>
+      </div>
+      <div style="margin-top:18px"><ui-search></ui-search></div>
+      <div style="margin-top:18px"><ui-input label="Zpráva" type="textarea" placeholder="Co řešíte?"></ui-input></div>
+    </div>
+
+    <div class="demo">
+      <p class="demo-t">ui-tag · ui-chip · ui-lang-switch</p>
+      <div class="row">
+        <ui-tag>Turné / Světla</ui-tag>
+        <ui-tag solid>Instalace / Zvuk</ui-tag>
+        <ui-chip active>Vše</ui-chip>
+        <ui-chip>Divadla</ui-chip>
+        <ui-chip>Arény &amp; stadiony</ui-chip>
+        <ui-lang-switch langs="CZ|EN" active="CZ"></ui-lang-switch>
+      </div>
+    </div>
+
+    <div class="demo">
+      <p class="demo-t">ui-card</p>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
+        <ui-card kicker="Segment" title="Divadla &amp; sály" href="instalace-kulturni-domy-saly-divadla.html">Stálé instalace, akustika, provoz.</ui-card>
+        <ui-card kicker="Case study" title="Ed Sheeran" href="realizace-ed-sheeran.html">Ayrton rig · stadiony Evropy.</ui-card>
+        <ui-card kicker="Technologie" title="L-ISA">Imerzivní objektový zvuk.</ui-card>
+      </div>
+    </div>
+
+    <div class="demo">
+      <p class="demo-t">ui-header · ui-footer · ui-mobile-menu · megamenu</p>
+      <div class="note" style="margin-top:0">Poskytuje <code>ui-loader.js</code> + <code>ui-header.html</code> / <code>ui-mobile-menu.html</code> / <code>ui-footer.html</code> — jeden zdroj pravdy pro navigaci, mega-menu, mobilní menu (FAB vpravo dole) i patičku. Auto-mountuje se na každé stránce; volitelně lze umístit explicitně přes <code>&lt;ui-header&gt;</code> / <code>&lt;ui-footer&gt;</code>. Živě je vidíš na <a href="index.html" style="color:var(--accent)">homepage</a>.</div>
+    </div>
+  </section>
+
+  <!-- 05 JAK POUŽÍVAT -->
+  <section class="ds-blk" style="border-bottom:0">
+    <div class="ds-head"><span class="n">05</span><h2>Jak zapojit</h2><span class="rule"></span></div>
+    <div class="demo">
+      <p class="demo-t">Hlavička nové stránky</p>
+      <pre style="margin:0;overflow-x:auto;font-family:var(--pm-font-mono);font-size:12px;color:var(--text-soft);line-height:1.75"><span style="color:var(--text-mute)">&lt;!-- theme runtime PRVNÍ, aby nebliklo --&gt;</span>
+&lt;script src="<b style="color:var(--accent)">ui-theme.js</b>"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="<b style="color:var(--accent)">styles.css</b>" /&gt;      <span style="color:var(--text-mute)">// tokeny</span>
+&lt;link rel="stylesheet" href="hifi.css" /&gt;        <span style="color:var(--text-mute)">// komponentní vrstva</span>
+&lt;link rel="stylesheet" href="hifi-parts.css" /&gt;  <span style="color:var(--text-mute)">// menu, glow utility</span>
+&lt;link rel="stylesheet" href="<b style="color:var(--accent)">ui-components.css</b>" /&gt;
+<span style="color:var(--text-mute)">&lt;!-- na konci body --&gt;</span>
+&lt;script src="<b style="color:var(--accent)">ui-components.js</b>"&gt;&lt;/script&gt;
+&lt;script src="<b style="color:var(--accent)">ui-nav.js</b>"&gt;&lt;/script&gt;</pre>
+    </div>
+    <div class="note">Soubory systému: <code>tokens/*</code> · <code>styles.css</code> · <code>ui-theme.js</code> · <code>ui-components.js/.css</code> · <code>ui-loader.js</code> + <code>ui-header.html</code> / <code>ui-mobile-menu.html</code> / <code>ui-footer.html</code> · <code>hifi.css</code> · <code>hifi-parts.css</code>. Specifikace: <code>research/design-system-components.md</code>.</div>
+  </section>
+
+</div>
+
+<script src="ui-components.js?v=1"></script>
+<script>
+(function(){
+  var VARS=["primary","secondary","main"];
+  var status=document.getElementById("themeStatus");
+  function norm(v){ v=(v||"").trim(); if(v && v[0]!=="#") v="#"+v; return v; }
+  function toHex(v){
+    v=(v||"").trim();
+    if(v[0]==="#") return v.length===4 ? "#"+v[1]+v[1]+v[2]+v[2]+v[3]+v[3] : v;
+    var m=v.match(/(\d+)[,\s]+(\d+)[,\s]+(\d+)/);
+    if(!m) return "#e0542b";
+    return "#"+[m[1],m[2],m[3]].map(function(n){return ("0"+parseInt(n,10).toString(16)).slice(-2);}).join("");
+  }
+  function sync(){
+    var cur=window.PMTheme.current();
+    VARS.forEach(function(k){
+      var hex=toHex(cur[k]);
+      var ci=document.querySelector('input[data-var="'+k+'"]');
+      var hi=document.querySelector('input[data-hex="'+k+'"]');
+      if(ci) ci.value=hex;
+      if(hi) hi.value=hex.toUpperCase();
+    });
+  }
+  function set(k,v){
+    v=norm(v); if(!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v)) return;
+    var t=window.PMTheme.read(); t[k]=v; window.PMTheme.save(t);
+    sync(); flash("Uloženo — platí na všech stránkách");
+  }
+  function flash(msg){ status.textContent=msg; clearTimeout(flash.t); flash.t=setTimeout(function(){status.textContent="";},2600); }
+
+  VARS.forEach(function(k){
+    var ci=document.querySelector('input[data-var="'+k+'"]');
+    var hi=document.querySelector('input[data-hex="'+k+'"]');
+    if(ci) ci.addEventListener("input",function(){ set(k,ci.value); });
+    if(hi) hi.addEventListener("change",function(){ set(k,hi.value); });
+  });
+  document.querySelectorAll(".preset").forEach(function(b){
+    b.addEventListener("click",function(){
+      var p=b.getAttribute("data-preset").split(",");
+      window.PMTheme.save({primary:p[0],secondary:p[1],main:p[2]});
+      sync(); flash("Přednastavení použito");
+    });
+  });
+  var rst=document.getElementById("btnReset");
+  if(rst) rst.addEventListener("click",function(){ window.PMTheme.reset(); sync(); flash("Vráceno na výchozí"); });
+
+  sync();
+  window.addEventListener("pm-theme-change",sync);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+/* PRO MUSIC — hi-fi homepage skin (Cinematic)
+   Jediný zvolený směr. body.dir-a ───────────────────────────── */
+
+/* ===== HERO base ===== */
+.hero-bg{display:none;}.hero-frame{display:none;margin:0;}
+.hero h1.display{margin:18px 0 0;}
+.hero .lead{margin-top:22px;}
+.hero .cta-actions{margin-top:30px;justify-content:flex-start;}
+
+/* ============ CINEMATIC ============ */
+body.dir-a .hero{min-height:94vh;display:flex;align-items:flex-end;overflow:hidden;}
+body.dir-a .hero-bg{display:block;position:absolute;inset:0;z-index:0;overflow:hidden;}
+body.dir-a .hero-bg img{width:100%;height:108%;object-fit:cover;filter:brightness(.5) saturate(.95);}
+body.dir-a .hero::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(7,6,5,.35),rgba(7,6,5,.12) 36%,rgba(7,6,5,.93));}
+body.dir-a .hero-wrap{position:relative;z-index:2;width:100%;padding-bottom:clamp(48px,7vw,104px);padding-top:120px;}
+body.dir-a .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;align-items:end;max-width:none;}
+body.dir-a .hero-content{max-width:760px;}
+body.dir-a .hero h1.display{font-size:clamp(3.4rem,8vw,7.5rem);line-height:1.02;}
+body.dir-a .hero .lead{color:rgba(255,255,255,.92);max-width:46ch;}
+body.dir-a .statement{min-height:82vh;}
+body.dir-a .sec-head h2{font-size:clamp(1.9rem,3vw,2.8rem);}
+@media(max-width:999px){
+  body.dir-a .hero-grid{grid-template-columns:1fr;gap:26px;}
+  body.dir-a .hero-cards{flex-direction:row;gap:10px;}
+  body.dir-a .hero-card{flex:1;min-width:0;flex-direction:column;padding:6px;}
+  body.dir-a .hero-card .hc-img{width:100%;height:74px;}
+  body.dir-a .hero-card .hc-meta{padding:0 4px 4px;}
+  body.dir-a .hero-card .hc-title{font-size:11px;}
+}
+
+/* ===== HERO carousel slides ===== */
+body.dir-a .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;
+  filter:brightness(.5) saturate(.95);opacity:0;transform:scale(1.06);
+  transition:opacity 1.1s var(--pm-ease),transform 6s ease-out;}
+body.dir-a .hero-slide.is-active{opacity:1;transform:scale(1.12);}
+
+/* carousel ovladač */
+.hero-ctrl{display:flex;flex-direction:column;gap:8px;margin-top:30px;max-width:380px;}
+.hero-dot{position:relative;text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
+  color:rgba(255,255,255,.7);font-family:var(--pm-font-body);font-size:13px;padding:10px 14px;border-radius:10px;
+  cursor:pointer;overflow:hidden;opacity:.5;transition:all var(--pm-dur) var(--pm-ease);}
+.hero-dot b{color:#fff;font-weight:700;}
+.hero-dot:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);opacity:.8;}
+.hero-dot.is-active{background:rgba(224,84,43,.16);border-color:var(--accent);color:#fff;opacity:1;}
+
+/* náhledové karty */
+.hero-cards{display:flex;flex-direction:column;gap:14px;}
+.hero-card{display:flex;gap:12px;align-items:center;padding:8px;border-radius:14px;
+  background:rgba(20,18,14,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  text-decoration:none;opacity:.45;transform:none;
+  transition:opacity .4s var(--pm-ease),transform .4s var(--pm-ease),border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease),box-shadow var(--pm-dur) var(--pm-ease);}
+.hero-card:hover{opacity:.85;border-color:var(--accent);background:rgba(20,18,14,.78);}
+.hero-card.is-active{opacity:1;border-color:var(--accent);background:rgba(224,84,43,.14);
+  transform:translateX(-6px) scale(1.03);box-shadow:-6px 10px 30px rgba(0,0,0,.4);}
+.hero-card .hc-img{width:150px;height:100px;flex:none;border-radius:9px;overflow:hidden;background:var(--surface-2);}
+.hero-card .hc-img img{width:100%;height:100%;object-fit:cover;transition:opacity .36s var(--pm-ease),transform .5s var(--pm-ease);}
+.hero-card.flip .hc-img img{opacity:0;transform:scale(1.12);}
+.hero-card.flip .hc-meta{opacity:0;}
+.hero-card .hc-meta{display:flex;flex-direction:column;gap:4px;padding-right:8px;transition:opacity .36s var(--pm-ease);min-width:0;}
+.hero-card .hc-kicker{font-family:var(--pm-font-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);}
+.hero-card .hc-title{font-family:var(--pm-font-display);font-weight:700;font-size:13px;color:#fff;letter-spacing:-.01em;line-height:1.2;}
+@keyframes heroCardIn{to{transform:translateX(0);opacity:1;}}
+@media(prefers-reduced-motion:reduce){.hero-card{animation:none;transform:none;opacity:1;}}

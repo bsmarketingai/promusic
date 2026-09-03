@@ -1,0 +1,37 @@
+/* PRO MUSIC — spacing, radii, stíny, layout */
+:root{
+  /* spacing scale (4px base) */
+  --pm-space-1: 4px;
+  --pm-space-2: 8px;
+  --pm-space-3: 12px;
+  --pm-space-4: 16px;
+  --pm-space-5: 24px;
+  --pm-space-6: 32px;
+  --pm-space-7: 48px;
+  --pm-space-8: 64px;
+  --pm-space-9: 96px;
+  --pm-space-10: 128px;
+
+  /* radii */
+  --pm-radius-sm:   8px;
+  --pm-radius-md:   12px;
+  --pm-radius-lg:   18px;
+  --pm-radius-xl:   28px;
+  --pm-radius-pill: 999px;
+
+  /* layout */
+  --pm-container:      1200px;
+  --pm-container-wide: 1440px;
+  --pm-gutter:         clamp(20px, 4vw, 48px);
+
+  /* stíny (dark UI) */
+  --pm-shadow-sm:     0 2px 10px rgba(0,0,0,0.35);
+  --pm-shadow-md:     0 10px 34px rgba(0,0,0,0.45);
+  --pm-shadow-lg:     0 28px 70px rgba(0,0,0,0.55);
+  --pm-shadow-accent: 0 10px 34px rgba(224,84,43,0.28);
+
+  /* sémantické aliasy */
+  --radius:    var(--pm-radius-md);
+  --radius-lg: var(--pm-radius-lg);
+  --shadow:    var(--pm-shadow-md);
+}

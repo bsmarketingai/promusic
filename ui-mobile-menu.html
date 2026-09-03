@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — UI komponenta · Mobilní menu</title>
+<!-- Náhledová hlavička: při vložení přes ui-loader.js se ignoruje,
+     loader bere pouze komponentní root (header.nav / #mobmenu / footer.foot / .navfab). -->
+<script src="ui-theme.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=10" />
+<link rel="stylesheet" href="ui.css?v=3" />
+</head>
+<body class="dir-a dir-b">
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     UI KOMPONENTA · MOBILNÍ MENU  (M a níž, ≤999 px)
+     Filozofie: FAB vpravo dole · položky odspodu nahoru (01 na dosah palce)
+     Edituj přímo tento soubor — propíše se na všechny stránky.
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="mobmenu" id="mobmenu">
+  <div class="mobmenu-bg"><img src="assets/projekty/ed-sheeran/cervena-show.jpg" alt="" /></div>
+  <div class="mobmenu-scrim"></div>
+
+  <div class="mobmenu-inner">
+
+    <!-- hlavička menu: velké logo + jazyk + zavřít -->
+    <div class="mobmenu-top">
+      <img class="nav-logo" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
+      <div class="mobmenu-top-r">
+        <ui-lang-switch langs="CZ|EN" active="CZ"></ui-lang-switch>
+        <button class="mobmenu-close" aria-label="Zavřít">✕</button>
+      </div>
+    </div>
+
+    <!-- kontakt (nahoře) -->
+    <div class="mobmenu-contact">
+      <div>
+        <div class="k">Kontakt</div>
+        <a href="tel:+420775328292">+420 775 328 292</a>
+        <a href="mailto:support@promusic.cz">support@promusic.cz</a>
+      </div>
+      <div>
+        <div class="k">Sídlo</div>
+        <span>Horská 922, 541 01 Trutnov</span>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <a class="btn btn-primary mobmenu-cta">Probrat projekt →</a>
+
+    <div class="mobmenu-kick">Navigace</div>
+
+    <!-- POZOR: vizuálně se řadí ODSPODU (column-reverse) → 01 je dole u palce -->
+    <nav class="mobmenu-list">
+
+      <div class="mobitem has-sub">
+        <div class="mobitem-row"><span class="mobitem-n">01</span><a class="mobitem-label" href="hifi-A.html">Realizace</a><span class="mobitem-plus">+</span></div>
+        <div class="mobitem-sub">
+          <div class="mobsub-col"><h6>Přehled</h6><ul>
+            <li><a href="hifi-A.html">Celé portfolio</a></li>
+            <li><a href="hifi-A.html">Showreel</a></li>
+            <li><a href="realizace-ed-sheeran.html">Case studies</a></li>
+          </ul></div>
+          <div class="mobsub-col"><h6>Podle typu</h6><ul>
+            <li><a href="#">Turné &amp; koncerty</a></li>
+            <li><a href="#">Festivaly</a></li>
+            <li><a href="#">TV &amp; broadcast</a></li>
+            <li><a href="#">Eventy &amp; korporát</a></li>
+          </ul></div>
+        </div>
+      </div>
+
+      <div class="mobitem">
+        <div class="mobitem-row"><span class="mobitem-n">02</span><a class="mobitem-label" href="#">Technologie</a></div>
+      </div>
+
+      <div class="mobitem has-sub">
+        <div class="mobitem-row"><span class="mobitem-n">03</span><a class="mobitem-label" href="instalace-kulturni-domy-saly-divadla.html">Instalace</a><span class="mobitem-plus">+</span></div>
+        <div class="mobitem-sub">
+          <div class="mobsub-col"><h6>Podle prostoru</h6><ul>
+            <li><a href="instalace-kulturni-domy-saly-divadla.html">Divadla &amp; sály</a></li>
+            <li><a href="#">Arény &amp; stadiony</a></li>
+            <li><a href="#">Kluby &amp; venues</a></li>
+            <li><a href="#">Hotely &amp; bary</a></li>
+            <li><a href="#">Konferenční</a></li>
+            <li><a href="#">Kina · sakrální</a></li>
+          </ul></div>
+          <div class="mobsub-col"><h6>Jak to děláme</h6><ul>
+            <li><a href="#">Konzultace</a></li>
+            <li><a href="#">Akustická studie &amp; 3D</a></li>
+            <li><a href="#">Návrh &amp; realizace</a></li>
+            <li><a href="#">Oživení &amp; ladění</a></li>
+            <li><a href="#">Servis &amp; péče</a></li>
+          </ul></div>
+        </div>
+      </div>
+
+      <div class="mobitem">
+        <div class="mobitem-row"><span class="mobitem-n">04</span><a class="mobitem-label" href="znacky.html">Značky</a></div>
+      </div>
+      <div class="mobitem">
+        <div class="mobitem-row"><span class="mobitem-n">05</span><a class="mobitem-label" href="#">Školení</a></div>
+      </div>
+      <div class="mobitem">
+        <div class="mobitem-row"><span class="mobitem-n">06</span><a class="mobitem-label" href="#">Kontakt</a></div>
+      </div>
+
+    </nav>
+  </div>
+</div>
+
+<script src="ui-components.js?v=1"></script>
+<script>
+/* náhled: outline-glow + accordion chování bez loaderu */
+/* Tento skript běží POUZE při samostatném otevření komponenty.
+   Při importu přes ui-loader.js se nespouští (loader přebírá jen markup),
+   takže na stránkách zůstává menu zavřené a otevírá ho FAB. */
+document.getElementById("mobmenu").classList.add("open");
+document.querySelectorAll(".btn,.outline-glow,.mobitem-label,.foot-col a").forEach(function(el){
+  el.addEventListener("pointermove",function(e){var r=el.getBoundingClientRect();
+    el.style.setProperty("--mx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");
+    el.style.setProperty("--my",((e.clientY-r.top)/r.height*100).toFixed(1)+"%");});
+});
+document.querySelectorAll(".mobitem.has-sub .mobitem-row").forEach(function(row){
+  row.addEventListener("click",function(e){
+    if(e.target.closest(".mobitem-label")) return;
+    var open=row.parentElement.classList.toggle("exp");
+    var p=row.querySelector(".mobitem-plus"); if(p) p.textContent=open?"–":"+";
+  });
+});
+</script>
+</body>
+</html>
