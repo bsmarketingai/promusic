@@ -16,6 +16,8 @@
   --pm-text-lg:        1.25rem;
   --pm-text-body:      1.0625rem;  /* 17px */
   --pm-text-sm:        0.9375rem;  /* 15px */
+  /* 12px je PODLAHA — nic menšího se na webu nepoužívá (a11y) */
+  --pm-text-2xs:  12px;
   --pm-text-xs:        0.8125rem;  /* 13px */
   --pm-text-eyebrow:   0.75rem;    /* 12px */
 

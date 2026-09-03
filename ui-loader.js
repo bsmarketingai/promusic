@@ -8,6 +8,9 @@
 (function () {
   "use strict";
 
+  /* Bumpni při každé editaci ui-header/ui-mobile-menu/ui-footer.html — jinak drží cache. */
+  var V = 11;
+
   var COMPONENTS = [
     { file: "ui-header.html",      mount: "prepend", el: "ui-header" },
     { file: "ui-mobile-menu.html", mount: "prepend", el: "ui-mobile-menu" },
@@ -99,7 +102,7 @@
 
   function boot() {
     var loads = COMPONENTS.map(function (spec) {
-      return fetch(spec.file)
+      return fetch(spec.file + "?v=" + V)
         .then(function (r) { return r.ok ? r.text() : ""; })
         .then(function (html) { if (html) inject(html, spec); })
         .catch(function () {});
@@ -107,7 +110,7 @@
     Promise.all(loads).then(function () {
       dedupe(); markActive(); wire(); scanGlow();
       if (window.UIArmGlow) window.UIArmGlow();
-      /* pozdní generátory stránky (hifi-content.js) mohou vložit vlastní nav → uklidit znovu */
+      /* pozdní generátory stránky (home-content.js) mohou vložit vlastní nav → uklidit znovu */
       setTimeout(function () { dedupe(); markActive(); wire(); scanGlow(); }, 60);
       setTimeout(function () { dedupe(); markActive(); wire(); }, 400);
       window.dispatchEvent(new CustomEvent("ui-nav-ready"));

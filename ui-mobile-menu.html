@@ -7,8 +7,8 @@
 <!-- Náhledová hlavička: při vložení přes ui-loader.js se ignoruje,
      loader bere pouze komponentní root (header.nav / #mobmenu / footer.foot / .navfab). -->
 <script src="ui-theme.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=10" />
-<link rel="stylesheet" href="ui.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=39" />
 </head>
 <body class="dir-a dir-b">
 
@@ -29,37 +29,23 @@
       <img class="nav-logo" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
       <div class="mobmenu-top-r">
         <ui-lang-switch langs="CZ|EN" active="CZ"></ui-lang-switch>
-        <button class="mobmenu-close" aria-label="Zavřít">✕</button>
+        <button class="mobmenu-close" aria-label="Zavřít"><ui-icon name="ui-close" aria-hidden="true"></ui-icon></button>
       </div>
     </div>
 
-    <!-- kontakt (nahoře) -->
-    <div class="mobmenu-contact">
-      <div>
-        <div class="k">Kontakt</div>
-        <a href="tel:+420775328292">+420 775 328 292</a>
-        <a href="mailto:support@promusic.cz">support@promusic.cz</a>
-      </div>
-      <div>
-        <div class="k">Sídlo</div>
-        <span>Horská 922, 541 01 Trutnov</span>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <a class="btn btn-primary mobmenu-cta">Probrat projekt →</a>
-
-    <div class="mobmenu-kick">Navigace</div>
+    <!-- Menu je JEN navigace. Kontakt a CTA odsud pryč — kontakt je vlastní
+         položka menu a v patičce, CTA je na každé stránce. Bez nich se menu
+         vejde na jeden displej bez rolování a dotykové cíle mohou zůstat 44 px. -->
 
     <!-- POZOR: vizuálně se řadí ODSPODU (column-reverse) → 01 je dole u palce -->
     <nav class="mobmenu-list">
 
       <div class="mobitem has-sub">
-        <div class="mobitem-row"><span class="mobitem-n">01</span><a class="mobitem-label" href="hifi-A.html">Realizace</a><span class="mobitem-plus">+</span></div>
+        <div class="mobitem-row"><span class="mobitem-n">01</span><a class="mobitem-label" href="index.html">Realizace</a><span class="mobitem-plus">+</span></div>
         <div class="mobitem-sub">
           <div class="mobsub-col"><h6>Přehled</h6><ul>
-            <li><a href="hifi-A.html">Celé portfolio</a></li>
-            <li><a href="hifi-A.html">Showreel</a></li>
+            <li><a href="index.html">Celé portfolio</a></li>
+            <li><a href="index.html">Showreel</a></li>
             <li><a href="realizace-ed-sheeran.html">Case studies</a></li>
           </ul></div>
           <div class="mobsub-col"><h6>Podle typu</h6><ul>
@@ -72,7 +58,7 @@
       </div>
 
       <div class="mobitem">
-        <div class="mobitem-row"><span class="mobitem-n">02</span><a class="mobitem-label" href="#">Technologie</a></div>
+        <div class="mobitem-row"><span class="mobitem-n">02</span><a class="mobitem-label" href="technologie-schema-ozvuceni.html">Technologie</a></div>
       </div>
 
       <div class="mobitem has-sub">
@@ -80,6 +66,7 @@
         <div class="mobitem-sub">
           <div class="mobsub-col"><h6>Podle prostoru</h6><ul>
             <li><a href="instalace-kulturni-domy-saly-divadla.html">Divadla &amp; sály</a></li>
+            <li><a href="instalace-hd-karlin-schema.html">Case studies</a></li>
             <li><a href="#">Arény &amp; stadiony</a></li>
             <li><a href="#">Kluby &amp; venues</a></li>
             <li><a href="#">Hotely &amp; bary</a></li>
@@ -110,7 +97,8 @@
   </div>
 </div>
 
-<script src="ui-components.js?v=1"></script>
+<script src="ui-icons.js?v=4"></script>
+<script src="ui-components.js?v=14"></script>
 <script>
 /* náhled: outline-glow + accordion chování bez loaderu */
 /* Tento skript běží POUZE při samostatném otevření komponenty.

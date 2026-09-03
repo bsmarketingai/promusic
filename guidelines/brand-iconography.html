@@ -1,0 +1,29 @@
+<!-- @dsCard group="Brand" viewport="820x760" subtitle="103 ikon, jediný povolený zdroj — <ui-icon>" name="Ikonografie" -->
+<!DOCTYPE html><html lang="cs"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);padding:28px;}
+.lab{font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);margin:0 0 6px;}
+h4{font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:22px 0 12px;font-weight:400;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;}
+.cell{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 4px;border:1px solid var(--border);border-radius:10px;background:var(--surface);transition:border-color .25s,color .25s;}
+.cell:hover{border-color:var(--accent);color:var(--accent);}
+.cell span{font-family:var(--pm-font-mono);font-size:8.5px;color:var(--text-mute);text-align:center;line-height:1.3;word-break:break-word;}
+.cell:hover span{color:var(--accent);}
+.note{font-family:var(--pm-font-mono);font-size:11px;color:var(--text-mute);margin-top:24px;line-height:1.7;}
+code{color:var(--text-soft);}
+</style></head><body>
+<p class="lab">Ikonografie</p>
+<div id="out"></div>
+<div class="note">Použití: <code>&lt;ui-icon name="audio-mixer"&gt;&lt;/ui-icon&gt;</code> — dědí <code>font-size</code> i <code>currentColor</code>.<br>Velikost: <code>.icon-sm/md/lg/xl</code> na rodiči, nebo <code>size="32"</code>. V akcentním kroužku: <code>.icon-badge</code>.<br>Sada je uzavřená — nekresli vlastní SVG do stránek. Chybí ikona? Doplní se do <code>ui-icons.js</code>.</div>
+<script src="../ui-icons.js?v=4"></script>
+<script>
+var CAT={audio:"Audio",light:"Světla",video:"Video",stage:"Jeviště",venue:"Prostory",service:"Servis & realizace",academy:"Academy / školení",contact:"Kontakt",shop:"Katalog / dokumentace",social:"Sociální sítě",ui:"UI"};
+var by={};PM_ICON_NAMES.forEach(function(n){var c=n.split("-")[0];(by[c]=by[c]||[]).push(n);});
+document.getElementById("out").innerHTML=Object.keys(CAT).filter(function(c){return by[c];}).map(function(c){
+  return "<h4>"+CAT[c]+" · "+by[c].length+"</h4><div class=\"grid\">"+by[c].map(function(n){
+    return '<div class="cell"><ui-icon name="'+n+'" size="26"></ui-icon><span>'+n.replace(c+"-","")+"</span></div>";
+  }).join("")+"</div>";
+}).join("");
+</script>
+</body></html>

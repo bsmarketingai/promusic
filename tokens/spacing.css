@@ -19,6 +19,9 @@
   --pm-radius-xl:   28px;
   --pm-radius-pill: 999px;
 
+  /* výška sticky hlavičky — hero a kotvy ji odečítají od 100svh */
+  --pm-nav-h: 75px;
+
   /* layout */
   --pm-container:      1200px;
   --pm-container-wide: 1440px;

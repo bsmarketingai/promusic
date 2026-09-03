@@ -25,7 +25,7 @@
 ## Hover efekt „outline-glow" (univerzální)
 Jeden interaktivní efekt pro VŠECHNY orámované prvky: tlačítka, chipsy/filtry, karty, záložky.
 - 1px (volitelně 1.5px) gradientní okraj maskovaný přes `mask-composite`, jehož světlý bod je radiální gradient v pozici `--mx/--my`.
-- `--mx/--my` aktualizuje sdílený `pointermove` handler (`hifi-B.js`) na každém `.outline-glow`, `.btn-ghost`, `.btn-primary`, `.chip-filter`, `.edu-tab`.
+- `--mx/--my` aktualizuje sdílený `pointermove` handler (`site.js`) na každém `.outline-glow`, `.btn-ghost`, `.btn-primary`, `.chip-filter`, `.edu-tab`.
 - Utility třída: **`class="outline-glow"`** na jakýkoli prvek. Volitelně `--og-size` (poloměr světla, default 140px), `--og-pad` (tloušťka, default 1.5px).
 - Bez pohybu (žádné translate). Jen světlo + jemný glow. Ohleduplné k migréně.
 
@@ -76,7 +76,7 @@ Každá sekce má hlavičku `.sec-head` s velkým **obrysovým číslem** (`.idx
 - Primární CTA všude: **„Probrat projekt →"** (kvalifikovaný kontakt dle positioningu).
 
 ## Přechody & motion
-- **Mezi stránkami:** „pódiové světlo" — z místa kliknutí spotlight (`pm-transition.js/.css`), tlumené, dark-mode-friendly (ne křiklavé, ohled na migrénu).
+- **Mezi stránkami:** „pódiové světlo" — z místa kliknutí spotlight (`page-transition.js`), tlumené, dark-mode-friendly (ne křiklavé, ohled na migrénu).
 - **Edukační karusel (imerzivní zvuk):** CRT glitch přechod — starý slide se „vypne" (kolaps do linky), pak naskočí nový (power-on + RGB rozštěp + scanline). Sekvenčně, nepřekrývat obsahy.
 - **Reveal:** jemný fade-up / mask-wipe na nadpisy (`.b-mask`), rise na karty (`.b-rise`). Vždy `prefers-reduced-motion`.
 - Easing `var(--pm-ease)` = `cubic-bezier(.2,.7,.2,1)`.
@@ -88,9 +88,9 @@ Každá sekce má hlavičku `.sec-head` s velkým **obrysovým číslem** (`.idx
 
 ## Soubory (kde to žije)
 - `styles.css` → `tokens/*` — foundations (barvy, typo, spacing, motion, fonts).
-- `hifi.css` — komponentní/sekční vrstva (tlačítka, chips, stat, wave-band, footer…).
-- `hifi-parts.css` — outline-glow utility, mega-menu, mobilní menu, logo-wall, showreel, reference, academy.
-- `hifi-B.css` — směr B (premium): button hovery, asymetrie, coverflow, reveal.
-- `hifi-edu.css/js` — edukační karusel s mixážní-konzole navigací + CRT glitch.
-- `pm-nav.js` — sdílené menu + footer (jeden zdroj pro všechny stránky).
-- `pm-transition.js/.css` — přechod mezi stránkami.
+- `ui.css` — veškerá komponentní/sekční vrstva (jeden soubor).
+- `ui-components.js` — web components (`ui-button`, `ui-card`, …).
+- `ui-loader.js` + `ui-header.html` / `ui-mobile-menu.html` / `ui-footer.html` — sdílená hlavička, menu, patička.
+- `site.js` — globální motion, outline-glow, karusely.
+- `carousel-edu.js` — edukační karusel s mixážní-konzole navigací + CRT glitch.
+- `page-transition.js` — přechod mezi stránkami.

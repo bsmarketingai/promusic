@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PRO MUSIC — Ed Sheeran · Mathematics Tour</title>
 <script src="ui-theme.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=10" />
-<link rel="stylesheet" href="ui.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=39" />
 </head>
 <body data-nav="Realizace" class="dir-a dir-b">
 <div id="app">
@@ -14,7 +14,7 @@
   <!-- NAV -->
   <header class="cnav"><div class="wrap-wide cnav-in">
     <img class="cnav-logo" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
-    <a class="back" href="hifi-A.html">← Portfolio</a>
+    <a class="back" href="index.html"><ui-icon class="btn-ico" name="ui-back" aria-hidden="true"></ui-icon> Portfolio</a>
     <span class="spacer"></span>
     <ui-button variant="primary">Probrat projekt →</ui-button>
   </div></header>
@@ -59,13 +59,7 @@
   </div></section>
 
   <!-- ČÍSLA -->
-  <section class="sec-tight band reveal"><div class="wrap"><div class="stats" data-stagger style="grid-template-columns:repeat(5,1fr)">
-    <div class="stat"><div class="n">138</div><div class="l">Ayrton Domino LT</div></div>
-    <div class="stat"><div class="n">48</div><div class="l">Perseo Profile</div></div>
-    <div class="stat"><div class="n">22</div><div class="l">Cobra · laser</div></div>
-    <div class="stat"><div class="n">6</div><div class="l">stožárů · 32 m</div></div>
-    <div class="stat"><div class="n">360<span class="u">°</span></div><div class="l">in-the-round</div></div>
-  </div></div></section>
+  <section class="sec-tight band wave-band reveal stage-glow"><div class="wrap"><ui-stats><ui-stat n="138">Ayrton Domino LT</ui-stat><ui-stat n="48">Perseo Profile</ui-stat><ui-stat n="22">Cobra · laser</ui-stat><ui-stat n="6">stožárů · 32 m</ui-stat><ui-stat n="360" u="°">in-the-round</ui-stat></ui-stats></div></section>
 
   <!-- QUOTE -->
   <section class="statement reveal">
@@ -89,7 +83,7 @@
   </div></section>
 
   <!-- GALERIE -->
-  <section class="sec band reveal"><div class="wrap-wide">
+  <section class="sec band wave-band reveal"><div class="wrap-wide">
     <div class="sec-head"><span class="idx">03</span><h2>Galerie</h2><span class="rule"></span></div>
     <div class="csgal" data-stagger>
       <a class="tall" href="#"><img src="assets/projekty/ed-sheeran/rig-detail.jpg" alt="" /><span class="cap">detail rigu</span></a>
@@ -131,11 +125,11 @@
   </div></section>
 
   <!-- RELATED -->
-  <section class="sec band reveal"><div class="wrap-wide">
+  <section class="sec band wave-band reveal"><div class="wrap-wide">
     <div class="sec-head"><span class="idx">06</span><h2>Další realizace</h2><span class="rule"></span></div>
     <div class="related" data-stagger>
       <a class="relcard" href="#"><img src="assets/projekty/steel-arena/projekce-barvy.jpg" alt="" /><span class="rl">Steel Aréna Košice</span><span class="rm">Ayrton Domino Profile</span></a>
-      <a class="relcard" href="instalace-hd-karlin.html"><img src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /><span class="rl">Hudební divadlo Karlín</span><span class="rm">DiGiCo Quantum 7T</span></a>
+      <a class="relcard" href="instalace-hd-karlin-schema.html"><img src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /><span class="rl">Hudební divadlo Karlín</span><span class="rm">DiGiCo Quantum 7T</span></a>
       <a class="relcard" href="#"><img src="assets/projekty/djkt-plzen/array-strop.jpg" alt="" /><span class="rl">Nová scéna DJKT Plzeň</span><span class="rm">L-Acoustics Ambiance</span></a>
     </div>
   </div></section>
@@ -167,10 +161,10 @@
   document.querySelectorAll(".reveal,[data-stagger]").forEach(el=>io.observe(el));
 })();
 </script>
-<script src="ui-components.js?v=1"></script>
-<script src="ui-loader.js?v=5"></script>
-<script src="hifi-edu.js?v=12"></script>
-<script src="hifi-B.js?v=11"></script>
-<script src="pm-transition.js?v=1"></script>
+<script src="ui-icons.js?v=4"></script>
+<script src="ui-components.js?v=14"></script>
+<script src="ui-loader.js?v=11"></script>
+<script src="site.js?v=10"></script>
+<script src="page-transition.js?v=1"></script>
 </body>
 </html>

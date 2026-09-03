@@ -7,8 +7,8 @@
 <!-- Náhledová hlavička: při vložení přes ui-loader.js se ignoruje,
      loader bere pouze komponentní root (header.nav / #mobmenu / footer.foot / .navfab). -->
 <script src="ui-theme.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=10" />
-<link rel="stylesheet" href="ui.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=39" />
 </head>
 <body class="dir-a dir-b">
 
@@ -21,21 +21,21 @@
   <div class="wrap-wide nav-in">
 
     <!-- logo -->
-    <a href="hifi-A.html" class="nav-logo-link"><img class="nav-logo" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" /></a>
+    <a href="index.html" class="nav-logo-link"><img class="nav-logo" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" /></a>
 
     <!-- desktopová navigace -->
     <nav class="nav-links desk">
 
       <!-- REALIZACE (mega-menu) -->
       <div class="navitem">
-        <a class="nav-link has-mega" data-nav-item="Realizace" href="hifi-A.html">Realizace<span class="caret"></span></a>
+        <a class="nav-link has-mega" data-nav-item="Realizace" href="index.html">Realizace<span class="caret"></span></a>
         <div class="megapanel"><div class="mega-inner">
           <div class="megacols">
             <div class="megacol">
               <h5>Přehled</h5>
               <ul>
-                <li><a href="hifi-A.html">Celé portfolio</a></li>
-                <li><a href="hifi-A.html">Showreel</a></li>
+                <li><a href="index.html">Celé portfolio</a></li>
+                <li><a href="index.html">Showreel</a></li>
                 <li><a href="realizace-ed-sheeran.html">Case studies</a></li>
               </ul>
             </div>
@@ -51,13 +51,13 @@
           </div>
           <a class="megafeat" href="realizace-ed-sheeran.html">
             <div class="megafeat-img"><img src="assets/projekty/ed-sheeran/ohnostroj.jpg" alt="" /></div>
-            <div class="megafeat-meta"><ui-tag>CASE STUDY</ui-tag><strong>Ed Sheeran — Mathematics</strong><span class="megafeat-go">Zobrazit →</span></div>
+            <div class="megafeat-meta"><ui-tag>CASE STUDY</ui-tag><strong>Ed Sheeran — Mathematics</strong><span class="megafeat-go">Zobrazit<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></div>
           </a>
         </div></div>
       </div>
 
       <!-- TECHNOLOGIE -->
-      <a class="nav-link" data-nav-item="Technologie" href="#">Technologie</a>
+      <a class="nav-link" data-nav-item="Technologie" href="technologie-schema-ozvuceni.html">Technologie</a>
 
       <!-- INSTALACE (mega-menu) -->
       <div class="navitem">
@@ -68,6 +68,7 @@
               <h5>Podle prostoru</h5>
               <ul>
                 <li><a href="instalace-kulturni-domy-saly-divadla.html">Divadla &amp; sály</a></li>
+                <li><a href="instalace-hd-karlin-schema.html">Case studies</a></li>
                 <li><a href="#">Arény &amp; stadiony</a></li>
                 <li><a href="#">Kluby &amp; venues</a></li>
                 <li><a href="#">Hotely &amp; bary</a></li>
@@ -87,8 +88,8 @@
             </div>
           </div>
           <a class="megafeat" href="instalace-hd-karlin-schema.html">
-            <div class="megafeat-img"><img src="assets/projekty/djkt-plzen/sal-pohled.jpg" alt="" /></div>
-            <div class="megafeat-meta"><ui-tag>INSTALACE</ui-tag><strong>Nová scéna DJKT Plzeň</strong><span class="megafeat-go">Zobrazit →</span></div>
+            <div class="megafeat-img"><img src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /></div>
+            <div class="megafeat-meta"><ui-tag>INSTALACE</ui-tag><strong>Hudební divadlo Karlín</strong><span class="megafeat-go">Zobrazit<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></div>
           </a>
         </div></div>
       </div>
@@ -107,21 +108,22 @@
 
     <!-- CTA — desktop + mobil -->
     <ui-button class="desk" variant="primary">Probrat projekt →</ui-button>
-    <a class="btn btn-primary nav-cta-mob" aria-label="Probrat projekt">Probrat projekt →</a>
+    <a class="btn btn-primary nav-cta-mob" aria-label="Probrat projekt">Probrat projekt<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></a>
 
     <!-- hamburger (skrytý, FAB je primární trigger) -->
-    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" aria-label="Menu"><ui-icon name="ui-menu" aria-hidden="true"></ui-icon></button>
 
   </div>
 </header>
 
 <!-- plovoucí trigger mobilního menu (vpravo dole, na dosah palce) -->
 <button class="navfab" aria-label="Otevřít menu">
-  <span class="fab-bars"><span></span><span></span><span></span></span>
-  <span class="fab-x">✕</span>
+  <span class="fab-bars"><ui-icon name="ui-menu" aria-hidden="true"></ui-icon></span>
+  <span class="fab-x"><ui-icon name="ui-close" aria-hidden="true"></ui-icon></span>
 </button>
 
-<script src="ui-components.js?v=1"></script>
+<script src="ui-icons.js?v=4"></script>
+<script src="ui-components.js?v=14"></script>
 <script>/* náhled: zapojit outline-glow a chování bez loaderu */
 document.querySelectorAll(".btn,.outline-glow,.megafeat,.foot-col a,.ui-card").forEach(function(el){el.addEventListener("pointermove",function(e){var r=el.getBoundingClientRect();el.style.setProperty("--mx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");el.style.setProperty("--my",((e.clientY-r.top)/r.height*100).toFixed(1)+"%");});});</script>
 </body>

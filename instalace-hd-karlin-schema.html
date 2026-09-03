@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PRO MUSIC — HD Karlín · případová studie se schématem</title>
 <script src="ui-theme.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=10" />
-<link rel="stylesheet" href="ui.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=39" />
 </head>
 <body data-nav="Instalace" class="dir-b">
 
@@ -14,9 +14,9 @@
 <header class="cnav" style="position:sticky;top:0;z-index:60;background:rgba(16,15,13,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)">
   <div class="wrap-wide cnav-in">
     <img class="cnav-logo" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
-    <a class="back" href="hifi-A.html">← Portfolio</a>
+    <a class="back" href="index.html"><ui-icon class="btn-ico" name="ui-back" aria-hidden="true"></ui-icon> Portfolio</a>
     <span class="spacer"></span>
-    <a class="btn btn-primary">Probrat projekt →</a>
+    <a class="btn btn-primary">Probrat projekt<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></a>
   </div>
 </header>
 
@@ -56,13 +56,7 @@
   </div></section>
 
   <!-- ČÍSLA -->
-  <section class="sec-tight band reveal"><div class="wrap"><div class="stats" data-stagger style="grid-template-columns:repeat(5,1fr)">
-    <div class="stat"><div class="n">7T</div><div class="l">DiGiCo Quantum</div></div>
-    <div class="stat"><div class="n">128</div><div class="l">vstupních kanálů</div></div>
-    <div class="stat"><div class="n">96</div><div class="l">kanálů L-ISA</div></div>
-    <div class="stat"><div class="n">2<span class="u">×</span></div><div class="l">FOH + monitor</div></div>
-    <div class="stat"><div class="n">L-ISA</div><div class="l">imerzivní systém</div></div>
-  </div></div></section>
+  <section class="sec-tight band wave-band reveal stage-glow"><div class="wrap"><ui-stats><ui-stat n="7T">DiGiCo Quantum</ui-stat><ui-stat n="128">vstupních kanálů</ui-stat><ui-stat n="96">kanálů L-ISA</ui-stat><ui-stat n="2" u="×">FOH + monitor</ui-stat><ui-stat n="L-ISA">imerzivní systém</ui-stat></ui-stats></div></section>
 
   <!-- QUOTE -->
   <section class="statement reveal">
@@ -86,7 +80,7 @@
   </div></section>
 
   <!-- GALERIE -->
-  <section class="sec band reveal"><div class="wrap-wide">
+  <section class="sec band wave-band reveal"><div class="wrap-wide">
     <div class="sec-head"><span class="idx">03</span><h2>Galerie</h2><span class="rule"></span></div>
     <div class="csgal" data-stagger>
       <a class="tall" href="#"><img src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /><span class="cap">FOH · zvukař mezi dvěma SD7</span></a>
@@ -124,7 +118,7 @@
   </div></section>
 
   <!-- RELATED -->
-  <section class="sec band reveal"><div class="wrap-wide">
+  <section class="sec band wave-band reveal"><div class="wrap-wide">
     <div class="sec-head"><span class="idx">06</span><h2>Další realizace</h2><span class="rule"></span></div>
     <div class="related" data-stagger>
       <a class="relcard" href="realizace-ed-sheeran.html"><img src="assets/projekty/ed-sheeran/cervena-show.jpg" alt="" /><span class="rl">Ed Sheeran — Mathematics</span><span class="rm">Ayrton rig · stadiony</span></a>
@@ -137,7 +131,7 @@
   <section class="sec reveal"><div class="wrap"><div class="assure">
     <span class="tag">Plánujete instalaci do divadla nebo sálu?</span>
     <h2>Pojďme probrat správné řešení.</h2>
-    <div class="cta-actions"><a class="btn btn-primary btn-lg">Probrat projekt →</a><a class="btn btn-ghost btn-lg">Kontaktovat specialistu</a></div>
+    <div class="cta-actions"><a class="btn btn-primary btn-lg">Probrat projekt<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></a><a class="btn btn-ghost btn-lg">Kontaktovat specialistu</a></div>
   </div></div></section>
 
   <!-- FOOTER -->
@@ -167,9 +161,10 @@
   }
 })();
 </script>
-<script src="ui-components.js?v=1"></script>
-<script src="ui-loader.js?v=5"></script>
-<script src="hifi-B.js?v=11"></script>
-<script src="pm-transition.js?v=1"></script>
+<script src="ui-icons.js?v=4"></script>
+<script src="ui-components.js?v=14"></script>
+<script src="ui-loader.js?v=11"></script>
+<script src="site.js?v=10"></script>
+<script src="page-transition.js?v=1"></script>
 </body>
 </html>

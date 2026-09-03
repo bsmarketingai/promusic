@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PRO MUSIC — Design systém</title>
 <script src="ui-theme.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=10" />
-<link rel="stylesheet" href="ui.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=39" />
 <style>
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);-webkit-font-smoothing:antialiased}
@@ -248,27 +248,55 @@
     </div>
   </section>
 
-  <!-- 05 JAK POUŽÍVAT -->
+  <!-- 05 IKONOGRAFIE -->
+  <section class="ds-blk">
+    <div class="ds-head"><span class="n">05</span><h2>Ikonografie <code>ui-icon</code></h2><span class="rule"></span></div>
+    <div class="demo">
+      <p class="demo-t">Velikosti a použití</p>
+      <div class="row" style="align-items:center;gap:26px">
+        <span class="icon-sm"><ui-icon name="audio-mixer"></ui-icon></span>
+        <span class="icon-md"><ui-icon name="audio-mixer"></ui-icon></span>
+        <span class="icon-lg"><ui-icon name="audio-mixer"></ui-icon></span>
+        <span class="icon-xl"><ui-icon name="audio-mixer"></ui-icon></span>
+        <span class="icon-badge"><ui-icon name="service-training"></ui-icon></span>
+        <span style="display:inline-flex;align-items:center;gap:9px;color:var(--accent);font-family:var(--pm-font-mono);font-size:13px"><ui-icon name="ui-phone"></ui-icon>V textu dědí velikost i barvu</span>
+      </div>
+      <div class="note" style="margin-top:18px">
+        <code>&lt;ui-icon name="audio-mixer"&gt;&lt;/ui-icon&gt;</code> — dědí <code>font-size</code> a <code>currentColor</code>.<br>
+        Velikost: <code>.icon-sm</code> 16 · <code>.icon-md</code> 20 · <code>.icon-lg</code> 24 · <code>.icon-xl</code> 32, nebo <code>size="26"</code>. Kroužek: <code>.icon-badge</code>.<br>
+        Uvnitř JS šablon: <code>pmIcon("ui-play")</code> vrátí hotový <code>&lt;svg&gt;</code>.<br>
+        Přístupnost: samostatně stojící ikona (bez textu vedle) potřebuje <code>label="Telefon"</code>, jinak zůstane <code>aria-hidden</code>.
+      </div>
+    </div>
+    <div class="demo">
+      <p class="demo-t">Kurátorská sada · <span id="ic-count"></span> ikon</p>
+      <div id="ic-gallery"></div>
+      <div class="note">Sada je <b>uzavřená</b> — do stránek nekresli vlastní SVG. Chybí ikona? Doplní se do <code>ui-icons.js</code>.</div>
+    </div>
+  </section>
+
+  <!-- 06 JAK POUŽÍVAT -->
   <section class="ds-blk" style="border-bottom:0">
-    <div class="ds-head"><span class="n">05</span><h2>Jak zapojit</h2><span class="rule"></span></div>
+    <div class="ds-head"><span class="n">06</span><h2>Jak zapojit</h2><span class="rule"></span></div>
     <div class="demo">
       <p class="demo-t">Hlavička nové stránky</p>
       <pre style="margin:0;overflow-x:auto;font-family:var(--pm-font-mono);font-size:12px;color:var(--text-soft);line-height:1.75"><span style="color:var(--text-mute)">&lt;!-- theme runtime PRVNÍ, aby nebliklo --&gt;</span>
 &lt;script src="<b style="color:var(--accent)">ui-theme.js</b>"&gt;&lt;/script&gt;
 &lt;link rel="stylesheet" href="<b style="color:var(--accent)">styles.css</b>" /&gt;      <span style="color:var(--text-mute)">// tokeny</span>
-&lt;link rel="stylesheet" href="hifi.css" /&gt;        <span style="color:var(--text-mute)">// komponentní vrstva</span>
-&lt;link rel="stylesheet" href="hifi-parts.css" /&gt;  <span style="color:var(--text-mute)">// menu, glow utility</span>
-&lt;link rel="stylesheet" href="<b style="color:var(--accent)">ui-components.css</b>" /&gt;
+&lt;link rel="stylesheet" href="<b style="color:var(--accent)">ui.css</b>" /&gt;          <span style="color:var(--text-mute)">// komponenty, sekce, glow</span>
 <span style="color:var(--text-mute)">&lt;!-- na konci body --&gt;</span>
+&lt;script src="<b style="color:var(--accent)">ui-icons.js</b>"&gt;&lt;/script&gt;
 &lt;script src="<b style="color:var(--accent)">ui-components.js</b>"&gt;&lt;/script&gt;
-&lt;script src="<b style="color:var(--accent)">ui-nav.js</b>"&gt;&lt;/script&gt;</pre>
+&lt;script src="<b style="color:var(--accent)">ui-loader.js</b>"&gt;&lt;/script&gt;
+&lt;script src="<b style="color:var(--accent)">site.js</b>"&gt;&lt;/script&gt;</pre>
     </div>
-    <div class="note">Soubory systému: <code>tokens/*</code> · <code>styles.css</code> · <code>ui-theme.js</code> · <code>ui-components.js/.css</code> · <code>ui-loader.js</code> + <code>ui-header.html</code> / <code>ui-mobile-menu.html</code> / <code>ui-footer.html</code> · <code>hifi.css</code> · <code>hifi-parts.css</code>. Specifikace: <code>research/design-system-components.md</code>.</div>
+    <div class="note">Soubory systému: <code>tokens/*</code> · <code>styles.css</code> · <code>ui-theme.js</code> · <code>ui-components.js</code> · <code>ui-icons.js</code> · <code>ui.css</code> · <code>ui-loader.js</code> + <code>ui-header.html</code> / <code>ui-mobile-menu.html</code> / <code>ui-footer.html</code>. Specifikace: <code>research/design-system-components.md</code>.</div>
   </section>
 
 </div>
 
-<script src="ui-components.js?v=1"></script>
+<script src="ui-icons.js?v=4"></script>
+<script src="ui-components.js?v=14"></script>
 <script>
 (function(){
   var VARS=["primary","secondary","main"];
@@ -316,6 +344,18 @@
 
   sync();
   window.addEventListener("pm-theme-change",sync);
+})();
+</script>
+<script>
+(function(){
+  var CAT={audio:"Audio",light:"Světla",video:"Video",stage:"Jeviště",venue:"Prostory",service:"Servis & realizace",academy:"Academy / školení",contact:"Kontakt",shop:"Katalog / dokumentace",social:"Sociální sítě",ui:"UI"};
+  var by={};PM_ICON_NAMES.forEach(function(n){var c=n.split("-")[0];(by[c]=by[c]||[]).push(n);});
+  document.getElementById("ic-count").textContent=PM_ICON_NAMES.length;
+  document.getElementById("ic-gallery").innerHTML=Object.keys(CAT).filter(function(c){return by[c];}).map(function(c){
+    return '<h5 class="ic-cat">'+CAT[c]+" · "+by[c].length+'</h5><div class="ic-grid">'+by[c].map(function(n){
+      return '<div class="ic-cell outline-glow"><ui-icon name="'+n+'" size="26"></ui-icon><span>'+n+"</span></div>";
+    }).join("")+"</div>";
+  }).join("");
 })();
 </script>
 </body>

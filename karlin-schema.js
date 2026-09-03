@@ -39,7 +39,7 @@
   var nodesHTML = NODES.map(function (n) {
     var waves = n.waves ? '<div class="ks-waves"><span></span><span></span><span></span></div>' : '';
     var cls = "ks-card side-" + n.side + (n.up ? " up" : "");
-    var more = n.more ? '<a class="more" href="instalace-hd-karlin.html">' + n.more + '</a>' : '';
+    var more = n.more ? '<a class="more" href="instalace-hd-karlin-schema.html">' + n.more + '</a>' : '';
     return '<div class="ks-node ks-anim" data-id="' + n.id + '" style="left:' + n.x + '%;top:' + n.y + '%">' +
 woven(waves) +
       '<div class="ks-dot" role="button" tabindex="0" aria-label="' + n.title + '"></div>' +

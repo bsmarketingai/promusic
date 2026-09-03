@@ -31,7 +31,19 @@
       node.className = cls;
       if (href) node.setAttribute("href", href);
       if (this.hasAttribute("disabled")) { node.setAttribute("disabled", ""); node.setAttribute("aria-disabled", "true"); }
-      node.innerHTML = label + (icon ? '<span class="btn-i">' + icon + "</span>" : "");
+      /* Koncová šipka / play patří ikonografii, ne textu. Autor může psát
+         „Probrat projekt →“ i „Probrat projekt“ + arrow="right" — obojí
+         skončí jako <ui-icon> z knihovny. Ad hoc znaky se do stránek nepíšou. */
+      var TRAIL = { "\u2192": "ui-arrow-right", "\u2190": "ui-arrow-left",
+                    "\u2197": "ui-arrow-up-right", "\u25b6": "ui-play" };
+      var trail = this.getAttribute("arrow");
+      if (trail) trail = { right: "ui-arrow-right", left: "ui-arrow-left",
+                           up: "ui-arrow-up-right", play: "ui-play" }[trail] || null;
+      var last = label.slice(-1);
+      if (!trail && TRAIL[last]) { trail = TRAIL[last]; label = label.slice(0, -1).trim(); }
+      node.innerHTML = label +
+        (trail ? '<ui-icon class="btn-ico" name="' + trail + '" aria-hidden="true"></ui-icon>' : "") +
+        (icon ? '<span class="btn-i">' + icon + "</span>" : "");
       this.textContent = ""; this.appendChild(node);
       this.__b = node; glow(node);
     }
@@ -186,7 +198,47 @@
     });
   });
 
+  /* ================= ui-stats / ui-stat =================
+     Blok velkých čísel. Používá se na homepage i na case studies — stejné
+     ražení, jiná data. Počet sloupců si komponenta spočítá z počtu položek,
+     takže na stránkách nezůstávají inline grid-template-columns.
+
+       <ui-stats>
+         <ui-stat n="28" u="let">zkušeností od 1997</ui-stat>
+         <ui-stat n="17">zemí Evropy</ui-stat>
+       </ui-stats>
+
+     n     = číslo (bílé)      u = jednotka nebo znak (oranžová, na účaří)
+     obsah = popisek pod číslem
+     compact = drobnější varianta do sekce Reference
+  */
+  class UIStat extends HTMLElement {
+    connectedCallback() {
+      if (this.__b) return; this.__b = 1;
+      var n = this.getAttribute("n") || "";
+      var u = this.getAttribute("u");
+      var label = this.textContent.trim();
+      this.className = "stat";
+      /* Slova a znaky jako +, × sedí na účaří. Stupeň patří nahoru,
+         jinak vypadá jako tečka za číslem („360.“). */
+      var sup = u === "\u00b0" || u === "\u2032" || u === "\u2033";
+      this.innerHTML = '<div class="n">' + n +
+        (u ? '<span class="u' + (sup ? " u-sup" : "") + '">' + u + "</span>" : "") +
+        '</div><div class="l">' + label + "</div>";
+    }
+  }
+  class UIStats extends HTMLElement {
+    connectedCallback() {
+      if (this.__b) return; this.__b = 1;
+      var kids = this.querySelectorAll("ui-stat").length;
+      this.className = this.hasAttribute("compact") ? "stats refcounts" : "stats";
+      this.setAttribute("data-stagger", "");
+      if (kids) this.style.setProperty("--stat-cols", kids);
+    }
+  }
+
   var defs = {
+    "ui-stats": UIStats, "ui-stat": UIStat,
     "ui-button": UIButton, "ui-input": UIInput, "ui-search": UISearch,
     "ui-dropdown": UIDropdown, "ui-lang-switch": UILangSwitch,
     "ui-tag": UITag, "ui-chip": UIChip, "ui-card": UICard,

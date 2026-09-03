@@ -10,7 +10,7 @@
 
   --pm-white:      #ece6da;   /* primární text (teplá běl) */
   --pm-ink-2:      #a39d90;   /* sekundární text */
-  --pm-ink-3:      #7d7669;   /* terciární / tlumený */
+  --pm-ink-3:      #8b8477;   /* terciární / tlumený — 4.8:1 na surface, 5.2:1 na bg (WCAG AA) */
   --pm-ink-4:      #564f45;   /* disabled / náznak */
 
   --pm-line:       rgba(236,230,218,0.14);  /* vlasová linka */
@@ -48,5 +48,7 @@
   --accent-hover:  var(--pm-accent-bright);
   --accent-press:  var(--pm-accent-deep);
   --accent-tint:   var(--pm-accent-tint);
-  --on-accent:     #ffffff;
+  --on-accent:     #1c1109;   /* text NA oranžové ploše — tmavý inkoust, 5.0:1.
+                                  Bílá dávala jen 3.84:1 a brandovou oranžovou
+                                  nechceme ztmavovat. Stejný princip jako v patičce. */
 }

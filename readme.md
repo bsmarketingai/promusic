@@ -1,71 +1,112 @@
-# PRO MUSIC — Design systém
+# PRO MUSIC — prezentační web
 
-Vizuální základ pro nový prezentační web firmy **PRO MUSIC, s.r.o.** (profesionální audio / light / zobrazovací technika, Trutnov, od 1997) a pro budoucí stránky.
+Nový prezentační web **PRO MUSIC, s.r.o.** (profesionální audio / light / zobrazovací technika, Trutnov, od 1997).
+Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 
-> **Pozicioning:** „Z neviditelné odbornosti čitelná autorita." Skromnost ve výrazu, síla v důkazech. Není to eshop — je to důkazová výkladní skříň (reference, technologie, know-how) vedoucí ke kvalifikovanému kontaktu.
+> **Pozicioning:** „Z neviditelné odbornosti čitelná autorita." Není to eshop — je to důkazová výkladní skříň (reference, technologie, know-how) vedoucí ke kvalifikovanému kontaktu.
 
-## Zdroje
-- Stávající web klienta: https://promusic.cz/
-- Logo: dodáno klientem (`assets/brand/promusic-logo.png`)
-- Fotografie realizací: dodány klientem (`assets/projekty/*`) — Ed Sheeran (Mathematics Tour, foto Ralph Larmann), DJKT Plzeň (L-Acoustics Ambiance), Steel Aréna Košice (Ayrton), HD Karlín (DiGiCo)
-- Rešerše a strategie: `research/*` (firma, značky, layout/responzivita, menu, brand positioning)
+---
 
-## Jak to funguje
-Konzumenti linkují jediný soubor **`styles.css`**, který `@import`uje všechny tokeny:
+## Struktura souborů
+
+### Stránky (HTML)
+| soubor | co to je |
+|---|---|
+| `index.html` | Homepage |
+| `realizace-ed-sheeran.html` | Case study — Ed Sheeran, Mathematics Tour |
+| `instalace-hd-karlin-schema.html` | Case study — HD Karlín, vč. interaktivního schématu |
+| `instalace-kulturni-domy-saly-divadla.html` | Segmentová landing — kulturní domy, sály, divadla |
+| `technologie-schema-ozvuceni.html` | Vysvětlovací stránka — schéma ozvučení |
+| `znacky.html` | Značky, které zastupujeme |
+| `design-system.html` | Živý přehled design systému (interní) |
+| `guidelines/*.html` | Specimen karty design systému (interní) |
+
+### Styly
+| soubor | co to je |
+|---|---|
+| `styles.css` | Vstupní bod — `@import`uje `tokens/*` |
+| `tokens/colors.css` · `typography.css` · `spacing.css` · `motion.css` · `fonts.css` · `breakpoints.css` · `theme.css` | Design tokeny (CSS proměnné) |
+| `ui.css` | Veškerá komponentní & sekční vrstva (jeden soubor, sekce oddělené komentářovými bloky) |
+
+### Skripty
+| soubor | co to je |
+|---|---|
+| `ui-theme.js` | Nastaví téma před vykreslením (zabrání probliknutí) |
+| `ui-components.js` | Web components: `ui-button`, `ui-input`, `ui-dropdown`, `ui-search`, `ui-chip`, `ui-tag`, `ui-card`, `ui-lang-switch` |
+| `ui-icons.js` | Kurátorská sada 103 ikon + `<ui-icon>`. **Jediný povolený zdroj ikon.** |
+| `ui-loader.js` | Vkládá hlavičku / mobilní menu / patičku na každou stránku |
+| `ui-header.html` · `ui-mobile-menu.html` · `ui-footer.html` | Markup těch tří sdílených bloků (jediný zdroj pravdy; samostatně otevřené fungují jako náhled) |
+| `site.js` | Globální chování: reveal on scroll, parallax, tilt, outline-glow, coverflow karusel |
+| `home-content.js` | Obsah sekcí homepage (vykresluje se z JS) |
+| `karlin-schema.js` | Interaktivní schéma ozvučení (Karlín) |
+| `page-transition.js` | Přechod mezi stránkami — „pódiové světlo" |
+
+### Assety a podklady
+- `assets/brand/promusic-logo.png` — logo (pro produkci dodat SVG)
+- `assets/projekty/{ed-sheeran,djkt-plzen,steel-arena,karlin}/*` — fotky realizací
+- `uploads/*` — surové materiály od klienta (loga značek, fotky) — **není součástí webu**
+- `research/*.md` — rešerše a strategie (firma, značky, layout, menu, positioning)
+
+### Pořadí načítání na stránce
 ```html
-<link rel="stylesheet" href="styles.css" />
+<script src="ui-theme.js"></script>          <!-- v <head>, před CSS -->
+<link rel="stylesheet" href="styles.css" />  <!-- tokeny -->
+<link rel="stylesheet" href="ui.css" />      <!-- komponenty -->
+...
+<script src="ui-icons.js"></script>          <!-- na konci <body> -->
+<script src="ui-components.js"></script>
+<script src="ui-loader.js"></script>
+<script src="site.js"></script>
+<script src="page-transition.js"></script>
 ```
-- `tokens/colors.css` · `tokens/typography.css` · `tokens/spacing.css` · `tokens/motion.css` · `tokens/fonts.css`
-- Komponentní/sekční vrstva pro hi-fi web: `hifi.css` (+ `hifi-directions.css` pro skiny směrů).
+
+---
 
 ## CONTENT FUNDAMENTALS (jak psát)
-- **Jazyk:** česky (web dvojjazyčně CZ/EN, přepínač). Tykání produktu uživateli v CTA („Probrat projekt", „Vyber termín") — přímé, sebevědomé, ne familiární.
-- **Tón:** věcný, profesionální, bez superlativů bez důkazu. NE „jsme nejlepší / jediní / lídr" bez doložení. Čísla ano (jsou doložená): „28 let", „17 zemí", „3× L-ISA".
-- **Eyebrow / štítky:** UPPERCASE mono, krátké („PROFESIONÁLNÍ AUDIO · OD 1997", „TURNÉ / SVĚTLA").
-- **Claimy:** krátké, smyslové, ale konkrétní v podtitulku. Hero: „Zvuk, který cítíš v hrudi." + věcný perex „Dodáváme špičkové technologie — a rozumíme tomu, aby to celé fungovalo."
-- **CTA:** kvalifikovaný kontakt, ne „Napište nám". Primární: **Probrat projekt**. Dále: Kontaktovat specialistu, Domluvit konzultaci, Domluvit školení, Řešit servis.
+- **Jazyk:** česky (web dvojjazyčně CZ/EN, přepínač). Tykání v CTA („Probrat projekt", „Vyber termín") — přímé, sebevědomé, ne familiární.
+- **Tón:** věcný, profesionální, bez superlativů bez důkazu. NE „jsme nejlepší / jediní / lídr". Čísla ano (jsou doložená): „28 let", „17 zemí", „3× L-ISA".
+- **Eyebrow / štítky:** UPPERCASE mono, krátké („PROFESIONÁLNÍ AUDIO · OD 1997").
+- **Claimy:** krátké, smyslové, konkrétní v podtitulku. Hero: „Zvuk, který cítíš v hrudi."
+- **CTA:** kvalifikovaný kontakt, ne „Napište nám". Primární: **Probrat projekt**.
 - **Reference jako důkaz:** ne „stalo se", ale *co se řešilo · proč právě tak · jakou roli měl PRO MUSIC*.
-- **Emoji:** nepoužívat. Akcentní glyfy: ★ (vlajkové značky), → ▶ ▾ (akce/směr).
+- **Emoji:** nepoužívat. Akcentní glyfy: ★ → ▶ ▾ ✕.
 
 ## VISUAL FOUNDATIONS
-- **Režim:** 100% dark. Logo i UI vždy na tmavém pozadí. Světlý režim mimo rozsah.
-- **Barvy:** teplá černá `#070605` → paper `#100f0d` → povrchy `#1a1813 / #242019 / #2f2a22`; text teplá běl `#ece6da` ve 4 hladinách; akcent **oranžová `#e0542b`** (ze zvukové vlny v logu) + hover `#f2693f`, press `#b83f1c`, tint 10 %.
-- **Typografie:** Display = **Inter** 800/900, těsný tracking (−0.035em), line-height 0.88 — moderní, až artová. Body = **IBM Plex Sans** (technický humanistický grotesk, plná čeština). Mono = **Space Mono** (eyebrow, štítky, data).
-- **Pozadí:** velké fotky (koncerty, instalace), full-bleed s tmavým scrimem (gradient). Žádné gradientové „AI" plochy; jen jemný radiální accent-tint u CTA panelu.
-- **Motiv:** oranžová **zvuková vlna (sinusoida)** ze značky → dělič sekcí, akcentní linka, animovaný prvek.
-- **Radii:** karty 12–18 px, pill tlačítka/chips. **Stíny:** decentní pro dark (sm/md/lg + accent glow).
-- **Hover:** karty lehký lift (−3px) + akcentní border; tlačítka primary → světlejší oranžová + glow; ghost → akcentní border/text. **Press:** tmavší oranžová.
-- **Motion:** STŘEDNĚ — jemné fade-up (translateY 22px), lehký parallax (strop 14 %), pointer „švenk" na foto. Easing `cubic-bezier(.2,.7,.2,1)`. Vždy respektovat `prefers-reduced-motion`.
-- **Imagery vibe:** koncertní, teplá/dramatická, mírně ztlumený jas + scrim pro čitelnost textu.
+- **Režim:** 100% dark. Světlý režim mimo rozsah.
+- **Barvy:** teplá černá `#070605` → paper `#100f0d` → povrchy `#1a1813 / #242019 / #2f2a22`; text teplá běl `#ece6da` ve 4 hladinách; akcent **oranžová `#e0542b`** + hover `#f2693f`, press `#b83f1c`, tint 10 %.
+- **Typografie:** Display = **Archivo** 800, těsný tracking. Body = **IBM Plex Sans**. Mono = **Space Mono** (eyebrow, štítky, data).
+- **Pozadí:** velké fotky full-bleed s tmavým scrimem. Žádné gradientové „AI" plochy.
+- **Motiv:** oranžová **zvuková vlna (sinusoida)** ze značky → dělič sekcí, akcentní linka.
+- **Radii:** karty 12–18 px, pill tlačítka/chips. **Stíny:** decentní pro dark + accent glow.
+- **Hover:** `outline-glow` — 1px gradientní okraj se světlem sledujícím kurzor. Napojuje `site.js` automaticky.
+- **Motion:** STŘEDNĚ — jemné fade-up (22 px), lehký parallax (strop 14 %). Easing `cubic-bezier(.2,.7,.2,1)`. Vždy `prefers-reduced-motion`.
 
-## ICONOGRAPHY
-- Bez icon fontu. Akce řešeny **textovými glyfy / unicode**: → (akce), ▶ (přehrát), ▾ (dropdown), ★ (vlajková značka), ✕ (zavřít), ⇅/⊕ (motion anotace ve wireframech).
-- Loga značek/referencí: **monochromatická bílá** (wordmarky), v mřížce logo-wall; ★ u vlajkových (L-Acoustics, DiGiCo, Ayrton).
-- Brand logo: bílý wordmark „PRO MUSIC" + oranžová vlna — `assets/brand/promusic-logo.png`. Pro produkci dodat vektor (SVG) a self-hostované fonty.
+## POZOR: tokeny se do styles.css přenášejí RUČNĚ (KONKATENACE)
+`styles.css` **není** `@import` souborů `tokens/*.css` — je to jejich **slitá kopie**, oddělená banner komentáři (`/* ══ tokens/spacing.css ══ */`). Prohlížeč načítá **jen** `styles.css` a `ui.css`; adresář `tokens/` se nestahuje.
 
-## INDEX / manifest
-**Foundations**
-- `styles.css` — vstupní bod (@import)
-- `tokens/` — colors, typography, spacing, motion, fonts
-- `design-system.html` — jednostránkový přehled foundations (živý)
-- `guidelines/*.html` — specimen karty (Design System záložka): barvy, typo, spacing, brand
+**Nový token proto musíš zapsat na DVĚ místa:** do `tokens/<soubor>.css` (zdroj pravdy pro čtení) i do odpovídající sekce ve `styles.css` (co reálně platí v prohlížeči). Jinak je token mrtvý a funguje jen fallback ve `var(--x, fallback)`.
 
-**Hi-fi web (UI kit)**
-- `hifi.css` — komponentní & sekční vrstva
-- `hifi-directions.css` — skiny směrů (dir-a Cinematic / dir-b Editorial)
-- `hifi-content.js` — sdílený obsah homepage + motion
-- `hifi-A.html` / `index.html` — dva směry (celé stránky)
-- `hifi-srovnani.html` — srovnání směrů vedle sebe
+Ověření po přidání: `getComputedStyle(document.documentElement).getPropertyValue("--muj-token")` musí vrátit hodnotu, ne prázdný string.
 
-**Wireframy (předchozí fáze, nízkodetailní)**
-- `wireframy-webu.html` (+ `wf-*.jsx/css`), case studies, mobilní náhledy
+## IKONOGRAFIE
+- **Kurátorská sada 103 ikon v `ui-icons.js`** — jediný povolený zdroj. Do stránek se nekreslí vlastní SVG; když ikona chybí, doplní se do sady.
+- Použití: `<ui-icon name="audio-mixer"></ui-icon>`. Dědí `font-size` a `currentColor`. Velikosti `.icon-sm/md/lg/xl`, nebo `size="26"`. V kroužku `.icon-badge`. V JS šablonách `pmIcon("ui-play")`.
+- Kategorie: `ui-` (22) · `shop-` (16) · `audio-` (15) · `service-` (11) · `academy-` (8) · `light-` (7) · `contact-` (6) · `venue-` (5) · `video-` (5) · `social-` (4) · `stage-` (4).
+- Přístupnost: ikona bez textu vedle potřebuje `label="…"`, jinak zůstane `aria-hidden`.
+- **Váha tahu:** sada míchá plné a obrysové ikony. Obrysové jdou na `stroke-width: 1.125` (= 24 × 12/256), aby měly shodnou optickou váhu jako plné. Nová obrysová ikona musí dodržet stejnou hodnotu — a ověř to měřením, ne okem (světlý tah na tmavém pozadí působí silněji, než je).
+- **Bez icon fontu.** Textové glyfy zůstávají jen jako akcenty v textu: → ★ ·
+- Loga značek: **monochromatická bílá** wordmarky v logo-wallu; ★ u vlajkových (L-Acoustics, DiGiCo, Ayrton).
+- Sociální sítě: `social-facebook/instagram/youtube/linkedin` ze sady. Pro produkci ověřit proti brand guidelines dané sítě.
+- **Zdrojová SVG** žijí v `uploads/pm-*.svg` (surová, s metadaty). `ui-icons.js` je jejich vyčištěná destilace — needituj ho ručně, regeneruj ze zdrojů.
 
-**Brand & assety**
-- `assets/brand/promusic-logo.png`
-- `assets/projekty/{ed-sheeran,djkt-plzen,steel-arena,karlin}/*`
+## Breakpointy
+XXS 0–419 · XS 420–549 · S 550–819 · M 820–999 (hamburger) · L 1000–1149 · XL 1150–1559 · XXL 1560+
 
-## Caveats / k doplnění
+---
+
+## K doplnění
 - **Fonty:** zatím Google Fonts CDN — pro produkci self-hostovat (woff2).
-- **Logo:** dodat vektor (SVG), ideálně i čistě bílou variantu pro drobné použití.
-- **Komponenty:** hi-fi komponentní vrstva žije v `hifi.css`; formální React komponenty (`.jsx` + `.d.ts`) pro reusable bundle teprve doplníme (po výběru směru).
-- **Fotky:** zatím 4 projekty — pro plný web doplnit širší knihovnu.
+- **Logo:** dodat vektor (SVG) + čistě bílou variantu.
+- **Case study HD Karlín** v plné podobě (existuje jen varianta se schématem).
+- **Fotky:** zatím 4 projekty — pro plný web doplnit knihovnu.
+- **EN mutace:** přepínač je zatím jen UI prvek bez obsahu.

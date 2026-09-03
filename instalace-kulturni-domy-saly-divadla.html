@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PRO MUSIC — Kulturní domy, sály &amp; divadla</title>
 <script src="ui-theme.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=10" />
-<link rel="stylesheet" href="ui.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=39" />
 </head>
 <body data-nav="Instalace" class="dir-b">
 <div id="app">
@@ -15,7 +15,7 @@
   <header class="cnav" style="position:sticky;top:0;z-index:60;background:rgba(16,15,13,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)">
     <div class="wrap-wide" style="display:flex;align-items:center;gap:20px;height:72px">
       <img style="height:24px" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
-      <a class="back" style="font-family:var(--pm-font-mono);font-size:var(--pm-text-sm);color:var(--text-soft);display:inline-flex;gap:7px" href="hifi-A.html">← Co řešíte</a>
+      <a class="back" style="font-family:var(--pm-font-mono);font-size:var(--pm-text-sm);color:var(--text-soft);display:inline-flex;gap:7px" href="index.html"><ui-icon class="btn-ico" name="ui-back" aria-hidden="true"></ui-icon> Co řešíte</a>
       <span style="flex:1"></span>
       <ui-button variant="primary">Probrat projekt →</ui-button>
     </div>
@@ -25,7 +25,7 @@
   <header class="seghero">
     <div class="bg"><img data-par="0.1" src="assets/projekty/djkt-plzen/sal-pohled.jpg" alt="" /></div>
     <div class="wrap inner">
-      <nav class="breadcrumb"><a href="hifi-A.html">Co řešíte</a><span class="sep">/</span><span style="color:var(--accent)">Kulturní domy, sály &amp; divadla</span></nav>
+      <nav class="breadcrumb"><a href="index.html">Co řešíte</a><span class="sep">/</span><span style="color:var(--accent)">Kulturní domy, sály &amp; divadla</span></nav>
       <span class="eyebrow" style="color:#fff;margin-top:14px">Segment · stálé instalace</span>
       <h1>Sály, kde je<br/>slyšet i šepot.</h1>
       <p class="lead">Srozumitelná řeč i plnokrevný koncert ve stejném prostoru. Navrhneme, postavíme a vyladíme ozvučení, osvětlení a jevištní techniku pro divadla, kulturní domy a koncertní sály — na klíč a s know-how, jak to dlouhodobě provozovat.</p>
@@ -37,13 +37,8 @@
   </header>
 
   <!-- INTRO / ORIENTACE -->
-  <section class="sec-tight reveal"><div class="wrap">
-    <div class="stats" data-stagger style="grid-template-columns:repeat(4,1fr)">
-      <div class="stat"><div class="n">40<span class="u">+</span></div><div class="l">divadel &amp; scén</div></div>
-      <div class="stat"><div class="n">L-ISA</div><div class="l">imerzivní zvuk pro sály</div></div>
-      <div class="stat"><div class="n">Ambiance</div><div class="l">virtuální akustika · premiéra ČR</div></div>
-      <div class="stat"><div class="n">na klíč</div><div class="l">návrh → realizace → servis</div></div>
-    </div>
+  <section class="sec-tight reveal stage-glow"><div class="wrap">
+    <ui-stats><ui-stat n="40" u="+">divadel &amp; scén</ui-stat><ui-stat n="L-ISA">imerzivní zvuk pro sály</ui-stat><ui-stat n="Ambiance">virtuální akustika · premiéra ČR</ui-stat><ui-stat n="na klíč">návrh → realizace → servis</ui-stat></ui-stats>
   </div></section>
 
   <!-- 01 CO ŘEŠÍME -->
@@ -99,20 +94,20 @@
   </div></section>
 
   <!-- 04 REFERENCE (důkaz) -->
-  <section class="sec wave-band reveal"><div class="wrap-wide">
+  <section class="sec reveal"><div class="wrap-wide">
     <div class="sec-head"><span class="idx">04</span><h2>Reference — co se řešilo a jakou roli jsme měli</h2><span class="rule"></span></div>
     <div class="proofs" data-stagger>
       <a class="proof" href="#">
         <div class="ph"><img src="assets/projekty/djkt-plzen/array-strop.jpg" alt="" /><ui-tag solid>Divadlo</ui-tag></div>
-        <div class="body"><h4>Nová scéna DJKT Plzeň</h4><span class="role">Role: dodávka &amp; světová premiéra Ambiance</span><p>Virtuální akustika L-Acoustics Ambiance — jeden sál zvládne činohru i operu bez stavebních úprav akustiky.</p><span class="go">Případová studie →</span></div>
+        <div class="body"><h4>Nová scéna DJKT Plzeň</h4><span class="role">Role: dodávka &amp; světová premiéra Ambiance</span><p>Virtuální akustika L-Acoustics Ambiance — jeden sál zvládne činohru i operu bez stavebních úprav akustiky.</p><span class="go">Případová studie<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></div>
       </a>
-      <a class="proof" href="instalace-hd-karlin.html">
+      <a class="proof" href="instalace-hd-karlin-schema.html">
         <div class="ph"><img src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /><ui-tag solid>Muzikál</ui-tag></div>
-        <div class="body"><h4>Hudební divadlo Karlín</h4><span class="role">Role: dodávka mixu DiGiCo</span><p>Quantum 7T pro každovečerní muzikálový provoz — uložené scény, redundance, nulová tolerance výpadku.</p><span class="go">Případová studie →</span></div>
+        <div class="body"><h4>Hudební divadlo Karlín</h4><span class="role">Role: dodávka mixu DiGiCo</span><p>Quantum 7T pro každovečerní muzikálový provoz — uložené scény, redundance, nulová tolerance výpadku.</p><span class="go">Případová studie<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></div>
       </a>
       <a class="proof" href="#">
         <div class="ph"><img src="assets/projekty/djkt-plzen/budova-otvory.jpg" alt="" /><ui-tag solid>Kulturní centrum</ui-tag></div>
-        <div class="body"><h4>UFFO Trutnov</h4><span class="role">Role: instalace L-ISA</span><p>První ostrá premiéra imerzivního L-ISA v ČR ve společenském centru — zvuk obklopující celé hlediště.</p><span class="go">Případová studie →</span></div>
+        <div class="body"><h4>UFFO Trutnov</h4><span class="role">Role: instalace L-ISA</span><p>První ostrá premiéra imerzivního L-ISA v ČR ve společenském centru — zvuk obklopující celé hlediště.</p><span class="go">Případová studie<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></div>
       </a>
     </div>
   </div></section>
@@ -196,10 +191,10 @@
   }
 })();
 </script>
-<script src="ui-components.js?v=1"></script>
-<script src="ui-loader.js?v=5"></script>
-<script src="hifi-edu.js?v=12"></script>
-<script src="hifi-B.js?v=11"></script>
-<script src="pm-transition.js?v=1"></script>
+<script src="ui-icons.js?v=4"></script>
+<script src="ui-components.js?v=14"></script>
+<script src="ui-loader.js?v=11"></script>
+<script src="site.js?v=10"></script>
+<script src="page-transition.js?v=1"></script>
 </body>
 </html>
