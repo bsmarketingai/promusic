@@ -3,34 +3,83 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PRO MUSIC — Karlín · interaktivní schéma ozvučení</title>
+<title>PRO MUSIC — Technologie</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=57" />
+<link rel="stylesheet" href="ui.css?v=60" />
 </head>
 <body data-nav="Technologie" class="dir-b">
+<div id="app">
 
-<!-- NAV -->
-<header class="cnav" style="position:sticky;top:0;z-index:60;background:rgba(16,15,13,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)">
-  <div class="wrap-wide" style="display:flex;align-items:center;gap:20px;height:72px">
-    <img style="height:24px" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
-    <a class="back" style="font-family:var(--pm-font-mono);font-size:var(--pm-text-sm);color:var(--text-soft);display:inline-flex;gap:7px" href="instalace-hd-karlin-schema.html"><ui-icon class="btn-ico" name="ui-back" aria-hidden="true"></ui-icon> Case study</a>
-    <span style="flex:1"></span>
-    <ui-button variant="primary">Probrat projekt →</ui-button>
-  </div>
-</header>
+  <!-- HERO -->
+  <header class="seghero">
+    <div class="bg"><img data-par="0.1" src="assets/projekty/karlin/sal-full.png" alt="" /></div>
+    <div class="wrap inner">
+      <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><span style="color:var(--accent)">Technologie</span></nav>
+      <span class="eyebrow" style="color:#fff;margin-top:14px">Know-how &amp; technologie</span>
+      <h1>Technologie,<br/>kterou umíme<br/>nasadit.</h1>
+      <p class="lead">Imerzivní zvuk, virtuální akustika, 3D simulace a měření. Nejde o katalog — jde o schopnosti, díky kterým dokážeme dopředu říct, jak bude sál znít, a pak to v něm i dokázat.</p>
+      <div class="cta-actions">
+        <ui-button variant="primary" size="lg">Probrat projekt →</ui-button>
+        <ui-button variant="ghost" size="lg" href="instalace-jak-to-delame.html">Fáze instalace</ui-button>
+      </div>
+    </div>
+  </header>
 
-<!-- HERO — interaktivní schéma -->
-<section class="kschema" id="kschema">
-  <div class="ks-bg"><img src="assets/projekty/karlin/sal-full.png" alt="Hudební divadlo Karlín — hlediště" /></div>
-  <div class="ks-head ks-anim">
-    <div class="ks-eyebrow">Hudební divadlo Karlín</div>
-    <h1>Systém, který slyší celý sál.</h1>
-    <p>Interaktivní schéma instalace — klikni na body a prozkoumej techniku.</p>
-  </div>
-</section>
+  <!-- 01 TECHNOLOGIE -->
+  <section class="sec band band-flat reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>Co používáme a proč</h2><span class="rule"></span></div>
 
-<script src="karlin-schema.js?v=7"></script>
+    <div class="solrow">
+      <div>
+        <ui-tag>Imerzivní zvuk</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">L-Acoustics L-ISA</h2>
+        <p class="lead" style="margin-top:14px">Zvuk přestane vycházet ze dvou stran jeviště a začne mít místo v prostoru — hlas zpěváka je tam, kde zpěvák stojí. Pro divadlo a muzikál to znamená srozumitelnost i v krajních sedadlech.</p>
+        <div class="phase-out"><span class="k">V praxi</span><span class="v">Hudební divadlo Karlín — největší instalace L-ISA v ČR</span></div>
+      </div>
+      <div class="media"><img src="assets/projekty/karlin/sal-full.png" alt="" /><span class="ov-logo">L-ACOUSTICS</span></div>
+    </div>
+
+    <div class="solrow flip">
+      <div>
+        <ui-tag>Virtuální akustika</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">L-Acoustics Ambiance</h2>
+        <p class="lead" style="margin-top:14px">Jeden sál zvládne činohru i operu bez stavebních úprav. Ambiance mění dozvuk prostoru elektronicky — akustiku nastavíte podle titulu, ne podle toho, co dovolí zdi.</p>
+        <div class="phase-out"><span class="k">V praxi</span><span class="v">Nová scéna DJKT Plzeň — světová premiéra Ambiance</span></div>
+      </div>
+      <div class="media"><img src="assets/projekty/djkt-plzen/sal-pohled.jpg" alt="" /><span class="ov-logo">AMBIANCE</span></div>
+    </div>
+
+    <div class="solrow">
+      <div>
+        <ui-tag>Simulace</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">SoundVision</h2>
+        <p class="lead" style="margin-top:14px">Model sálu, ve kterém vidíte pokrytí, srozumitelnost i mechanické zavěšení dřív, než se cokoli koupí. Simulace je součástí každého návrhu instalace — a podklad, který obhájí investici.</p>
+        <div class="phase-out"><span class="k">V praxi</span><span class="v">Fáze 02 každé instalace — akustická studie a 3D</span></div>
+      </div>
+      <div class="media"><span class="media-empty">foto doplníme — snímek ze SoundVision</span></div>
+    </div>
+
+    <div class="solrow flip">
+      <div>
+        <ui-tag>Měření</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">Smaart</h2>
+        <p class="lead" style="margin-top:14px">Systém ladíme měřením, ne odhadem. Z přejímky dostanete protokol — doložitelný stav, ke kterému se dá vrátit při každé další úpravě nebo servisu.</p>
+        <div class="phase-out"><span class="k">V praxi</span><span class="v">Fáze 04 — oživení, ladění a protokol z měření</span></div>
+      </div>
+      <div class="media"><span class="media-empty">foto doplníme — měření v sále</span></div>
+    </div>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="segcontact">
+      <div class="who">Nevíte, která z technologií má pro váš prostor smysl? <b>Rozhodne měření a simulace</b> — a ty umíme dodat samostatně, ještě před rozhodnutím o investici.</div>
+      <div class="cta-actions" style="margin:0"><ui-button variant="primary" size="lg">Probrat projekt →</ui-button><ui-button variant="ghost" size="lg" href="znacky.html">Značky</ui-button></div>
+    </div>
+  </div></section>
+
+</div>
 <script src="ui-icons.js?v=6"></script>
 <script src="ui-components.js?v=26"></script>
 <script src="ui-loader.js?v=20"></script>

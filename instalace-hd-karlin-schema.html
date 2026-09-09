@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PRO MUSIC — HD Karlín · případová studie se schématem</title>
+<title>PRO MUSIC — HD Karlín · případová studie</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=57" />
+<link rel="stylesheet" href="ui.css?v=60" />
 </head>
 <body data-nav="Stálé instalace" class="dir-b">
 
@@ -20,17 +20,22 @@
   </div>
 </header>
 
-<!-- HERO = interaktivní schéma -->
-<section class="kschema" id="kschema">
-  <div class="ks-bg"><img src="assets/projekty/karlin/sal-full.png" alt="Hudební divadlo Karlín — hlediště" /></div>
-  <div class="ks-head ks-anim">
-    <div class="ks-eyebrow">Hudební divadlo Karlín · případová studie</div>
-    <h1>Systém, který slyší celý sál.</h1>
-    <p>Interaktivní schéma instalace — klikni na body a prozkoumej techniku.</p>
-  </div>
-</section>
-
 <div id="app">
+
+  <!-- HERO -->
+  <header class="seghero">
+    <div class="bg"><img data-par="0.1" src="assets/projekty/karlin/sal-full.png" alt="" /></div>
+    <div class="wrap inner">
+      <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><a href="stale-instalace.html">Stálé instalace</a><span class="sep">/</span><span style="color:var(--accent)">Hudební divadlo Karlín</span></nav>
+      <span class="eyebrow" style="color:#fff;margin-top:14px">Případová studie · stálá instalace</span>
+      <h1>Systém, který<br/>slyší celý sál.</h1>
+      <p class="lead">Muzikálový provoz v historickém sále: stovky vstupů, desítky scén a nulová tolerance výpadku na živo. Největší instalace L-ISA v ČR postavená kolem DiGiCo Quantum 7T.</p>
+      <div class="cta-actions">
+        <ui-button variant="primary" size="lg">Probrat projekt →</ui-button>
+        <ui-button variant="ghost" size="lg" href="stale-instalace.html">Vybrané instalace</ui-button>
+      </div>
+    </div>
+  </header>
 
   <!-- META BAR -->
   <section class="sec-tight reveal"><div class="wrap-wide"><div class="csmeta">
@@ -148,7 +153,6 @@
 
 </div>
 
-<script src="karlin-schema.js?v=7"></script>
 <script>
 (function(){
   const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;

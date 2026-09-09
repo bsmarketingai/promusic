@@ -1063,9 +1063,17 @@ body.dir-b .b-mask.in{opacity:1;transform:none;}
 .csmeta{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--border);border-radius:var(--pm-radius-lg);overflow:hidden;}
 .csmeta .cell{padding:20px;border-right:1px solid var(--border);}
 .csmeta .cell:last-child{border-right:0;}
-.csmeta .k{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:9px;}
-.csmeta .v{font-family:var(--pm-font-mono);font-size:13px;color:var(--text);line-height:1.4;}
-@media(max-width:760px){.csmeta{grid-template-columns:1fr 1fr;}.csmeta .cell{border-bottom:1px solid var(--border);}}
+.csmeta .k{font-family:var(--pm-font-mono);font-weight:700;font-size:var(--pm-text-2xs);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+/* hodnota je to, co se čte — display font, ne mono drobnopis */
+.csmeta .v{font-family:var(--pm-font-display);font-weight:700;font-size:var(--pm-text-body);letter-spacing:-.01em;color:var(--text);line-height:1.3;}
+/* mobil: každý údaj jeden řádek klíč → hodnota, kompaktně (mřížka 2×N byla řídká a lámala hodnoty) */
+@media(max-width:760px){
+  .csmeta{grid-template-columns:1fr;}
+  .csmeta .cell{padding:14px 16px;border-right:0;border-bottom:1px solid var(--border);}
+  .csmeta .cell:last-child{border-bottom:0;}
+  .csmeta .k{margin-bottom:5px;}
+  .csmeta .v{font-size:var(--pm-text-sm);}
+}
 
 /* lead split */
 .cslead{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start;}
