@@ -1666,3 +1666,97 @@ section:has(+ footer),section:has(+ .foot),
   .mobmenu-inner{gap:8px;}
   .mobitem-row{padding:4px 2px;}
 }
+
+/* ===================== VÝPIS PROJEKTŮ (Live & turné · Stálé instalace) =====================
+   Dvě karty se záměrně chovají jinak:
+   .pcard-live = foto na plnou plochu, text v přesvitu (akce, energie)
+   .pcard-inst = foto nahoře + katalogový panel se specifikací (prostor, parametry) */
+.plist-root{display:block;}
+.plist-filter{margin-bottom:14px;}
+.plist-count{font-size:var(--pm-text-xs);color:var(--text-mute);letter-spacing:.06em;text-transform:uppercase;margin:0 0 22px;}
+.plist{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;}
+@media(max-width:1100px){.plist{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.plist{grid-template-columns:1fr;}}
+ui-live-card,ui-inst-card{display:block;min-width:0;}
+
+.pcard{position:relative;display:flex;flex-direction:column;border-radius:var(--pm-radius-lg);overflow:hidden;height:100%;
+  border:1px solid var(--border);background:var(--surface);color:var(--text);
+  transition:transform var(--pm-dur) var(--pm-ease),border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease);}
+a.pcard:hover{transform:var(--pm-lift);border-color:var(--accent);background:var(--surface-raised);}
+.pcard-media{position:relative;display:block;overflow:hidden;background:var(--surface-raised);}
+.pcard-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--pm-ease);}
+a.pcard:hover .pcard-media img{transform:scale(1.04);}
+/* karta bez case study je záznam, ne odkaz — nesmí nabízet hover interakci */
+.pcard:not(a){cursor:default;}
+.pcard:not(a) .pcard-media img{transition:none;}
+.pcard-nophoto{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute);
+  background:repeating-linear-gradient(135deg,var(--surface-raised) 0 9px,var(--surface) 9px 18px);}
+.pcard-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:14px;}
+.pcard-role,.pcard-tech{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.06em;
+  border-radius:var(--pm-radius-pill);padding:5px 11px;white-space:nowrap;}
+.pcard-role{border:1px solid var(--accent);color:var(--accent);background:var(--accent-tint);}
+.pcard-tech{border:1px solid var(--border-strong);color:var(--text-soft);}
+.pcard-go{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+  font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+
+/* ---- Live & turné ---- */
+.pcard-live{min-height:340px;justify-content:flex-end;border-color:var(--border-strong);}
+.pcard-live .pcard-media{position:absolute;inset:0;}
+.pcard-live .pcard-media::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,9,8,.94) 0%,rgba(10,9,8,.62) 38%,rgba(10,9,8,.18) 72%,rgba(10,9,8,.35) 100%);}
+.pcard-live .pcard-top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px 0;}
+.pcard-live .pcard-year{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:#fff;opacity:.82;}
+.pcard-live .pcard-body{position:relative;display:flex;flex-direction:column;padding:20px 18px 18px;margin-top:auto;}
+.pcard-live .pcard-sub{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+.pcard-live h3{color:#fff;font-size:1.5rem;margin-top:0;}
+.pcard-live .pcard-place{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:rgba(255,255,255,.82);margin-top:8px;}
+.pcard-live .pcard-tech{border-color:rgba(255,255,255,.34);color:#fff;}
+.pcard-live .pcard-go{color:#fff;}
+a.pcard-live:hover .pcard-go{color:var(--accent);}
+
+/* ---- Stálé instalace ---- */
+.pcard-inst .pcard-media{aspect-ratio:16/10;}
+.pcard-inst .pcard-cat{position:absolute;left:12px;top:12px;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(10,9,8,.72);
+  border-radius:5px;padding:5px 9px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+.pcard-inst .pcard-body{display:flex;flex-direction:column;flex:1;padding:20px 20px 18px;}
+.pcard-inst h3{font-size:1.22rem;}
+.pcard-inst .pcard-place{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:var(--accent);margin-top:7px;}
+.pcard-inst .pcard-note{font-size:var(--pm-text-sm);color:var(--text-soft);line-height:1.5;margin-top:10px;}
+.pcard-inst .pcard-spec{display:flex;flex-direction:column;margin-top:16px;border-top:1px solid var(--border);}
+.pcard-row{display:flex;gap:12px;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
+.pcard-row .k{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);flex:none;}
+.pcard-row .v{font-family:var(--pm-font-body);font-size:var(--pm-text-xs);color:var(--text);text-align:right;}
+
+/* ---- stránkování ---- */
+.pager{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:38px;}
+.pager-nums{display:flex;gap:6px;}
+.pager-n,.pager-arrow{position:relative;cursor:pointer;font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);
+  min-width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--border-strong);border-radius:var(--pm-radius-pill);background:transparent;color:var(--text-soft);
+  transition:color var(--pm-dur) var(--pm-ease),border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease);}
+.pager-n:hover,.pager-arrow:hover:not([disabled]){color:var(--accent);border-color:var(--accent);background:var(--accent-tint);}
+.pager-n.is-active{background:var(--accent);border-color:var(--accent);color:var(--on-accent);}
+.pager-arrow[disabled]{opacity:.35;cursor:not-allowed;}
+.pager-arrow ui-icon{font-size:16px;}
+.pager-gap{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:var(--text-mute);padding:0 2px;align-self:center;}
+/* „ze světa“ = reference zastupované značky, ne vlastní produkce PRO MUSIC */
+.pcard-world{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:5px;padding:4px 8px;margin-left:auto;}
+.pcard-live .pcard-world + .pcard-year{margin-left:10px;}
+
+/* ---- záhlaví výpisu (bez foto hera — výpis má vést obsah, ne obrázek) ---- */
+.listhead{position:relative;overflow:hidden;padding:clamp(38px,6vw,80px) 0 clamp(20px,3vw,36px);border-bottom:1px solid var(--border);}
+/* fotka je atmosféra, ne obsah — drží se hluboko pod textem */
+.listhead .bg{position:absolute;inset:-8% 0;z-index:0;}
+.listhead .bg img{width:100%;height:100%;object-fit:cover;opacity:.62;filter:grayscale(.12) brightness(.82);}
+.listhead::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(7,6,5,.55),rgba(7,6,5,.42) 45%,var(--bg));}
+.listhead > .wrap-wide{position:relative;z-index:2;}
+.listhead .breadcrumb .cur{color:var(--accent);}
+.listhead .eyebrow{margin-top:16px;}
+.listhead h1{font-size:clamp(2.2rem,5.2vw,4.2rem);letter-spacing:-.035em;line-height:1.04;margin:14px 0 0;max-width:20ch;}
+.listhead .lead{margin-top:18px;}
+.listhead .cta-actions{margin-top:26px;}
+.sec-list{padding-top:clamp(28px,4vw,46px);}

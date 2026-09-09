@@ -33,6 +33,12 @@ Stávající web klienta: https://promusic.cz/
 4. **EN mutace** obsahu.
 5. Self-hostované fonty + vektorové logo pro produkci.
 
+## Terminologie (potvrzeno klientem)
+- **Live & turné** = dočasné nasazení techniky na akci (turné, koncerty, festivaly, TV, eventy). Dřív se sekce jmenovala „Realizace".
+- **Stálé instalace** = trvale zabudovaný systém v budově (divadla, arény, kluby, hotely).
+- Slovo **„realizace"** používej **jen jako fázi procesu** (návrh → realizace → servis), nikdy jako název sekce. Souhrn projektů = „Vybrané projekty" / „Další projekty".
+- Názvy souborů (`realizace-*.html`) zůstávají — mění se jen popisky v UI.
+
 ## Pracovní pravidla
 - Design systém je **jediný zdroj pravdy**: tokeny v `tokens/*`, komponenty v `ui.css` + `ui-components.js`. Nová stránka nesmí zavádět vlastní barvy/fonty/komponenty — když něco chybí, přidat do systému.
 - Hlavička / mobilní menu / patička jsou **jeden soubor pro celý web** (`ui-header.html`, `ui-mobile-menu.html`, `ui-footer.html`, vkládá `ui-loader.js`). Needituj je po stránkách.

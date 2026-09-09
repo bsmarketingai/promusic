@@ -13,7 +13,9 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | soubor | co to je |
 |---|---|
 | `index.html` | Homepage |
-| `realizace-ed-sheeran.html` | Case study — Ed Sheeran, Mathematics Tour |
+| `live-a-turne.html` | Výpis projektů Live & turné (chip filtrace + stránkování) |
+| `stale-instalace.html` | Výpis stálých instalací (chip filtrace + stránkování) |
+| `live-ed-sheeran.html` | Case study — Ed Sheeran, Mathematics Tour |
 | `instalace-hd-karlin-schema.html` | Case study — HD Karlín, vč. interaktivního schématu |
 | `instalace-kulturni-domy-saly-divadla.html` | Segmentová landing — kulturní domy, sály, divadla |
 | `technologie-schema-ozvuceni.html` | Vysvětlovací stránka — schéma ozvučení |
@@ -32,12 +34,14 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | soubor | co to je |
 |---|---|
 | `ui-theme.js` | Nastaví téma před vykreslením (zabrání probliknutí) |
-| `ui-components.js` | Web components: `ui-button`, `ui-input`, `ui-dropdown`, `ui-search`, `ui-chip`, `ui-tag`, `ui-card`, `ui-lang-switch` |
+| `ui-components.js` | Web components: `ui-button`, `ui-input`, `ui-dropdown`, `ui-search`, `ui-chip`, `ui-tag`, `ui-card`, `ui-lang-switch`, `ui-live-card`, `ui-inst-card` |
 | `ui-icons.js` | Kurátorská sada 103 ikon + `<ui-icon>`. **Jediný povolený zdroj ikon.** |
 | `ui-loader.js` | Vkládá hlavičku / mobilní menu / patičku na každou stránku |
 | `ui-header.html` · `ui-mobile-menu.html` · `ui-footer.html` | Markup těch tří sdílených bloků (jediný zdroj pravdy; samostatně otevřené fungují jako náhled) |
 | `site.js` | Globální chování: reveal on scroll, parallax, tilt, outline-glow, coverflow karusel |
 | `home-content.js` | Obsah sekcí homepage (vykresluje se z JS) |
+| `projects-data.js` | **Data projektů** — `PM_LIVE` / `PM_INST` + kategorie. Jediné místo, kde se přidává projekt nebo fotka. |
+| `listing.js` | Výpis: chip filtrace (propisuje se do `?f=`), stránkování (`?p=`), render karet |
 | `karlin-schema.js` | Interaktivní schéma ozvučení (Karlín) |
 | `page-transition.js` | Přechod mezi stránkami — „pódiové světlo" |
 

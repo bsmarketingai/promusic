@@ -6,7 +6,7 @@
 <title>PRO MUSIC — Značky</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=39" />
+<link rel="stylesheet" href="ui.css?v=45" />
 </head>
 <body data-nav="Značky" class="dir-b">
 <div id="app">
@@ -163,14 +163,13 @@
 <script>
 (function(){
   var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:0.1});
-  document.querySelectorAll(".reveal,[data-stagger]").forEach(function(el){io.observe(el);});
+  /* reveal observer žije v site.js (jeden zdroj pravdy) */
 })();
 </script>
 <script src="ui-icons.js?v=4"></script>
-<script src="ui-components.js?v=14"></script>
-<script src="ui-loader.js?v=11"></script>
-<script src="site.js?v=10"></script>
+<script src="ui-components.js?v=19"></script>
+<script src="ui-loader.js?v=16"></script>
+<script src="site.js?v=13"></script>
 <script src="page-transition.js?v=1"></script>
 </body>
 </html>

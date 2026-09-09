@@ -237,8 +237,83 @@
     }
   }
 
+  /* ================= ui-live-card =================
+     PARAMETROVÁ karta výpisu Live & turné. Hodnoty, nikdy věty.
+     title · cat · year · place · tech="L-Acoustics K1|DiGiCo SD5"
+     scale="34 koncertů|17 zemí" · world · img · href
+     Původní dokumentace:
+     Karta do výpisu Live & turné. Akce je hlavní hrdina → foto na plnou
+     plochu, text v přesvitu. Parametry: kdo, kdy, jak velké to bylo.
+
+       <ui-live-card title="Ed Sheeran" sub="Mathematics Tour" cat="Turné"
+                     year="2022" scope="stadiony Evropy" role="Světla"
+                     tech="Ayrton" img="…" href="…"></ui-live-card>
+
+     role / tech = seznam oddělený |    img="" → placeholder pro fotku
+     href="" → karta bez odkazu (case study ještě není)
+  */
+  function pills(v, cls) {
+    return (v || "").split("|").filter(Boolean)
+      .map(function (x) { return '<span class="' + cls + '">' + x + "</span>"; }).join("");
+  }
+  /* placeholder „—“ v datech znamená „nevíme“ — do UI nepatří (ani u live, ani u inst karty) */
+  function val(v) { return v && v !== "\u2014" && v !== "—" ? v : ""; }
+  function media(img, alt) {
+    return img
+      ? '<img src="' + img + '" alt="' + (alt || "") + '" loading="lazy" />'
+      : '<span class="pcard-nophoto">foto doplníme</span>';
+  }
+  class UILiveCard extends HTMLElement {
+    connectedCallback() {
+      if (this.__b) return; this.__b = 1;
+      var href = attr(this, "href", ""), tag = href ? "a" : "div";
+      this.innerHTML = "<" + tag + ' class="pcard pcard-live' + (href ? ' outline-glow" href="' + href + '"' : '"') + ">" +
+        '<span class="pcard-media">' + media(attr(this, "img", ""), attr(this, "title", "")) + "</span>" +
+        '<span class="pcard-top"><span class="tag tag-solid">' + attr(this, "cat", "") + "</span>" +
+          (this.hasAttribute("world") ? '<span class="pcard-world">ze světa</span>' : "") +
+          (val(attr(this, "year", "")) ? '<span class="pcard-year">' + val(attr(this, "year", "")) + "</span>" : "") + "</span>" +
+        '<span class="pcard-body">' +
+          "<h3>" + attr(this, "title", "") + "</h3>" +
+          (val(attr(this, "place", "")) ? '<span class="pcard-place">' + val(attr(this, "place", "")) + "</span>" : "") +
+          '<span class="pcard-pills">' + pills(attr(this, "scale", ""), "pcard-role") + pills(attr(this, "tech", ""), "pcard-tech") + "</span>" +
+          (href ? '<span class="pcard-go">Case study<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span>' : "") +
+        "</span></" + tag + ">";
+      if (href) glow(this.firstElementChild);
+    }
+  }
+
+  /* ================= ui-inst-card =================
+     Karta do výpisu Stálé instalace. Tady rozhoduje prostor a parametry
+     systému → foto nahoře, pod ním katalogový panel se specifikací.
+
+       <ui-inst-card title="Hudební divadlo Karlín" cat="Divadla & sály"
+                     city="Praha" year="2021" system="L-Acoustics L-ISA"
+                     cap="1 000 míst" scope="Zvuk|Světla" img="…" href="…">
+         Největší instalace L-ISA v ČR.
+       </ui-inst-card>
+  */
+  class UIInstCard extends HTMLElement {
+    connectedCallback() {
+      if (this.__b) return; this.__b = 1;
+      var href = attr(this, "href", ""), tag = href ? "a" : "div";
+      var meta = [attr(this, "city", ""), attr(this, "year", "")].map(val).filter(Boolean).join(" · ");
+      var cap = val(attr(this, "cap", ""));
+      this.innerHTML = "<" + tag + ' class="pcard pcard-inst' + (href ? ' outline-glow" href="' + href + '"' : '"') + ">" +
+        '<span class="pcard-media">' + media(attr(this, "img", ""), attr(this, "title", "")) +
+          '<span class="pcard-cat">' + attr(this, "cat", "") + "</span></span>" +
+        '<span class="pcard-body">' +
+          "<h3>" + attr(this, "title", "") + "</h3>" +
+          (meta ? '<span class="pcard-place">' + meta + "</span>" : "") +
+          '<span class="pcard-pills">' + (cap ? '<span class="pcard-role">' + cap + "</span>" : "") + pills(attr(this, "tech", ""), "pcard-tech") + "</span>" +
+          (href ? '<span class="pcard-go">Case study<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span>' : "") +
+        "</span></" + tag + ">";
+      if (href) glow(this.firstElementChild);
+    }
+  }
+
   var defs = {
     "ui-stats": UIStats, "ui-stat": UIStat,
+    "ui-live-card": UILiveCard, "ui-inst-card": UIInstCard,
     "ui-button": UIButton, "ui-input": UIInput, "ui-search": UISearch,
     "ui-dropdown": UIDropdown, "ui-lang-switch": UILangSwitch,
     "ui-tag": UITag, "ui-chip": UIChip, "ui-card": UICard,
@@ -248,7 +323,7 @@
 
   /* globální glow pro cokoli s .outline-glow (i staticky psané) */
   function armAll() {
-    document.querySelectorAll(".outline-glow,.btn,.chip-filter,.ui-control,.ui-search,.ui-dd-btn").forEach(glow);
+    document.querySelectorAll(".outline-glow,.btn,.chip-filter,.ui-control,.ui-search,.ui-dd-btn,.pcard,.pager-n,.pager-arrow").forEach(glow);
   }
   if (document.readyState !== "loading") armAll();
   else document.addEventListener("DOMContentLoaded", armAll);

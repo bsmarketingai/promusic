@@ -6,7 +6,7 @@
 <title>PRO MUSIC — Design systém</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=39" />
+<link rel="stylesheet" href="ui.css?v=45" />
 <style>
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);-webkit-font-smoothing:antialiased}
@@ -185,7 +185,7 @@
       <div class="r"><span class="lbl">Display<br>Archivo 800<br>tracking −.035em</span>
         <span style="font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.035em;line-height:1.02;font-size:clamp(34px,4.6vw,58px)">Zvuk, který cítíš v hrudi.</span></div>
       <div class="r"><span class="lbl">Heading<br>Archivo 800</span>
-        <span style="font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.02em;font-size:26px">Vybrané realizace</span></div>
+        <span style="font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.02em;font-size:26px">Vybrané projekty</span></div>
       <div class="r"><span class="lbl">Body<br>IBM Plex Sans 400/700<br>17px / 1.6</span>
         <span style="font-family:var(--pm-font-body);font-size:17px;line-height:1.6;color:var(--text-soft);max-width:52ch">Dodáváme špičkové profesionální technologie — a <b style="color:var(--text)">rozumíme tomu, aby to celé fungovalo</b>.</span></div>
       <div class="r"><span class="lbl">Mono<br>Space Mono 700<br>eyebrow / data</span>
@@ -237,9 +237,30 @@
       <p class="demo-t">ui-card</p>
       <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
         <ui-card kicker="Segment" title="Divadla &amp; sály" href="instalace-kulturni-domy-saly-divadla.html">Stálé instalace, akustika, provoz.</ui-card>
-        <ui-card kicker="Case study" title="Ed Sheeran" href="realizace-ed-sheeran.html">Ayrton rig · stadiony Evropy.</ui-card>
+        <ui-card kicker="Case study" title="Ed Sheeran" href="live-ed-sheeran.html">Ayrton rig · stadiony Evropy.</ui-card>
         <ui-card kicker="Technologie" title="L-ISA">Imerzivní objektový zvuk.</ui-card>
       </div>
+    </div>
+
+    <div class="demo">
+      <p class="demo-t">ui-live-card · karta do výpisu Live &amp; turné (foto na plnou plochu, akce jako hrdina)</p>
+      <div class="plist" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <ui-live-card title="Ed Sheeran — Mathematics Tour" cat="Turné" year="2022" tech="Ayrton" world img="assets/projekty/ed-sheeran/ohnostroj.jpg" href="live-ed-sheeran.html"></ui-live-card>
+        <ui-live-card title="Rammstein" cat="Turné" year="2019" tech="L-Acoustics" scale="34 koncertů|17 zemí" world img="" href=""></ui-live-card>
+      </div>
+    </div>
+
+    <div class="demo">
+      <p class="demo-t">ui-inst-card · karta do výpisu Stálé instalace (foto + katalogový panel s parametry)</p>
+      <div class="plist" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <ui-inst-card title="Hudební divadlo Karlín" cat="Divadla &amp; sály" city="Praha" tech="L-Acoustics L-ISA|DiGiCo Quantum 7T" img="assets/projekty/karlin/zvukar-foh.jpg" href="instalace-hd-karlin-schema.html"></ui-inst-card>
+        <ui-inst-card title="Steel Aréna Košice" cat="Arény &amp; stadiony" city="Košice, SK" tech="Ayrton Domino Profile" img="assets/projekty/steel-arena/projekce-barvy.jpg" href=""></ui-inst-card>
+      </div>
+    </div>
+
+    <div class="demo">
+      <p class="demo-t">stránkování (.pager) — používá listing.js</p>
+      <nav class="pager"><button class="pager-arrow" disabled aria-label="Předchozí"><ui-icon name="ui-arrow-left" aria-hidden="true"></ui-icon></button><div class="pager-nums"><button class="pager-n is-active">1</button><button class="pager-n">2</button><button class="pager-n">3</button></div><button class="pager-arrow" aria-label="Další"><ui-icon name="ui-arrow-right" aria-hidden="true"></ui-icon></button></nav>
     </div>
 
     <div class="demo">
@@ -296,7 +317,7 @@
 </div>
 
 <script src="ui-icons.js?v=4"></script>
-<script src="ui-components.js?v=14"></script>
+<script src="ui-components.js?v=19"></script>
 <script>
 (function(){
   var VARS=["primary","secondary","main"];

@@ -10,7 +10,7 @@
       ["Přehled", ["Celé portfolio", "Showreel", "Case studies"]],
       ["Podle typu", ["Turné & koncerty", "Festivaly", "TV & broadcast", "Eventy & korporát"]],
     ],
-    feat: { img: P + "ed-sheeran/ohnostroj.jpg", tag: "CASE STUDY", title: "Ed Sheeran — Mathematics", href: "realizace-ed-sheeran.html" },
+    feat: { img: P + "ed-sheeran/ohnostroj.jpg", tag: "CASE STUDY", title: "Ed Sheeran — Mathematics", href: "live-ed-sheeran.html" },
   };
   const megaInstalace = {
     cols: [
@@ -20,12 +20,12 @@
     feat: { img: P + "djkt-plzen/sal-pohled.jpg", tag: "INSTALACE", title: "Nová scéna DJKT Plzeň", href: "#" },
   };
   const navItems = [
-    { l: "Práce", mega: megaPrace }, { l: "Technologie" }, { l: "Instalace", mega: megaInstalace },
+    { l: "Live & turné", mega: megaPrace }, { l: "Technologie" }, { l: "Stálé instalace", mega: megaInstalace },
     { l: "Značky" }, { l: "Školení" }, { l: "Kontakt" },
   ];
 
   const segments = [
-    ["Live · rental · produkce", "turné, koncerty, festivaly, eventy", "#"],
+    ["Live · rental · produkce", "turné, koncerty, festivaly, eventy", "live-a-turne.html"],
     ["Kulturní domy, sály & divadla", "stálé instalace, akustika, provoz", "instalace-kulturni-domy-saly-divadla.html"],
     ["Broadcast & studia", "přenosy, nahrávání, monitoring"],
     ["Systémoví integrátoři", "vybrané části systému do hloubky"],
@@ -96,7 +96,7 @@
         </div>
         <!-- náhledové boxy referencí -->
         <div class="hero-cards" id="heroCards">
-          <a class="hero-card outline-glow is-active" href="realizace-ed-sheeran.html" style="--d:0">
+          <a class="hero-card outline-glow is-active" href="live-ed-sheeran.html" style="--d:0">
             <span class="hc-img"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /></span>
             <span class="hc-meta"><span class="hc-kicker">Toto jsme nasvítili</span><span class="hc-title">Ed Sheeran · Mathematics Tour</span></span>
           </a>
@@ -140,16 +140,16 @@
     </div>
   </div></section>
 
-  <!-- 03 VYBRANÉ REALIZACE -->
+  <!-- 03 VYBRANÉ PROJEKTY -->
   <section class="sec reveal"><div class="wrap-wide">
-    <div class="sec-head"><span class="idx">03</span><h2>Vybrané realizace</h2><span class="rule"></span></div>
+    <div class="sec-head"><span class="idx">03</span><h2>Vybrané projekty</h2><span class="rule"></span></div>
     <div class="work" data-stagger>
-      <a class="workcard col-7" href="realizace-ed-sheeran.html"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /><span class="wlogo">AYRTON</span><div class="ov"><ui-tag solid>Turné / Světla</ui-tag><h3>Ed Sheeran — Mathematics Tour</h3><span class="wmeta">Ayrton rig · stadiony Evropy</span></div></a>
-      <a class="workcard col-5" href="#"><img src="${P}steel-arena/projekce-barvy.jpg" alt="" /><span class="wlogo">AYRTON DOMINO</span><div class="ov"><ui-tag solid>Aréna / Světla</ui-tag><h3>Steel Aréna Košice</h3><span class="wmeta">multifunkční hala · projekce</span></div></a>
+      <a class="workcard col-7" href="live-ed-sheeran.html"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /><span class="wlogo">AYRTON</span><div class="ov"><ui-tag solid>Turné / Světla</ui-tag><h3>Ed Sheeran — Mathematics Tour</h3><span class="wmeta">Ayrton rig · stadiony Evropy</span></div></a>
+      <a class="workcard col-5" href="stale-instalace.html?f=Ar%C3%A9ny%20%26%20stadiony"><img src="${P}steel-arena/projekce-barvy.jpg" alt="" /><span class="wlogo">AYRTON DOMINO</span><div class="ov"><ui-tag solid>Aréna / Světla</ui-tag><h3>Steel Aréna Košice</h3><span class="wmeta">multifunkční hala · projekce</span></div></a>
       <a class="workcard col-6" href="instalace-hd-karlin-schema.html"><img src="${P}karlin/zvukar-foh.jpg" alt="" /><span class="wlogo">DiGiCo</span><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Hudební divadlo Karlín</h3><span class="wmeta">DiGiCo Quantum 7T · muzikál</span></div></a>
-      <a class="workcard col-6" href="#"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><span class="wlogo">L-ACOUSTICS</span><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
+      <a class="workcard col-6" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><span class="wlogo">L-ACOUSTICS</span><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
     </div>
-    <div style="text-align:center;margin-top:34px"><ui-button variant="ghost">Celé portfolio (40+) →</ui-button></div>
+    <div style="text-align:center;margin-top:34px"><ui-button variant="ghost" href="live-a-turne.html">Celé portfolio →</ui-button></div>
   </div></section>
 
   <!-- STATEMENT -->
@@ -241,8 +241,8 @@
           </div>
       </div>
       <div class="foot-cols">
-        <div class="foot-col"><h5>Práce</h5><a href="#">Turné &amp; koncerty</a><a href="#">Festivaly</a><a href="#">TV &amp; broadcast</a><a href="#">Case studies</a></div>
-        <div class="foot-col"><h5>Instalace</h5><a href="#">Divadla &amp; sály</a><a href="#">Arény</a><a href="#">Hotely &amp; bary</a><a href="#">Jak to děláme</a></div>
+        <div class="foot-col"><h5>Live &amp; turné</h5><a href="#">Turné &amp; koncerty</a><a href="#">Festivaly</a><a href="#">TV &amp; broadcast</a><a href="#">Case studies</a></div>
+        <div class="foot-col"><h5>Stálé instalace</h5><a href="#">Divadla &amp; sály</a><a href="#">Arény</a><a href="#">Hotely &amp; bary</a><a href="#">Jak to děláme</a></div>
         <div class="foot-col"><h5>Firma</h5><a href="#">Značky</a><a href="#">Academy</a><a href="#">Servis</a><a href="#">Kontakt</a></div>
       </div>
     </div>
@@ -318,10 +318,7 @@
 
   /* ===== MOTION ===== */
   const reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-  const io = new IntersectionObserver((es) => {
-    es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".reveal,[data-stagger]").forEach((el) => io.observe(el));
+  /* reveal observer žije v site.js (jeden zdroj pravdy) */
 
   if (!reduce) {
     const pars = [...document.querySelectorAll("[data-par]")];

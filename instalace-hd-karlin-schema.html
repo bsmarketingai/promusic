@@ -6,9 +6,9 @@
 <title>PRO MUSIC — HD Karlín · případová studie se schématem</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=39" />
+<link rel="stylesheet" href="ui.css?v=45" />
 </head>
-<body data-nav="Instalace" class="dir-b">
+<body data-nav="Stálé instalace" class="dir-b">
 
 <!-- NAV -->
 <header class="cnav" style="position:sticky;top:0;z-index:60;background:rgba(16,15,13,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)">
@@ -119,9 +119,9 @@
 
   <!-- RELATED -->
   <section class="sec band wave-band reveal"><div class="wrap-wide">
-    <div class="sec-head"><span class="idx">06</span><h2>Další realizace</h2><span class="rule"></span></div>
+    <div class="sec-head"><span class="idx">06</span><h2>Další projekty</h2><span class="rule"></span></div>
     <div class="related" data-stagger>
-      <a class="relcard" href="realizace-ed-sheeran.html"><img src="assets/projekty/ed-sheeran/cervena-show.jpg" alt="" /><span class="rl">Ed Sheeran — Mathematics</span><span class="rm">Ayrton rig · stadiony</span></a>
+      <a class="relcard" href="live-ed-sheeran.html"><img src="assets/projekty/ed-sheeran/cervena-show.jpg" alt="" /><span class="rl">Ed Sheeran — Mathematics</span><span class="rm">Ayrton rig · stadiony</span></a>
       <a class="relcard" href="#"><img src="assets/projekty/steel-arena/projekce-barvy.jpg" alt="" /><span class="rl">Steel Aréna Košice</span><span class="rm">Ayrton Domino Profile</span></a>
       <a class="relcard" href="#"><img src="assets/projekty/djkt-plzen/array-strop.jpg" alt="" /><span class="rl">Nová scéna DJKT Plzeň</span><span class="rm">L-Acoustics Ambiance</span></a>
     </div>
@@ -152,8 +152,7 @@
 <script>
 (function(){
   const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
-  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:0.1});
-  document.querySelectorAll(".reveal,[data-stagger]").forEach(el=>io.observe(el));
+  /* reveal observer žije v site.js (jeden zdroj pravdy) */
   if(!reduce){
     const pars=[...document.querySelectorAll("#app [data-par]")];let raf=null;
     const on=()=>{if(raf)return;raf=requestAnimationFrame(()=>{const vh=innerHeight;pars.forEach(el=>{const f=parseFloat(el.getAttribute("data-par"))||0.1;const r=el.getBoundingClientRect();const c=r.top+r.height/2-vh/2;let y=-c*f,cap=r.height*0.12;y=Math.max(-cap,Math.min(cap,y));el.style.transform=`translate3d(0,${y.toFixed(1)}px,0) scale(1.06)`;});raf=null;});};
@@ -162,9 +161,9 @@
 })();
 </script>
 <script src="ui-icons.js?v=4"></script>
-<script src="ui-components.js?v=14"></script>
-<script src="ui-loader.js?v=11"></script>
-<script src="site.js?v=10"></script>
+<script src="ui-components.js?v=19"></script>
+<script src="ui-loader.js?v=16"></script>
+<script src="site.js?v=13"></script>
 <script src="page-transition.js?v=1"></script>
 </body>
 </html>

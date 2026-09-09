@@ -20,7 +20,7 @@
     var DESCS = [
       ["Co řešíte", "Vyberte situaci, ne produkt. Každá cesta vede k relevantním referencím a řešení na míru."],
       ["Technologie", "Imerzivní zvuk a virtuální akustika světové úrovně — a know-how, jak je správně nasadit."],
-      ["Vybrané realizace", "Od stadionových turné po stálé instalace v divadlech a arénách. Výběr z toho, co jsme rozsvítili a ozvučili."],
+      ["Vybrané projekty", "Od stadionových turné po stálé instalace v divadlech a arénách. Výběr z toho, co jsme rozsvítili a ozvučili."],
       ["Showreel", "Pár vteřin atmosféry z koncertů, festivalů a instalací. Posuňte se karuselem."],
       ["Zastupujeme", "Výhradní distribuce světové špičky pro ČR a SK — značky, kterým rozumíme do hloubky."],
       ["Partner Program", "Síť produkčních a rentalových partnerů, kteří staví na našich systémech."],
@@ -98,6 +98,25 @@
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
     }, { threshold: 0.05 });
     document.querySelectorAll(".b-mask, .b-rise").forEach(function (el) { io.observe(el); });
+
+    /* ---- reveal: základní varianta (.reveal / [data-stagger]) ----
+       JEDINÝ observer pro celý web. Stránky si ho nesmí kopírovat inline —
+       obsah vložený později (listing.js) se doobservuje přes MutationObserver. */
+    var ioR = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); ioR.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    function armReveal() {
+      document.querySelectorAll(".reveal:not(.in),[data-stagger]:not(.in)").forEach(function (el) {
+        if (el.__rv) return; el.__rv = 1; ioR.observe(el);
+      });
+    }
+    armReveal();
+    new MutationObserver(armReveal).observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () {
+      document.querySelectorAll(".reveal:not(.in),[data-stagger]:not(.in)").forEach(function (el) {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("in");
+      });
+    }, 1400);
     /* pojistka: nic nesmí zůstat skryté, i kdyby observer nesepnul */
     setTimeout(function () {
       document.querySelectorAll(".b-mask:not(.in), .b-rise:not(.in)").forEach(function (el) {
@@ -110,7 +129,7 @@
 
     /* ---- scroll parallax: jemné vrstvení ---- */
     var layers = [];
-    document.querySelectorAll(".feature-media, .workcard img, .statement .bg img, .reel .clip img, .cshero .bg img, .csgal img, .seghero .bg img, .solrow .media img").forEach(function (el) {
+    document.querySelectorAll(".feature-media, .workcard img, .statement .bg img, .reel .clip img, .cshero .bg img, .csgal img, .seghero .bg img, .listhead .bg img, .solrow .media img").forEach(function (el) {
       var depth = el.closest(".statement") ? 0.06 : 0.04;
       layers.push({ el: el, d: depth });
     });
