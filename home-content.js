@@ -70,7 +70,7 @@
       </div>
       <a class="megafeat" href="${m.feat.href}">
         <div class="megafeat-img"><img src="${m.feat.img}" alt="" /></div>
-        <div class="megafeat-meta"><ui-tag>${m.feat.tag}</ui-tag><strong>${m.feat.title}</strong><span class="megafeat-go">Zobrazit<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></div>
+        <div class="megafeat-meta"><ui-tag>${m.feat.tag}</ui-tag><strong>${m.feat.title}</strong><span class="megafeat-go">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></div>
       </a>
     </div>`;
 
@@ -121,7 +121,7 @@
     <div class="sec-head"><span class="idx">01</span><h2>Co řešíte?</h2><span class="rule"></span></div>
     <p class="lead" style="margin:-18px 0 34px">Najděte se ve své situaci — ne v katalogu. Každá cesta vede k relevantním referencím a správnému řešení.</p>
     <div class="segments" data-stagger>
-      ${segments.map(([t, d, href], i) => `<a class="segcard" href="${href || '#'}"><span class="sn">${String(i + 1).padStart(2, "0")}</span><strong>${t}</strong><span class="sd">${d}</span><span class="sg">Vstoupit<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></a>`).join("")}
+      ${segments.map(([t, d, href], i) => `<a class="segcard" href="${href || '#'}"><span class="sn">${String(i + 1).padStart(2, "0")}</span><strong>${t}</strong><span class="sd">${d}</span><span class="sg">Vstoupit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></a>`).join("")}
     </div>
   </div></section>
 

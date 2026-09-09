@@ -34,10 +34,11 @@
       /* Koncová šipka / play patří ikonografii, ne textu. Autor může psát
          „Probrat projekt →“ i „Probrat projekt“ + arrow="right" — obojí
          skončí jako <ui-icon> z knihovny. Ad hoc znaky se do stránek nepíšou. */
-      var TRAIL = { "\u2192": "ui-arrow-right", "\u2190": "ui-arrow-left",
+      /* V tlačítkách je směrovka chevron; přímé ui-arrow-* zůstávají pro .back a pager. */
+      var TRAIL = { "\u2192": "ui-chevron-right", "\u2190": "ui-chevron-left",
                     "\u2197": "ui-arrow-up-right", "\u25b6": "ui-play" };
       var trail = this.getAttribute("arrow");
-      if (trail) trail = { right: "ui-arrow-right", left: "ui-arrow-left",
+      if (trail) trail = { right: "ui-chevron-right", left: "ui-chevron-left",
                            up: "ui-arrow-up-right", play: "ui-play" }[trail] || null;
       var last = label.slice(-1);
       if (!trail && TRAIL[last]) { trail = TRAIL[last]; label = label.slice(0, -1).trim(); }
@@ -231,7 +232,10 @@
     connectedCallback() {
       if (this.__b) return; this.__b = 1;
       var kids = this.querySelectorAll("ui-stat").length;
-      this.className = this.hasAttribute("compact") ? "stats refcounts" : "stats";
+      /* words = hodnoty jsou slova (názvy technologií), ne čísla → menší stupeň
+         a lámání na víc řádků, aby se dlouhé položky nepřekrývaly. */
+      this.className = (this.hasAttribute("compact") ? "stats refcounts" : "stats") +
+        (this.hasAttribute("words") ? " stats-words" : "");
       this.setAttribute("data-stagger", "");
       if (kids) this.style.setProperty("--stat-cols", kids);
     }
@@ -263,22 +267,22 @@
       ? '<img src="' + img + '" alt="' + (alt || "") + '" loading="lazy" />'
       : '<span class="pcard-nophoto">foto doplníme</span>';
   }
+  /* Karty ve výpisech mají jeden tvar: foto přes celou kartu, kategorie vlevo nahoře, nadpis a CTA dole.
+     Parametry (technika, rok, kapacita) patří na detail projektu, ne do výpisu. */
+  function shell(tag, href, mod, img, cat, title) {
+    return "<" + tag + ' class="pcard outline-glow ' + mod + '"' + (href ? ' href="' + href + '"' : "") + ">" +
+      '<span class="pcard-media">' + media(img, title) + "</span>" +
+      (cat ? '<span class="pcard-top"><span class="tag tag-quiet">' + cat + "</span></span>" : "") +
+      '<span class="pcard-body"><h3>' + title + "</h3>" +
+        '<span class="btn btn-ghost btn-sm pcard-cta">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span>' +
+      "</span></" + tag + ">";
+  }
   class UILiveCard extends HTMLElement {
     connectedCallback() {
       if (this.__b) return; this.__b = 1;
       var href = attr(this, "href", ""), tag = href ? "a" : "div";
-      this.innerHTML = "<" + tag + ' class="pcard pcard-live' + (href ? ' outline-glow" href="' + href + '"' : '"') + ">" +
-        '<span class="pcard-media">' + media(attr(this, "img", ""), attr(this, "title", "")) + "</span>" +
-        '<span class="pcard-top"><span class="tag tag-solid">' + attr(this, "cat", "") + "</span>" +
-          (this.hasAttribute("world") ? '<span class="pcard-world">ze světa</span>' : "") +
-          (val(attr(this, "year", "")) ? '<span class="pcard-year">' + val(attr(this, "year", "")) + "</span>" : "") + "</span>" +
-        '<span class="pcard-body">' +
-          "<h3>" + attr(this, "title", "") + "</h3>" +
-          (val(attr(this, "place", "")) ? '<span class="pcard-place">' + val(attr(this, "place", "")) + "</span>" : "") +
-          '<span class="pcard-pills">' + pills(attr(this, "scale", ""), "pcard-role") + pills(attr(this, "tech", ""), "pcard-tech") + "</span>" +
-          (href ? '<span class="pcard-go">Case study<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span>' : "") +
-        "</span></" + tag + ">";
-      if (href) glow(this.firstElementChild);
+      this.innerHTML = shell(tag, href, "pcard-live", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""));
+      glow(this.firstElementChild);
     }
   }
 
@@ -296,18 +300,8 @@
     connectedCallback() {
       if (this.__b) return; this.__b = 1;
       var href = attr(this, "href", ""), tag = href ? "a" : "div";
-      var meta = [attr(this, "city", ""), attr(this, "year", "")].map(val).filter(Boolean).join(" · ");
-      var cap = val(attr(this, "cap", ""));
-      this.innerHTML = "<" + tag + ' class="pcard pcard-inst' + (href ? ' outline-glow" href="' + href + '"' : '"') + ">" +
-        '<span class="pcard-media">' + media(attr(this, "img", ""), attr(this, "title", "")) +
-          '<span class="pcard-cat">' + attr(this, "cat", "") + "</span></span>" +
-        '<span class="pcard-body">' +
-          "<h3>" + attr(this, "title", "") + "</h3>" +
-          (meta ? '<span class="pcard-place">' + meta + "</span>" : "") +
-          '<span class="pcard-pills">' + (cap ? '<span class="pcard-role">' + cap + "</span>" : "") + pills(attr(this, "tech", ""), "pcard-tech") + "</span>" +
-          (href ? '<span class="pcard-go">Case study<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span>' : "") +
-        "</span></" + tag + ">";
-      if (href) glow(this.firstElementChild);
+      this.innerHTML = shell(tag, href, "pcard-inst", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""));
+      glow(this.firstElementChild);
     }
   }
 

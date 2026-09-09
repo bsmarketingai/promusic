@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — Jak to děláme · stálé instalace</title>
+<script src="ui-theme.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=57" />
+</head>
+<body data-nav="Stálé instalace" class="dir-b">
+<div id="app">
+
+  <!-- NAV -->
+  <header class="cnav" style="position:sticky;top:0;z-index:60;background:rgba(16,15,13,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)">
+    <div class="wrap-wide" style="display:flex;align-items:center;gap:20px;height:72px">
+      <img style="height:24px" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
+      <a class="back" style="font-family:var(--pm-font-mono);font-size:var(--pm-text-sm);color:var(--text-soft);display:inline-flex;gap:7px" href="stale-instalace.html"><ui-icon class="btn-ico" name="ui-back" aria-hidden="true"></ui-icon> Stálé instalace</a>
+      <span style="flex:1"></span>
+      <ui-button variant="primary">Probrat projekt →</ui-button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <header class="seghero">
+    <div class="bg"><img data-par="0.1" src="assets/projekty/karlin/sal-full.png" alt="" /></div>
+    <div class="wrap inner">
+      <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><a href="stale-instalace.html">Stálé instalace</a><span class="sep">/</span><span style="color:var(--accent)">Jak to děláme</span></nav>
+      <span class="eyebrow" style="color:#fff;margin-top:14px">Proces · stálé instalace</span>
+      <h1>Nejdřív se měří.<br/>Pak se kupuje.</h1>
+      <p class="lead">Instalaci na klíč vedeme v pěti fázích — od konzultace přes akustickou studii a 3D simulaci až po ladění a dlouhodobý servis. Každá fáze má vlastní výstup, který dostanete na papíře, ne jen slovně.</p>
+      <div class="cta-actions">
+        <ui-button variant="primary" size="lg">Probrat projekt →</ui-button>
+        <ui-button variant="ghost" size="lg" href="stale-instalace.html">Vybrané instalace</ui-button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 01 PROCES V PŘEHLEDU — hero odděluje rovná hrana, ne vlnovka (hero musí být na první load samostatný) -->
+  <section class="sec band band-flat reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>Pět fází, jeden odpovědný tým</h2><span class="rule"></span></div>
+    <p class="lead" style="margin:-18px 0 34px">Nepředáváme projekt mezi dodavateli. Kdo prostor měřil, ten ho i ladí při přejímce a zvedá telefon při servisu.</p>
+    <div class="process process-5" data-stagger>
+      <div class="pstep"><span class="dot"></span><h4>Konzultace</h4><p>Pochopíme provoz, dramaturgii a rozpočet.</p></div>
+      <div class="pstep"><span class="dot"></span><h4>Akustická studie &amp; 3D</h4><p>Měření prostoru a simulace v SoundVision.</p></div>
+      <div class="pstep"><span class="dot"></span><h4>Návrh &amp; realizace</h4><p>Projekt, specifikace, montáž, koordinace se stavbou.</p></div>
+      <div class="pstep"><span class="dot"></span><h4>Oživení &amp; ladění</h4><p>Naladění na míru sálu a zaškolení obsluhy.</p></div>
+      <div class="pstep"><span class="dot"></span><h4>Servis &amp; péče</h4><p>Záruční i pozáruční podpora, dlouhodobě.</p></div>
+    </div>
+  </div></section>
+
+  <!-- 02 FÁZE PODROBNĚ -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>Co se v každé fázi děje</h2><span class="rule"></span></div>
+
+    <div class="solrow" id="f1">
+      <div>
+        <ui-tag>Fáze 01</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">Konzultace</h2>
+        <p class="lead" style="margin-top:14px">Sejdeme se u vás v sále. Zajímá nás, co se v prostoru hraje, kdo techniku denně obsluhuje, co dnes nefunguje a s jakým rozpočtem a termínem se pracuje. Z toho vzniká zadání — ne nabídka techniky.</p>
+        <div class="phase-out"><span class="k">Výstup</span><span class="v">Zápis ze zadání a odhad investičního rozsahu</span></div>
+      </div>
+      <div class="media"><span class="media-empty">foto doplníme — konzultace v sále</span></div>
+    </div>
+
+    <div class="solrow flip" id="f2">
+      <div>
+        <ui-tag>Fáze 02</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">Akustická studie &amp; 3D simulace</h2>
+        <p class="lead" style="margin-top:14px">Prostor změříme a postavíme jeho model v <b>SoundVision</b>. V simulaci vidíte pokrytí, srozumitelnost i mechanické zavěšení dřív, než se cokoli koupí. Když akustika sálu brání výsledku, řekneme to na začátku — a navrhneme, co s ní.</p>
+        <div class="phase-out"><span class="k">Výstup</span><span class="v">Simulace pokrytí, akustická studie, doporučení variant</span></div>
+      </div>
+      <div class="media"><span class="media-empty">foto doplníme — snímek ze SoundVision</span></div>
+    </div>
+
+    <div class="solrow" id="f3">
+      <div>
+        <ui-tag>Fáze 03</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">Návrh &amp; realizace</h2>
+        <p class="lead" style="margin-top:14px">Ze simulace vzniká projekt: specifikace, kabeláž, napájení, zavěšení, podklady pro zadávací dokumentaci nebo dotaci. Montáž koordinujeme se stavbou a plánujeme do odstávek — často po etapách, aby sál mohl dál hrát.</p>
+        <div class="phase-out"><span class="k">Výstup</span><span class="v">Projekt, specifikace, harmonogram a hotová instalace</span></div>
+      </div>
+      <div class="media"><span class="media-empty">foto doplníme — montáž systému</span></div>
+    </div>
+
+    <div class="solrow flip" id="f4">
+      <div>
+        <ui-tag>Fáze 04</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">Oživení &amp; ladění</h2>
+        <p class="lead" style="margin-top:14px">Systém naladíme v hotovém sále — měřením v <b>Smaart</b>, ne odhadem. Nastavíme scény a presety pro formáty, které u vás skutečně jezdí, a zaškolíme lidi, kteří to budou ovládat každý večer.</p>
+        <div class="phase-out"><span class="k">Výstup</span><span class="v">Protokol z měření, uložené scény, zaškolená obsluha</span></div>
+      </div>
+      <div class="media"><span class="media-empty">foto doplníme — ladění u FOH</span></div>
+    </div>
+
+    <div class="solrow" id="f5">
+      <div>
+        <ui-tag>Fáze 05</ui-tag>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.4rem);margin:14px 0 0">Servis &amp; péče</h2>
+        <p class="lead" style="margin-top:14px">Po předání zůstáváme dostupní: záruční i pozáruční servis, náhradní díly, revize, aktualizace firmwaru a rozšiřování systému. Jsme výhradní distributor značek, které jsme vám nasadili — díly a podporu řešíme přímo.</p>
+        <div class="phase-out"><span class="k">Výstup</span><span class="v">Servisní režim, kontakt na konkrétního technika</span></div>
+      </div>
+      <div class="media"><span class="media-empty">foto doplníme — servis a dílna</span></div>
+    </div>
+  </div></section>
+
+  <!-- 03 CO OD NÁS DOSTANETE -->
+  <section class="sec band wave-band reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">03</span><h2>Co dostanete na papíře</h2><span class="rule"></span></div>
+    <div class="typegrid" data-stagger>
+      <div class="typecell">Zápis ze zadání</div>
+      <div class="typecell">Akustická studie</div>
+      <div class="typecell">3D simulace pokrytí</div>
+      <div class="typecell">Technická specifikace</div>
+      <div class="typecell">Podklady pro zakázku</div>
+      <div class="typecell">Harmonogram montáže</div>
+      <div class="typecell">Protokol z měření</div>
+      <div class="typecell">Servisní podmínky</div>
+    </div>
+  </div></section>
+
+  <!-- 04 FAQ -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">04</span><h2>Časté otázky k procesu</h2><span class="rule"></span></div>
+    <div class="faq">
+      <div class="faq-item"><div class="faq-q"><h4>Co všechno platíme, než se něco koupí?</h4><span class="pm">+</span></div><div class="faq-a"><p>První konzultace a prohlídka prostoru jsou bez poplatku. Akustickou studii a simulaci oceňujeme podle rozsahu — u navazující realizace ji zpravidla zohledňujeme v ceně dodávky.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h4>Jak dlouho celý proces trvá?</h4><span class="pm">+</span></div><div class="faq-a"><p>Záleží na velikosti prostoru a na tom, jestli jde o veřejnou zakázku. Studie a návrh bývají otázkou týdnů, montáž plánujeme do odstávek — u sálů typicky do letní pauzy.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h4>Musíme vyměnit všechno najednou?</h4><span class="pm">+</span></div><div class="faq-a"><p>Ne. Často navrhujeme etapizaci — začne se tím, co nejvíc pálí, a navazuje se podle rozpočtu a sezóny. Návrh proto počítá s cílovým stavem, i když se k němu jde po částech.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h4>Pomůžete s dotací a veřejnou zakázkou?</h4><span class="pm">+</span></div><div class="faq-a"><p>Připravíme technické podklady, specifikace a odhady pro dotační tituly i zadávací dokumentaci. Nejsme zadavatel, ale dáme vám vše, co k rozhodnutí a soutěži potřebujete.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h4>Co když si techniku pořídíme jinde?</h4><span class="pm">+</span></div><div class="faq-a"><p>I to řešíme — studii, návrh, oživení a ladění umíme dodat samostatně. Za výsledek v sále ale ručíme jen u techniky, kterou jsme nasadili a změřili.</p></div></div>
+    </div>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="segcontact">
+      <div class="who">Řešíte modernizaci sálu a nevíte, čím začít? <b>Začněte konzultací a měřením</b> — teprve pak má smysl mluvit o technice a rozpočtu.</div>
+      <div class="cta-actions" style="margin:0"><ui-button variant="primary" size="lg">Probrat projekt →</ui-button><ui-button variant="ghost" size="lg" href="stale-instalace.html">Vybrané instalace</ui-button></div>
+    </div>
+  </div></section>
+
+</div>
+<script>
+document.querySelectorAll(".faq-q").forEach(function(q){q.addEventListener("click",function(){var it=q.parentElement,open=it.classList.toggle("open");q.querySelector(".pm").textContent=open?"–":"+";});});
+</script>
+<script src="ui-icons.js?v=6"></script>
+<script src="ui-components.js?v=26"></script>
+<script src="ui-loader.js?v=20"></script>
+<script src="site.js?v=13"></script>
+<script src="page-transition.js?v=1"></script>
+</body>
+</html>

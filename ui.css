@@ -12,6 +12,11 @@
 
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;overflow-x:clip;}
+/* Kotva nesmí skončit pod sticky hlavičkou ani přilepená k hornímu okraji —
+   cíl se zastaví s odsazením. Platí pro každý prvek s id, na který se odkazuje. */
+:target{scroll-margin-top:200px;}
+[id]{scroll-margin-top:200px;}
+@media(max-width:760px){:target,[id]{scroll-margin-top:120px;}}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);overflow-x:clip;
   font-size:var(--pm-text-body);line-height:var(--pm-leading-body);-webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;}
@@ -55,6 +60,8 @@ h3{font-size:var(--pm-text-h3);}
 .btn-ghost:hover{border-color:transparent;color:var(--accent);background:var(--accent-tint);box-shadow:0 0 22px rgba(224,84,43,.4);}
 .btn-ghost:hover::before{opacity:1;}
 .btn-lg{padding:17px 30px;font-size:var(--pm-text-body);}
+.btn-sm{padding:10px 17px;font-size:var(--pm-text-xs);gap:7px;}
+.btn-sm .btn-ico{width:15px;height:15px;}
 
 /* ===== CHIPS / TAGS ===== */
 .chip{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);border:1px solid var(--border-strong);
@@ -63,6 +70,8 @@ h3{font-size:var(--pm-text-h3);}
 .tag{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   border:1px solid var(--accent);color:var(--accent);border-radius:5px;padding:5px 9px;display:inline-block;}
 .tag-solid{background:var(--accent);color:var(--on-accent);border-color:var(--accent);}
+.tag-quiet{background:rgba(10,9,8,.6);border-color:rgba(255,255,255,.26);color:rgba(255,255,255,.86);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
 
 /* ===== NAV ===== */
 .nav{position:sticky;top:0;z-index:60;background:rgba(16,15,13,.72);
@@ -114,6 +123,12 @@ ui-stats,ui-stat{display:block;}
 .stat .n .u-sup{align-self:flex-start;font-size:.34em;line-height:1.1;}
 .stat .l{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:var(--text-mute);
   text-transform:uppercase;letter-spacing:.06em;margin-top:8px;}
+/* WORDS varianta — hodnota je slovo (SoundVision, na klíč), ne číslo:
+   menší stupeň, lámání na víc řádků, žádný nowrap. */
+.stats-words{--stat-n:clamp(1.25rem,calc(20vw / var(--stat-cols,4)),2.1rem);}
+.stats-words .stat .n{display:block;white-space:normal;line-height:1.1;text-wrap:balance;overflow-wrap:break-word;}
+.stats-words .stat .n .u{font-size:.5em;margin-left:.2em;}
+.stats-words .stat .l{margin-top:10px;line-height:1.4;}
 
 /* ===== SEGMENTS (Co řešíte) ===== */
 .segments{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
@@ -297,6 +312,9 @@ body.foot-dark .foot .btn-ghost::before{background:radial-gradient(70px 70px at 
    a soused s fotkou nebo vlastním pozadím (.statement) by jí jinak
    překreslil hřeben a šev by vypadal jako rovná linka. */
 .wave-band{z-index:3;}
+/* tintovaný band s rovnou hranou — pro sekci hned pod herem, kde by vlnovka
+   zasahovala do tlačítek a hero by nekončil čistě */
+.band-flat{border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .wave-band > *{position:relative;z-index:2;}
 /* patička je nad vším — její vlnu nesmí nic překrýt */
 .foot{z-index:4;}
@@ -481,6 +499,12 @@ body.dir-a .hero-slide.is-active{opacity:1;transform:scale(1.12);}
 .megacol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
 .megacol li a{font-family:var(--pm-font-display);font-weight:800;font-size:clamp(20px,2vw,30px);letter-spacing:-.03em;line-height:1.05;color:var(--text);transition:color var(--pm-dur-fast) var(--pm-ease),transform var(--pm-dur-fast) var(--pm-ease);display:inline-block;}
 .megacol li a:hover{color:var(--accent);transform:translateX(6px);}
+/* mega-menu s jedním sloupcem kategorií (bez kickeru) */
+.megacols-one{grid-template-columns:1fr;}
+.megacol-cta{display:inline-flex;align-items:center;gap:7px;margin-top:26px;
+  font-family:var(--pm-font-display);font-weight:700;font-size:var(--pm-text-sm);color:var(--text-soft);
+  transition:color var(--pm-dur-fast) var(--pm-ease);}
+.megacol-cta:hover{color:var(--accent);}
 .megafeat{display:flex;flex-direction:column;border-left:1px solid var(--border);min-height:300px;}
 .megafeat-img{flex:1;min-height:150px;overflow:hidden;background:var(--surface-raised);}
 .megafeat-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.72);transition:transform .35s var(--pm-ease);}
@@ -696,6 +720,7 @@ body.dir-b .stats{grid-template-columns:repeat(var(--stat-cols,4),minmax(0,1fr))
 body.dir-b .stat{transform:none;}
 body.dir-b .stats{align-items:start;}
 body.dir-b .stats{--stat-n:clamp(1.7rem,calc(42vw / var(--stat-cols,4)),4.6rem);}
+body.dir-b .stats-words{--stat-n:clamp(1.25rem,calc(22vw / var(--stat-cols,4)),2.2rem);}
 /* dřív tu byl translateY(-.1em) na jednotce — kvůli němu vypadala rozbitě; účaří drží .stat .n */
 
 /* ====== SEGMENTY — srovnaná mřížka ======
@@ -1128,8 +1153,18 @@ body.dir-b .b-mask.in{opacity:1;transform:none;}
 .pstep::before{counter-increment:step;content:counter(step,decimal-leading-zero);font-family:var(--pm-font-mono);font-size:12px;font-weight:700;color:var(--accent);}
 .pstep .dot{position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--accent);}
 .pstep h4{font-family:var(--pm-font-display);font-weight:700;font-size:1rem;letter-spacing:-.01em;margin:6px 0 6px;}
-.pstep p{margin:0;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);color:var(--text-mute);line-height:1.5;}
-@media(max-width:900px){.process{grid-template-columns:repeat(2,1fr);gap:22px;}}
+/* popis fáze je běžný text ke čtení, ne technický label — body font, ne mono 12px */
+.pstep p{margin:0;font-family:var(--pm-font-body);font-size:var(--pm-text-sm);color:var(--text-soft);line-height:1.5;}
+.process-5{grid-template-columns:repeat(5,1fr);}
+@media(max-width:900px){.process,.process-5{grid-template-columns:repeat(2,1fr);gap:22px;}}
+/* placeholder místo fotky — dokud klient nedodá materiál */
+.media-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;
+  font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);
+  background:repeating-linear-gradient(135deg,var(--surface-raised) 0 9px,var(--surface) 9px 18px);}
+/* výstup fáze procesu — co klient reálně dostane */
+.phase-out{display:flex;align-items:baseline;gap:12px;margin-top:20px;padding-top:14px;border-top:1px solid var(--border);}
+.phase-out .k{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);flex:none;}
+.phase-out .v{font-size:var(--pm-text-sm);color:var(--text-soft);line-height:1.5;}
 
 /* REFERENCE proof cards */
 .proofs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
@@ -1580,6 +1615,7 @@ ui-icon svg{display:block;}
   .premium-b .stats{border-top:1px solid var(--border);}
   .stats .stat{min-width:0;}
   .stats,body.dir-b .stats{--stat-n:clamp(1.9rem,9vw,2.5rem);}
+  .stats-words,body.dir-b .stats-words{--stat-n:clamp(1.15rem,5vw,1.5rem);}
   .stats .l{font-size:var(--pm-text-2xs);line-height:1.35;}
 }
 @media(max-width:419px){
@@ -1682,13 +1718,11 @@ ui-live-card,ui-inst-card{display:block;min-width:0;}
 .pcard{position:relative;display:flex;flex-direction:column;border-radius:var(--pm-radius-lg);overflow:hidden;height:100%;
   border:1px solid var(--border);background:var(--surface);color:var(--text);
   transition:transform var(--pm-dur) var(--pm-ease),border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease);}
-a.pcard:hover{transform:var(--pm-lift);border-color:var(--accent);background:var(--surface-raised);}
+.pcard:hover{transform:var(--pm-lift);border-color:transparent;background:var(--surface-raised);}
 .pcard-media{position:relative;display:block;overflow:hidden;background:var(--surface-raised);}
 .pcard-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--pm-ease);}
-a.pcard:hover .pcard-media img{transform:scale(1.04);}
-/* karta bez case study je záznam, ne odkaz — nesmí nabízet hover interakci */
+.pcard:hover .pcard-media img{transform:scale(1.04);}
 .pcard:not(a){cursor:default;}
-.pcard:not(a) .pcard-media img{transition:none;}
 .pcard-nophoto{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute);
   background:repeating-linear-gradient(135deg,var(--surface-raised) 0 9px,var(--surface) 9px 18px);}
@@ -1700,34 +1734,18 @@ a.pcard:hover .pcard-media img{transform:scale(1.04);}
 .pcard-go{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
   font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
 
-/* ---- Live & turné ---- */
-.pcard-live{min-height:340px;justify-content:flex-end;border-color:var(--border-strong);}
-.pcard-live .pcard-media{position:absolute;inset:0;}
-.pcard-live .pcard-media::after{content:"";position:absolute;inset:0;
+/* ---- jeden tvar karty pro oba výpisy ---- */
+.pcard-live,.pcard-inst{min-height:340px;justify-content:flex-end;border-color:var(--border-strong);}
+.pcard-live .pcard-media,.pcard-inst .pcard-media{position:absolute;inset:0;}
+.pcard-live .pcard-media::after,.pcard-inst .pcard-media::after{content:"";position:absolute;inset:0;
   background:linear-gradient(to top,rgba(10,9,8,.94) 0%,rgba(10,9,8,.62) 38%,rgba(10,9,8,.18) 72%,rgba(10,9,8,.35) 100%);}
-.pcard-live .pcard-top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px 0;}
-.pcard-live .pcard-year{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:#fff;opacity:.82;}
-.pcard-live .pcard-body{position:relative;display:flex;flex-direction:column;padding:20px 18px 18px;margin-top:auto;}
-.pcard-live .pcard-sub{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
-.pcard-live h3{color:#fff;font-size:1.5rem;margin-top:0;}
-.pcard-live .pcard-place{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:rgba(255,255,255,.82);margin-top:8px;}
-.pcard-live .pcard-tech{border-color:rgba(255,255,255,.34);color:#fff;}
-.pcard-live .pcard-go{color:#fff;}
-a.pcard-live:hover .pcard-go{color:var(--accent);}
-
-/* ---- Stálé instalace ---- */
-.pcard-inst .pcard-media{aspect-ratio:16/10;}
-.pcard-inst .pcard-cat{position:absolute;left:12px;top:12px;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);
-  font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(10,9,8,.72);
-  border-radius:5px;padding:5px 9px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
-.pcard-inst .pcard-body{display:flex;flex-direction:column;flex:1;padding:20px 20px 18px;}
-.pcard-inst h3{font-size:1.22rem;}
-.pcard-inst .pcard-place{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:var(--accent);margin-top:7px;}
-.pcard-inst .pcard-note{font-size:var(--pm-text-sm);color:var(--text-soft);line-height:1.5;margin-top:10px;}
-.pcard-inst .pcard-spec{display:flex;flex-direction:column;margin-top:16px;border-top:1px solid var(--border);}
-.pcard-row{display:flex;gap:12px;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
-.pcard-row .k{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);flex:none;}
-.pcard-row .v{font-family:var(--pm-font-body);font-size:var(--pm-text-xs);color:var(--text);text-align:right;}
+.pcard-top{position:relative;display:flex;align-items:center;gap:12px;padding:16px 18px 0;}
+.pcard-body{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:20px 18px 18px;margin-top:auto;}
+.pcard-live h3,.pcard-inst h3{color:#fff;font-size:1.4rem;margin:0;text-wrap:balance;}
+/* CTA = systémové ghost tlačítko (.btn .btn-ghost), jen jako <span> — karta sama je odkaz.
+   Na fotce potřebuje bílý inkoust místo --text; hover řídí karta, ne prvek. */
+.pcard-cta{border-color:rgba(255,255,255,.34);color:#fff;background:rgba(10,9,8,.4);pointer-events:none;}
+.pcard:hover .pcard-cta{border-color:var(--accent);background:var(--accent);color:var(--on-accent);}
 
 /* ---- stránkování ---- */
 .pager{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:38px;}

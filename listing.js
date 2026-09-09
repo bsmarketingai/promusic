@@ -84,7 +84,7 @@
         elP.innerHTML =
           '<button class="pager-arrow" data-p="' + (page - 1) + '"' + (page === 1 ? " disabled" : "") + ' aria-label="Předchozí"><ui-icon name="ui-arrow-left" aria-hidden="true"></ui-icon></button>' +
           '<div class="pager-nums">' + btns + "</div>" +
-          '<button class="pager-arrow" data-p="' + (page + 1) + '"' + (page === pages ? " disabled" : "") + ' aria-label="Další"><ui-icon name="ui-arrow-right" aria-hidden="true"></ui-icon></button>';
+          '<button class="pager-arrow" data-p="' + (page + 1) + '"' + (page === pages ? " disabled" : "") + ' aria-label="Další"><ui-icon name="ui-chevron-right" aria-hidden="true"></ui-icon></button>';
       } else elP.innerHTML = "";
 
       var p2 = new URLSearchParams(location.search);
