@@ -1,5 +1,5 @@
 /* PRO MUSIC — VÝPIS PROJEKTŮ (chip filtrace + stránkování)
-   Na stránce stačí:
+   Na stránce stačí (data-f = výchozí kategorie, volitelné):
      <div class="plist-root" data-kind="live"   data-per="6"></div>
      <div class="plist-root" data-kind="inst"   data-per="6"></div>
    Data bere z projects-data.js, karty renderuje jako ui-live-card / ui-inst-card.
@@ -21,7 +21,13 @@
     if (hasWorld) cats = cats.concat(["Ze světa"]);
 
     var q = new URLSearchParams(location.search);
-    var filter = q.get("f") && cats.indexOf(q.get("f")) > -1 ? q.get("f") : "";
+    /* Výchozí kategorie stránky: <div class="plist-root" data-f="Divadla &amp; sály">.
+       ?f= v URL má přednost (včetně ?f= = „Vše"). */
+    var def = root.getAttribute("data-f") || "";
+    if (cats.indexOf(def) < 0) def = "";
+    var filter = q.has("f")
+      ? (cats.indexOf(q.get("f")) > -1 ? q.get("f") : "")
+      : def;
     var page = Math.max(1, parseInt(q.get("p"), 10) || 1);
 
     root.innerHTML =

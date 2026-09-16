@@ -27,12 +27,12 @@
   const segments = [
     ["Live · rental · produkce", "turné, koncerty, festivaly, eventy", "live-a-turne.html"],
     ["Kulturní domy, sály & divadla", "stálé instalace, akustika, provoz", "instalace-kulturni-domy-saly-divadla.html"],
-    ["Broadcast & studia", "přenosy, nahrávání, monitoring"],
-    ["Systémoví integrátoři", "vybrané části systému do hloubky"],
-    ["Školy & veřejný sektor", "auly, veřejné zakázky, projekty"],
-    ["Školení & vzdělávání", "PRO MUSIC Academy, certifikace"],
-    ["Servis · RMA · lifecycle", "záruka, podpora, dlouhodobý provoz"],
-    ["Architekti & projektanti", "návrh, 3D simulace, dokumentace"],
+    ["Broadcast & studia", "přenosy, nahrávání, monitoring", "stale-instalace.html?f=Broadcast"],
+    ["Systémoví integrátoři", "vybrané části systému do hloubky", "znacky.html#partner"],
+    ["Školy & veřejný sektor", "auly, veřejné zakázky, projekty", "stale-instalace.html?f=Vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD"],
+    ["Školení & vzdělávání", "PRO MUSIC Academy, certifikace", "academy.html"],
+    ["Servis · RMA · lifecycle", "záruka, podpora, dlouhodobý provoz", "kontakt.html#servis"],
+    ["Architekti & projektanti", "návrh, 3D simulace, dokumentace", "instalace-jak-to-delame.html"],
   ];
 
   const logos = [
@@ -90,7 +90,7 @@
           <h1 class="display">Zvuk, který<br/>cítíš v hrudi.</h1>
           <p class="lead">Dodáváme špičkové profesionální technologie — a&nbsp;rozumíme tomu, aby to celé fungovalo. Od koncertních pódií po stálé instalace v&nbsp;divadlech a&nbsp;arénách.</p>
           <div class="cta-actions">
-            <ui-button variant="primary" size="lg">Probrat projekt →</ui-button>
+            <ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button>
             <ui-button variant="ghost" size="lg">Přehrát showreel ▶</ui-button>
           </div>
         </div>
@@ -144,12 +144,12 @@
   <section class="sec reveal"><div class="wrap-wide">
     <div class="sec-head"><span class="idx">03</span><h2>Vybrané projekty</h2><span class="rule"></span></div>
     <div class="work" data-stagger>
-      <a class="workcard col-7" href="live-ed-sheeran.html"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /><span class="wlogo">AYRTON</span><div class="ov"><ui-tag solid>Turné / Světla</ui-tag><h3>Ed Sheeran — Mathematics Tour</h3><span class="wmeta">Ayrton rig · stadiony Evropy</span></div></a>
-      <a class="workcard col-5" href="stale-instalace.html?f=Ar%C3%A9ny%20%26%20stadiony"><img src="${P}steel-arena/projekce-barvy.jpg" alt="" /><span class="wlogo">AYRTON DOMINO</span><div class="ov"><ui-tag solid>Aréna / Světla</ui-tag><h3>Steel Aréna Košice</h3><span class="wmeta">multifunkční hala · projekce</span></div></a>
-      <a class="workcard col-6" href="instalace-hd-karlin-schema.html"><img src="${P}karlin/zvukar-foh.jpg" alt="" /><span class="wlogo">DiGiCo</span><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Hudební divadlo Karlín</h3><span class="wmeta">DiGiCo Quantum 7T · muzikál</span></div></a>
-      <a class="workcard col-6" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><span class="wlogo">L-ACOUSTICS</span><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
+      <a class="workcard col-7" href="live-ed-sheeran.html"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /><div class="ov"><ui-tag solid>Turné / Světla</ui-tag><h3>Ed Sheeran — Mathematics Tour</h3><span class="wmeta">Ayrton rig · stadiony Evropy</span></div></a>
+      <a class="workcard col-5" href="stale-instalace.html?f=Ar%C3%A9ny%20%26%20stadiony"><img src="${P}steel-arena/projekce-barvy.jpg" alt="" /><div class="ov"><ui-tag solid>Aréna / Světla</ui-tag><h3>Steel Aréna Košice</h3><span class="wmeta">multifunkční hala · projekce</span></div></a>
+      <a class="workcard col-6" href="instalace-hd-karlin-schema.html"><img src="${P}karlin/zvukar-foh.jpg" alt="" /><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Hudební divadlo Karlín</h3><span class="wmeta">DiGiCo Quantum 7T · muzikál</span></div></a>
+      <a class="workcard col-6" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
     </div>
-    <div style="text-align:center;margin-top:34px"><ui-button variant="ghost" href="live-a-turne.html">Celé portfolio →</ui-button></div>
+    <div class="cta-actions" style="justify-content:center;margin-top:34px"><ui-button variant="ghost" href="live-a-turne.html">Live &amp; turné →</ui-button><ui-button variant="ghost" href="stale-instalace.html">Stálé instalace →</ui-button></div>
   </div></section>
 
   <!-- STATEMENT -->
@@ -160,7 +160,7 @@
       <span class="eyebrow" style="color:#fff">od návrhu po poslední decibel</span>
       <h2 style="margin-top:12px">Když zhasnou světla, začíná naše práce.</h2>
       <div class="who">Servis, ladění a školení — aby to fungovalo i za pět let.</div>
-      <div class="cta-actions" style="margin-top:26px"><ui-button variant="primary" size="lg">Probrat projekt →</ui-button><ui-button variant="ghost" size="lg" href="instalace-hd-karlin-schema.html">Prohlédnout realizaci →</ui-button></div>
+      <div class="cta-actions" style="margin-top:26px"><ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button><ui-button variant="ghost" size="lg" href="instalace-hd-karlin-schema.html">Prohlédnout realizaci →</ui-button></div>
     </div>
   </section>
 
@@ -217,7 +217,7 @@
   <section class="sec reveal"><div class="wrap"><div class="assure">
     <ui-tag>Proč PRO MUSIC</ui-tag>
     <h2>Neprodáváme techniku bez know-how. Víme, co spolu funguje a co se nesmí pokazit.</h2>
-    <div class="cta-actions"><ui-button variant="primary" size="lg">Probrat projekt →</ui-button><ui-button variant="ghost" size="lg">Kontaktovat specialistu</ui-button></div>
+    <div class="cta-actions"><ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button><ui-button variant="ghost" size="lg" href="kontakt.html#servis">Kontaktovat specialistu</ui-button></div>
   </div></div></section>
 
   <!-- FOOTER -->
@@ -227,7 +227,7 @@
         <h3>Máte projekt? Pojďme ho probrat.</h3>
         <div class="sub">Odborný rozhovor o tom, co řešíte — bez tlaku.</div>
       </div>
-      <div class="cta-actions" style="margin:0"><ui-button variant="primary" size="lg">Probrat projekt →</ui-button><ui-button variant="ghost" size="lg">Kontaktovat specialistu</ui-button></div>
+      <div class="cta-actions" style="margin:0"><ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button><ui-button variant="ghost" size="lg" href="kontakt.html#servis">Kontaktovat specialistu</ui-button></div>
     </div>
     <div class="foot-top">
       <div class="foot-brand">

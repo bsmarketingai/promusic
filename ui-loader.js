@@ -9,7 +9,7 @@
   "use strict";
 
   /* Bumpni při každé editaci ui-header/ui-mobile-menu/ui-footer.html — jinak drží cache. */
-  var V = 16;
+  var V = 21;
 
   var COMPONENTS = [
     { file: "ui-header.html",      mount: "prepend", el: "ui-header" },
@@ -58,6 +58,30 @@
     if (!active) return;
     var link = document.querySelector('.nav-link[data-nav-item="' + active + '"]');
     if (link) link.classList.add("is-active");
+    markCurrentPage();
+  }
+
+  /* Zvýrazní konkrétní položku v mega-menu / mobilním menu podle aktuální URL.
+     Porovnává jen parametr, který vybírá obsah (?f=) — ostatní (utm, t, …) ignoruje. */
+  function markCurrentPage() {
+    var here = location.pathname.split("/").pop() || "index.html";
+    var f = new URLSearchParams(location.search).get("f");
+    var sels = ".megacol a, .megacol-cta, .megafeat, #mobmenu a";
+    var exact = [], loose = [];
+    [].slice.call(document.querySelectorAll(sels)).forEach(function (a) {
+      var href = a.getAttribute("href");
+      if (!href || href === "#" || /^(https?:|mailto:|tel:)/.test(href)) return;
+      var parts = href.split("#")[0].split("?");
+      var file = parts[0].split("/").pop() || "index.html";
+      if (file !== here) return;
+      var hf = new URLSearchParams(parts[1] || "").get("f");
+      if (f && hf && decodeURIComponent(hf) === decodeURIComponent(f)) exact.push(a);
+      else if (!hf) loose.push(a); /* odkaz na výpis bez filtru — záložní shoda */
+    });
+    (exact.length ? exact : loose).forEach(function (a) {
+      a.classList.add("is-current");
+      a.setAttribute("aria-current", "page");
+    });
   }
 
   function wire() {

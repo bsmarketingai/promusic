@@ -499,6 +499,10 @@ body.dir-a .hero-slide.is-active{opacity:1;transform:scale(1.12);}
 .megacol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
 .megacol li a{font-family:var(--pm-font-display);font-weight:800;font-size:clamp(20px,2vw,30px);letter-spacing:-.03em;line-height:1.05;color:var(--text);transition:color var(--pm-dur-fast) var(--pm-ease),transform var(--pm-dur-fast) var(--pm-ease);display:inline-block;}
 .megacol li a:hover{color:var(--accent);transform:translateX(6px);}
+/* aktivní stránka v mega-menu i mobilním menu — oranžový inkoust + odrážka */
+.megacol li a.is-current{color:var(--accent);position:relative;}
+.megacol li a.is-current::before{content:"";position:absolute;left:-16px;top:50%;width:7px;height:7px;border-radius:50%;background:var(--accent);transform:translateY(-50%);}
+.megacol-cta.is-current,#mobmenu a.is-current{color:var(--accent);}
 /* mega-menu s jedním sloupcem kategorií (bez kickeru) */
 .megacols-one{grid-template-columns:1fr;}
 .megacol-cta{display:inline-flex;align-items:center;gap:7px;margin-top:26px;
@@ -1223,6 +1227,10 @@ body.dir-b .b-mask.in{opacity:1;transform:none;}
 .brhero .inner{position:relative;z-index:2;max-width:920px;}
 .brhero h1{font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.035em;line-height:1.02;font-size:clamp(2.6rem,6vw,5.2rem);margin:16px 0 0;}
 .brhero .lead{margin-top:22px;max-width:60ch;}
+/* volitelný foto podklad hera — atmosféra pod textem, stejný princip jako .listhead */
+.brhero .bg{position:absolute;inset:-8% 0;z-index:0;}
+.brhero .bg img{width:100%;height:100%;object-fit:cover;opacity:.5;filter:grayscale(.15) brightness(.85);}
+.brhero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,6,5,.62),rgba(7,6,5,.5) 45%,var(--bg));}
 
 /* flagship trio */
 .flagships{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
@@ -1235,16 +1243,21 @@ body.dir-b .b-mask.in{opacity:1;transform:none;}
   opacity:0;transition:opacity var(--pm-dur) var(--pm-ease);pointer-events:none;z-index:2;}
 .flagship:hover{transform:var(--pm-lift);border-color:transparent;background:var(--surface-raised);box-shadow:var(--pm-shadow-lg);}
 .flagship:hover::before{opacity:1;}
-.flagship .logo{height:38px;display:flex;align-items:center;}
-.flagship .logo img{max-height:38px;max-width:200px;width:auto;object-fit:contain;}
-.flagship .logo img.sq{max-height:54px;max-width:54px;}
+/* foto v horní části karty, bílé logo značky v jejím středu */
+.flagship .fmedia{position:relative;margin:-30px -30px 4px;aspect-ratio:16/9;overflow:hidden;background:var(--surface-raised);display:grid;place-items:center;}
+.flagship .fmedia>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.flagship .fmedia::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,6,5,.5),rgba(7,6,5,.72));}
+.flagship .fmedia .media-empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 24px;}
+.flagship .fbadge{position:absolute;top:12px;right:12px;z-index:2;font-size:var(--pm-text-2xs);padding:5px 10px;}
+.flagship .logo{position:relative;z-index:1;height:59px;display:flex;align-items:center;justify-content:center;}
+.flagship .logo img{max-height:59px;max-width:86%;width:auto;object-fit:contain;}
+.flagship .logo img.sq{max-height:84px;max-width:84px;}
 .flagship .star{position:absolute;top:20px;right:22px;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);font-weight:700;
   letter-spacing:.1em;color:var(--accent);text-transform:uppercase;}
 .flagship h3{font-family:var(--pm-font-display);font-weight:700;font-size:1.35rem;letter-spacing:-.01em;margin:0;}
 .flagship p{margin:0;color:var(--text-soft);font-size:var(--pm-text-sm);line-height:1.55;flex:1;}
 .flagship .chips{display:flex;gap:8px;flex-wrap:wrap;}
-.flagship .go{font-family:var(--pm-font-mono);font-size:12px;color:var(--text-mute);}
-.flagship:hover .go{color:var(--accent);}
+.flagship .btn{align-self:flex-start;margin-top:2px;}
 @media(max-width:860px){.flagships{grid-template-columns:1fr;}}
 
 /* category groups */
@@ -1253,9 +1266,9 @@ body.dir-b .b-mask.in{opacity:1;transform:none;}
 .brcat-h h3{font-family:var(--pm-font-display);font-weight:700;font-size:1.3rem;letter-spacing:-.01em;margin:0;}
 .brcat-h .cnt{font-family:var(--pm-font-mono);font-size:12px;color:var(--text-mute);}
 .brcat-h .rule{flex:1;height:1px;background:var(--border);align-self:center;}
-.brgrid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--pm-radius-lg);overflow:hidden;}
+.brgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,20px);}
 .brcell{display:flex;flex-direction:column;align-items:flex-start;gap:8px;justify-content:space-between;min-height:118px;position:relative;
-  padding:20px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:18px 18px 20px;border-radius:var(--pm-radius-md);
   transition:background var(--pm-dur) var(--pm-ease);}
 .brcell::before{content:"";position:absolute;inset:0;padding:1.5px;
   background:radial-gradient(90px 90px at var(--mx,50%) var(--my,50%),var(--accent-bright),var(--accent) 40%,transparent 78%);
@@ -1263,6 +1276,12 @@ body.dir-b .b-mask.in{opacity:1;transform:none;}
   opacity:0;transition:opacity var(--pm-dur) var(--pm-ease);pointer-events:none;}
 .brcell:hover{background:var(--accent-tint);}
 .brcell:hover::before{opacity:1;}
+.brcell{justify-content:flex-start;gap:14px;}
+/* logo na bílé kartičce — podklady nejsou vždy průhledné, takže jednotný bílý podklad */
+.blogo{width:100%;aspect-ratio:16/9;min-height:0;box-sizing:border-box;overflow:hidden;background:#fff;border-radius:var(--pm-radius-sm);display:flex;align-items:center;justify-content:center;padding:10px 12px;}
+/* opticky vyrovnaná velikost: široké wordmarky limituje šířka, vysoká loga výška */
+.blogo img{max-width:82%;max-height:62%;width:auto;height:auto;object-fit:contain;display:block;}
+.brcell .btext{display:flex;flex-direction:column;gap:6px;}
 .brcell .bname{font-family:var(--pm-font-display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em;}
 .brcell .bname .st{color:var(--accent);font-size:var(--pm-text-2xs);margin-left:5px;vertical-align:super;}
 .brcell .bwhat{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);color:var(--text-mute);line-height:1.45;}
@@ -1532,7 +1551,14 @@ ui-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;
 ui-icon svg{display:block;}
 /* Koncová ikona v tlačítku (šipka, play) — vykresluje ji ui-button, viz
    ui-components.js. Velikost je relativní k textu, aby držela s btn-lg. */
-.btn .btn-ico{font-size:.95em;margin-left:.5em;}
+/* .btn už má gap:9px — ikona nepřidává další margin */
+.btn .btn-ico{font-size:1.05em;margin-left:0;}
+/* chevron má výrazný vnitřní okraj v glyfu — stáhnout k textu i k hraně */
+.btn>.btn-ico:last-child{margin-left:-4px;margin-right:-7px;}
+/* .btn-ico je primárně KONCOVÁ ikona. Když stojí před textem, je to vedoucí
+   ikona (telefon, mail) — větší, odsazená vpravo a bez posunu na hover. */
+.btn > .btn-ico:first-child{font-size:1.15em;margin-left:0;margin-right:.55em;}
+.btn:hover > .btn-ico:first-child{transform:none;}
 .btn:hover .btn-ico{transform:translateX(2px);}
 .btn .btn-ico{transition:transform .2s var(--pm-ease);}
 .megafeat-go .btn-ico,.sg .btn-ico,.go .btn-ico{font-size:1em;margin-left:.35em;}
@@ -1785,4 +1811,71 @@ ui-live-card,ui-inst-card{display:block;min-width:0;}
 .listhead h1{font-size:clamp(2.2rem,5.2vw,4.2rem);letter-spacing:-.035em;line-height:1.04;margin:14px 0 0;max-width:20ch;}
 .listhead .lead{margin-top:18px;}
 .listhead .cta-actions{margin-top:26px;}
+/* varianta se zarovnanými CTA vpravo — text vlevo, akce u pravé hrany */
+.listhead .lhrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,3vw,48px);align-items:end;}
+.listhead .lhrow .lhcta{display:flex;flex-direction:column;align-items:stretch;gap:10px;}
+.listhead .lhcta .btn{width:100%;justify-content:center;}
+@media(max-width:900px){.listhead .lhrow{grid-template-columns:minmax(0,1fr);align-items:start;}.listhead .lhrow .lhcta{flex-direction:row;flex-wrap:wrap;}}
 .sec-list{padding-top:clamp(28px,4vw,46px);}
+
+/* ═══════════════════════════════ KONTAKT (kontakt.html) ═══════════════════════════════ */
+/* 01 — tři cesty: obchod / podpora / servis */
+.kroutes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);align-items:start;}
+.kroute{display:flex;flex-direction:column;gap:14px;border:1px solid color-mix(in srgb,var(--accent) 38%,transparent);border-radius:var(--pm-radius-lg);background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 13%,transparent),color-mix(in srgb,var(--accent) 5%,transparent)),var(--surface);padding:clamp(22px,2.6vw,32px);}
+.kroute .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--on-accent);font-size:23px;flex:none;}
+.kroute h3{font-family:var(--pm-font-display);font-weight:800;letter-spacing:-.02em;font-size:1.35rem;margin:0;}
+.kroute p{margin:0;color:var(--text-soft);font-size:var(--pm-text-sm);line-height:1.6;}
+.klines{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+/* řádek = systémové tlačítko + popisek VEDLE něj (ne v něm) */
+.kline{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.kline .btn{max-width:100%;}
+.kline .lbl{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);flex:none;margin-left:auto;}
+@media(max-width:1150px){.kroutes{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:700px){.kroutes{grid-template-columns:1fr;}}
+
+/* 02 — tým podle oblasti */
+.tgroup + .tgroup{margin-top:clamp(30px,3.6vw,50px);}
+.tgroup-h{display:flex;align-items:baseline;gap:16px;margin-bottom:18px;}
+.tgroup-h h3{font-family:var(--pm-font-display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;margin:0;flex:none;}
+.tgroup-h .what{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);flex:none;}
+.tgroup-h .rule{flex:1;height:1px;background:var(--border);}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;}
+.tcard{display:grid;grid-template-columns:54px 1fr;gap:16px;border:1px solid color-mix(in srgb,var(--accent) 38%,transparent);border-radius:var(--pm-radius-lg);background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 13%,transparent),color-mix(in srgb,var(--accent) 5%,transparent)),var(--surface);padding:20px;}
+.tav{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;overflow:hidden;flex:none;
+  background:var(--accent);border:1px solid var(--accent);font-family:var(--pm-font-mono);font-weight:700;font-size:15px;color:var(--on-accent);}
+.tav img{width:100%;height:100%;object-fit:cover;}
+.tcard .nm{font-family:var(--pm-font-display);font-weight:700;font-size:1.06rem;letter-spacing:-.01em;}
+.tcard .ps{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);margin-top:6px;line-height:1.5;}
+.tcont{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+
+/* 03 — kde nás najdete */
+.kwhere{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(20px,3vw,44px);align-items:start;}
+/* obsah kontaktu leží na tmavém povrchu, ne na wink ploše → standardní ghost */
+.wave-band .kwhere .btn-ghost{border-color:var(--border-strong);color:var(--text);}
+.kaddr .addr{font-family:var(--pm-font-display);font-weight:800;font-size:clamp(1.5rem,2.4vw,2.05rem);letter-spacing:-.025em;line-height:1.2;margin:14px 0 0;}
+.kaddr .cta-actions{margin-top:24px;}
+.kphoto{position:relative;border-radius:var(--pm-radius-lg);overflow:hidden;background:var(--surface);margin:26px 0 0;border:1px solid var(--border);}
+.kphoto img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 68%;}
+.kphoto figcaption{padding:14px 18px 16px;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.06em;color:var(--text-mute);line-height:1.7;border-top:1px solid var(--border);}
+.kmap{position:relative;border:1px solid var(--border);border-radius:var(--pm-radius-lg);overflow:hidden;aspect-ratio:4/3;background:var(--surface);}
+.kmap iframe{display:block;width:100%;height:100%;border:0;filter:invert(.92) hue-rotate(185deg) saturate(.5) brightness(.96);}
+/* volitelný slot — údaj, který klient teprve doplní (otevírací doba, sociální sítě) */
+.kslot{margin-top:22px;border:1px dashed var(--border);border-radius:var(--pm-radius-md);padding:16px 18px;
+  font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);line-height:1.8;}
+@media(max-width:920px){.kwhere{grid-template-columns:1fr;}}
+
+/* 04 — firemní a fakturační údaje */
+.klegal{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 clamp(24px,4vw,56px);border-top:1px solid var(--border);}
+.lrow{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--border);min-height:62px;}
+.lrow.wide{grid-column:1/-1;}
+.lrow .k{font-family:var(--pm-font-body);font-size:var(--pm-text-xs);letter-spacing:.02em;text-transform:none;color:var(--text-mute);min-width:11ch;flex:none;}
+.lrow .v{font-family:var(--pm-font-body);font-weight:600;font-size:var(--pm-text-body);color:var(--text);line-height:1.5;}
+.lrow.mut .v,.lrow.mut .k{color:var(--text-mute);}
+.copyb{margin-left:auto;flex:none;font-family:var(--pm-font-display);font-weight:600;font-size:var(--pm-text-xs);letter-spacing:.01em;text-transform:none;
+  color:var(--text-mute);border:1px solid var(--border);border-radius:999px;padding:8px 13px;min-height:36px;background:transparent;cursor:pointer;
+  transition:border-color .2s var(--pm-ease),color .2s var(--pm-ease),background .2s var(--pm-ease);}
+.copyb:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-tint);}
+.copyb.done{color:var(--accent);border-color:var(--accent);background:var(--accent-tint);}
+.btn.done{color:var(--accent);border-color:var(--accent);}
+.lnote{margin-top:24px;font-size:var(--pm-text-sm);color:var(--text-mute);max-width:74ch;line-height:1.7;}
+@media(max-width:560px){.lrow{flex-wrap:wrap;gap:6px 14px;}.lrow .k{min-width:0;width:100%;}.copyb{margin-left:0;}}
