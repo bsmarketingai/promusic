@@ -1,5 +1,5 @@
 /* PRO MUSIC — DATA PROJEKTŮ
-   Jediný zdroj pravdy pro výpisy Live & turné a Stálé instalace.
+   Jediný zdroj pravdy pro výpisy Live & turné a Instalace.
    Zdroj obsahu: promusic.cz/stitky/reference.
 
    ⚠️ PRAVIDLO OBSAHU: všechna pole jsou PARAMETRY, ne věty.
@@ -17,12 +17,16 @@
   /* Fotka a case study se párují podle Názvu — ne podle kategorie. */
   var PHOTO = {
     "Ed Sheeran — Mathematics Tour": P + "ed-sheeran/ohnostroj.jpg",
+    "Rammstein": P + "rammstein/stadion-plameny.jpg",
+    "Eurovision Song Contest": P + "eurovize/modra-mlha.jpg",
     "Steel Aréna Košice": P + "steel-arena/projekce-barvy.jpg",
     "Hudební divadlo Karlín": P + "karlin/zvukar-foh.jpg",
     "Nová scéna DJKT Plzeň": P + "djkt-plzen/array-strop.jpg"
   };
   var CASE = {
     "Ed Sheeran — Mathematics Tour": "live-ed-sheeran.html",
+    "Rammstein": "live-rammstein.html",
+    "Eurovision Song Contest": "live-eurovize-2024.html",
     "Hudební divadlo Karlín": "instalace-hd-karlin-schema.html"
   };
 

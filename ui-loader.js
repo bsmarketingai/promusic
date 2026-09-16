@@ -9,7 +9,7 @@
   "use strict";
 
   /* Bumpni při každé editaci ui-header/ui-mobile-menu/ui-footer.html — jinak drží cache. */
-  var V = 21;
+  var V = 34;
 
   var COMPONENTS = [
     { file: "ui-header.html",      mount: "prepend", el: "ui-header" },
@@ -57,6 +57,11 @@
     var active = document.body.getAttribute("data-nav");
     if (!active) return;
     var link = document.querySelector('.nav-link[data-nav-item="' + active + '"]');
+    if (!link) { /* zpětná kompatibilita: staré hodnoty data-nav přes alias */
+      link = [].slice.call(document.querySelectorAll(".nav-link[data-nav-alias]")).filter(function (a) {
+        return a.getAttribute("data-nav-alias").split("|").indexOf(active) > -1;
+      })[0];
+    }
     if (link) link.classList.add("is-active");
     markCurrentPage();
   }

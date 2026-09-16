@@ -20,13 +20,13 @@
     feat: { img: P + "djkt-plzen/sal-pohled.jpg", tag: "INSTALACE", title: "Nová scéna DJKT Plzeň", href: "#" },
   };
   const navItems = [
-    { l: "Live & turné", mega: megaPrace }, { l: "Technologie" }, { l: "Stálé instalace", mega: megaInstalace },
+    { l: "Live & turné", mega: megaPrace }, { l: "Technologie" }, { l: "Instalace", mega: megaInstalace },
     { l: "Značky" }, { l: "Školení" }, { l: "Kontakt" },
   ];
 
   const segments = [
     ["Live · rental · produkce", "turné, koncerty, festivaly, eventy", "live-a-turne.html"],
-    ["Kulturní domy, sály & divadla", "stálé instalace, akustika, provoz", "instalace-kulturni-domy-saly-divadla.html"],
+    ["Kulturní domy, sály & divadla", "instalace, akustika, provoz", "instalace-kulturni-domy-saly-divadla.html"],
     ["Broadcast & studia", "přenosy, nahrávání, monitoring", "stale-instalace.html?f=Broadcast"],
     ["Systémoví integrátoři", "vybrané části systému do hloubky", "znacky.html#partner"],
     ["Školy & veřejný sektor", "auly, veřejné zakázky, projekty", "stale-instalace.html?f=Vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD"],
@@ -35,11 +35,16 @@
     ["Architekti & projektanti", "návrh, 3D simulace, dokumentace", "instalace-jak-to-delame.html"],
   ];
 
+  /* dlaždice značek — stejný vzor jako stránka Značky (logo na bílé plotně) */
   const logos = [
-    { f: "l-acoustics", n: "L-Acoustics", star: true }, { f: "digico", n: "DiGiCo", star: true },
-    { f: "ayrton", n: "Ayrton", star: true, sq: true }, { f: "chamsys", n: "ChamSys" },
-    { f: "audio-technica", n: "Audio-Technica" }, { f: "luminex", n: "Luminex" },
-    { f: "directout", n: "DirectOut" }, { f: "naostage", n: "Naostage" },
+    { f: "l-acoustics.png", n: "L-Acoustics", w: "ozvučovací systémy, L-ISA, Ambiance", star: true },
+    { f: "digico.jpg", n: "DiGiCo", w: "mixážní pulty SD a Quantum", star: true },
+    { f: "ayrton.png", n: "Ayrton", w: "LED světla a movingheady", star: true },
+    { f: "chamsys.jpg", n: "ChamSys", w: "osvětlovací pulty MagicQ" },
+    { f: "audio-technica.jpg", n: "Audio-Technica", w: "mikrofony a bezdrátové systémy" },
+    { f: "luminex.png", n: "Luminex", w: "síťové switche GigaCore" },
+    { f: "directout-technologies.png", n: "DirectOut", w: "audio procesory a konverze" },
+    { f: "naostage.png", n: "Naostage", w: "automatické sledování účinkujících" },
   ];
 
   const reel = [
@@ -88,7 +93,7 @@
         <div class="hero-content">
           <span class="eyebrow">Profesionální audio &amp; light · od 1997</span>
           <h1 class="display">Zvuk, který<br/>cítíš v hrudi.</h1>
-          <p class="lead">Dodáváme špičkové profesionální technologie — a&nbsp;rozumíme tomu, aby to celé fungovalo. Od koncertních pódií po stálé instalace v&nbsp;divadlech a&nbsp;arénách.</p>
+          <p class="lead">Dodáváme špičkové profesionální technologie — a&nbsp;rozumíme tomu, aby to celé fungovalo. Od koncertních pódií po instalace v&nbsp;divadlech a&nbsp;arénách.</p>
           <div class="cta-actions">
             <ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button>
             <ui-button variant="ghost" size="lg">Přehrát showreel ▶</ui-button>
@@ -145,7 +150,7 @@
     <div class="sec-head"><span class="idx">03</span><h2>Vybrané projekty</h2><span class="rule"></span></div>
     <div class="work" data-stagger>
       <a class="workcard col-7" href="live-ed-sheeran.html"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /><div class="ov"><ui-tag solid>Turné / Světla</ui-tag><h3>Ed Sheeran — Mathematics Tour</h3><span class="wmeta">Ayrton rig · stadiony Evropy</span></div></a>
-      <a class="workcard col-5" href="stale-instalace.html?f=Ar%C3%A9ny%20%26%20stadiony"><img src="${P}steel-arena/projekce-barvy.jpg" alt="" /><div class="ov"><ui-tag solid>Aréna / Světla</ui-tag><h3>Steel Aréna Košice</h3><span class="wmeta">multifunkční hala · projekce</span></div></a>
+      <a class="workcard col-5" href="live-rammstein.html"><img src="${P}rammstein/stadion-plameny.jpg" alt="" /><div class="ov"><ui-tag solid>Turné / Zvuk</ui-tag><h3>Rammstein — Europe Stadium Tour</h3><span class="wmeta">L-Acoustics K series · 17 zemí</span></div></a>
       <a class="workcard col-6" href="instalace-hd-karlin-schema.html"><img src="${P}karlin/zvukar-foh.jpg" alt="" /><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Hudební divadlo Karlín</h3><span class="wmeta">DiGiCo Quantum 7T · muzikál</span></div></a>
       <a class="workcard col-6" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
     </div>
@@ -175,9 +180,10 @@
   <!-- 05 ZNAČKY -->
   <section class="sec band wave-band reveal"><div class="wrap">
     <div class="sec-head"><span class="idx">05</span><h2>Zastupujeme světovou špičku</h2><span class="rule"></span></div>
-    <div class="logowall" data-stagger>
-      ${logos.map(b => `<div class="cell"><img class="brandlogo${b.sq ? " sq" : ""}" src="${L}${b.f}.png" alt="${b.n}" />${b.star ? '<span class="st">★</span>' : ''}</div>`).join("")}
+    <div class="brgrid" data-stagger>
+      ${logos.map(b => `<div class="brcell"><span class="blogo"><img src="assets/brands/${b.f}" alt="${b.n}" loading="lazy" decoding="async"/></span><span class="btext"><span class="bname">${b.n}${b.star ? '<span class="st">★</span>' : ''}</span><span class="bwhat">${b.w}</span></span></div>`).join("")}
     </div>
+    <div class="cta-actions" style="justify-content:flex-end;margin-top:26px"><ui-button variant="ghost" size="sm" href="znacky.html">Všechny značky →</ui-button></div>
     <p class="muted mono" style="font-size:var(--pm-text-xs);margin-top:14px">★ vlajkové značky — výhradní distribuce pro ČR/SK</p>
   </div></section>
 
@@ -242,7 +248,7 @@
       </div>
       <div class="foot-cols">
         <div class="foot-col"><h5>Live &amp; turné</h5><a href="#">Turné &amp; koncerty</a><a href="#">Festivaly</a><a href="#">TV &amp; broadcast</a><a href="#">Case studies</a></div>
-        <div class="foot-col"><h5>Stálé instalace</h5><a href="#">Divadla &amp; sály</a><a href="#">Arény</a><a href="#">Hotely &amp; bary</a><a href="#">Jak to děláme</a></div>
+        <div class="foot-col"><h5>Instalace</h5><a href="#">Divadla &amp; sály</a><a href="#">Arény</a><a href="#">Hotely &amp; bary</a><a href="#">Jak to děláme</a></div>
         <div class="foot-col"><h5>Firma</h5><a href="#">Značky</a><a href="#">Academy</a><a href="#">Servis</a><a href="#">Kontakt</a></div>
       </div>
     </div>

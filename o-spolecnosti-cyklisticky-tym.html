@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — Cyklistický tým</title>
+<script src="ui-theme.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=137" />
+</head>
+<body data-nav="O společnosti" class="dir-b">
+<div id="app">
+
+  <!-- ZÁHLAVÍ -->
+  <header class="listhead">
+    <div class="bg"><img data-par="0.08" src="assets/cyklo/pave-tour-milovice.jpg" alt="" /></div>
+    <div class="wrap-wide">
+      <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><a href="o-spolecnosti-kdo-jsme.html">O společnosti</a><span class="sep">/</span><span class="cur">Cyklistický tým</span></nav>
+      <h1>Cyklistický tým</h1>
+      <p class="lead">Podporujeme trutnovský cyklistický tým PRO MUSIC – PROLOG BIKE.</p>
+    </div>
+  </header>
+
+  <!-- 01 TÝM -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>PRO MUSIC – PROLOG BIKE</h2><span class="rule"></span></div>
+    <div class="solrow" style="align-items:start">
+      <div>
+        <p class="lead" style="margin:0">V PRO MUSIC máme rádi cyklistiku a sport obecně. Proto podporujeme trutnovský cyklistický tým PRO MUSIC – PROLOG BIKE.</p>
+        <p class="lead" style="margin:16px 0 0">Členové týmu se účastní snad všech cyklistických disciplín, silnice, cyklokrosu, MTB, snowbikových závodů, triatlonu ale i gladiator race a běžeckých závodů.</p>
+        <p class="lead" style="margin:16px 0 0">Podporujeme také pořadatele dnes už kultovní jarní klasiky Pavé Tour Milovice, jíž jsme hrdým partnerem.</p>
+      </div>
+      <div class="media"><img src="assets/cyklo/cyklo-02.jpg" alt="Tým PRO MUSIC – PROLOG BIKE na silnici" /></div>
+    </div>
+  </div></section>
+
+  <!-- 02 VIDEO -->
+  <section class="sec band wave-band reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>Video</h2><span class="rule"></span></div>
+    <div class="artvid"><iframe src="https://www.youtube-nocookie.com/embed/ewAaaXctXlY" title="PRO MUSIC – PROLOG BIKE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  </div></section>
+
+  <!-- 03 GALERIE -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">03</span><h2>Galerie</h2><span class="rule"></span></div>
+    <div class="galgrid" data-lightbox data-stagger>
+      <a href="assets/cyklo/cyklo-02.jpg"><img src="assets/cyklo/cyklo-02.jpg" alt="Silniční trénink týmu" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-01.jpg"><img src="assets/cyklo/cyklo-01.jpg" alt="MTB závod" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-03.jpg"><img src="assets/cyklo/cyklo-03.jpg" alt="MTB v lese" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-04.jpg"><img src="assets/cyklo/cyklo-04.jpg" alt="MTB maraton" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-05.jpg"><img src="assets/cyklo/cyklo-05.jpg" alt="Singletrail" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-06.jpg"><img src="assets/cyklo/cyklo-06.jpg" alt="Cyklokros" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-07.jpg"><img src="assets/cyklo/cyklo-07.jpg" alt="Kostky — Pavé Tour" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-08.jpg"><img src="assets/cyklo/cyklo-08.jpg" alt="Blátivý MTB závod" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-09.jpg"><img src="assets/cyklo/cyklo-09.jpg" alt="Peloton na šotolině" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/cyklo-10.jpg"><img src="assets/cyklo/cyklo-10.jpg" alt="Sjezd v terénu" loading="lazy" decoding="async" /></a>
+      <a href="assets/cyklo/pave-tour-milovice.jpg"><img src="assets/cyklo/pave-tour-milovice.jpg" alt="Pavé Tour Milovice — spurt" loading="lazy" decoding="async" /></a>
+    </div>
+  </div></section>
+
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  if(!reduce){
+    var pars=[].slice.call(document.querySelectorAll("[data-par]")),raf=null;
+    var on=function(){if(raf)return;raf=requestAnimationFrame(function(){var vh=innerHeight;pars.forEach(function(el){var f=parseFloat(el.getAttribute("data-par"))||0.1;var r=el.getBoundingClientRect();var c=r.top+r.height/2-vh/2;var y=-c*f,cap=r.height*0.12;y=Math.max(-cap,Math.min(cap,y));el.style.transform="translate3d(0,"+y.toFixed(1)+"px,0) scale(1.06)";});raf=null;});};
+    addEventListener("scroll",on,{passive:true});on();
+  }
+})();
+</script>
+<script src="ui-icons.js?v=6"></script>
+<script src="ui-components.js?v=27"></script>
+<script src="ui-loader.js?v=41"></script>
+<script src="site.js?v=16"></script>
+<script src="page-transition.js?v=1"></script>
+</body>
+</html>

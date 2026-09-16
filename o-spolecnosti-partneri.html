@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — Partneři</title>
+<script src="ui-theme.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=137" />
+</head>
+<body data-nav="O společnosti" class="dir-b">
+<div id="app">
+
+  <!-- ZÁHLAVÍ -->
+  <header class="listhead">
+    <div class="bg"><img data-par="0.08" src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /></div>
+    <div class="wrap-wide">
+      <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><a href="o-spolecnosti-kdo-jsme.html">O společnosti</a><span class="sep">/</span><span class="cur">Partneři</span></nav>
+      <h1>Partneři</h1>
+      <p class="lead">Produkty firem <a href="znacka-l-acoustics.html">L-Acoustics</a>, <a href="znacky.html">DiGiCo</a> a dalších pečlivě vybraných značek z našeho portfolia představují světovou špičku profesionálního entertainment vybavení. A protože si velmi vážíme našich zákazníků, připravili jsme PRO MUSIC Professional Partner program. Naším cílem je prezentovat a podporovat naše významné partnery, kteří využívají ozvučovací a osvětlovací systémy nejvyšší kvality, a rozvíjet spolupráci při zajišťování produkcí.</p>
+      <div class="cta-actions" style="margin-top:26px"><ui-button variant="primary" size="sm" href="kontakt.html">Probrat spolupráci →</ui-button><ui-button variant="ghost" size="sm" href="znacky.html">Značky</ui-button></div>
+    </div>
+  </header>
+
+  <!-- 01 PARTNEŘI -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>PRO MUSIC Professional Partner</h2><span class="rule"></span></div>
+    <div class="shlist" id="plist"></div>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="segcontact">
+      <div class="who">Používáte naše systémy a chcete být součástí programu? <b>Napište nám</b> — probereme podmínky i možnosti spolupráce na produkcích.</div>
+      <div class="cta-actions" style="margin:0"><ui-button variant="primary" size="lg" href="kontakt.html">Probrat spolupráci →</ui-button><ui-button variant="ghost" size="lg" href="mailto:info@promusic.cz">info@promusic.cz</ui-button></div>
+    </div>
+  </div></section>
+
+</div>
+
+<script>
+/* Partneři — jediné místo, kde se seznam edituje.
+   { name, note, web, img } · prázdné pole → prázdný stav */
+window.PM_PARTNERS = [];
+</script>
+<script>
+(function(){
+  var root = document.getElementById("plist");
+  var items = window.PM_PARTNERS || [];
+  if(!items.length){
+    root.innerHTML = '<div class="shempty"><h4>Seznam partnerů připravujeme</h4>'
+      + '<p>Partnerský program právě rozšiřujeme. Máte-li zájem se zapojit, napište nám.</p>'
+      + '<div class="cta-actions" style="margin:18px 0 0"><ui-button variant="primary" size="sm" href="mailto:info@promusic.cz">Napsat nám →</ui-button></div></div>';
+    return;
+  }
+  root.innerHTML = items.map(function(it){
+    var tag = it.web ? 'a class="ui-card outline-glow" href="' + it.web + '" target="_blank" rel="noopener"' : 'div class="ui-card"';
+    return "<" + tag + ">"
+      + (it.img ? '<div class="shmedia"><img src="' + it.img + '" alt="" /></div>' : "")
+      + "<h4>" + it.name + "</h4>"
+      + (it.note ? "<p>" + it.note + "</p>" : "")
+      + (it.web ? "</a>" : "</div>");
+  }).join("");
+})();
+(function(){
+  var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  if(!reduce){
+    var pars=[].slice.call(document.querySelectorAll("[data-par]")),raf=null;
+    var on=function(){if(raf)return;raf=requestAnimationFrame(function(){var vh=innerHeight;pars.forEach(function(el){var f=parseFloat(el.getAttribute("data-par"))||0.1;var r=el.getBoundingClientRect();var c=r.top+r.height/2-vh/2;var y=-c*f,cap=r.height*0.12;y=Math.max(-cap,Math.min(cap,y));el.style.transform="translate3d(0,"+y.toFixed(1)+"px,0) scale(1.06)";});raf=null;});};
+    addEventListener("scroll",on,{passive:true});on();
+  }
+})();
+</script>
+<script src="ui-icons.js?v=6"></script>
+<script src="ui-components.js?v=27"></script>
+<script src="ui-loader.js?v=41"></script>
+<script src="site.js?v=16"></script>
+<script src="page-transition.js?v=1"></script>
+</body>
+</html>

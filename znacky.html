@@ -6,7 +6,7 @@
 <title>PRO MUSIC — Značky</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=90" />
+<link rel="stylesheet" href="ui.css?v=137" />
 </head>
 <body data-nav="Značky" class="dir-b">
 <div id="app">
@@ -22,16 +22,20 @@
   </header>
 
   <!-- HERO -->
-  <header class="brhero">
-    <div class="wrap inner">
-      <nav class="breadcrumb" style="font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:var(--text-soft);display:flex;gap:8px;align-items:center"><a href="index.html">Domů</a><span style="color:var(--text-mute)">/</span><span style="color:var(--accent)">Značky</span></nav>
-      <span class="eyebrow" style="margin-top:14px">Co zastupujeme</span>
-      <h1>Značky, kterým rozumíme do hloubky.</h1>
-      <p class="lead">Nejsme katalog. Zastupujeme špičkové světové výrobce profesionálního audia, světel a infrastruktury — a u vybraných z nich jsme <strong>výhradním distributorem</strong> pro ČR a SK. Ke každé technologii dodáváme know-how, jak ji správně nasadit, vyladit a dlouhodobě provozovat.</p>
-      <div class="cta-actions">
-        <ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button>
-        <ui-button variant="ghost" size="lg">Stáhnout katalog (PDF)</ui-button>
+  <header class="listhead">
+    <div class="bg"><img data-par="0.08" src="assets/projekty/rammstein/stadion-plameny.jpg" alt="" /></div>
+    <div class="wrap-wide">
+    <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><span class="cur">Značky</span></nav>
+    <div class="lhrow">
+      <div>
+        <h1>Značky, kterým rozumíme do hloubky.</h1>
+        <p class="lead">Nejsme katalog. Zastupujeme špičkové světové výrobce profesionálního audia, světel a infrastruktury — a u vybraných z nich jsme <strong>výhradním distributorem</strong> pro ČR a SK.</p>
       </div>
+      <div class="lhcta">
+        <ui-button variant="primary" size="sm" href="kontakt.html">Probrat projekt →</ui-button>
+        <ui-button variant="ghost" size="sm">Katalog (PDF) →</ui-button>
+      </div>
+    </div>
     </div>
   </header>
 
@@ -40,21 +44,21 @@
     <div class="sec-head"><span class="idx">01</span><h2>Vlajkové značky</h2><span class="rule"></span></div>
     <p class="lead" style="margin:-18px 0 34px">Výhradní distribuce pro ČR &amp; SK — s plnou technickou podporou, školením a servisem.</p>
     <div class="flagships" data-stagger>
-      <div class="flagship">
+      <a class="flagship" href="znacka-l-acoustics.html">
         <div class="fmedia"><span class="chip chip-accent fbadge">Výhradní distribuce</span><img src="assets/brands/photo/l-acoustics.png" alt="Stadionová produkce ozvučená systémem L-Acoustics" loading="lazy" decoding="async"/><div class="logo"><img src="assets/brand/logos/l-acoustics.png" alt="L-Acoustics" /></div></div>
         <p>Ozvučovací systémy světové třídy. Imerzivní <strong>L-ISA</strong> a virtuální akustika <strong>Ambiance</strong> — světová premiéra proběhla v Plzni.</p>
-        <a class="btn btn-ghost btn-sm" href="live-a-turne.html?znacka=l-acoustics">Projekty s L-Acoustics<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>
-      </div>
-      <div class="flagship">
+        <span class="btn btn-ghost btn-sm">Zobrazit více<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span>
+      </a>
+      <a class="flagship" href="live-a-turne.html?znacka=digico">
         <div class="fmedia"><span class="chip chip-accent fbadge">Výhradní distribuce</span><img src="assets/brands/photo/digico.png" alt="FOH pozice s konzolí DiGiCo na koncertu" loading="lazy" decoding="async"/><div class="logo"><img src="assets/brand/logos/digico.png" alt="DiGiCo" /></div></div>
         <p>Mixážní konzole pro nejnáročnější produkce a divadla. Řada <strong>Quantum</strong> s divadelním softwarem, scénami a redundancí.</p>
-        <a class="btn btn-ghost btn-sm" href="live-a-turne.html?znacka=digico">Projekty s DiGiCo<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>
-      </div>
-      <div class="flagship">
+        <span class="btn btn-ghost btn-sm">Zobrazit více<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span>
+      </a>
+      <a class="flagship" href="live-a-turne.html?znacka=ayrton">
         <div class="fmedia"><span class="chip chip-accent fbadge">Výhradní distribuce</span><img src="assets/brands/photo/ayrton.png" alt="Světelný rig Ayrton na stadionovém koncertu" loading="lazy" decoding="async"/><div class="logo"><img class="sq" src="assets/brand/logos/ayrton.png" alt="Ayrton" /></div></div>
         <p>Chytrá LED svítidla nejvyšší třídy — <strong>Domino, Cobra, Perseo</strong>. Rig pro turné Eda Sheerana i arény.</p>
-        <a class="btn btn-ghost btn-sm" href="live-a-turne.html?znacka=ayrton">Projekty s Ayrton<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>
-      </div>
+        <span class="btn btn-ghost btn-sm">Zobrazit více<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span>
+      </a>
     </div>
   </div></section>
 
@@ -181,9 +185,9 @@
 })();
 </script>
 <script src="ui-icons.js?v=6"></script>
-<script src="ui-components.js?v=26"></script>
-<script src="ui-loader.js?v=28"></script>
-<script src="site.js?v=13"></script>
+<script src="ui-components.js?v=27"></script>
+<script src="ui-loader.js?v=41"></script>
+<script src="site.js?v=16"></script>
 <script src="page-transition.js?v=1"></script>
 </body>
 </html>

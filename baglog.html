@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — Backlog změn</title>
+<script src="ui-theme.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=137" />
+</head>
+<body class="dir-b">
+<div id="app">
+  <header class="listhead">
+    <div class="wrap-wide">
+    <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><span class="cur">Backlog</span></nav>
+    <div class="lhrow">
+      <div>
+        <h1>Backlog změn</h1>
+        <p class="lead">Chronologický přehled větších úprav webu — struktura, komponenty, velikosti prvků, barvy a funkcionalita. Nové stránky a drobné textové korektury se sem nezapisují.</p>
+      </div>
+      <div class="lhcta">
+        <ui-button variant="ghost" size="sm" href="design-system.html">Design systém →</ui-button>
+        <ui-button variant="ghost" size="sm" href="index.html">Homepage →</ui-button>
+      </div>
+    </div>
+  </div></header>
+
+  <section class="sec band band-flat reveal"><div class="wrap-wide">
+    <div class="chlog">
+      <div class="chday">
+        <div class="when">16. 9. 2026<small>11 změn</small></div>
+        <div class="chitems">
+      <div class="chitem is-new"><span class="chtag">Velikost</span><div class="what"><b>CTA v hlavičce zmenšeno na malé (sm)</b><span>Velké tlačítko v nav baru přebíjelo logo i navigaci — nyní ~40 px místo 52 px. Komponenta ui-button přitom velikost sm vůbec neznala a tiše ji ignorovala; doplněna do systému.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Stálé instalace rozděleny na výpis a obsahové stránky</b><span>Popisné bloky přesunuty do „Co řešíme“ a „Fáze instalace“; „Divadla a sály“ jsou teď standardní výpis projektů s CTA na obě obsahové stránky.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>Jeden typ záhlaví pro všechny vnitřní stránky</b><span>Vlastní hero se sticky navigací (.seghero) zrušen — všechny stránky mimo homepage používají .listhead s drobenkou, nadpisem, leadem a CTA.</span></div></div>
+      <div class="chitem"><span class="chtag">Layout</span><div class="what"><b>Varianta záhlaví s CTA u pravé hrany</b><span>Nové .lhrow / .lhcta — text vlevo, akce vpravo na společnou šířku; pod 900px se přeskládá pod text.</span></div></div>
+      <div class="chitem"><span class="chtag">Funkce</span><div class="what"><b>Aktivní položka v megamenu</b><span>Navigace zvýrazňuje sekci i konkrétní stránku podle toho, kde uživatel je.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Funkce</span><div class="what"><b>Dolinkována všechna hlavní CTA</b><span>„Probrat projekt“, „Kontaktovat specialistu“ a „Stát se partnerem“ mířily na #. Teď vedou na kontakt (resp. kontakt#servis) — včetně hlavičky a patičky, tedy celého webu.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Karty značek s fotkou a logem na bílém podkladu</b><span>Flagship karty (L-Acoustics, DiGiCo, Ayrton) mají fotku v horní části s bílým logem uprostřed; loga zvětšena o 35 %. Mřížka ostatních značek bez linek a rámů.</span></div></div>
+      <div class="chitem"><span class="chtag">Obsah</span><div class="what"><b>Stránka Kontakt hotová</b><span>Quick-dial (obchod / podpora / servis), karty týmu, sídlo s fotkou a mapou, fakturační údaje s copy tlačítky.</span></div></div>
+      <div class="chitem"><span class="chtag">Barvy</span><div class="what"><b>Kontaktní karty v oranžové (accent)</b><span>Quick-dial i karty lidí sjednoceny do accentové varianty podle záhlaví.</span></div></div>
+      <div class="chitem"><span class="chtag">Komponenty</span><div class="what"><b>Odstraněna nesystémová tlačítka</b><span>Vlastní varianty s malou ikonou a mono typografií nahrazeny standardními ghost / primary tlačítky z design systému.</span></div></div>
+      <div class="chitem"><span class="chtag">Patička</span><div class="what"><b>Opravené odkazy v patičce</b><span>„Jak to děláme“ vedlo omylem na Technologie — nahrazeno dvojicí „Co řešíme“ + „Fáze instalace“; „Servis“ vede na kontakt#servis.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+</div>
+<script src="ui-icons.js?v=6"></script>
+<script src="ui-components.js?v=27"></script>
+<script src="ui-loader.js?v=41"></script>
+<script src="site.js?v=16"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
 <title>PRO MUSIC — Design systém</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=61" />
+<link rel="stylesheet" href="ui.css?v=137" />
 <style>
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:var(--pm-font-body);-webkit-font-smoothing:antialiased}
@@ -236,7 +236,7 @@
     <div class="demo">
       <p class="demo-t">ui-card</p>
       <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
-        <ui-card kicker="Segment" title="Divadla &amp; sály" href="instalace-kulturni-domy-saly-divadla.html">Stálé instalace, akustika, provoz.</ui-card>
+        <ui-card kicker="Segment" title="Divadla &amp; sály" href="instalace-kulturni-domy-saly-divadla.html">Instalace, akustika, provoz.</ui-card>
         <ui-card kicker="Case study" title="Ed Sheeran" href="live-ed-sheeran.html">Ayrton rig · stadiony Evropy.</ui-card>
         <ui-card kicker="Technologie" title="L-ISA">Imerzivní objektový zvuk.</ui-card>
       </div>
@@ -251,7 +251,7 @@
     </div>
 
     <div class="demo">
-      <p class="demo-t">ui-inst-card · karta do výpisu Stálé instalace (foto + katalogový panel s parametry)</p>
+      <p class="demo-t">ui-inst-card · karta do výpisu Instalace (foto + katalogový panel s parametry)</p>
       <div class="plist" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
         <ui-inst-card title="Hudební divadlo Karlín" cat="Divadla &amp; sály" city="Praha" tech="L-Acoustics L-ISA|DiGiCo Quantum 7T" img="assets/projekty/karlin/zvukar-foh.jpg" href="instalace-hd-karlin-schema.html"></ui-inst-card>
         <ui-inst-card title="Steel Aréna Košice" cat="Arény &amp; stadiony" city="Košice, SK" tech="Ayrton Domino Profile" img="assets/projekty/steel-arena/projekce-barvy.jpg" href=""></ui-inst-card>
@@ -261,6 +261,40 @@
     <div class="demo">
       <p class="demo-t">stránkování (.pager) — používá listing.js</p>
       <nav class="pager"><button class="pager-arrow" disabled aria-label="Předchozí"><ui-icon name="ui-arrow-left" aria-hidden="true"></ui-icon></button><div class="pager-nums"><button class="pager-n is-active">1</button><button class="pager-n">2</button><button class="pager-n">3</button></div><button class="pager-arrow" aria-label="Další"><ui-icon name="ui-chevron-right" aria-hidden="true"></ui-icon></button></nav>
+    </div>
+
+    <div class="demo">
+      <p class="demo-t">megamenu · rozbalené (Instalace)</p>
+      <div class="ds-mega">
+        <div class="megapanel"><div class="mega-inner">
+          <div class="megacols">
+            <div class="megacol">
+              <h5>Podle prostoru</h5>
+              <ul>
+                <li><a href="stale-instalace.html">Všechny instalace</a></li>
+                <li><a href="instalace-kulturni-domy-saly-divadla.html">Divadla &amp; sály</a></li>
+                <li><a href="stale-instalace.html?f=Ar%C3%A9ny%20%26%20stadiony">Arény &amp; stadiony</a></li>
+                <li><a href="stale-instalace.html?f=Kluby%20%26%20venues">Kluby &amp; venues</a></li>
+                <li><a href="stale-instalace.html?f=Hotely%20%26%20bary">Hotely &amp; bary</a></li>
+                <li><a href="stale-instalace.html?f=Konferen%C4%8Dn%C3%AD">Konferenční</a></li>
+                <li><a href="stale-instalace.html?f=Kina%20%C2%B7%20sakr%C3%A1ln%C3%AD">Kina · sakrální</a></li>
+              </ul>
+            </div>
+            <div class="megacol">
+              <h5>Jak to děláme</h5>
+              <ul>
+                <li><a href="instalace-co-resime.html">Co řešíme</a></li>
+                <li><a href="instalace-jak-to-delame.html">Fáze instalace</a></li>
+              </ul>
+            </div>
+          </div>
+          <a class="megafeat" href="instalace-hd-karlin-schema.html">
+            <div class="megafeat-img"><img src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /></div>
+            <div class="megafeat-meta"><ui-tag>INSTALACE</ui-tag><strong>Hudební divadlo Karlín</strong><span class="btn btn-ghost btn-sm">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></div>
+          </a>
+        </div></div>
+      </div>
+      <div class="note">Ukázka je staticky rozbalená, aby se dala připomínkovat. V provozu panel drží <code>.navitem</code> a otevírá se na hover / focus. Struktura: 1–2 sloupce odkazů (<code>.megacol</code>, volitelně s <code>h5</code>) + doplňková karta case study (<code>.megafeat</code>). Jediný zdroj: <code>ui-header.html</code>.</div>
     </div>
 
     <div class="demo">
@@ -317,7 +351,7 @@
 </div>
 
 <script src="ui-icons.js?v=6"></script>
-<script src="ui-components.js?v=26"></script>
+<script src="ui-components.js?v=27"></script>
 <script>
 (function(){
   var VARS=["primary","secondary","main"];

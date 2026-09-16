@@ -14,12 +14,14 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 |---|---|
 | `index.html` | Homepage |
 | `live-a-turne.html` | Výpis projektů Live & turné (chip filtrace + stránkování) |
-| `stale-instalace.html` | Výpis stálých instalací (chip filtrace + stránkování) |
+| `stale-instalace.html` | Výpis instalací (chip filtrace + stránkování) |
 | `live-ed-sheeran.html` | Case study — Ed Sheeran, Mathematics Tour |
 | `instalace-hd-karlin-schema.html` | Case study — HD Karlín, vč. interaktivního schématu |
 | `instalace-kulturni-domy-saly-divadla.html` | Segmentová landing — kulturní domy, sály, divadla |
 | `technologie-schema-ozvuceni.html` | Vysvětlovací stránka — schéma ozvučení |
 | `znacky.html` | Značky, které zastupujeme |
+| `novinky.html` | Výpis novinek (filtr téma + značka, stránkování po 12) |
+| `novinka.html` | Detail novinky — `?a=<slug>`, text + foto/video |
 | `design-system.html` | Živý přehled design systému (interní) |
 | `guidelines/*.html` | Specimen karty design systému (interní) |
 
@@ -41,13 +43,17 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `site.js` | Globální chování: reveal on scroll, parallax, tilt, outline-glow, coverflow karusel |
 | `home-content.js` | Obsah sekcí homepage (vykresluje se z JS) |
 | `projects-data.js` | **Data projektů** — `PM_LIVE` / `PM_INST` + kategorie. Jediné místo, kde se přidává projekt nebo fotka. |
-| `listing.js` | Výpis: chip filtrace (propisuje se do `?f=`), stránkování (`?p=`), render karet |
+| `listing.js` | Výpis projektů: chip filtrace (propisuje se do `?f=`), stránkování (`?p=`), render karet |
+| `news-index.js` | **Data novinek — metadata** (titulek, štítky, značka, perex, náhled). Zdroj pro výpis. |
+| `news-bodies.js` | **Data novinek — plné texty** (HTML + odkazy na videa). Načítá jen detail. |
+| `news.js` | Novinky: render výpisu (`.nlist-root`, `?f=` téma, `?b=` značka, `?p=`) a detailu (`.nart-root`) |
 | `karlin-schema.js` | Interaktivní schéma ozvučení (Karlín) |
 | `page-transition.js` | Přechod mezi stránkami — „pódiové světlo" |
 
 ### Assety a podklady
 - `assets/brand/promusic-logo.png` — logo (pro produkci dodat SVG)
 - `assets/projekty/{ed-sheeran,djkt-plzen,steel-arena,karlin}/*` — fotky realizací
+- `assets/novinky/001.jpg … 089.jpg` — náhledy novinek (číslo = pořadí v `news-index.js`)
 - `uploads/*` — surové materiály od klienta (loga značek, fotky) — **není součástí webu**
 - `research/*.md` — rešerše a strategie (firma, značky, layout, menu, positioning)
 

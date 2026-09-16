@@ -36,7 +36,7 @@ Zdroj pravdy na webu: `projects-data.js`. Až přijde napojení na Pohodu, tenhl
 
 ---
 
-## Stálé instalace — parametry navíc
+## Instalace — parametry navíc
 
 | Parametr | Typ | Příklad | Kde se zobrazí |
 |---|---|---|---|
@@ -60,7 +60,7 @@ Zdroj pravdy na webu: `projects-data.js`. Až přijde napojení na Pohodu, tenhl
 
 ## Co je dnes v datech
 
-| | Live & turné | Stálé instalace |
+| | Live & turné | Instalace |
 |---|---|---|
 | záznamů | 138 | 38 |
 | s rokem | ~1/3 | 0 |

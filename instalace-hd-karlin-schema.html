@@ -6,33 +6,23 @@
 <title>PRO MUSIC — HD Karlín · případová studie</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=90" />
+<link rel="stylesheet" href="ui.css?v=137" />
 </head>
-<body data-nav="Stálé instalace" class="dir-b">
-
-<!-- NAV -->
-<header class="cnav" style="position:sticky;top:0;z-index:60;background:rgba(16,15,13,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)">
-  <div class="wrap-wide cnav-in">
-    <img class="cnav-logo" src="assets/brand/promusic-logo.png" alt="PRO MUSIC" />
-    <a class="back" href="index.html"><ui-icon class="btn-ico" name="ui-back" aria-hidden="true"></ui-icon> Portfolio</a>
-    <span class="spacer"></span>
-    <a class="btn btn-primary">Probrat projekt<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>
-  </div>
-</header>
+<body data-nav="Instalace" class="dir-b">
 
 <div id="app">
 
   <!-- HERO -->
-  <header class="seghero">
+  <header class="listhead cshead" data-screen-label="Hero">
     <div class="bg"><img data-par="0.1" src="assets/projekty/karlin/sal-full.png" alt="" /></div>
-    <div class="wrap inner">
-      <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><a href="stale-instalace.html">Stálé instalace</a><span class="sep">/</span><span style="color:var(--accent)">Hudební divadlo Karlín</span></nav>
-      <span class="eyebrow" style="color:#fff;margin-top:14px">Případová studie · stálá instalace</span>
-      <h1>Systém, který<br/>slyší celý sál.</h1>
-      <p class="lead">Muzikálový provoz v historickém sále: stovky vstupů, desítky scén a nulová tolerance výpadku na živo. Největší instalace L-ISA v ČR postavená kolem DiGiCo Quantum 7T.</p>
-      <div class="cta-actions">
-        <ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button>
-        <ui-button variant="ghost" size="lg" href="stale-instalace.html">Vybrané instalace</ui-button>
+    <div class="wrap-wide">
+    <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><a href="stale-instalace.html">Instalace</a><span class="sep">/</span><span class="cur">Hudební divadlo Karlín</span></nav>
+      <h1>Hudební divadlo<br/>Karlín</h1>
+      <div class="metaline">
+        <span class="chip chip-accent">největší L-ISA v ČR</span>
+        <span class="chip chip-accent">DiGiCo Quantum 7T</span>
+        <span class="chip chip-accent">muzikálový provoz</span>
+        <span class="chip chip-accent">Praha</span>
       </div>
     </div>
   </header>
@@ -125,20 +115,14 @@
   <!-- RELATED -->
   <section class="sec band wave-band reveal"><div class="wrap-wide">
     <div class="sec-head"><span class="idx">06</span><h2>Další projekty</h2><span class="rule"></span></div>
-    <div class="related" data-stagger>
-      <a class="relcard" href="live-ed-sheeran.html"><img src="assets/projekty/ed-sheeran/cervena-show.jpg" alt="" /><span class="rl">Ed Sheeran — Mathematics</span><span class="rm">Ayrton rig · stadiony</span></a>
-      <a class="relcard" href="#"><img src="assets/projekty/steel-arena/projekce-barvy.jpg" alt="" /><span class="rl">Steel Aréna Košice</span><span class="rm">Ayrton Domino Profile</span></a>
-      <a class="relcard" href="#"><img src="assets/projekty/djkt-plzen/array-strop.jpg" alt="" /><span class="rl">Nová scéna DJKT Plzeň</span><span class="rm">L-Acoustics Ambiance</span></a>
+    <div class="plist" data-stagger>
+      <ui-inst-card title="Nová scéna DJKT Plzeň" cat="Divadla &amp; sály" city="Plzeň" system="L-Acoustics Ambiance" cap="460 míst" scope="Zvuk" img="assets/projekty/djkt-plzen/array-strop.jpg" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly">Světová premiéra virtuální akustiky.</ui-inst-card>
+      <ui-live-card title="Rammstein" sub="Europe Stadium Tour" cat="Turné" year="2019" scope="17 zemí · 34 koncertů" role="Zvuk" tech="L-Acoustics K series" img="assets/projekty/rammstein/stadion-plameny.jpg" href="live-rammstein.html"></ui-live-card>
+      <ui-live-card title="Ed Sheeran" sub="Mathematics Tour" cat="Turné" year="2022" scope="stadiony Evropy" role="Světla" tech="Ayrton" img="assets/projekty/ed-sheeran/ohnostroj.jpg" href="live-ed-sheeran.html"></ui-live-card>
     </div>
   </div></section>
 
-  <!-- CTA -->
-  <section class="sec reveal"><div class="wrap"><div class="assure">
-    <span class="tag">Plánujete instalaci do divadla nebo sálu?</span>
-    <h2>Pojďme probrat správné řešení.</h2>
-    <div class="cta-actions"><a class="btn btn-primary btn-lg">Probrat projekt<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a><a class="btn btn-ghost btn-lg">Kontaktovat specialistu</a></div>
-  </div></div></section>
-
+  
   <!-- FOOTER -->
   <footer class="foot"><div class="wrap-wide">
     <div class="foot-top">
@@ -165,9 +149,9 @@
 })();
 </script>
 <script src="ui-icons.js?v=6"></script>
-<script src="ui-components.js?v=26"></script>
-<script src="ui-loader.js?v=28"></script>
-<script src="site.js?v=13"></script>
+<script src="ui-components.js?v=27"></script>
+<script src="ui-loader.js?v=41"></script>
+<script src="site.js?v=16"></script>
 <script src="page-transition.js?v=1"></script>
 </body>
 </html>

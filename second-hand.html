@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — Second Hand</title>
+<script src="ui-theme.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="ui.css?v=137" />
+</head>
+<body data-nav="Second Hand" class="dir-b">
+<div id="app">
+
+  <!-- ZÁHLAVÍ -->
+  <header class="listhead">
+    <div class="bg"><img data-par="0.08" src="assets/firma/treninkove-prostory-pulty.jpg" alt="" /></div>
+    <div class="wrap-wide">
+      <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><span class="cur">Second Hand</span></nav>
+      <h1>Second Hand</h1>
+      <p class="lead">Tyhle věci rozhodně nepatří do starého železa! Abychom ale mohli doplnit naše sklady, musí něco pryč. Pokud tedy hledáte výbavu za skvělou cenu, jste na správném místě.</p>
+      <p class="lead">Podívejte se, co všechno máme aktuálně k dispozici a v případě zájmu nás kontaktujte na <a href="mailto:info@promusic.cz">info@promusic.cz</a>.</p>
+      <div class="cta-actions" style="margin-top:26px"><ui-button variant="primary" size="sm" href="mailto:info@promusic.cz">Napsat o nabídku →</ui-button><ui-button variant="ghost" size="sm" href="kontakt.html">Kontakt</ui-button></div>
+    </div>
+  </header>
+
+  <!-- 01 AKTUÁLNÍ NABÍDKA -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="shlist-root" data-per="12"></div>
+  </div></section>
+
+  <!-- 02 JAK TO CHODÍ -->
+  <section class="sec band wave-band reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>Jak to chodí</h2><span class="rule"></span></div>
+    <div class="typegrid" data-stagger>
+      <div class="typecell">Technika z našich demo a rentalových sad</div>
+      <div class="typecell">Prošlá servisem, otestovaná a připravená k provozu</div>
+      <div class="typecell">Dostupnost a cenu potvrdíme e-mailem</div>
+      <div class="typecell">Možnost osobní prohlídky v Trutnově</div>
+    </div>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="segcontact">
+      <div class="who">Zajímá vás konkrétní položka, nebo hledáte něco, co v seznamu není? <b>Napište nám na info@promusic.cz</b> — řekneme, co máme na skladě. Kategorie obsahuje celkem 88 produktů.</div>
+      <div class="cta-actions" style="margin:0"><ui-button variant="primary" size="lg" href="mailto:info@promusic.cz">Napsat o nabídku →</ui-button><ui-button variant="ghost" size="lg" href="kontakt.html">Kontakt</ui-button></div>
+    </div>
+  </div></section>
+
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  if(!reduce){
+    var pars=[].slice.call(document.querySelectorAll("[data-par]")),raf=null;
+    var on=function(){if(raf)return;raf=requestAnimationFrame(function(){var vh=innerHeight;pars.forEach(function(el){var f=parseFloat(el.getAttribute("data-par"))||0.1;var r=el.getBoundingClientRect();var c=r.top+r.height/2-vh/2;var y=-c*f,cap=r.height*0.12;y=Math.max(-cap,Math.min(cap,y));el.style.transform="translate3d(0,"+y.toFixed(1)+"px,0) scale(1.06)";});raf=null;});};
+    addEventListener("scroll",on,{passive:true});on();
+  }
+})();
+</script>
+<script src="secondhand-data.js?v=1"></script>
+<script src="secondhand.js?v=1"></script>
+<script src="ui-icons.js?v=6"></script>
+<script src="ui-components.js?v=27"></script>
+<script src="ui-loader.js?v=41"></script>
+<script src="site.js?v=16"></script>
+<script src="page-transition.js?v=1"></script>
+</body>
+</html>

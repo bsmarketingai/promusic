@@ -29,13 +29,13 @@ Stávající web klienta: https://promusic.cz/
 ## Stav — co chybí
 1. **Case study HD Karlín** v plné podobě (dnes existuje jen `instalace-hd-karlin-schema.html` se schématem).
 2. **Steel Aréna Košice** a **DJKT Plzeň** — case studies zatím nejsou, na homepage vedou na `#`.
-3. **Stránka Academy / školení**, kontakt, servis.
+3. **Stránka Academy / školení**, servis. (Novinky hotové: 89 článků z podkladu klienta ve `news-index.js` / `news-bodies.js`.)
 4. **EN mutace** obsahu.
 5. Self-hostované fonty + vektorové logo pro produkci.
 
 ## Terminologie (potvrzeno klientem)
 - **Live & turné** = dočasné nasazení techniky na akci (turné, koncerty, festivaly, TV, eventy). Dřív se sekce jmenovala „Realizace".
-- **Stálé instalace** = trvale zabudovaný systém v budově (divadla, arény, kluby, hotely).
+- **Instalace** = trvale zabudovaný systém v budově (divadla, arény, kluby, hotely). Dřív „Stálé instalace" — staré označení už nikde nepoužívat.
 - Slovo **„realizace"** používej **jen jako fázi procesu** (návrh → realizace → servis), nikdy jako název sekce. Souhrn projektů = „Vybrané projekty" / „Další projekty".
 - Názvy souborů (`realizace-*.html`) zůstávají — mění se jen popisky v UI.
 

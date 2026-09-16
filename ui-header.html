@@ -8,14 +8,14 @@
      loader bere pouze komponentní root (header.nav / #mobmenu / footer.foot / .navfab). -->
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=61" />
+<link rel="stylesheet" href="ui.css?v=137" />
 </head>
 <body class="dir-a dir-b">
 
 <!-- ═══════════════════════════════════════════════════════════════
      UI KOMPONENTA · HLAVIČKA
      Edituj přímo tento soubor — propíše se na všechny stránky.
-     Aktivní položka: na stránce nastav <body data-nav="Live &amp; turné">
+     Aktivní položka: na stránce nastav <body data-nav="Reference">
      ═══════════════════════════════════════════════════════════════ -->
 <header class="nav">
   <div class="wrap-wide nav-in">
@@ -26,12 +26,36 @@
     <!-- desktopová navigace -->
     <nav class="nav-links desk">
 
-      <!-- LIVE & TURNÉ (mega-menu) -->
+      <!-- O SPOLEČNOSTI (mega-menu) -->
       <div class="navitem">
-        <a class="nav-link has-mega" data-nav-item="Live &amp; turné" href="live-a-turne.html">Live &amp; turné<span class="caret"></span></a>
+        <a class="nav-link has-mega" data-nav-item="O společnosti" data-nav-alias="Kdo jsme?|Nabízíme|Partneři|Cyklistický tým|Technologie" href="o-spolecnosti-kdo-jsme.html">O společnosti<span class="caret"></span></a>
         <div class="megapanel"><div class="mega-inner">
           <div class="megacols megacols-one">
             <div class="megacol">
+              <h5>O společnosti</h5>
+              <ul>
+                <li><a href="o-spolecnosti-kdo-jsme.html">Kdo jsme?</a></li>
+                <li><a href="o-spolecnosti-nabizime.html">Nabízíme</a></li>
+                <li><a href="o-spolecnosti-partneri.html">Partneři</a></li>
+                <li><a href="technologie-schema-ozvuceni.html">Technologie</a></li>
+                <li><a href="o-spolecnosti-cyklisticky-tym.html">Cyklistický tým</a></li>
+              </ul>
+            </div>
+          </div>
+          <a class="megafeat" href="o-spolecnosti-kdo-jsme.html">
+            <div class="megafeat-img"><img src="assets/firma/sidlo-letecky.jpg" alt="" /></div>
+            <div class="megafeat-meta"><ui-tag>OD ROKU 1997</ui-tag><strong>Sídlo Trutnov — prezentační sál, tréninkové prostory, servis</strong><span class="btn btn-ghost btn-sm">Kdo jsme?<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></div>
+          </a>
+        </div></div>
+      </div>
+
+      <!-- REFERENCE (mega-menu) -->
+      <div class="navitem">
+        <a class="nav-link has-mega" data-nav-item="Reference" data-nav-alias="Live &amp; turné|Instalace" href="reference.html">Reference<span class="caret"></span></a>
+        <div class="megapanel"><div class="mega-inner">
+          <div class="megacols megacols-three">
+            <div class="megacol">
+              <h5>Touring / Rental / Produkce</h5>
               <ul>
                 <li><a href="live-a-turne.html?f=Turn%C3%A9">Turné</a></li>
                 <li><a href="live-a-turne.html?f=Koncerty">Koncerty</a></li>
@@ -39,28 +63,11 @@
                 <li><a href="live-a-turne.html?f=TV%20%26%20broadcast">TV &amp; broadcast</a></li>
                 <li><a href="live-a-turne.html?f=Eventy%20%26%20korpor%C3%A1t">Eventy &amp; korporát</a></li>
               </ul>
-              <a class="megacol-cta" href="live-a-turne.html">Celé portfolio<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>
+              <a class="megacol-cta" href="live-a-turne.html">Všechny projekty<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>
             </div>
-          </div>
-          <a class="megafeat" href="live-ed-sheeran.html">
-            <div class="megafeat-img"><img src="assets/projekty/ed-sheeran/ohnostroj.jpg" alt="" /></div>
-            <div class="megafeat-meta"><ui-tag>CASE STUDY</ui-tag><strong>Ed Sheeran — Mathematics</strong><span class="megafeat-go">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></div>
-          </a>
-        </div></div>
-      </div>
-
-      <!-- TECHNOLOGIE -->
-      <a class="nav-link" data-nav-item="Technologie" href="technologie-schema-ozvuceni.html">Technologie</a>
-
-      <!-- STÁLÉ INSTALACE (mega-menu) -->
-      <div class="navitem">
-        <a class="nav-link has-mega" data-nav-item="Stálé instalace" href="stale-instalace.html">Stálé instalace<span class="caret"></span></a>
-        <div class="megapanel"><div class="mega-inner">
-          <div class="megacols">
             <div class="megacol">
-              <h5>Podle prostoru</h5>
+              <h5>Instalace</h5>
               <ul>
-                <li><a href="stale-instalace.html">Všechny instalace</a></li>
                 <li><a href="instalace-kulturni-domy-saly-divadla.html">Divadla &amp; sály</a></li>
                 <li><a href="stale-instalace.html?f=Ar%C3%A9ny%20%26%20stadiony">Arény &amp; stadiony</a></li>
                 <li><a href="stale-instalace.html?f=Kluby%20%26%20venues">Kluby &amp; venues</a></li>
@@ -68,18 +75,24 @@
                 <li><a href="stale-instalace.html?f=Konferen%C4%8Dn%C3%AD">Konferenční</a></li>
                 <li><a href="stale-instalace.html?f=Kina%20%C2%B7%20sakr%C3%A1ln%C3%AD">Kina · sakrální</a></li>
               </ul>
+              <a class="megacol-cta" href="stale-instalace.html">Všechny instalace<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>
             </div>
             <div class="megacol">
-              <h5>Jak to děláme</h5>
+              <h5>Ze světa</h5>
+              <ul>
+                <li><a href="#">Zahraniční projekty</a></li>
+                <li><a href="#">Světové instalace</a></li>
+              </ul>
+              <h5 class="megacol-h5-2">Jak to děláme</h5>
               <ul>
                 <li><a href="instalace-co-resime.html">Co řešíme</a></li>
                 <li><a href="instalace-jak-to-delame.html">Fáze instalace</a></li>
               </ul>
             </div>
           </div>
-          <a class="megafeat" href="instalace-hd-karlin-schema.html">
-            <div class="megafeat-img"><img src="assets/projekty/karlin/zvukar-foh.jpg" alt="" /></div>
-            <div class="megafeat-meta"><ui-tag>INSTALACE</ui-tag><strong>Hudební divadlo Karlín</strong><span class="megafeat-go">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></div>
+          <a class="megafeat" href="live-rammstein.html">
+            <div class="megafeat-img"><img src="assets/projekty/rammstein/stadion-plameny.jpg" alt="" /></div>
+            <div class="megafeat-meta"><ui-tag>REFERENCE</ui-tag><strong>Rammstein — Europe Stadium Tour</strong><span class="btn btn-ghost btn-sm">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></div>
           </a>
         </div></div>
       </div>
@@ -88,6 +101,11 @@
       <a class="nav-link" data-nav-item="Značky" href="znacky.html">Značky</a>
       <!-- ŠKOLENÍ -->
       <a class="nav-link" data-nav-item="Školení" href="#">Školení</a>
+      <!-- NOVINKY -->
+      <a class="nav-link" data-nav-item="Novinky" href="novinky.html">Novinky</a>
+      <!-- SECOND HAND -->
+      <a class="nav-link" data-nav-item="Second Hand" href="second-hand.html">Second Hand</a>
+
       <!-- KONTAKT -->
       <a class="nav-link" data-nav-item="Kontakt" href="kontakt.html">Kontakt</a>
 
@@ -97,7 +115,7 @@
     <ui-lang-switch class="desk" langs="CZ|EN" active="CZ"></ui-lang-switch>
 
     <!-- CTA — desktop + mobil -->
-    <ui-button class="desk" variant="primary" href="kontakt.html">Probrat projekt →</ui-button>
+    <ui-button class="desk" variant="primary" size="sm" href="kontakt.html">Probrat projekt →</ui-button>
     <a class="btn btn-primary nav-cta-mob" href="kontakt.html" aria-label="Probrat projekt">Probrat projekt<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>
 
     <!-- hamburger (skrytý, FAB je primární trigger) -->
@@ -113,7 +131,7 @@
 </button>
 
 <script src="ui-icons.js?v=6"></script>
-<script src="ui-components.js?v=26"></script>
+<script src="ui-components.js?v=27"></script>
 <script>/* náhled: zapojit outline-glow a chování bez loaderu */
 document.querySelectorAll(".btn,.outline-glow,.megafeat,.foot-col a,.ui-card").forEach(function(el){el.addEventListener("pointermove",function(e){var r=el.getBoundingClientRect();el.style.setProperty("--mx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");el.style.setProperty("--my",((e.clientY-r.top)/r.height*100).toFixed(1)+"%");});});</script>
 </body>

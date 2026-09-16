@@ -20,7 +20,7 @@
     var DESCS = [
       ["Co řešíte", "Vyberte situaci, ne produkt. Každá cesta vede k relevantním referencím a řešení na míru."],
       ["Technologie", "Imerzivní zvuk a virtuální akustika světové úrovně — a know-how, jak je správně nasadit."],
-      ["Vybrané projekty", "Od stadionových turné po stálé instalace v divadlech a arénách. Výběr z toho, co jsme rozsvítili a ozvučili."],
+      ["Vybrané projekty", "Od stadionových turné po instalace v divadlech a arénách. Výběr z toho, co jsme rozsvítili a ozvučili."],
       ["Showreel", "Pár vteřin atmosféry z koncertů, festivalů a instalací. Posuňte se karuselem."],
       ["Zastupujeme", "Výhradní distribuce světové špičky pro ČR a SK — značky, kterým rozumíme do hloubky."],
       ["Partner Program", "Síť produkčních a rentalových partnerů, kteří staví na našich systémech."],
@@ -129,7 +129,7 @@
 
     /* ---- scroll parallax: jemné vrstvení ---- */
     var layers = [];
-    document.querySelectorAll(".feature-media, .workcard img, .statement .bg img, .reel .clip img, .cshero .bg img, .csgal img, .seghero .bg img, .listhead .bg img, .solrow .media img").forEach(function (el) {
+    document.querySelectorAll(".feature-media, .workcard img, .statement .bg img, .reel .clip img, .cshead .bg img, .csgal img, .seghero .bg img, .listhead .bg img, .solrow .media img").forEach(function (el) {
       var depth = el.closest(".statement") ? 0.06 : 0.04;
       layers.push({ el: el, d: depth });
     });
@@ -179,3 +179,48 @@
 
 /* Obrysová čísla sekcí jsou dekorace — skryj je čtečkám (a11y). */
 document.querySelectorAll(".sec-head .idx,.idx").forEach(function(e){e.setAttribute("aria-hidden","true")});
+
+/* ===== LIGHTBOX pro galerie ([data-lightbox] kolem odkazů s href na fotku) =====
+   Ovládání: klik na náhled · šipky/klávesy ←→ · Esc nebo klik na pozadí zavře. */
+(function () {
+  "use strict";
+  var gals = [].slice.call(document.querySelectorAll("[data-lightbox]"));
+  if (!gals.length) return;
+  var box = document.createElement("div");
+  box.className = "lbox";
+  box.innerHTML = '<img alt="" />' +
+    '<button class="lbox-btn lbox-prev" aria-label="Předchozí"><ui-icon name="ui-arrow-left" aria-hidden="true"></ui-icon></button>' +
+    '<button class="lbox-btn lbox-next" aria-label="Další"><ui-icon name="ui-chevron-right" aria-hidden="true"></ui-icon></button>' +
+    '<button class="lbox-btn lbox-close" aria-label="Zavřít"><ui-icon name="ui-close" aria-hidden="true"></ui-icon></button>' +
+    '<div class="lbox-count"></div>';
+  document.body.appendChild(box);
+  var im = box.querySelector("img"), cnt = box.querySelector(".lbox-count");
+  var list = [], i = 0;
+
+  function show(n) {
+    i = (n + list.length) % list.length;
+    im.src = list[i];
+    cnt.textContent = (i + 1) + " / " + list.length;
+  }
+  function open(items, n) { list = items; box.classList.add("open"); show(n); }
+  function close() { box.classList.remove("open"); im.removeAttribute("src"); }
+
+  gals.forEach(function (g) {
+    var links = [].slice.call(g.querySelectorAll("a[href]"));
+    var srcs = links.map(function (a) { return a.getAttribute("href"); });
+    links.forEach(function (a, n) {
+      a.addEventListener("click", function (e) { e.preventDefault(); open(srcs, n); });
+    });
+  });
+
+  box.querySelector(".lbox-prev").addEventListener("click", function (e) { e.stopPropagation(); show(i - 1); });
+  box.querySelector(".lbox-next").addEventListener("click", function (e) { e.stopPropagation(); show(i + 1); });
+  box.querySelector(".lbox-close").addEventListener("click", close);
+  box.addEventListener("click", function (e) { if (e.target === box) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (!box.classList.contains("open")) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowLeft") show(i - 1);
+    else if (e.key === "ArrowRight") show(i + 1);
+  });
+})();

@@ -21,11 +21,11 @@
     connectedCallback() {
       if (this.__b) return;
       var variant = attr(this, "variant", "primary");   // primary | ghost | link
-      var size = attr(this, "size", "md");              // md | lg
+      var size = attr(this, "size", "md");              // sm | md | lg
       var href = this.getAttribute("href");
       var icon = attr(this, "icon", "");
       var label = this.textContent.trim();
-      var cls = "btn btn-" + variant + (size === "lg" ? " btn-lg" : "");
+      var cls = "btn btn-" + variant + (size === "lg" ? " btn-lg" : size === "sm" ? " btn-sm" : "");
       var tag = href ? "a" : "button";
       var node = document.createElement(tag);
       node.className = cls;
@@ -287,7 +287,7 @@
   }
 
   /* ================= ui-inst-card =================
-     Karta do výpisu Stálé instalace. Tady rozhoduje prostor a parametry
+     Karta do výpisu Instalace. Tady rozhoduje prostor a parametry
      systému → foto nahoře, pod ním katalogový panel se specifikací.
 
        <ui-inst-card title="Hudební divadlo Karlín" cat="Divadla & sály"
