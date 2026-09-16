@@ -2,7 +2,8 @@
    Jediné místo, kde se nabídka edituje. Pořadí = pořadí ve výpisu.
    { n: název, brand, stav, cena, note: krátký popis, img, url } */
 window.PM_SECONDHAND = [
-{n:"RF Venue COMBINE4™",brand:"RF Venue",stav:"Nové, nerozbalené, se zárukou",cena:"12 000 Kč bez DPH /ks",note:"Dva kusy skladem.",img:"assets/secondhand/produkt-001-rf-venue-combine4.jpg",url:"https://promusic.cz/rf-venue-combine4tm-2040"},
+{n:"RF Venue COMBINE4™",slug:"rf-venue-combine4",brand:"RF Venue",stav:"Nové, nerozbalené, se zárukou",cena:"12 000 Kč bez DPH /ks",note:"Dva kusy skladem.",img:"assets/secondhand/produkt-001-rf-venue-combine4.jpg",url:"https://promusic.cz/rf-venue-combine4tm-2040"},
+{n:"Audio-Technica AT-LP140XP",slug:"at-lp140xp",brand:"Audio-Technica",stav:"Nové, nerozbalené, se zárukou",cena:"5 800 Kč bez DPH /ks",note:"Skladem: 2× stříbrný, 1× černý.",img:"assets/secondhand/produkt-016-audio-technica-at-lp140xp.jpg",url:"https://promusic.cz/audio-technica-lp140xp-2055"},
 {n:"RF Venue COMBINE8™",brand:"RF Venue",stav:"Nové, nerozbalené, se zárukou",cena:"31 000 Kč bez DPH",note:"Jeden kus skladem.",img:"assets/secondhand/produkt-002-rf-venue-combine8.jpg",url:"https://promusic.cz/rf-venue-combine8tm-2039"},
 {n:"Audio-Technica ATH-SQ1TW",brand:"Audio-Technica",stav:"Nové, nerozbalené, se zárukou",cena:"950 Kč bez DPH /ks",note:"Skladem 7 ks bílých a 5 ks černých.",img:"assets/secondhand/produkt-003-audio-technica-ath-sq1tw.jpg",url:"https://promusic.cz/audio-technica-ath-sq1tw-2041"},
 {n:"B-stock: Audio-Technica PRO7X",brand:"Audio-Technica",stav:"Demo, se zárukou",cena:"na dotaz",note:"",img:"assets/secondhand/produkt-004-b-stock-audio-technica-pro7x.jpg",url:"https://promusic.cz/b-stock-audio-technica-pro7x-1705"},
@@ -17,7 +18,6 @@ window.PM_SECONDHAND = [
 {n:"APEX Argos",brand:"APEX",stav:"",cena:"5 000,– Kč bez DPH",note:"APEX Argos Audio Leveler",img:"assets/secondhand/produkt-013-apex-argos.jpg",url:"https://promusic.cz/apex-argos-1921"},
 {n:"APEX Hera",brand:"APEX",stav:"",cena:"5 000,– Kč bez DPH",note:"APEX Hera Class 2 Sound Level Meter",img:"assets/secondhand/produkt-014-apex-hera.jpg",url:"https://promusic.cz/apex-hera-1922"},
 {n:"AT899cW",brand:"Audio-Technica",stav:"Nové, nerozbalené, se zárukou",cena:"2 200 Kč bez DPH /ks",note:"Jeden kus skladem.",img:"assets/secondhand/produkt-015-at899cw.jpg",url:"https://promusic.cz/at899cw-2052"},
-{n:"Audio-Technica AT-LP140XP",brand:"Audio-Technica",stav:"Nové, nerozbalené, se zárukou",cena:"5 800 Kč bez DPH /ks",note:"Skladem: 2× stříbrný, 1× černý.",img:"assets/secondhand/produkt-016-audio-technica-at-lp140xp.jpg",url:"https://promusic.cz/audio-technica-lp140xp-2055"},
 {n:"Audio-Technica AT8449",brand:"Audio-Technica",stav:"Nové, nerozbalené, se zárukou",cena:"1 100 Kč bez DPH /ks",note:"Dva kusy skladem.",img:"assets/secondhand/produkt-017-audio-technica-at8449.jpg",url:"https://promusic.cz/audio-technica-at8449-2066"},
 {n:"Audio-Technica AT8491U",brand:"Audio-Technica",stav:"Nové, nerozbalené, se zárukou",cena:"600 Kč bez DPH /ks",note:"Dva kusy skladem. Unimount univerzální klipsový držák.",img:"assets/secondhand/produkt-018-audio-technica-at8491u.jpg",url:"https://promusic.cz/audio-technica-at8491u-2072"},
 {n:"Audio-Technica AT8491W",brand:"Audio-Technica",stav:"Používaný demo kus, bez původního balení",cena:"na dotaz",note:"",img:"assets/secondhand/produkt-019-audio-technica-at8491w.jpg",url:"https://promusic.cz/audio-technica-at8491w-1977"},

@@ -192,24 +192,39 @@ document.querySelectorAll(".sec-head .idx,.idx").forEach(function(e){e.setAttrib
     '<button class="lbox-btn lbox-prev" aria-label="Předchozí"><ui-icon name="ui-arrow-left" aria-hidden="true"></ui-icon></button>' +
     '<button class="lbox-btn lbox-next" aria-label="Další"><ui-icon name="ui-chevron-right" aria-hidden="true"></ui-icon></button>' +
     '<button class="lbox-btn lbox-close" aria-label="Zavřít"><ui-icon name="ui-close" aria-hidden="true"></ui-icon></button>' +
-    '<div class="lbox-count"></div>';
+    '<div class="lbox-count"></div>' +
+    '<div class="lbox-cap"></div>';
   document.body.appendChild(box);
-  var im = box.querySelector("img"), cnt = box.querySelector(".lbox-count");
-  var list = [], i = 0;
+  var im = box.querySelector("img"), cnt = box.querySelector(".lbox-count"), cap = box.querySelector(".lbox-cap");
+  var list = [], caps = [], i = 0;
 
   function show(n) {
     i = (n + list.length) % list.length;
     im.src = list[i];
+    im.alt = caps[i] || "";
+    cap.textContent = caps[i] || "";
     cnt.textContent = (i + 1) + " / " + list.length;
   }
-  function open(items, n) { list = items; box.classList.add("open"); show(n); }
+  function open(items, n, texts) { list = items; caps = texts || []; box.classList.add("open"); show(n); }
   function close() { box.classList.remove("open"); im.removeAttribute("src"); }
 
+  /* zdroj fotky: href odkazu, a když je href jen "#" (mozaiky case studies),
+     vezme se src náhledu uvnitř — galerie tak nemusí adresu duplikovat */
+  function srcOf(a) {
+    var h = a.getAttribute("href");
+    if (h && h !== "#" && h.charAt(0) !== "#") return h;
+    var im = a.querySelector("img");
+    return im ? im.getAttribute("src") : null;
+  }
   gals.forEach(function (g) {
-    var links = [].slice.call(g.querySelectorAll("a[href]"));
-    var srcs = links.map(function (a) { return a.getAttribute("href"); });
+    var links = [].slice.call(g.querySelectorAll("a")).filter(srcOf);
+    var srcs = links.map(srcOf);
+    var caps = links.map(function (a) {
+      var c = a.querySelector(".cap"), im = a.querySelector("img");
+      return (c && c.textContent) || (im && im.getAttribute("alt")) || "";
+    });
     links.forEach(function (a, n) {
-      a.addEventListener("click", function (e) { e.preventDefault(); open(srcs, n); });
+      a.addEventListener("click", function (e) { e.preventDefault(); open(srcs, n, caps); });
     });
   });
 

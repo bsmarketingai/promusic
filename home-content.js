@@ -36,10 +36,17 @@
   ];
 
   /* dlaždice značek — stejný vzor jako stránka Značky (logo na bílé plotně) */
+  /* vlajkové značky — stejné karty jako na stránce Značky */
+  const flagships = [
+    { href: "znacka-l-acoustics.html", photo: "l-acoustics.png", logo: "l-acoustics.png", alt: "Stadionová produkce ozvučená systémem L-Acoustics", n: "L-Acoustics",
+      d: 'Ozvučovací systémy světové třídy. Imerzivní <strong>L-ISA</strong> a virtuální akustika <strong>Ambiance</strong> — světová premiéra proběhla v Plzni.' },
+    { href: "live-a-turne.html?znacka=digico", photo: "digico.png", logo: "digico.png", alt: "FOH pozice s konzolí DiGiCo na koncertu", n: "DiGiCo",
+      d: 'Mixážní konzole pro nejnáročnější produkce a divadla. Řada <strong>Quantum</strong> s divadelním softwarem, scénami a redundancí.' },
+    { href: "live-a-turne.html?znacka=ayrton", photo: "ayrton.png", logo: "ayrton.png", sq: true, alt: "Světelný rig Ayrton na stadionovém koncertu", n: "Ayrton",
+      d: 'Chytrá LED svítidla nejvyšší třídy — <strong>Domino, Cobra, Perseo</strong>. Rig pro turné Eda Sheerana i arény.' }
+  ];
+
   const logos = [
-    { f: "l-acoustics.png", n: "L-Acoustics", w: "ozvučovací systémy, L-ISA, Ambiance", star: true },
-    { f: "digico.jpg", n: "DiGiCo", w: "mixážní pulty SD a Quantum", star: true },
-    { f: "ayrton.png", n: "Ayrton", w: "LED světla a movingheady", star: true },
     { f: "chamsys.jpg", n: "ChamSys", w: "osvětlovací pulty MagicQ" },
     { f: "audio-technica.jpg", n: "Audio-Technica", w: "mikrofony a bezdrátové systémy" },
     { f: "luminex.png", n: "Luminex", w: "síťové switche GigaCore" },
@@ -55,7 +62,19 @@
     [P + "ed-sheeran/ohnostroj.jpg", "Pyro · Cardiff"],
   ];
 
-  const refTiles = [
+  const mainPartners = [
+  ["High Lite Touring", "01-high-lite-touring-s-r-o.png"],
+  ["T-Servis", "02-t-servis.jpg"],
+  ["Pink Panther Agency", "03-pink-panther-agency.gif"],
+  ["Laser Live", "04-laser-live.jpg"],
+  ["Ministry", "05-ministry.gif"],
+  ["EVENTSUPPORT", "06-eventsupport-s-r-o.png"],
+  ["JESA Sound & Light Equipment", "07-jesa-sound-light-equipment.png"],
+  ["Start Production", "09-start-production.png"],
+  ["Česká televize", "18-ceska-televize.png"],
+  ["Forum Karlín", "32-forum-karlin.jpg"]
+];
+const refTiles = [
     [P + "djkt-plzen/sal-pohled.jpg", "DJKT PLZEŇ", "DIVADLO", "divadlo"],
     [P + "steel-arena/projekce-barvy.jpg", "STEEL ARÉNA", "ARÉNA", "arena"],
     [P + "ed-sheeran/stage-modra.jpg", "EUROVIZE '24", "TV / BROADCAST", "tv"],
@@ -141,20 +160,20 @@
         <div class="chips"><span class="chip chip-accent">L-ISA hyperreal</span><span class="chip chip-accent">Ambiance</span><span class="chip chip-accent">SoundVision 3D</span><span class="chip chip-accent">Smaart měření</span></div>
         <div class="cta-actions" style="margin-top:26px"><ui-button variant="primary" href="instalace-hd-karlin-schema.html">Prohlédnout realizaci HD Karlín →</ui-button></div>
       </div>
-      <div class="feature-media"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><span class="ov-logo">L-ACOUSTICS</span></div>
+      <div class="feature-media"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /></div>
     </div>
   </div></section>
 
-  <!-- 03 VYBRANÉ PROJEKTY -->
+  <!-- 03 VYBRANÉ REFERENCE -->
   <section class="sec reveal"><div class="wrap-wide">
-    <div class="sec-head"><span class="idx">03</span><h2>Vybrané projekty</h2><span class="rule"></span></div>
+    <div class="sec-head"><span class="idx">03</span><h2>Vybrané reference</h2><span class="rule"></span></div>
     <div class="work" data-stagger>
-      <a class="workcard col-7" href="live-ed-sheeran.html"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /><div class="ov"><ui-tag solid>Turné / Světla</ui-tag><h3>Ed Sheeran — Mathematics Tour</h3><span class="wmeta">Ayrton rig · stadiony Evropy</span></div></a>
-      <a class="workcard col-5" href="live-rammstein.html"><img src="${P}rammstein/stadion-plameny.jpg" alt="" /><div class="ov"><ui-tag solid>Turné / Zvuk</ui-tag><h3>Rammstein — Europe Stadium Tour</h3><span class="wmeta">L-Acoustics K series · 17 zemí</span></div></a>
-      <a class="workcard col-6" href="instalace-hd-karlin-schema.html"><img src="${P}karlin/zvukar-foh.jpg" alt="" /><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Hudební divadlo Karlín</h3><span class="wmeta">DiGiCo Quantum 7T · muzikál</span></div></a>
-      <a class="workcard col-6" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><div class="ov"><ui-tag solid>Instalace / Zvuk</ui-tag><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
+      <a class="workcard col-7" href="live-ed-sheeran.html"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /><ui-tag class="wtag" solid>Turné / Světla</ui-tag><div class="ov"><h3>Ed Sheeran — Mathematics Tour</h3><span class="wmeta">Ayrton rig · stadiony Evropy</span></div></a>
+      <a class="workcard col-5" href="live-rammstein.html"><img src="${P}rammstein/stadion-plameny.jpg" alt="" /><ui-tag class="wtag" solid>Turné / Zvuk</ui-tag><div class="ov"><h3>Rammstein — Europe Stadium Tour</h3><span class="wmeta">L-Acoustics K series · 17 zemí</span></div></a>
+      <a class="workcard col-6" href="instalace-hd-karlin-schema.html"><img src="${P}karlin/zvukar-foh.jpg" alt="" /><ui-tag class="wtag" solid>Instalace / Zvuk</ui-tag><div class="ov"><h3>Hudební divadlo Karlín</h3><span class="wmeta">DiGiCo Quantum 7T · muzikál</span></div></a>
+      <a class="workcard col-6" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><ui-tag class="wtag" solid>Instalace / Zvuk</ui-tag><div class="ov"><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
     </div>
-    <div class="cta-actions" style="justify-content:center;margin-top:34px"><ui-button variant="ghost" href="live-a-turne.html">Live &amp; turné →</ui-button><ui-button variant="ghost" href="stale-instalace.html">Stálé instalace →</ui-button></div>
+    <div class="cta-actions" style="justify-content:flex-end;margin-top:34px"><ui-button variant="primary" href="reference.html">Všechny reference →</ui-button><ui-button variant="ghost" href="live-a-turne.html">Live &amp; turné →</ui-button><ui-button variant="ghost" href="stale-instalace.html">Instalace →</ui-button></div>
   </div></section>
 
   <!-- STATEMENT -->
@@ -180,43 +199,37 @@
   <!-- 05 ZNAČKY -->
   <section class="sec band wave-band reveal"><div class="wrap">
     <div class="sec-head"><span class="idx">05</span><h2>Zastupujeme světovou špičku</h2><span class="rule"></span></div>
-    <div class="brgrid" data-stagger>
+    <div class="flagships" data-stagger>
+      ${flagships.map(b => `<a class="flagship" href="${b.href}">
+        <div class="fmedia"><span class="chip chip-accent fbadge">Výhradní distribuce</span><img src="assets/brands/photo/${b.photo}" alt="${b.alt}" loading="lazy" decoding="async"/><div class="logo"><img${b.sq ? ' class="sq"' : ''} src="assets/brand/logos/${b.logo}" alt="${b.n}" /></div></div>
+        <p>${b.d}</p>
+        <span class="btn btn-ghost btn-sm">Zobrazit více<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span>
+      </a>`).join("")}
+    </div>
+    <div class="brgrid brgrid-row" data-stagger style="margin-top:clamp(24px,3vw,38px)">
       ${logos.map(b => `<div class="brcell"><span class="blogo"><img src="assets/brands/${b.f}" alt="${b.n}" loading="lazy" decoding="async"/></span><span class="btext"><span class="bname">${b.n}${b.star ? '<span class="st">★</span>' : ''}</span><span class="bwhat">${b.w}</span></span></div>`).join("")}
     </div>
-    <div class="cta-actions" style="justify-content:flex-end;margin-top:26px"><ui-button variant="ghost" size="sm" href="znacky.html">Všechny značky →</ui-button></div>
+    <div class="cta-actions" style="justify-content:flex-end;margin-top:26px"><ui-button variant="ghost" href="znacky.html">Všechny značky →</ui-button></div>
     <p class="muted mono" style="font-size:var(--pm-text-xs);margin-top:14px">★ vlajkové značky — výhradní distribuce pro ČR/SK</p>
   </div></section>
 
   <!-- 06 PARTNER PROGRAM -->
-  <section class="sec reveal"><div class="wrap">
+  <section class="sec sec-wave-end reveal"><div class="wrap">
     <div class="sec-head"><span class="idx">06</span><h2>Professional Partner Program</h2><span class="rule"></span></div>
-    <p class="lead" style="margin:-18px 0 30px">Partneři a produkční firmy, kteří staví na našich systémech.</p>
-    <div class="partners" data-stagger>${Array.from({ length: 10 }).map(() => `<div class="pcell">logo partnera</div>`).join("")}</div>
+    <p class="lead" style="margin:-18px 0 30px">Partneři a produkční firmy, kteří staví na našich systémech. U certifikovaných rentalů víte, že systém obsluhuje vyškolený tým.</p>
+    <div class="partners" data-stagger>${mainPartners.map(([n, f]) => `<a class="pcell pcell-logo" href="o-spolecnosti-partneri.html" title="${n}"><img src="assets/partneri/${f}" alt="${n}" loading="lazy" decoding="async"/></a>`).join("")}</div>
+    <div class="cta-actions" style="justify-content:flex-end"><a class="btn btn-ghost" href="o-spolecnosti-partneri.html">Všichni partneři<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a></div>
   </div></section>
 
-  <!-- 07 REFERENCE -->
-  <section class="sec band wave-band reveal"><div class="wrap-wide">
-    <div class="sec-head"><span class="idx">07</span><h2>Reference</h2><span class="rule"></span></div>
-    <ui-stats compact><ui-stat n="40" u="+">divadel & scén</ui-stat><ui-stat n="25">arén & hal</ui-stat><ui-stat n="∞">festivalů & turné</ui-stat><ui-stat n="3" u="×">L-ISA v ČR</ui-stat></ui-stats>
-    <div class="reffilter">${[["Vše","vse"],["Divadla","divadlo"],["Arény & stadiony","arena"],["TV & broadcast","tv"],["Školy & veřejný sektor","skoly"],["Festivaly","festival"]].map((f, i) => `<button class="chip chip-filter${i === 0 ? " is-active" : ""}" data-cat="${f[1]}">${f[0]}</button>`).join("")}</div>
-    <div class="reffeat" data-stagger>
-      ${refTiles.map(([img, logo, typ, cat]) => `<a class="reftile" href="#" data-cat="${cat}"><img src="${img}" alt="" /><ui-tag solid>${typ}</ui-tag><span class="reftile-logo">${logo}</span></a>`).join("")}
-    </div>
-    <div class="reflogos">${refNames.map(n => `<div class="refcell">${n}</div>`).join("")}<div class="refcell more">+ další</div></div>
-  </div></section>
-
-  <!-- 08 ACADEMY -->
-  <section class="sec reveal"><div class="wrap">
-    <div class="sec-head"><span class="idx">08</span><h2>Proč školení v PRO MUSIC Academy</h2><span class="rule"></span></div>
+  <!-- 07 ACADEMY -->
+  <section class="sec sec-wave-end reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">07</span><h2>Proč školení v PRO MUSIC Academy</h2><span class="rule"></span></div>
     <div class="acad3" data-stagger>
       <div class="acard"><div class="anum">01</div><strong>Oficiální tréninky</strong><p>Přímo od distributora — certifikace L-Acoustics, DiGiCo, Smaart workshopy.</p></div>
       <div class="acard"><div class="anum">02</div><strong>Praxe na špičkové technice</strong><p>Učíte se na systémech, které pak potkáte na zakázkách a turné.</p></div>
       <div class="acard"><div class="anum">03</div><strong>Posun v kariéře</strong><p>Certifikát a know-how, které vás posune mezi profíky v oboru.</p></div>
     </div>
-    <div class="acad-info">
-      <div><div class="k">Pro koho</div><div class="chips">${["zvukaři FOH/monitor", "light designeři", "AV integrátoři", "divadelní technici", "produkční", "studenti"].map(c => `<span class="chip">${c}</span>`).join("")}</div></div>
-      <div><div class="k">Jak to funguje</div><p class="lead" style="font-size:var(--pm-text-sm)">Jarní a podzimní bloky · Trutnov + Home of AV Voděrádky · úrovně začátečník → pokročilý · možnost dotace (ÚP / ESF) a firemního vzdělávání.</p></div>
-    </div>
+    <div class="cta-actions" style="margin-top:clamp(26px,3vw,40px)"><ui-button variant="primary" size="lg" href="skoleni.html">Přihlásit na školení →</ui-button><ui-button variant="ghost" size="lg" href="skoleni.html#skoleni-lacoustics">Přehled školení</ui-button></div>
   </div></section>
 
   <!-- ASSURE + CTA -->

@@ -29,9 +29,10 @@ Stávající web klienta: https://promusic.cz/
 ## Stav — co chybí
 1. **Case study HD Karlín** v plné podobě (dnes existuje jen `instalace-hd-karlin-schema.html` se schématem).
 2. **Steel Aréna Košice** a **DJKT Plzeň** — case studies zatím nejsou, na homepage vedou na `#`.
-3. **Stránka Academy / školení**, servis. (Novinky hotové: 89 článků z podkladu klienta ve `news-index.js` / `news-bodies.js`.)
-4. **EN mutace** obsahu.
-5. Self-hostované fonty + vektorové logo pro produkci.
+3. Detail produktu existuje pro 2 položky (`produkt.html?p=rf-venue-combine4`, `?p=at-lp140xp`) — ostatní karty vedou na první detail.
+4. **Academy**: přihláška hotová (`skoleni.html`) — chybí obsah kurzů (popisy, délka, cena, místo), texty FAQ a kontakt na koordinátora. Servis zatím není. (Novinky hotové: 89 článků z podkladu klienta ve `news-index.js` / `news-bodies.js`.)
+5. **EN mutace** obsahu.
+6. Self-hostované fonty + vektorové logo pro produkci.
 
 ## Terminologie (potvrzeno klientem)
 - **Live & turné** = dočasné nasazení techniky na akci (turné, koncerty, festivaly, TV, eventy). Dřív se sekce jmenovala „Realizace".

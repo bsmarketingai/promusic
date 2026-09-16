@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PRO MUSIC — Partneři</title>
 <script src="ui-theme.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=14" />
-<link rel="stylesheet" href="ui.css?v=137" />
+<script src="ui-mode.js?v=2"></script>
+<link rel="stylesheet" href="styles.css?v=16" />
+<link rel="stylesheet" href="ui.css?v=229" />
 </head>
 <body data-nav="O společnosti" class="dir-b">
 <div id="app">
@@ -17,51 +18,48 @@
     <div class="wrap-wide">
       <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><a href="o-spolecnosti-kdo-jsme.html">O společnosti</a><span class="sep">/</span><span class="cur">Partneři</span></nav>
       <h1>Partneři</h1>
-      <p class="lead">Produkty firem <a href="znacka-l-acoustics.html">L-Acoustics</a>, <a href="znacky.html">DiGiCo</a> a dalších pečlivě vybraných značek z našeho portfolia představují světovou špičku profesionálního entertainment vybavení. A protože si velmi vážíme našich zákazníků, připravili jsme PRO MUSIC Professional Partner program. Naším cílem je prezentovat a podporovat naše významné partnery, kteří využívají ozvučovací a osvětlovací systémy nejvyšší kvality, a rozvíjet spolupráci při zajišťování produkcí.</p>
-      <div class="cta-actions" style="margin-top:26px"><ui-button variant="primary" size="sm" href="kontakt.html">Probrat spolupráci →</ui-button><ui-button variant="ghost" size="sm" href="znacky.html">Značky</ui-button></div>
+      <p class="lead">Naši techniku používají přední české a slovenské rentaly, produkční firmy, divadla, kluby i festivaly. Partnerský program PRO MUSIC Professional Partner je tu proto, abychom je podpořili — a aby pořadatel našel dodavatele se systémy <a href="znacka-l-acoustics.html">L-Acoustics</a> a <a href="znacky.html">DiGiCo</a>.</p>
+      <div class="stats" style="--stat-cols:3;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:30px;max-width:640px">
+        <div class="stat"><div class="n">62</div><div class="l">partnerů</div></div>
+        <div class="stat"><div class="n">40</div><div class="l">s L-Acoustics</div></div>
+        <div class="stat"><div class="n">37</div><div class="l">s DiGiCo</div></div>
+      </div>
+      <div class="cta-actions" style="margin-top:26px"><ui-button variant="primary" href="kontakt.html">Probrat spolupráci →</ui-button><ui-button variant="ghost" href="znacky.html">Značky</ui-button></div>
     </div>
   </header>
 
-  <!-- 01 PARTNEŘI -->
+  <!-- 01 CERTIFIKOVANÍ PARTNEŘI -->
   <section class="sec reveal"><div class="wrap">
-    <div class="sec-head"><span class="idx">01</span><h2>PRO MUSIC Professional Partner</h2><span class="rule"></span></div>
-    <div class="shlist" id="plist"></div>
+    <div class="sec-head"><span class="idx">01</span><h2>Certifikovaní L-Acoustics partneři</h2><span class="rule"></span></div>
+    <p class="sec-lead" style="max-width:62ch;margin:0 0 26px">Firmy s vlastními certifikovanými systémy L-Acoustics — u každé uvádíme řady, které má k dispozici.</p>
+    <div class="pcert-grid" id="pcert"></div>
+  </div></section>
+
+  <!-- 02 VŠICHNI PARTNEŘI -->
+  <section class="sec reveal"><div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>Přehled partnerů</h2><span class="rule"></span></div>
+    <div class="pbar">
+      <div class="prow" id="pfilter"></div>
+      <div class="prow" id="pbrands"></div>
+      <div class="prow"><span class="pcount" id="pcount"></span></div>
+    </div>
+    <div id="pgrids"></div>
+    <p class="pnote">Pozn. pro produkci: loga jsou převzatá ze stávajícího webu v nízkém rozlišení (max. 220 px). Před spuštěním vyžádat od partnerů vektorová loga (SVG). Rozdělení na rentaly a venues je návrh — ověřit s klientem.</p>
   </div></section>
 
   <!-- CTA -->
   <section class="sec reveal"><div class="wrap">
     <div class="segcontact">
-      <div class="who">Používáte naše systémy a chcete být součástí programu? <b>Napište nám</b> — probereme podmínky i možnosti spolupráce na produkcích.</div>
-      <div class="cta-actions" style="margin:0"><ui-button variant="primary" size="lg" href="kontakt.html">Probrat spolupráci →</ui-button><ui-button variant="ghost" size="lg" href="mailto:info@promusic.cz">info@promusic.cz</ui-button></div>
+      <div class="who">Používáte naše systémy a chcete být součástí programu? Nebo hledáte dodavatele s technikou L-Acoustics či DiGiCo? <b>Napište nám</b> — doporučíme partnera i probereme podmínky spolupráce.</div>
+      <div class="cta-actions" style="margin:0"><ui-button variant="primary" size="lg" href="kontakt.html">Kontaktujte nás →</ui-button><ui-button variant="ghost" size="lg" href="mailto:info@promusic.cz">info@promusic.cz</ui-button></div>
     </div>
   </div></section>
 
 </div>
 
+<script src="partneri-data.js?v=1"></script>
+<script src="partneri.js?v=1"></script>
 <script>
-/* Partneři — jediné místo, kde se seznam edituje.
-   { name, note, web, img } · prázdné pole → prázdný stav */
-window.PM_PARTNERS = [];
-</script>
-<script>
-(function(){
-  var root = document.getElementById("plist");
-  var items = window.PM_PARTNERS || [];
-  if(!items.length){
-    root.innerHTML = '<div class="shempty"><h4>Seznam partnerů připravujeme</h4>'
-      + '<p>Partnerský program právě rozšiřujeme. Máte-li zájem se zapojit, napište nám.</p>'
-      + '<div class="cta-actions" style="margin:18px 0 0"><ui-button variant="primary" size="sm" href="mailto:info@promusic.cz">Napsat nám →</ui-button></div></div>';
-    return;
-  }
-  root.innerHTML = items.map(function(it){
-    var tag = it.web ? 'a class="ui-card outline-glow" href="' + it.web + '" target="_blank" rel="noopener"' : 'div class="ui-card"';
-    return "<" + tag + ">"
-      + (it.img ? '<div class="shmedia"><img src="' + it.img + '" alt="" /></div>' : "")
-      + "<h4>" + it.name + "</h4>"
-      + (it.note ? "<p>" + it.note + "</p>" : "")
-      + (it.web ? "</a>" : "</div>");
-  }).join("");
-})();
 (function(){
   var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
   if(!reduce){
@@ -74,7 +72,8 @@ window.PM_PARTNERS = [];
 <script src="ui-icons.js?v=6"></script>
 <script src="ui-components.js?v=27"></script>
 <script src="ui-loader.js?v=41"></script>
-<script src="site.js?v=16"></script>
+<script src="site.js?v=17"></script>
+<script src="preview-bar.js?v=2"></script>
 <script src="page-transition.js?v=1"></script>
 </body>
 </html>

@@ -36,6 +36,20 @@
   --pm-accent-tint:   rgba(224,84,43,0.10);  /* jemné pozadí */
   --pm-accent-tint-2: rgba(224,84,43,0.20);
 
+
+  /* ===== LIGHT SCOPE NEUTRALS (light / duo režim; teplé, stejný vibe jako dark) ===== */
+  --pml-paper:     #ffffff;   /* pozadí světlé sekce */
+  --pml-deep:      #f2f2f3;   /* kontrastní pruh (.band) ve světlé sekci */
+  --pml-surface-1: #ffffff;   /* povrch karty */
+  --pml-surface-2: #f6f6f7;   /* zvednutý povrch */
+  --pml-surface-3: #ecedee;   /* hover */
+  --pml-ink-1:     #101113;   /* primární text */
+  --pml-ink-2:     #4b4d52;   /* sekundární */
+  --pml-ink-3:     #63666c;   /* tlumený (AA na surface) */
+  --pml-ink-4:     #a2a5ab;   /* disabled */
+  --pml-line:      rgba(16,17,19,0.12);
+  --pml-line-2:    rgba(16,17,19,0.24);
+
   /* ===== SÉMANTICKÉ ===== */
   --pm-success: #4fae6e;
   --pm-warning: #e0a52b;

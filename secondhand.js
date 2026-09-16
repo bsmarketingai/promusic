@@ -11,16 +11,33 @@
   }
   function data() { return window.PM_SECONDHAND || []; }
 
+  /* Stav produktu — volné texty z dat se mapují na pár filtrovatelných kategorií. */
+  var STAV_ORDER = ["Nové, nerozbalené", "Nové zboží", "Výprodej skladových zásob", "Demo, se zárukou", "Zánovní", "Použité"];
+  function stavCat(v) {
+    var t = String(v || "").toLowerCase();
+    if (!t) return "";
+    if (/demo|vystaven|zkoušen|vyzkoušen/.test(t)) return "Demo, se zárukou";
+    if (/výprodej/.test(t)) return "Výprodej skladových zásob";
+    if (/nerozbalen/.test(t)) return "Nové, nerozbalené";
+    if (/zánovní|perfektní|minimálně|krátce/.test(t)) return "Zánovní";
+    if (/použ/.test(t)) return "Použité";
+    if (/nov/.test(t)) return "Nové zboží";
+    return "";
+  }
+
+  window.PM_STAV_CAT = stavCat;
+
   function card(d) {
-    return '<a class="ncard shcard outline-glow" href="' + esc(d.url || "mailto:info@promusic.cz") + '"' + (d.url ? ' target="_blank" rel="noopener"' : "") + ">" +
-      '<div class="nmedia shmedia">' + (d.img
+    return '<a class="ncard shcard outline-glow" href="produkt.html?p=' + esc(d.slug || "rf-venue-combine4") + '">' +
+      '<div class="nmedia shmedia">' +
+        (stavCat(d.stav) ? '<span class="shflag">' + esc(stavCat(d.stav)) + "</span>" : "") +
+        (d.img
         ? '<img src="' + esc(d.img) + '" alt="' + esc(d.n) + '" loading="lazy" decoding="async" />'
         : '<span class="shnoimg mono">bez fotky</span>') + "</div>" +
       '<div class="nbody">' +
-        '<div class="nmeta">' + (d.stav ? '<span class="chip">' + esc(d.stav) + "</span>" : "") + "</div>" +
         "<h3>" + esc(d.n) + "</h3>" +
         (d.note ? "<p>" + esc(d.note) + "</p>" : "") +
-        '<div class="shprice mono">' + esc(d.cena || "na dotaz") + "</div>" +
+        '<div class="shprice">' + esc(d.cena || "na dotaz") + "</div>" +
         '<div class="ngo"><span class="btn btn-ghost btn-sm">Prohlédnout<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></div>' +
       "</div></a>";
   }
@@ -32,34 +49,64 @@
     all.forEach(function (d) { if (d.brand && brands.indexOf(d.brand) < 0) brands.push(d.brand); });
     brands.sort(function (a, b) { return a.localeCompare(b, "cs"); });
 
+    var stavy = STAV_ORDER.filter(function (c) {
+      return all.some(function (d) { return stavCat(d.stav) === c; });
+    });
+
     var q = new URLSearchParams(location.search);
     var fBr = brands.indexOf(q.get("b")) > -1 ? q.get("b") : "";
+    var fSt = stavy.indexOf(q.get("s")) > -1 ? q.get("s") : "";
     var page = Math.max(1, parseInt(q.get("p"), 10) || 1);
 
     root.innerHTML =
-      '<div class="nfilters"><div class="nfrow"><span class="nflabel mono">Značka</span>' +
-      '<div class="reffilter sh-br" role="group" aria-label="Filtr podle značky"></div></div></div>' +
+      '<div class="nfilters">' +
+      '<div class="nfrow"><span class="nflabel">Značka</span>' +
+      '<div class="nfwrap"><div class="reffilter sh-br" role="group" aria-label="Filtr podle značky"></div>' +
+      '<button type="button" class="nf-more" data-more="značky" aria-expanded="false">Všechny značky<ui-icon class="btn-ico" name="ui-caret-down" aria-hidden="true"></ui-icon></button></div></div>' +
+      '<div class="nfrow"><span class="nflabel">Stav</span>' +
+      '<div class="nfwrap"><div class="reffilter sh-st" role="group" aria-label="Filtr podle stavu"></div>' +
+      '<button type="button" class="nf-more" data-more="stavy" aria-expanded="false">Všechny stavy<ui-icon class="btn-ico" name="ui-caret-down" aria-hidden="true"></ui-icon></button></div></div></div>' +
       '<p class="plist-count mono"></p>' +
       '<div class="news shnews" data-stagger></div>' +
       '<nav class="pager" aria-label="Stránkování"></nav>';
 
-    var elBr = root.querySelector(".sh-br"), elC = root.querySelector(".plist-count"),
+    var elBr = root.querySelector(".sh-br"), elSt = root.querySelector(".sh-st"),
+        elC = root.querySelector(".plist-count"),
         elL = root.querySelector(".shnews"), elP = root.querySelector(".pager");
 
-    elBr.innerHTML = ['<button class="chip-filter" data-v="">Všechny</button>'].concat(
-      brands.map(function (v) { return '<button class="chip-filter" data-v="' + esc(v) + '">' + esc(v) + "</button>"; })
-    ).join("");
+    /* rozbalení jednořádkového filtru na malých displejích */
+    root.querySelectorAll(".nf-more").forEach(function (btn) {
+      var wrap = btn.closest(".nfwrap"), what = btn.getAttribute("data-more");
+      btn.addEventListener("click", function () {
+        var on = !wrap.classList.contains("is-open");
+        wrap.classList.toggle("is-open", on);
+        btn.setAttribute("aria-expanded", on ? "true" : "false");
+        btn.firstChild.nodeValue = (on ? "Skrýt " : "Všechny ") + what;
+      });
+    });
+
+    function chips(list) {
+      return ['<button class="chip-filter" data-v="">Všechny</button>'].concat(
+        list.map(function (v) { return '<button class="chip-filter" data-v="' + esc(v) + '">' + esc(v) + "</button>"; })
+      ).join("");
+    }
+    elBr.innerHTML = chips(brands);
+    elSt.innerHTML = chips(stavy);
 
     function render(scroll) {
-      var rows = all.filter(function (d) { return !fBr || d.brand === fBr; });
+      var rows = all.filter(function (d) {
+        return (!fBr || d.brand === fBr) && (!fSt || stavCat(d.stav) === fSt);
+      });
       var pages = Math.max(1, Math.ceil(rows.length / per));
       if (page > pages) page = pages;
       var from = (page - 1) * per, slice = rows.slice(from, from + per);
 
-      elBr.querySelectorAll(".chip-filter").forEach(function (b) {
-        var on = b.getAttribute("data-v") === fBr;
-        b.classList.toggle("is-active", on);
-        b.setAttribute("aria-pressed", on ? "true" : "false");
+      [[elBr, fBr], [elSt, fSt]].forEach(function (pair) {
+        pair[0].querySelectorAll(".chip-filter").forEach(function (b) {
+          var on = b.getAttribute("data-v") === pair[1];
+          b.classList.toggle("is-active", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
       });
 
       elC.textContent = rows.length
@@ -87,6 +134,7 @@
 
       var p2 = new URLSearchParams(location.search);
       fBr ? p2.set("b", fBr) : p2.delete("b");
+      fSt ? p2.set("s", fSt) : p2.delete("s");
       page > 1 ? p2.set("p", page) : p2.delete("p");
       history.replaceState(null, "", location.pathname + (p2.toString() ? "?" + p2 : "") + location.hash);
 
@@ -98,6 +146,10 @@
     elBr.addEventListener("click", function (e) {
       var b = e.target.closest(".chip-filter"); if (!b) return;
       fBr = b.getAttribute("data-v"); page = 1; render(true);
+    });
+    elSt.addEventListener("click", function (e) {
+      var b = e.target.closest(".chip-filter"); if (!b) return;
+      fSt = b.getAttribute("data-v"); page = 1; render(true);
     });
     elP.addEventListener("click", function (e) {
       var b = e.target.closest("[data-p]"); if (!b || b.disabled) return;

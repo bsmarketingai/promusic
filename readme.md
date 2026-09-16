@@ -20,8 +20,10 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `instalace-kulturni-domy-saly-divadla.html` | Segmentová landing — kulturní domy, sály, divadla |
 | `technologie-schema-ozvuceni.html` | Vysvětlovací stránka — schéma ozvučení |
 | `znacky.html` | Značky, které zastupujeme |
+| `skoleni.html` | PRO MUSIC Academy — přihláška na školení (výběrové karty, návaznosti, souhrn) |
 | `novinky.html` | Výpis novinek (filtr téma + značka, stránkování po 12) |
 | `novinka.html` | Detail novinky — `?a=<slug>`, text + foto/video |
+| `produkt.html` | Detail produktu Second Hand — `?p=<slug>`, varianty, stepper, přepínač tlačítka Koupit |
 | `design-system.html` | Živý přehled design systému (interní) |
 | `guidelines/*.html` | Specimen karty design systému (interní) |
 
@@ -36,6 +38,7 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | soubor | co to je |
 |---|---|
 | `ui-theme.js` | Nastaví téma před vykreslením (zabrání probliknutí) |
+| `ui-mode.js` | Režim podkladu **dark / light / duo** + varianta hlavičky (`data-mode`, `data-header` na `<html>`, localStorage). V duo režimu tagguje každou druhou plochou sekci classou `.pm-light`. |
 | `ui-components.js` | Web components: `ui-button`, `ui-input`, `ui-dropdown`, `ui-search`, `ui-chip`, `ui-tag`, `ui-card`, `ui-lang-switch`, `ui-live-card`, `ui-inst-card` |
 | `ui-icons.js` | Kurátorská sada 103 ikon + `<ui-icon>`. **Jediný povolený zdroj ikon.** |
 | `ui-loader.js` | Vkládá hlavičku / mobilní menu / patičku na každou stránku |
@@ -46,7 +49,10 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `listing.js` | Výpis projektů: chip filtrace (propisuje se do `?f=`), stránkování (`?p=`), render karet |
 | `news-index.js` | **Data novinek — metadata** (titulek, štítky, značka, perex, náhled). Zdroj pro výpis. |
 | `news-bodies.js` | **Data novinek — plné texty** (HTML + odkazy na videa). Načítá jen detail. |
+| `secondhand-data.js` · `secondhand.js` | Second Hand — data výpisu + render (filtr značky, stránkování). Karty vedou na `produkt.html` |
+| `produkt-data.js` · `produkt.js` | Second Hand — obsah detailů produktů + render detailu |
 | `news.js` | Novinky: render výpisu (`.nlist-root`, `?f=` téma, `?b=` značka, `?p=`) a detailu (`.nart-root`) |
+| `skoleni.js` | Data kurzů Academy + logika přihlášky (výběr, předpoklady, souhrn, validace) |
 | `karlin-schema.js` | Interaktivní schéma ozvučení (Karlín) |
 | `page-transition.js` | Přechod mezi stránkami — „pódiové světlo" |
 
@@ -82,7 +88,7 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 - **Emoji:** nepoužívat. Akcentní glyfy: ★ → ▶ ▾ ✕.
 
 ## VISUAL FOUNDATIONS
-- **Režim:** 100% dark. Světlý režim mimo rozsah.
+- **Režim:** dark je výchozí. Volitelně **light** (hlavička + hero/záhlaví kategorie zůstávají tmavé) a **duo** (kontrastní střídání světlých a tmavých sekcí); obojí má variantu **světlé hlavičky**. Přepínač je v náhledovém panelu na homepage. Světlé neutrály = tokeny `--pml-*`, scope classy `.pm-light` / `.pm-dark`.
 - **Barvy:** teplá černá `#070605` → paper `#100f0d` → povrchy `#1a1813 / #242019 / #2f2a22`; text teplá běl `#ece6da` ve 4 hladinách; akcent **oranžová `#e0542b`** + hover `#f2693f`, press `#b83f1c`, tint 10 %.
 - **Typografie:** Display = **Archivo** 800, těsný tracking. Body = **IBM Plex Sans**. Mono = **Space Mono** (eyebrow, štítky, data).
 - **Pozadí:** velké fotky full-bleed s tmavým scrimem. Žádné gradientové „AI" plochy.
