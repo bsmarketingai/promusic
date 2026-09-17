@@ -31,6 +31,10 @@
     { id: "light", label: "Light", swatch: "#f3efe7" },
     { id: "duo", label: "Duo", swatch: "linear-gradient(90deg,#100f0d 50%,#f3efe7 50%)" }
   ];
+  var LOGOS = [
+    { id: "color", label: "Barevné", swatch: "linear-gradient(90deg,#fff 50%,#e0542b 50%)" },
+    { id: "mono", label: "Mono", swatch: "linear-gradient(90deg,#fff 50%,#2a2a2a 50%)" }
+  ];
   var HEADS = [
     { id: "dark", label: "Tmavá", swatch: "#100f0d" },
     { id: "light", label: "Světlá", swatch: "#f3efe7" }
@@ -40,6 +44,7 @@
     var cur = read(), open = readOpen();
     var curMode = window.PMMode ? PMMode.mode() : "dark";
     var curHead = window.PMMode ? PMMode.header() : "dark";
+    var curLogo = window.PMMode ? PMMode.logo() : "color";
     var bar = document.createElement("div");
     bar.className = "pvbar";
     bar.setAttribute("data-open", open ? "true" : "false");
@@ -54,10 +59,16 @@
         '</div></div>' +
         '<div class="pvrow"><label>Hlavička</label><div class="pvseg" id="pvseg-head">' +
           HEADS.map(function (h) {
-            return '<button type="button" data-id="' + h.id + '" aria-pressed="' + (h.id === curHead) + '"' + (curMode === "dark" ? " disabled" : "") + '>' +
+            return '<button type="button" data-id="' + h.id + '" aria-pressed="' + (h.id === curHead) + '"' + '>' +
               '<i style="background:' + h.swatch + '"></i>' + h.label + '</button>';
           }).join("") +
-        '</div><p class="pvnote">Světlou hlavičku lze zapnout v režimu Light a Duo.</p></div>' +
+        '</div><p class="pvnote">Nezávislé na režimu podkladu — světlou hlavičku lze mít i v dark režimu.</p></div>' +
+        '<div class="pvrow"><label>Logo</label><div class="pvseg" id="pvseg-logo">' +
+          LOGOS.map(function (l) {
+            return '<button type="button" data-id="' + l.id + '" aria-pressed="' + (l.id === curLogo) + '">' +
+              '<i style="background:' + l.swatch + '"></i>' + l.label + '</button>';
+          }).join("") +
+        '</div><p class="pvnote">Mono — jednotná silueta: na tmavém podkladu světlá, na světlém tmavě šedá (ne čistá černá).</p></div>' +
         '<div class="pvrow"><label>CTA barva</label><div class="pvseg" id="pvseg-cta">' +
           Object.keys(SCHEMES).map(function (k) {
             return '<button type="button" data-id="' + k + '" aria-pressed="' + (k === cur) + '">' +
@@ -87,11 +98,9 @@
         fn(b.getAttribute("data-id"));
       });
     }
-    segClick("#pvseg-mode", function (id) {
-      if (window.PMMode) PMMode.setMode(id);
-      [].forEach.call(bar.querySelectorAll("#pvseg-head button"), function (x) { x.disabled = id === "dark"; });
-    });
+    segClick("#pvseg-mode", function (id) { if (window.PMMode) PMMode.setMode(id); });
     segClick("#pvseg-head", function (id) { if (window.PMMode) PMMode.setHeader(id); });
+    segClick("#pvseg-logo", function (id) { if (window.PMMode) PMMode.setLogo(id); });
 
     bar.querySelector("#pvseg-cta").addEventListener("click", function (e) {
       var b = e.target.closest("button[data-id]");

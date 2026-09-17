@@ -1,11 +1,12 @@
 /* PRO MUSIC — REŽIM PODKLADU (dark / light / duo) + varianta hlavičky.
-   Atributy na <html>: data-mode="dark|light|duo", data-header="dark|light".
+   Atributy na <html>: data-mode="dark|light|duo", data-header="dark|light", data-logo="color|mono".
+   Varianta hlavičky je nezávislá na režimu podkladu — světlou hlavičku lze mít i v dark režimu.
    Nastavuje se ještě před vykreslením (skript patří do <head>), volba přežije refresh.
    Duo režim tagguje každou druhou „plochou“ sekci classou .pm-light;
    sekce s vlastním podkladem (vlna, fotka, statement, hero) zůstávají beze změny
    a do rytmu se nepočítají. */
 (function () {
-  var K = "pm-mode", KH = "pm-header";
+  var K = "pm-mode", KH = "pm-header", KL = "pm-logo";
   var MODES = ["dark", "light", "duo"];
 
   function get(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } }
@@ -13,6 +14,7 @@
 
   function mode() { var m = get(K, "dark"); return MODES.indexOf(m) > -1 ? m : "dark"; }
   function header() { return get(KH, "dark") === "light" ? "light" : "dark"; }
+  function logo() { return get(KL, "color") === "mono" ? "mono" : "color"; }
 
   function tagDuo(on) {
     var app = document.getElementById("app");
@@ -31,7 +33,8 @@
   function apply() {
     var m = mode(), r = document.documentElement;
     r.setAttribute("data-mode", m);
-    r.setAttribute("data-header", m === "dark" ? "dark" : header());
+    r.setAttribute("data-header", header());
+    r.setAttribute("data-logo", logo());
     if (document.getElementById("app")) tagDuo(m === "duo");
   }
 
@@ -39,9 +42,10 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
 
   window.PMMode = {
-    mode: mode, header: header, MODES: MODES,
+    mode: mode, header: header, logo: logo, MODES: MODES,
     setMode: function (m) { set(K, m); apply(); },
-    setHeader: function (h) { set(KH, h); apply(); }
+    setHeader: function (h) { set(KH, h); apply(); },
+    setLogo: function (l) { set(KL, l); apply(); }
   };
-  window.addEventListener("storage", function (e) { if (e.key === K || e.key === KH) apply(); });
+  window.addEventListener("storage", function (e) { if (e.key === K || e.key === KH || e.key === KL) apply(); });
 })();

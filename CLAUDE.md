@@ -30,12 +30,13 @@ Stávající web klienta: https://promusic.cz/
 1. **Case study HD Karlín** v plné podobě (dnes existuje jen `instalace-hd-karlin-schema.html` se schématem).
 2. **Steel Aréna Košice** a **DJKT Plzeň** — case studies zatím nejsou, na homepage vedou na `#`.
 3. Detail produktu existuje pro 2 položky (`produkt.html?p=rf-venue-combine4`, `?p=at-lp140xp`) — ostatní karty vedou na první detail.
-4. **Academy**: přihláška hotová (`skoleni.html`) — chybí obsah kurzů (popisy, délka, cena, místo), texty FAQ a kontakt na koordinátora. Servis zatím není. (Novinky hotové: 89 článků z podkladu klienta ve `news-index.js` / `news-bodies.js`.)
+4. **Academy**: hotový výpis termínů (`skoleni.html`), detail kurzu (`skoleni-detail.html?k=`) a přihláška (`prihlaska-skoleni.html`) — obsah kurzů v `academy-data.js` je zástupný, chybí reálné termíny/ceny/kapacity, texty FAQ a kontakt na koordinátora. Servis zatím není. (Novinky hotové: 89 článků z podkladu klienta ve `news-index.js` / `news-bodies.js`.)
 5. **EN mutace** obsahu.
 6. Self-hostované fonty + vektorové logo pro produkci.
 
 ## Terminologie (potvrzeno klientem)
-- **Live & turné** = dočasné nasazení techniky na akci (turné, koncerty, festivaly, TV, eventy). Dřív se sekce jmenovala „Realizace".
+- **Touring / Rental / produkce** = dočasné nasazení techniky na akci (turné, koncerty, festivaly, TV, eventy). Dřív „Realizace", pak „Live & turné" — obojí už nikde nepoužívat.
+- Menu i výpisy mají **jen 3 hlavní kategorie**: Touring / Rental / produkce · Instalace · Ze světa. Dělení podle prostoru (divadla, sály, arény, festivaly…) se už jako kategorie nepoužívá.
 - **Instalace** = trvale zabudovaný systém v budově (divadla, arény, kluby, hotely). Dřív „Stálé instalace" — staré označení už nikde nepoužívat.
 - Slovo **„realizace"** používej **jen jako fázi procesu** (návrh → realizace → servis), nikdy jako název sekce. Souhrn projektů = „Vybrané projekty" / „Další projekty".
 - Názvy souborů (`realizace-*.html`) zůstávají — mění se jen popisky v UI.

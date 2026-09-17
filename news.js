@@ -160,7 +160,8 @@
       if (img) { if (d.img) img.src = d.img; else img.closest(".bg").style.display = "none"; }
       head.querySelector("h1").textContent = d.t;
       head.querySelector(".lead").textContent = d.perex;
-      head.querySelector(".artmeta").innerHTML = "<b>" + esc(d.cat) + "</b>" + (d.brand ? "<span>" + esc(d.brand) + "</span>" : "");
+      var meta = head.querySelector(".artmeta");
+      if (meta) meta.remove();
       var cur = head.querySelector(".breadcrumb .cur");
       if (cur) cur.textContent = d.t;
     }
@@ -168,11 +169,6 @@
     root.innerHTML =
       '<article class="artc">' +
         '<div class="artbody">' + html + "</div>" +
-        '<nav class="artnav">' +
-          (prev ? '<a class="artnav-l btn btn-ghost btn-sm" href="' + esc(href(prev)) + '" title="' + esc(prev.t) + '"><ui-icon class="btn-ico" name="ui-arrow-left" aria-hidden="true"></ui-icon>Předchozí</a>' : '<span class="artnav-l is-off"></span>') +
-          '<a class="artnav-up btn btn-ghost btn-sm" href="novinky.html">Všechny novinky</a>' +
-          (next ? '<a class="artnav-r btn btn-ghost btn-sm" href="' + esc(href(next)) + '" title="' + esc(next.t) + '">Další<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>' : '<span class="artnav-r is-off"></span>') +
-        "</nav>" +
       "</article>";
 
     /* Další novinky — tři z téže kategorie */

@@ -6,7 +6,7 @@
 <title>PRO MUSIC — Backlog změn</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=16" />
-<link rel="stylesheet" href="ui.css?v=241" />
+<link rel="stylesheet" href="ui.css?v=272" />
 </head>
 <body class="dir-b">
 <div id="app">
@@ -28,6 +28,21 @@
   <section class="sec band band-flat reveal"><div class="wrap-wide">
     <div class="chlog">
       <div class="chday">
+        <div class="when">17. 9. 2026<small>10 změn</small></div>
+        <div class="chitems">
+      <div class="chitem is-new"><span class="chtag">Funkce</span><div class="what"><b>Vyhledávání napříč webem</b><span>Ikona v hlavičce rozbalí input od loga po přepínač jazyka, našeptávač od dvou znaků nabízí výsledky ve třech skupinách (Reference · Novinky · Second Hand). Nová stránka výsledků hledani.html se stejným dělením.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Funkce</span><div class="what"><b>Výsledky hledání po čtyřech</b><span>Každá kategorie ukazuje čtyři karty, zbytek rozbalí tlačítko „Zobrazit všechny výsledky“ (chevron dolů / nahoru, druhým klikem se zase sbalí).</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Jedna karta pro reference i novinky</b><span>ui-live-card a ui-inst-card generují stejnou šablonu jako karta novinky (.ncard) — foto nahoře, kategorie jako chip, nadpis, perex, CTA dole. Přesvitové .pcard karty se v výpisech už nepoužívají.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Reference jen ve třech kategoriích</b><span>Megamenu i výpisy mají Touring / Rental / produkce · Instalace · Ze světa; dělení podle typu prostoru zrušeno.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>„O společnosti“ přejmenováno na „O nás“</b><span>Hlavička, mobilní menu, aktivní stav i drobenky. Názvy souborů zůstávají.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Kontakt v hlavičce jen jako tlačítko</b><span>Textová položka z desktopového menu odebrána; CTA má label „Kontakt“ s leading ikonou telefonu.</span></div></div>
+      <div class="chitem"><span class="chtag">Komponenty</span><div class="what"><b>ui-button umí leading ikonu</b><span>Nový atribut lead-icon vloží ikonu před text (větší stupeň, poloviční odstup). Opravena kolize CSS, kvůli které pravidlo pro vedoucí ikonu přebíjelo koncový chevron — odstup u pravé hrany tlačítek je teď opticky stejný jako vlevo.</span></div></div>
+      <div class="chitem"><span class="chtag">Velikost</span><div class="what"><b>Pravý cluster hlavičky sjednocen na 40 px</b><span>Hledání, přepínač CZ/EN i CTA mají stejnou výšku, mezery mezi nimi zmenšeny z 28 na 14 px. Logo dostalo width:auto + flex:0 0 auto, aby se v žádné šířce nedeformovalo.</span></div></div>
+      <div class="chitem"><span class="chtag">Velikost</span><div class="what"><b>Claim v heru progresivně škáluje</b><span>Velikost 6vw s maximem 6rem — „show equipment“ drží na druhém řádku a nikdy nezasahuje do referenčních karet vpravo.</span></div></div>
+      <div class="chitem"><span class="chtag">Struktura</span><div class="what"><b>Navigace mezi novinkami odebrána</b><span>Z detailu článku zmizel pruh Předchozí / Všechny novinky / Další; na další články vede blok souvisejících novinek.</span></div></div>
+        </div>
+      </div>
+      <div class="chday">
         <div class="when">16. 9. 2026<small>11 změn</small></div>
         <div class="chitems">
       <div class="chitem is-new"><span class="chtag">Velikost</span><div class="what"><b>CTA v hlavičce zmenšeno na malé (sm)</b><span>Velké tlačítko v nav baru přebíjelo logo i navigaci — nyní ~40 px místo 52 px. Komponenta ui-button přitom velikost sm vůbec neznala a tiše ji ignorovala; doplněna do systému.</span></div></div>
@@ -47,8 +62,9 @@
   </div></section>
 </div>
 <script src="ui-icons.js?v=6"></script>
-<script src="ui-components.js?v=28"></script>
-<script src="ui-loader.js?v=41"></script>
+<script src="ui-components.js?v=30"></script>
+<script src="ui-loader.js?v=44"></script>
+<script src="site-search.js?v=7"></script>
 <script src="site.js?v=18"></script>
 </body>
 </html>

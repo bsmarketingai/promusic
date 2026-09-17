@@ -20,7 +20,7 @@
     feat: { img: P + "djkt-plzen/sal-pohled.jpg", tag: "INSTALACE", title: "Nová scéna DJKT Plzeň", href: "#" },
   };
   const navItems = [
-    { l: "Live & turné", mega: megaPrace }, { l: "Technologie" }, { l: "Instalace", mega: megaInstalace },
+    { l: "Touring / Rental / produkce", mega: megaPrace }, { l: "Technologie" }, { l: "Instalace", mega: megaInstalace },
     { l: "Značky" }, { l: "Školení" }, { l: "Kontakt" },
   ];
 
@@ -103,7 +103,7 @@ const refTiles = [
   <!-- HERO -->
   <header class="hero">
     <div class="hero-bg" id="heroBg">
-      <div class="hero-slide is-active" style="background-image:url(${P}ed-sheeran/cervena-show.jpg)" data-par="0.12"></div>
+      <div class="hero-slide is-active" style="background-image:url(${P}eurovize/scena-cervena.jpg)" data-par="0.12"></div>
       <div class="hero-slide" style="background-image:url(${P}steel-arena/projekce-barvy.jpg)" data-par="0.12"></div>
       <div class="hero-slide" style="background-image:url(${P}djkt-plzen/sal-pohled.jpg)" data-par="0.12"></div>
     </div>
@@ -111,18 +111,18 @@ const refTiles = [
       <div class="hero-grid">
         <div class="hero-content">
           <span class="eyebrow">Profesionální audio &amp; light · od 1997</span>
-          <h1 class="display">Made to<br/>Perform</h1>
+          <h1 class="display">Professional<br/>show equipment</h1>
           <p class="lead">Dodáváme špičkové profesionální technologie — a&nbsp;rozumíme tomu, aby to celé fungovalo. Od koncertních pódií po instalace v&nbsp;divadlech a&nbsp;arénách.</p>
           <div class="cta-actions">
             <ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button>
-            <ui-button variant="ghost" size="lg">Přehrát showreel ▶</ui-button>
+            <ui-button variant="ghost" size="lg" href="reference.html">Vybrané projekty →</ui-button>
           </div>
         </div>
         <!-- náhledové boxy referencí -->
         <div class="hero-cards" id="heroCards">
-          <a class="hero-card outline-glow is-active" href="live-ed-sheeran.html" style="--d:0">
-            <span class="hc-img"><img src="${P}ed-sheeran/ohnostroj.jpg" alt="" /></span>
-            <span class="hc-meta"><span class="hc-kicker">Toto jsme nasvítili</span><span class="hc-title">Ed Sheeran · Mathematics Tour</span></span>
+          <a class="hero-card outline-glow is-active" href="live-eurovize-2024.html" style="--d:0">
+            <span class="hc-img"><img src="${P}eurovize/nemo-kruh-final.jpg" alt="" /></span>
+            <span class="hc-meta"><span class="hc-kicker">Toto jsme ozvučili</span><span class="hc-title">Eurovision Song Contest 2024</span></span>
           </a>
           <a class="hero-card outline-glow" href="#" style="--d:1">
             <span class="hc-img"><img src="${P}steel-arena/projekce-barvy.jpg" alt="" /></span>
@@ -173,7 +173,7 @@ const refTiles = [
       <a class="workcard col-6" href="instalace-hd-karlin-schema.html"><img src="${P}karlin/zvukar-foh.jpg" alt="" /><ui-tag class="wtag" solid>Instalace / Zvuk</ui-tag><div class="ov"><h3>Hudební divadlo Karlín</h3><span class="wmeta">DiGiCo Quantum 7T · muzikál</span></div></a>
       <a class="workcard col-6" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><ui-tag class="wtag" solid>Instalace / Zvuk</ui-tag><div class="ov"><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
     </div>
-    <div class="cta-actions" style="justify-content:flex-end;margin-top:34px"><ui-button variant="primary" href="reference.html">Všechny reference →</ui-button><ui-button variant="ghost" href="live-a-turne.html">Live &amp; turné →</ui-button><ui-button variant="ghost" href="stale-instalace.html">Instalace →</ui-button></div>
+    <div class="cta-actions" style="justify-content:flex-end;margin-top:34px"><ui-button variant="primary" href="reference.html">Všechny reference →</ui-button><ui-button variant="ghost" href="live-a-turne.html">Touring / Rental / produkce →</ui-button><ui-button variant="ghost" href="stale-instalace.html">Instalace →</ui-button></div>
   </div></section>
 
   <!-- STATEMENT -->
@@ -260,7 +260,7 @@ const refTiles = [
           </div>
       </div>
       <div class="foot-cols">
-        <div class="foot-col"><h5>Live &amp; turné</h5><a href="#">Turné &amp; koncerty</a><a href="#">Festivaly</a><a href="#">TV &amp; broadcast</a><a href="#">Case studies</a></div>
+        <div class="foot-col"><h5>Touring / Rental / produkce</h5><a href="#">Turné &amp; koncerty</a><a href="#">Festivaly</a><a href="#">TV &amp; broadcast</a><a href="#">Case studies</a></div>
         <div class="foot-col"><h5>Instalace</h5><a href="#">Divadla &amp; sály</a><a href="#">Arény</a><a href="#">Hotely &amp; bary</a><a href="#">Jak to děláme</a></div>
         <div class="foot-col"><h5>Firma</h5><a href="#">Značky</a><a href="#">Academy</a><a href="#">Servis</a><a href="#">Kontakt</a></div>
       </div>

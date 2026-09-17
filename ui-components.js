@@ -42,7 +42,8 @@
                            up: "ui-arrow-up-right", play: "ui-play" }[trail] || null;
       var last = label.slice(-1);
       if (!trail && TRAIL[last]) { trail = TRAIL[last]; label = label.slice(0, -1).trim(); }
-      node.innerHTML = label +
+      var lead = attr(this, "lead-icon", "");
+      node.innerHTML = (lead ? '<ui-icon class="btn-ico btn-ico-lead" name="' + lead + '" aria-hidden="true"></ui-icon>' : "") + label +
         (trail ? '<ui-icon class="btn-ico" name="' + trail + '" aria-hidden="true"></ui-icon>' : "") +
         (icon ? '<span class="btn-i">' + icon + "</span>" : "");
       this.textContent = ""; this.appendChild(node);
@@ -269,13 +270,16 @@
   }
   /* Karty ve výpisech mají jeden tvar: foto přes celou kartu, kategorie vlevo nahoře, nadpis a CTA dole.
      Parametry (technika, rok, kapacita) patří na detail projektu, ne do výpisu. */
+  /* Jeden tvar karty pro celý web = karta novinky (.ncard): foto nahoře,
+     kategorie jako chip, nadpis, perex, CTA dole. */
   function shell(tag, href, mod, img, cat, title, desc) {
-    return "<" + tag + ' class="pcard outline-glow ' + mod + '"' + (href ? ' href="' + href + '"' : "") + ">" +
-      '<span class="pcard-media">' + media(img, title) + "</span>" +
-      (cat ? '<span class="pcard-top"><span class="tag tag-quiet">' + cat + "</span></span>" : "") +
-      '<span class="pcard-body"><h3>' + title + "</h3>" +
-      (desc ? '<span class="pcard-desc">' + desc + "</span>" : "") +
-        '<span class="btn btn-ghost btn-sm pcard-cta">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span>' +
+    return "<" + tag + ' class="ncard outline-glow ' + mod + '"' + (href ? ' href="' + href + '"' : "") + ">" +
+      '<span class="nmedia">' + media(img, title) + "</span>" +
+      '<span class="nbody">' +
+        (cat ? '<span class="nmeta"><span class="chip chip-accent">' + cat + "</span></span>" : "") +
+        "<h3>" + title + "</h3>" +
+        (desc ? "<p>" + desc + "</p>" : "") +
+        '<span class="ngo"><span class="btn btn-ghost btn-sm">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span></span>' +
       "</span></" + tag + ">";
   }
   class UILiveCard extends HTMLElement {

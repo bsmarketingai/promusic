@@ -13,17 +13,20 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | soubor | co to je |
 |---|---|
 | `index.html` | Homepage |
-| `live-a-turne.html` | Výpis projektů Live & turné (chip filtrace + stránkování) |
+| `live-a-turne.html` | Výpis projektů Touring / Rental / produkce (chip filtrace + stránkování) |
 | `stale-instalace.html` | Výpis instalací (chip filtrace + stránkování) |
 | `live-ed-sheeran.html` | Case study — Ed Sheeran, Mathematics Tour |
 | `instalace-hd-karlin-schema.html` | Case study — HD Karlín, vč. interaktivního schématu |
 | `instalace-kulturni-domy-saly-divadla.html` | Segmentová landing — kulturní domy, sály, divadla |
 | `technologie-schema-ozvuceni.html` | Vysvětlovací stránka — schéma ozvučení |
 | `znacky.html` | Značky, které zastupujeme |
-| `skoleni.html` | PRO MUSIC Academy — přihláška na školení (výběrové karty, návaznosti, souhrn) |
+| `skoleni.html` | PRO MUSIC Academy — výpis plánovaných školení (filtr kategorií, řádkové karty) |
+| `skoleni-detail.html` | Detail školení — `?k=<slug>`, šablona detailu produktu s obsazeností |
+| `prihlaska-skoleni.html` | Přihláška na školení (výběrové karty, návaznosti, souhrn) |
 | `novinky.html` | Výpis novinek (filtr téma + značka, stránkování po 12) |
 | `novinka.html` | Detail novinky — `?a=<slug>`, text + foto/video |
 | `produkt.html` | Detail produktu Second Hand — `?p=<slug>`, varianty, stepper, přepínač tlačítka Koupit |
+| `hledani.html` | Výsledky hledání — `?q=`, tři skupiny (Reference · Novinky · Second Hand), jednotná karta výsledku |
 | `design-system.html` | Živý přehled design systému (interní) |
 | `guidelines/*.html` | Specimen karty design systému (interní) |
 
@@ -38,11 +41,13 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | soubor | co to je |
 |---|---|
 | `ui-theme.js` | Nastaví téma před vykreslením (zabrání probliknutí) |
-| `ui-mode.js` | Režim podkladu **dark / light / duo** + varianta hlavičky (`data-mode`, `data-header` na `<html>`, localStorage). V duo režimu tagguje každou druhou plochou sekci classou `.pm-light`. |
+| `ui-mode.js` | Režim podkladu **dark / light / duo** + varianta hlavičky (`data-mode`, `data-header` na `<html>`, localStorage). Varianta hlavičky je **nezávislá na režimu** — světlou hlavičku lze zapnout i v dark režimu. V duo režimu tagguje každou druhou plochou sekci classou `.pm-light`. |
 | `ui-components.js` | Web components: `ui-button`, `ui-input`, `ui-dropdown`, `ui-search`, `ui-chip`, `ui-tag`, `ui-card`, `ui-lang-switch`, `ui-live-card`, `ui-inst-card` |
 | `ui-icons.js` | Kurátorská sada 103 ikon + `<ui-icon>`. **Jediný povolený zdroj ikon.** |
 | `ui-loader.js` | Vkládá hlavičku / mobilní menu / patičku na každou stránku |
 | `ui-header.html` · `ui-mobile-menu.html` · `ui-footer.html` | Markup těch tří sdílených bloků (jediný zdroj pravdy; samostatně otevřené fungují jako náhled) |
+| `hledani.js` | Render stránky výsledků (index a filtrování bere z `window.PMSearch` v `site-search.js`) |
+| `site-search.js` | Hledání v hlavičce — ikona → rozbalovací input → našeptávač (Reference · Novinky · Second Hand). Data (`projects-data.js`, `news-index.js`, `secondhand-data.js`) dotahuje líně při prvním otevření. |
 | `site.js` | Globální chování: reveal on scroll, parallax, tilt, outline-glow, coverflow karusel |
 | `home-content.js` | Obsah sekcí homepage (vykresluje se z JS) |
 | `projects-data.js` | **Data projektů** — `PM_LIVE` / `PM_INST` + kategorie. Jediné místo, kde se přidává projekt nebo fotka. |
@@ -52,7 +57,10 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `secondhand-data.js` · `secondhand.js` | Second Hand — data výpisu + render (filtr značky, stránkování). Karty vedou na `produkt.html` |
 | `produkt-data.js` · `produkt.js` | Second Hand — obsah detailů produktů + render detailu |
 | `news.js` | Novinky: render výpisu (`.nlist-root`, `?f=` téma, `?b=` značka, `?p=`) a detailu (`.nart-root`) |
-| `skoleni.js` | Data kurzů Academy + logika přihlášky (výběr, předpoklady, souhrn, validace) |
+| `academy-data.js` | **Data školení Academy** — `PM_ACADEMY` + kategorie (`PM_ACADEMY_CATS`). Jediné místo, kde se přidává termín. |
+| `skoleni-list.js` | Výpis školení: filtr kategorií (`?f=`), řádkové karty, obsazenost (`PM_ACADEMY_CAP`) |
+| `skoleni-detail.js` | Detail školení — render šablony `.pd` z `academy-data.js` |
+| `skoleni.js` | Logika přihlášky (výběr kurzů, předpoklady, souhrn, validace) — `prihlaska-skoleni.html` |
 | `karlin-schema.js` | Interaktivní schéma ozvučení (Karlín) |
 | `page-transition.js` | Přechod mezi stránkami — „pódiové světlo" |
 
@@ -88,7 +96,7 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 - **Emoji:** nepoužívat. Akcentní glyfy: ★ → ▶ ▾ ✕.
 
 ## VISUAL FOUNDATIONS
-- **Režim:** dark je výchozí. Volitelně **light** (hlavička + hero/záhlaví kategorie zůstávají tmavé) a **duo** (kontrastní střídání světlých a tmavých sekcí); obojí má variantu **světlé hlavičky**. Přepínač je v náhledovém panelu na homepage. Světlé neutrály = tokeny `--pml-*`, scope classy `.pm-light` / `.pm-dark`.
+- **Režim:** dark je výchozí. Volitelně **light** (hero/záhlaví kategorie zůstávají tmavé) a **duo** (kontrastní střídání světlých a tmavých sekcí). **Světlá hlavička** je samostatný přepínač a funguje ve všech režimech včetně dark. Přepínač je v náhledovém panelu na homepage. Světlé neutrály = tokeny `--pml-*`, scope classy `.pm-light` / `.pm-dark`.
 - **Barvy:** teplá černá `#070605` → paper `#100f0d` → povrchy `#1a1813 / #242019 / #2f2a22`; text teplá běl `#ece6da` ve 4 hladinách; akcent **oranžová `#e0542b`** + hover `#f2693f`, press `#b83f1c`, tint 10 %.
 - **Typografie:** Display = **Archivo** 800, těsný tracking. Body = **IBM Plex Sans**. Mono = **Space Mono** (eyebrow, štítky, data).
 - **Pozadí:** velké fotky full-bleed s tmavým scrimem. Žádné gradientové „AI" plochy.

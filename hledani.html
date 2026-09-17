@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRO MUSIC — Výsledky hledání</title>
+<script src="ui-theme.js?v=1"></script>
+<script src="ui-mode.js?v=4"></script>
+<link rel="stylesheet" href="styles.css?v=16" />
+<link rel="stylesheet" href="ui.css?v=272" />
+</head>
+<body class="dir-b">
+<div id="app">
+
+  <header class="listhead listhead-tight">
+    <div class="wrap-wide">
+    <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><span class="cur">Hledání</span></nav>
+    <div class="lhrow">
+      <div>
+        <h1>Výsledky hledání</h1>
+        <p class="lead">Hledaný výraz <span id="resQ">—</span> napříč referencemi, novinkami i nabídkou Second Hand.</p>
+      </div>
+      <form class="resform" id="resForm" role="search" autocomplete="off">
+        <input class="resinput" id="resInput" type="text" placeholder="Reference, novinky, second hand…" aria-label="Hledat" />
+        <button class="btn btn-primary btn-sm" type="submit">Hledat<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></button>
+      </form>
+    </div>
+  </div></header>
+
+  <section class="sec sec-list"><div class="wrap-wide">
+    <div id="resRoot"></div>
+  </div></section>
+
+</div>
+<script src="ui-icons.js?v=6"></script>
+<script src="ui-components.js?v=30"></script>
+<script src="ui-loader.js?v=44"></script>
+<script src="site-search.js?v=7"></script>
+<script src="hledani.js?v=5"></script>
+<script src="site.js?v=18"></script>
+<script src="preview-bar.js?v=5"></script>
+<script src="page-transition.js?v=1"></script>
+</body>
+</html>

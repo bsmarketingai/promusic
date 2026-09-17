@@ -9,7 +9,7 @@
   "use strict";
 
   /* Bumpni při každé editaci ui-header/ui-mobile-menu/ui-footer.html — jinak drží cache. */
-  var V = 34;
+  var V = 35;
 
   var COMPONENTS = [
     { file: "ui-header.html",      mount: "prepend", el: "ui-header" },

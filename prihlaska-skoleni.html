@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Přihláška na školení — PRO MUSIC Academy | PRO MUSIC, s.r.o.</title>
+<script src="ui-theme.js?v=1"></script>
+<script src="ui-mode.js?v=4"></script>
+<link rel="stylesheet" href="styles.css?v=16" />
+<link rel="stylesheet" href="ui.css?v=272" />
+</head>
+<body data-nav="Školení" class="dir-b">
+<div id="app">
+
+  <!-- HERO -->
+  <header class="listhead">
+    <div class="bg"><img data-par="0.08" src="assets/firma/nabizime-skoleni.jpg" alt="" /></div>
+    <div class="wrap-wide">
+    <nav class="breadcrumb"><a href="index.html">Domů</a><span class="sep">/</span><a href="skoleni.html">Pro Music Academy</a><span class="sep">/</span><span class="cur">Přihláška</span></nav>
+    <div class="lhrow">
+      <div>
+        <h1>Přihláška na školení</h1>
+        <p class="lead">Vyberte školení L-Acoustics nebo Smaart, o která máte zájem. Potvrdíme vám místo v nejbližším vypsaném termínu.</p>
+        <ul class="lhbul">
+          <li><ui-icon name="academy-verified" aria-hidden="true"></ui-icon>Certifikovaní lektoři L-Acoustics</li>
+          <li><ui-icon name="audio-mixer" aria-hidden="true"></ui-icon>Praktická výuka na reálných systémech</li>
+          <li><ui-icon name="academy-schedule" aria-hidden="true"></ui-icon>Vypsané termíny i školení na míru</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- FORMULÁŘ -->
+  <section class="sec sec-list reveal"><div class="wrap-wide">
+
+    <div id="pma-shell">
+      <div id="pma-error" class="alert-slot" style="margin-bottom:18px"></div>
+
+      <div class="pmaf">
+        <form class="pmaf-form" id="pma-form" novalidate="novalidate">
+
+          <!-- 1 KONTAKTNÍ ÚDAJE -->
+          <fieldset class="fsec">
+            <div class="fsec-h">
+              <span class="fsec-n">01</span>
+              <div>
+                <h2>Kontaktní údaje</h2>
+                <p class="req">* povinné údaje</p>
+              </div>
+            </div>
+            <div class="fgrid2">
+              <div class="ui-field">
+                <label class="ui-label" for="pma_jmeno">Jméno <span class="ui-req">*</span></label>
+                <input class="ui-control" id="pma_jmeno" name="pma_jmeno" type="text" placeholder="Jan" autocomplete="given-name" />
+                <span class="ui-err" id="err-pma_jmeno"></span>
+              </div>
+              <div class="ui-field">
+                <label class="ui-label" for="pma_prijmeni">Příjmení <span class="ui-req">*</span></label>
+                <input class="ui-control" id="pma_prijmeni" name="pma_prijmeni" type="text" placeholder="Novák" autocomplete="family-name" />
+                <span class="ui-err" id="err-pma_prijmeni"></span>
+              </div>
+              <div class="ui-field">
+                <label class="ui-label" for="pma_email">E-mail <span class="ui-req">*</span></label>
+                <input class="ui-control" id="pma_email" name="pma_email" type="email" inputmode="email" placeholder="jan@firma.cz" autocomplete="email" />
+                <span class="ui-err" id="err-pma_email"></span>
+              </div>
+              <div class="ui-field">
+                <label class="ui-label" for="pma_telefon">Telefon <span class="ui-req">*</span></label>
+                <input class="ui-control" id="pma_telefon" name="pma_telefon" type="tel" inputmode="tel" placeholder="+420 123 456 789" autocomplete="tel" />
+                <span class="ui-hint">Ve formátu +420 123 456 789</span>
+                <span class="ui-err" id="err-pma_telefon"></span>
+              </div>
+              <div class="ui-field col-2">
+                <label class="ui-label" for="pma_firma">Firma <span class="opt">(nepovinné)</span></label>
+                <input class="ui-control" id="pma_firma" name="pma_firma" type="text" placeholder="Název firmy nebo rentalu" autocomplete="organization" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 2 ŠKOLENÍ L-ACOUSTICS -->
+          <div class="fsec" id="skoleni-lacoustics">
+            <div class="fsec-h">
+              <span class="fsec-n">02</span>
+              <div>
+                <h2>Školení L-Acoustics</h2>
+                <p class="sub">O jaká školení máte zájem? Vyberte libovolný počet.</p>
+              </div>
+            </div>
+            <div id="la-groups"></div>
+            <div id="la-alert" class="alert-slot"></div>
+            <span class="ui-err" id="err-courses" style="margin-top:12px"></span>
+          </div>
+
+          <!-- 3 ŠKOLENÍ SMAART -->
+          <div class="fsec">
+            <div class="fsec-h">
+              <span class="fsec-n">03</span>
+              <div>
+                <h2>Školení Smaart</h2>
+                <p class="sub">Máte zájem o školení Smaart?</p>
+              </div>
+            </div>
+            <div class="selgrid">
+              <label class="selcard outline-glow">
+                <input class="ui-cbox js-course" type="checkbox" name="skoleni_smaart[smaart]" value="smaart" />
+                <span class="selbody">
+                  <span class="selrole">Rational Acoustics</span>
+                  <span class="selname">Smaart Suite v9</span>
+                  <span class="seldesc">Popis kurzu – doplní klient</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 4 POZNÁMKA A ODESLÁNÍ -->
+          <div class="fsec">
+            <div class="fsec-h">
+              <span class="fsec-n">04</span>
+              <div>
+                <h2>Poznámka a odeslání</h2>
+              </div>
+            </div>
+            <div class="ui-field">
+              <label class="ui-label" for="pma_poznamka">Poznámka <span class="opt">(nepovinné)</span></label>
+              <textarea class="ui-control" id="pma_poznamka" name="pma_poznamka" rows="4" maxlength="800" placeholder="Chcete nám napsat něco navíc? Např. preferované termíny, počet účastníků z firmy…"></textarea>
+              <span class="ui-hint" id="pma-chars">0 / 800</span>
+            </div>
+            <div style="margin-top:26px">
+              <label class="ui-check">
+                <input class="ui-cbox" type="checkbox" id="pma_souhlas" name="pma_souhlas" value="1" />
+                <span class="ctext">Souhlasím se zpracováním osobních údajů pro účely registrace ke školením v rámci Pro Music Academy. <span class="ui-req">*</span><br /><a href="#">Zásady zpracování osobních údajů</a></span>
+              </label>
+              <span class="ui-err" id="err-souhlas" style="margin-top:8px"></span>
+            </div>
+            <div class="cta-actions" style="margin-top:24px">
+              <button class="btn btn-primary btn-lg" type="submit">Odeslat přihlášku</button>
+            </div>
+            <p class="ui-hint" style="margin-top:14px">Odpovíme vám do 2 pracovních dnů.</p>
+          </div>
+
+        </form>
+
+        <!-- STICKY SOUHRN -->
+        <aside class="pmaf-aside">
+          <div class="sumpanel">
+            <div>
+              <h3>Vaše přihláška</h3>
+              <span class="sum-count" data-sumcount>Vybráno 0 školení</span>
+            </div>
+            <div class="sum-list" id="sum-list"></div>
+            <div class="sum-foot">
+              <button class="btn btn-primary" type="button" id="sum-submit"><ui-icon class="btn-ico" name="contact-form" aria-hidden="true"></ui-icon>Odeslat přihlášku</button>
+              <p class="note">Nevíte si rady s výběrem? Zavolejte nám.<br /><a href="tel:+420499735010">+420 499 735 010</a></p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="fsuccess" id="pma-success" hidden="hidden">
+      <ui-icon class="sico" name="academy-completed" aria-hidden="true"></ui-icon>
+      <h2>Děkujeme, přihláška je odeslaná</h2>
+      <p>Potvrzení jsme poslali na <strong id="succ-mail"></strong>. Ozveme se vám s termíny vybraných školení.</p>
+      <ul id="succ-list"></ul>
+      <div class="cta-actions">
+        <a class="btn btn-ghost" href="skoleni.html">Zpět na plánovaná školení</a>
+      </div>
+    </div>
+
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="sec band band-flat reveal"><div class="wrap-wide">
+    <div class="sec-head"><span class="idx">05</span><h2>Časté dotazy</h2><span class="rule"></span></div>
+    <div class="faq">
+      <div class="faq-item"><div class="faq-q"><h4>Kde školení probíhají?</h4><span class="pm">+</span></div><div class="faq-a"><p>Text odpovědi doplní klient.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h4>Jak se dozvím termín a cenu?</h4><span class="pm">+</span></div><div class="faq-a"><p>Text odpovědi doplní klient.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h4>Musím absolvovat System &amp; Workflow?</h4><span class="pm">+</span></div><div class="faq-a"><p>Text odpovědi doplní klient.</p></div></div>
+    </div>
+  </div></section>
+
+  <!-- KOORDINÁTOR -->
+  <section class="sec reveal"><div class="wrap-wide">
+    <div class="sec-head"><span class="idx">06</span><h2>Koordinátor Academy</h2><span class="rule"></span></div>
+    <div class="acoord outline-glow">
+      <span class="icon-badge"><ui-icon name="academy-trainer" aria-hidden="true"></ui-icon></span>
+      <div>
+        <p class="nm">Jméno koordinátora</p>
+        <span class="ps">Pro Music Academy</span>
+        <div class="lines">
+          <a class="btn btn-ghost btn-sm" href="tel:+420499735010"><ui-icon class="btn-ico" name="ui-phone" aria-hidden="true"></ui-icon>+420 499 735 010</a>
+          <a class="btn btn-ghost btn-sm" href="mailto:academy@promusic.cz"><ui-icon class="btn-ico" name="ui-mail" aria-hidden="true"></ui-icon>academy@promusic.cz</a>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+</div>
+
+<!-- MOBILNÍ STICKY LIŠTA -->
+<div class="mobar" id="pma-mobar">
+  <div class="mobar-list" id="mobar-list"></div>
+  <div class="mobar-row">
+    <button class="mobar-t" type="button" data-mobar-toggle><span data-sumcount>Vybráno 0 školení</span> ▴</button>
+    <button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('sum-submit').click()">Odeslat</button>
+  </div>
+</div>
+
+<script src="ui-icons.js?v=7"></script>
+<script src="ui-components.js?v=30"></script>
+<script src="ui-loader.js?v=44"></script>
+<script src="site-search.js?v=7"></script>
+<script src="skoleni.js?v=3"></script>
+<script src="site.js?v=18"></script>
+<script src="preview-bar.js?v=5"></script>
+<script src="page-transition.js?v=1"></script>
+</body>
+</html>
