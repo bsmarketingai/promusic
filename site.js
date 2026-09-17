@@ -96,7 +96,7 @@
 
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.05 });
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
     document.querySelectorAll(".b-mask, .b-rise").forEach(function (el) { io.observe(el); });
 
     /* ---- reveal: základní varianta (.reveal / [data-stagger]) ----
@@ -104,7 +104,7 @@
        obsah vložený později (listing.js) se doobservuje přes MutationObserver. */
     var ioR = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); ioR.unobserve(e.target); } });
-    }, { threshold: 0.1 });
+    }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
     function armReveal() {
       document.querySelectorAll(".reveal:not(.in),[data-stagger]:not(.in)").forEach(function (el) {
         if (el.__rv) return; el.__rv = 1; ioR.observe(el);

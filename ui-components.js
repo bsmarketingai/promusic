@@ -269,11 +269,12 @@
   }
   /* Karty ve výpisech mají jeden tvar: foto přes celou kartu, kategorie vlevo nahoře, nadpis a CTA dole.
      Parametry (technika, rok, kapacita) patří na detail projektu, ne do výpisu. */
-  function shell(tag, href, mod, img, cat, title) {
+  function shell(tag, href, mod, img, cat, title, desc) {
     return "<" + tag + ' class="pcard outline-glow ' + mod + '"' + (href ? ' href="' + href + '"' : "") + ">" +
       '<span class="pcard-media">' + media(img, title) + "</span>" +
       (cat ? '<span class="pcard-top"><span class="tag tag-quiet">' + cat + "</span></span>" : "") +
       '<span class="pcard-body"><h3>' + title + "</h3>" +
+      (desc ? '<span class="pcard-desc">' + desc + "</span>" : "") +
         '<span class="btn btn-ghost btn-sm pcard-cta">Zobrazit<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></span>' +
       "</span></" + tag + ">";
   }
@@ -281,7 +282,7 @@
     connectedCallback() {
       if (this.__b) return; this.__b = 1;
       var href = attr(this, "href", ""), tag = href ? "a" : "div";
-      this.innerHTML = shell(tag, href, "pcard-live", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""));
+      this.innerHTML = shell(tag, href, "pcard-live", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""), attr(this, "desc", ""));
       glow(this.firstElementChild);
     }
   }
@@ -300,7 +301,7 @@
     connectedCallback() {
       if (this.__b) return; this.__b = 1;
       var href = attr(this, "href", ""), tag = href ? "a" : "div";
-      this.innerHTML = shell(tag, href, "pcard-inst", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""));
+      this.innerHTML = shell(tag, href, "pcard-inst", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""), attr(this, "desc", ""));
       glow(this.firstElementChild);
     }
   }

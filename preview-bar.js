@@ -7,8 +7,11 @@
      "pro audio" tón (DiGiCo / L-Acoustics displeje) a na tmavém podkladu svítí. */
   var SCHEMES = {
     v1: { label: "V1", swatch: "#e0542b", main: null,      note: "Brandová oranžová \u2014 výchozí schéma." },
-    v2: { label: "V2", swatch: "#1e9eb4", main: "#1e9eb4", note: "Jevištní cyan \u2014 chladný komplement, technický tón." }
+    v2: { label: "V2", swatch: "#1e9eb4", main: "#1e9eb4", note: "Jevištní cyan \u2014 chladný komplement, technický tón." },
+    v3: { label: "V3", swatch: "conic-gradient(from 210deg,#e0542b,#d8c15a,#1e9eb4,#7b5cd6,#e0542b)", main: null, custom: true, note: "Vlastní barva \u2014 vyber odstín, propíše se do CTA, akcentů a glow." }
   };
+  var CKEY = KEY + "-custom";
+  function readCustom() { try { return localStorage.getItem(CKEY) || "#e0542b"; } catch (e) { return "#e0542b"; } }
 
   function read() { try { return localStorage.getItem(KEY + "-cta") || "v1"; } catch (e) { return "v1"; } }
   function readOpen() { try { return localStorage.getItem(KEY + "-open") !== "0"; } catch (e) { return true; } }
@@ -17,7 +20,8 @@
     var s = SCHEMES[id] || SCHEMES.v1;
     if (!window.PMTheme) return;
     var t = PMTheme.read();
-    if (s.main) t.main = s.main; else delete t.main;
+    var main = s.custom ? readCustom() : s.main;
+    if (main) t.main = main; else delete t.main;
     PMTheme.apply(t);
     try { localStorage.setItem(PMTheme.KEY, JSON.stringify(t)); } catch (e) {}
   }
@@ -59,7 +63,12 @@
             return '<button type="button" data-id="' + k + '" aria-pressed="' + (k === cur) + '">' +
               '<i style="background:' + SCHEMES[k].swatch + '"></i>' + SCHEMES[k].label + '</button>';
           }).join("") +
-        '</div><p class="pvnote" id="pvnote">' + SCHEMES[cur].note + '</p></div>' +
+        '</div>' +
+          '<label class="pvcolor" id="pvcolor" hidden>' +
+            '<input type="color" id="pvcolor-i" value="' + readCustom() + '" aria-label="Vlastní barva CTA" />' +
+            '<span class="pvcolor-v" id="pvcolor-v">' + readCustom().toUpperCase() + '</span>' +
+          '</label>' +
+          '<p class="pvnote" id="pvnote">' + SCHEMES[cur].note + '</p></div>' +
       '</div>' +
       '<button type="button" class="pvbar-toggle"><span class="dot"></span>Náhled</button>';
     document.body.appendChild(bar);
@@ -93,7 +102,21 @@
       });
       try { localStorage.setItem(KEY + "-cta", id); } catch (e2) {}
       bar.querySelector("#pvnote").textContent = SCHEMES[id].note;
+      bar.querySelector("#pvcolor").hidden = !SCHEMES[id].custom;
       applyScheme(id);
+    });
+
+    var ci = bar.querySelector("#pvcolor-i"), cv = bar.querySelector("#pvcolor-v");
+    bar.querySelector("#pvcolor").hidden = !SCHEMES[cur].custom;
+    ci.addEventListener("input", function () {
+      var v = ci.value;
+      cv.textContent = v.toUpperCase();
+      try { localStorage.setItem(CKEY, v); localStorage.setItem(KEY + "-cta", "v3"); } catch (e) {}
+      [].forEach.call(bar.querySelectorAll("#pvseg-cta button"), function (x) {
+        x.setAttribute("aria-pressed", String(x.getAttribute("data-id") === "v3"));
+      });
+      bar.querySelector("#pvnote").textContent = SCHEMES.v3.note;
+      applyScheme("v3");
     });
   }
 

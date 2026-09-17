@@ -60,12 +60,14 @@
         return "<ui-inst-card" +
           ' title="' + esc(d.t) + '" cat="' + esc(d.cat) + '" city="' + esc(d.city) + '" year="' + esc(d.year) + '"' +
           ' tech="' + esc(list(d.tech)) + '" cap="' + esc(d.cap) + '"' +
+          ' desc="' + esc(d.note) + '"' +
           ' img="' + esc(d.img) + '" href="' + esc(d.href) + '"></ui-inst-card>';
       }
       return "<ui-live-card" +
         ' title="' + esc(d.t) + '" cat="' + esc(d.cat) + '" year="' + esc(d.year) + '" place="' + esc(d.place) + '"' +
         ' tech="' + esc(list(d.tech)) + '" scale="' + esc(list(d.scale)) + '"' +
         (d.world ? ' world' : "") +
+        ' desc="' + esc(d.note) + '"' +
         ' img="' + esc(d.img) + '" href="' + esc(d.href) + '"></ui-live-card>';
     }
 

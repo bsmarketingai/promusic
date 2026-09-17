@@ -39,6 +39,7 @@
             }).join("") + "</div>" +
             (d.img ? '<button type="button" class="pd-zoom" aria-label="Zvětšit fotku"><img src="' + esc(d.img) + '" alt="' + esc(d.n) + '" /><span class="pd-zoom-b" aria-hidden="true"><ui-icon name="shop-search"></ui-icon></span></button>' : '<span class="shnoimg mono">bez fotky</span>') +
           "</div>" +
+          '<div class="pd-prose">' + (d.body || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</div>" +
         "</div>" +
         '<div class="pd-info">' +
           "<h1>" + esc(d.n) + "</h1>" +
@@ -63,13 +64,10 @@
           '<dl class="pd-facts">' + (d.facts || []).map(function (f) {
             return "<dt>" + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd>";
           }).join("") + "</dl>" +
+          '<div class="pd-specs"><h3>Specifikace</h3><dl>' + (d.specs || []).map(function (s) {
+            return "<dt>" + esc(s[0]) + "</dt><dd>" + esc(s[1]) + "</dd>";
+          }).join("") + "</dl></div>" +
         "</div>" +
-      "</div>" +
-      '<div class="pd-body">' +
-        '<div class="pd-prose">' + (d.body || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</div>" +
-        '<div class="pd-specs"><h3>Specifikace</h3><dl>' + (d.specs || []).map(function (s) {
-          return "<dt>" + esc(s[0]) + "</dt><dd>" + esc(s[1]) + "</dd>";
-        }).join("") + "</dl></div>" +
       "</div>";
 
     var elStock = root.querySelector(".pd-stock-t"), elQty = root.querySelector(".qty-i");

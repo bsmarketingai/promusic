@@ -111,7 +111,7 @@ const refTiles = [
       <div class="hero-grid">
         <div class="hero-content">
           <span class="eyebrow">Profesionální audio &amp; light · od 1997</span>
-          <h1 class="display">Zvuk, který<br/>cítíš v hrudi.</h1>
+          <h1 class="display">Made to<br/>Perform</h1>
           <p class="lead">Dodáváme špičkové profesionální technologie — a&nbsp;rozumíme tomu, aby to celé fungovalo. Od koncertních pódií po instalace v&nbsp;divadlech a&nbsp;arénách.</p>
           <div class="cta-actions">
             <ui-button variant="primary" size="lg" href="kontakt.html">Probrat projekt →</ui-button>
@@ -214,7 +214,7 @@ const refTiles = [
   </div></section>
 
   <!-- 06 PARTNER PROGRAM -->
-  <section class="sec sec-wave-end reveal"><div class="wrap">
+  <section class="sec reveal"><div class="wrap">
     <div class="sec-head"><span class="idx">06</span><h2>Professional Partner Program</h2><span class="rule"></span></div>
     <p class="lead" style="margin:-18px 0 30px">Partneři a produkční firmy, kteří staví na našich systémech. U certifikovaných rentalů víte, že systém obsluhuje vyškolený tým.</p>
     <div class="partners" data-stagger>${mainPartners.map(([n, f]) => `<a class="pcell pcell-logo" href="o-spolecnosti-partneri.html" title="${n}"><img src="assets/partneri/${f}" alt="${n}" loading="lazy" decoding="async"/></a>`).join("")}</div>
@@ -222,7 +222,7 @@ const refTiles = [
   </div></section>
 
   <!-- 07 ACADEMY -->
-  <section class="sec sec-wave-end reveal"><div class="wrap">
+  <section class="sec band wave-band reveal"><div class="wrap">
     <div class="sec-head"><span class="idx">07</span><h2>Proč školení v PRO MUSIC Academy</h2><span class="rule"></span></div>
     <div class="acad3" data-stagger>
       <div class="acard"><div class="anum">01</div><strong>Oficiální tréninky</strong><p>Přímo od distributora — certifikace L-Acoustics, DiGiCo, Smaart workshopy.</p></div>

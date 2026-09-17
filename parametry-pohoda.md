@@ -1,6 +1,8 @@
 # Parametry projektů — podklad pro Pohodu E1
 
-Web bere obsah výpisů z parametrů, ne z volného textu. Karta ve výpisu **nikdy** neskloňuje a nekomentuje — vypíše hodnotu, jak je zapsaná. Věty (příběh projektu, „poprvé v ČR", „největší instalace") patří až na stránku detailu, do samostatného textového pole.
+Web bere obsah výpisů z parametrů, ne z volného textu. Parametr se ve výpisu **nikdy** neskloňuje a nekomentuje — vypíše se hodnota, jak je zapsaná.
+
+Jedinou výjimkou je **popisek** (`NOTE` v `projects-data.js`): jeden krátký popisný řádek pod nadpisem karty. Vykresluje se **jen u projektů, které mají fotku**, a text vychází z názvu reference — nic se nedomýšlí. Delší příběh projektu patří dál až na stránku detailu.
 
 Zdroj pravdy na webu: `projects-data.js`. Až přijde napojení na Pohodu, tenhle soubor je mapovací tabulka.
 
