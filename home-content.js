@@ -173,7 +173,7 @@ const refTiles = [
       <a class="workcard col-6" href="instalace-hd-karlin-schema.html"><img src="${P}karlin/zvukar-foh.jpg" alt="" /><ui-tag class="wtag" solid>Instalace / Zvuk</ui-tag><div class="ov"><h3>Hudební divadlo Karlín</h3><span class="wmeta">DiGiCo Quantum 7T · muzikál</span></div></a>
       <a class="workcard col-6" href="stale-instalace.html?f=Divadla%20%26%20s%C3%A1ly"><img src="${P}djkt-plzen/array-strop.jpg" alt="" /><ui-tag class="wtag" solid>Instalace / Zvuk</ui-tag><div class="ov"><h3>Nová scéna DJKT Plzeň</h3><span class="wmeta">L-Acoustics Ambiance · premiéra</span></div></a>
     </div>
-    <div class="cta-actions" style="justify-content:flex-end;margin-top:34px"><ui-button variant="primary" href="reference.html">Všechny reference →</ui-button><ui-button variant="ghost" href="live-a-turne.html">Touring / Rental / produkce →</ui-button><ui-button variant="ghost" href="stale-instalace.html">Instalace →</ui-button></div>
+    <div class="cta-actions cta-end"><ui-button variant="ghost" href="live-a-turne.html">Touring / Rental / produkce →</ui-button><ui-button variant="ghost" href="stale-instalace.html">Instalace →</ui-button><ui-button variant="ghost" href="reference.html#ze-sveta">Ze světa →</ui-button></div>
   </div></section>
 
   <!-- STATEMENT -->
@@ -230,7 +230,7 @@ const refTiles = [
       <div class="acard"><div class="anum">03</div><strong>Posun v kariéře</strong><p>Certifikát a know-how, které vás posune mezi profíky v oboru.</p></div>
     </div>
     <div class="crows home-next" data-stagger></div>
-    <div class="cta-actions" style="margin-top:clamp(22px,2.4vw,32px)"><ui-button variant="primary" size="lg" href="skoleni.html">Všechna školení →</ui-button><ui-button variant="ghost" size="lg" href="prihlaska-skoleni.html">Přihlásit na školení</ui-button></div>
+    <div class="cta-actions cta-end"><ui-button variant="ghost" size="lg" href="prihlaska-skoleni.html">Přihlásit na školení</ui-button><ui-button variant="primary" size="lg" href="skoleni.html">Všechna školení →</ui-button></div>
   </div></section>
 
   <!-- ASSURE + CTA -->

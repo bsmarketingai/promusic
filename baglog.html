@@ -6,7 +6,7 @@
 <title>PRO MUSIC — Backlog změn</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=16" />
-<link rel="stylesheet" href="ui.css?v=278" />
+<link rel="stylesheet" href="ui.css?v=279" />
 </head>
 <body class="dir-b">
 <div id="app">
@@ -28,17 +28,20 @@
   <section class="sec band band-flat reveal"><div class="wrap-wide">
     <div class="chlog">
       <div class="chday">
-        <div class="when">18. 9. 2026<small>11 změn</small></div>
+        <div class="when">18. 9. 2026<small>14 změn</small></div>
         <div class="chitems">
       <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Stránka Školení předělána na výpis termínů</b><span>skoleni.html je teď přehled plánovaných školení — řádkové karty (foto na výšku řádku, datum, název, krátký popis, obsazenost, CTA) a filtr kategorií kurzů, který se propisuje do URL. Přihláška se přesunula na prihlaska-skoleni.html.</span></div></div>
-      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Nový detail školení</b><span>skoleni-detail.html?k=&lt;slug&gt; používá šablonu detailu Second Hand produktu — místo skladovosti stejně stylovaná <b>Obsazenost</b> (stav + bar + počet míst), pod fotkou strukturovaný popis kurzu, vpravo fakta a program.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Nový detail školení</b><span>skoleni-detail.html?k=&lt;slug&gt; používá šablonu detailu Second Hand produktu — místo skladovosti stejně stylovaná <b>Obsazenost</b> (stav + počet míst), pod fotkou strukturovaný popis kurzu, vpravo fakta a program.</span></div></div>
       <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Řádková karta školení + odznak obsazenosti</b><span>Nové .crow / .cap v design systému: tři stavy obsazenosti (volná místa, poslední místa, obsazeno) se stejnou logikou na výpisu i na detailu. Data všech kurzů v jednom souboru academy-data.js.</span></div></div>
       <div class="chitem is-new"><span class="chtag">Funkce</span><div class="what"><b>Oprava zaseklého webu po kliknutí na „zpět“</b><span>Přechodový overlay zůstával po návratu z cache prohlížeče rozsvícený a blokoval celou stránku až do refreshe. Teď se povinně zhasíná při pageshow / popstate / pagehide, návrat zpět nežene úvodní animaci a přibyla pojistka, když navigace nenastane.</span></div></div>
       <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Reference v megamenu nejsou odkaz</b><span>Položka jen rozbaluje panel — uživatel musí vybrat jednu ze tří podkategorií. Kicker „Reference“ i tlačítko „Všechny reference“ odebrány, sloupec srovnán se sousedním.</span></div></div>
       <div class="chitem"><span class="chtag">Komponenty</span><div class="what"><b>Karty projektů bez krátkého popisu</b><span>ui-live-card a ui-inst-card už perex nevykreslují — karta má foto, kategorii, název a CTA. Novinky perex zachovávají.</span></div></div>
       <div class="chitem"><span class="chtag">Velikost</span><div class="what"><b>Loga značek vyplňují sloupec</b><span>Bílá kartička už nemá strop 210 px a logo v ní je větší (88 % šířky / 74 % výšky). Ikonky v metadatech karet zvětšeny na 24 px.</span></div></div>
       <div class="chitem"><span class="chtag">Struktura</span><div class="what"><b>Homepage: nejbližší školení + filtry partnerů</b><span>Sekce Academy ukazuje nejbližší vypsaný termín jako řádkovou kartu s CTA „Všechna školení“. Na stránce Partneři odebrány filtry kategorií i značek, záhlaví Touring / Rental / produkce bez dvojice CTA.</span></div></div>
-      <div class="chitem"><span class="chtag">Velikost</span><div class="what"><b>Karty značek drží stejnou šířku ve všech kategoriích</b><span>Mřížka místo auto-fit používá auto-fill — kategorie se třemi značkami už karty nerozahuje na celou šířku.</span></div></div>
+      <div class="chitem"><span class="chtag">Struktura</span><div class="what"><b>Vybrané projekty odkazují na tři kategorie</b><span>Místo „Všechny reference“ jsou pod výpisem tři ghost odkazy — Touring / Rental / produkce, Instalace a Ze světa; souhrnná stránka referencí se neodkazuje.</span></div></div>
+      <div class="chitem"><span class="chtag">Layout</span><div class="what"><b>Primární CTA vždy jako poslední prvek řádku</b><span>Oranžové tlačítko stojí v řádku za sekundárními, takže sedí na pravém konci — platí pro sekce Academy i Vybrané projekty.</span></div></div>
+      <div class="chitem"><span class="chtag">Layout</span><div class="what"><b>CTA sekce zarovnané na pravou hranu řádku</b><span>Nová varianta .cta-end — primární tlačítko vpravo, sekundární před ním, a ghost v barevném wave pásu už nemá bílé orámování.</span></div></div>
+      <div class="chitem"><span class="chtag">Velikost</span><div class="what"><b>Karty značek drží stejnou šířku ve všech kategoriích</b><span>Mřížka místo auto-fit používá auto-fill — kategorie se třemi značkami už karty neroztahuje na celou šířku.</span></div></div>
       <div class="chitem"><span class="chtag">Komponenty</span><div class="what"><b>Obsazenost na detailu školení bez progress baru</b><span>Zůstal stavový odznak (volná místa / poslední místa / obsazeno) a řádek „Obsazenost 9 / 12 míst“.</span></div></div>
       <div class="chitem"><span class="chtag">Layout</span><div class="what"><b>Levý sloupec detailu produktu není sticky</b><span>Galerie s popisem roluje spolu se stránkou, nezůstává přilepená pod hlavičkou. Platí pro Second Hand i detail školení.</span></div></div>
         </div>

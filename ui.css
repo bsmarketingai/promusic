@@ -310,6 +310,11 @@ ui-stats,ui-stat{display:block;}
 .assure h2{font-size:clamp(1.8rem,3.2vw,2.8rem);max-width:24ch;margin:16px auto 0;}
 .cta-actions{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap;margin-top:26px;}
 .assure .cta-actions{justify-content:center;}
+/* CTA pod obsahem sekce patří na pravou hranu řádku */
+.cta-actions.cta-end{justify-content:flex-end;margin-top:clamp(22px,2.4vw,32px);}
+/* ghost v barevném wave pásu nesmí mít bílý outline — drží standardní tlumený okraj */
+.wave-band .cta-end .btn-ghost{border-color:var(--border-strong);color:var(--text);}
+@media(max-width:640px){.cta-actions.cta-end{justify-content:stretch;flex-direction:column-reverse;}.cta-actions.cta-end ui-button,.cta-actions.cta-end .btn{width:100%;justify-content:center;}}
 
 /* ===== FOOTER (oddělený vlnou; oranžová / tmavá verze) ===== */
 .foot{background:
