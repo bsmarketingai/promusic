@@ -229,7 +229,8 @@ const refTiles = [
       <div class="acard"><div class="anum">02</div><strong>Praxe na špičkové technice</strong><p>Učíte se na systémech, které pak potkáte na zakázkách a turné.</p></div>
       <div class="acard"><div class="anum">03</div><strong>Posun v kariéře</strong><p>Certifikát a know-how, které vás posune mezi profíky v oboru.</p></div>
     </div>
-    <div class="cta-actions" style="margin-top:clamp(26px,3vw,40px)"><ui-button variant="primary" size="lg" href="skoleni.html">Přihlásit na školení →</ui-button><ui-button variant="ghost" size="lg" href="skoleni.html#skoleni-lacoustics">Přehled školení</ui-button></div>
+    <div class="crows home-next" data-stagger></div>
+    <div class="cta-actions" style="margin-top:clamp(22px,2.4vw,32px)"><ui-button variant="primary" size="lg" href="skoleni.html">Všechna školení →</ui-button><ui-button variant="ghost" size="lg" href="prihlaska-skoleni.html">Přihlásit na školení</ui-button></div>
   </div></section>
 
   <!-- ASSURE + CTA -->
@@ -333,6 +334,17 @@ const refTiles = [
       el.style.setProperty("--mx", mx.toFixed(1) + "%");
       el.style.setProperty("--my", my.toFixed(1) + "%");
     }, { passive: true });
+  })();
+
+  /* ===== NEJBLIŽŠÍ ŠKOLENÍ (data: academy-data.js, šablona: skoleni-list.js) ===== */
+  (function () {
+    var host = document.querySelector(".home-next");
+    if (!host || !window.PM_ACADEMY || !window.PM_ACADEMY_ROW) return;
+    var next = window.PM_ACADEMY.slice().sort(function (a, b) {
+      return String(a.date).localeCompare(String(b.date));
+    }).filter(function (c) { return !c.date || c.date >= new Date().toISOString().slice(0, 10); })[0]
+      || window.PM_ACADEMY[0];
+    if (next) host.innerHTML = window.PM_ACADEMY_ROW(next);
   })();
 
   /* ===== MOTION ===== */

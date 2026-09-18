@@ -271,7 +271,8 @@
   /* Karty ve výpisech mají jeden tvar: foto přes celou kartu, kategorie vlevo nahoře, nadpis a CTA dole.
      Parametry (technika, rok, kapacita) patří na detail projektu, ne do výpisu. */
   /* Jeden tvar karty pro celý web = karta novinky (.ncard): foto nahoře,
-     kategorie jako chip, nadpis, perex, CTA dole. */
+     kategorie jako chip, nadpis, CTA dole. Karty projektů krátký popis nemají —
+     `desc` se na nich záměrně nevykresluje (jen novinky ho používají). */
   function shell(tag, href, mod, img, cat, title, desc) {
     return "<" + tag + ' class="ncard outline-glow ' + mod + '"' + (href ? ' href="' + href + '"' : "") + ">" +
       '<span class="nmedia">' + media(img, title) + "</span>" +
@@ -286,7 +287,7 @@
     connectedCallback() {
       if (this.__b) return; this.__b = 1;
       var href = attr(this, "href", ""), tag = href ? "a" : "div";
-      this.innerHTML = shell(tag, href, "pcard-live", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""), attr(this, "desc", ""));
+      this.innerHTML = shell(tag, href, "pcard-live", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""), "");
       glow(this.firstElementChild);
     }
   }
@@ -305,7 +306,7 @@
     connectedCallback() {
       if (this.__b) return; this.__b = 1;
       var href = attr(this, "href", ""), tag = href ? "a" : "div";
-      this.innerHTML = shell(tag, href, "pcard-inst", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""), attr(this, "desc", ""));
+      this.innerHTML = shell(tag, href, "pcard-inst", attr(this, "img", ""), attr(this, "cat", ""), attr(this, "title", ""), "");
       glow(this.firstElementChild);
     }
   }

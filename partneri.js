@@ -1,29 +1,19 @@
 /* PRO MUSIC — PARTNEŘI (render + filtrace)
    Data: partneri-data.js (window.PM_PARTNERS)
-   Na stránce: #pcert, #pfilter, #pbrands, #pgrids, #pcount */
+   Na stránce: #pcert, #pgrids, #pcount */
 (function () {
   var items = window.PM_PARTNERS || [];
   var elCert = document.getElementById("pcert");
-  var elCat = document.getElementById("pfilter");
-  var elBrand = document.getElementById("pbrands");
   var elGrids = document.getElementById("pgrids");
   var elCount = document.getElementById("pcount");
   if (!elGrids) return;
 
   var CATS = [{ k: "rental", t: "Rentaly a produkce" }, { k: "venue", t: "Venues a instituce" }];
   var BRANDS = ["L-Acoustics", "DiGiCo", "ChamSys", "Yamaha", "Waves"];
-  var cat = "", brand = "";
 
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function nOf(k) { return items.filter(function (d) { return d.cat === k; }).length; }
   function hasBrand(d, b) { return (d.brands || []).indexOf(b) > -1; }
-
-  elCat.innerHTML = ['<button class="chip-filter" data-c="">Vše (' + items.length + ")</button>"]
-    .concat(CATS.map(function (c) { return '<button class="chip-filter" data-c="' + c.k + '">' + c.t + " (" + nOf(c.k) + ")</button>"; })).join("");
-  elBrand.innerHTML = ['<span class="pbl">Značka</span>', '<button class="chip-filter" data-b="">Všechny</button>']
-    .concat(BRANDS.map(function (b) {
-      return '<button class="chip-filter" data-b="' + esc(b) + '">' + esc(b) + " (" + items.filter(function (d) { return hasBrand(d, b); }).length + ")</button>";
-    })).join("");
 
   function card(d) {
     var href = d.web ? "https://" + d.web.replace(/^https?:\/\//, "") : "";
@@ -50,23 +40,9 @@
   if (elCert) elCert.innerHTML = items.filter(function (d) { return (d.cert || []).length; }).map(certCard).join("");
 
   function render() {
-    var rows = items.filter(function (d) {
-      return (!cat || d.cat === cat) && (!brand || hasBrand(d, brand));
-    });
-    elCat.querySelectorAll("[data-c]").forEach(function (b) {
-      var on = b.getAttribute("data-c") === cat;
-      b.classList.toggle("is-active", on); b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    elBrand.querySelectorAll("[data-b]").forEach(function (b) {
-      var on = b.getAttribute("data-b") === brand;
-      b.classList.toggle("is-active", on); b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
+    var rows = items.slice();
     if (elCount) elCount.textContent = rows.length === 1 ? "1 partner" : (rows.length >= 5 ? rows.length + " partnerů" : rows.length + " partneři");
 
-    if (!rows.length) {
-      elGrids.innerHTML = '<div class="shempty"><h4>Žádný partner neodpovídá filtru</h4><p>Zkuste zvolit jinou značku nebo zobrazit všechny.</p></div>';
-      return;
-    }
     elGrids.innerHTML = CATS.map(function (c) {
       var g = rows.filter(function (d) { return d.cat === c.k; });
       if (!g.length) return "";
@@ -87,13 +63,5 @@
   }
   glow(elGrids); if (elCert) glow(elCert);
 
-  elCat.addEventListener("click", function (e) {
-    var b = e.target.closest("[data-c]"); if (!b) return;
-    cat = b.getAttribute("data-c"); render();
-  });
-  elBrand.addEventListener("click", function (e) {
-    var b = e.target.closest("[data-b]"); if (!b) return;
-    brand = b.getAttribute("data-b"); render();
-  });
   render();
 })();

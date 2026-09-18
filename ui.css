@@ -629,6 +629,10 @@ body.dir-a .hero-slide.is-active{opacity:1;transform:scale(1.12);}
 .megacols-three .megacol ul{gap:10px;}
 .megacols-three .megacol-cta{margin-top:18px;}
 .megacol h5.megacol-h5-2{margin-top:26px;}
+/* sloupec bez kickeru srovnaný se sousedním sloupcem, který kicker má */
+.megacol.no-kicker>ul{margin-top:32px;}
+/* rozbalovací položka, která není odkaz (vybírá se až podkategorie) */
+.nav-link.is-nolink{cursor:default;}
 .megacol-cta{display:inline-flex;align-items:center;gap:7px;margin-top:26px;
   font-family:var(--pm-font-display);font-weight:700;font-size:var(--pm-text-sm);color:var(--text-soft);
   transition:color var(--pm-dur-fast) var(--pm-ease);}
@@ -1434,16 +1438,16 @@ a.flagship{text-decoration:none;color:inherit;}
 .brcat-h h3{font-family:var(--pm-font-display);font-weight:700;font-size:1.3rem;letter-spacing:-.01em;margin:0;}
 .brcat-h .cnt{font-family:var(--pm-font-mono);font-size:12px;color:var(--text-mute);}
 .brcat-h .rule{flex:1;height:1px;background:var(--border);align-self:center;}
-.brgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:clamp(20px,2vw,28px) clamp(12px,1vw,16px);}
+.brgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:clamp(20px,2vw,28px) clamp(12px,1vw,16px);}
 /* karta značky není box — logo drží tvar, text je bez odsazení po stranách */
 .brcell{display:flex;flex-direction:column;align-items:flex-start;gap:8px;justify-content:space-between;min-height:0;position:relative;
   padding:0;border-radius:var(--pm-radius-md);
   transition:background var(--pm-dur) var(--pm-ease);}
 .brcell{justify-content:flex-start;gap:10px;}
 /* logo na bílé kartičce — podklady nejsou vždy průhledné, takže jednotný bílý podklad */
-.blogo{width:100%;max-width:210px;aspect-ratio:16/9;min-height:0;box-sizing:border-box;overflow:hidden;background:#fff;border-radius:var(--pm-radius-sm);display:flex;align-items:center;justify-content:center;padding:10px 12px;}
+.blogo{width:100%;max-width:none;aspect-ratio:16/9;min-height:0;box-sizing:border-box;overflow:hidden;background:#fff;border-radius:var(--pm-radius-sm);display:flex;align-items:center;justify-content:center;padding:10px 12px;}
 /* opticky vyrovnaná velikost: široké wordmarky limituje šířka, vysoká loga výška */
-.blogo img{max-width:82%;max-height:62%;width:auto;height:auto;object-fit:contain;display:block;}
+.blogo img{max-width:88%;max-height:74%;width:auto;height:auto;object-fit:contain;display:block;}
 .brcell .btext{display:flex;flex-direction:column;gap:6px;}
 .brcell .bname{font-family:var(--pm-font-display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em;}
 .brcell .bname .st{color:var(--accent);font-size:var(--pm-text-2xs);margin-left:5px;vertical-align:super;}
@@ -2307,8 +2311,8 @@ body.eshop .pd-cta{display:none;}
   border-top:1px solid var(--border);padding-top:18px;}
 .pd-facts dt{font-family:var(--pm-font-body);font-size:var(--pm-text-sm);letter-spacing:0;text-transform:none;color:var(--text-mute);}
 .pd-facts dd{margin:0;font-size:var(--pm-text-sm);color:var(--text-soft);}
-/* levý sloupec (galerie + popis) stojí, roluje jen pravý panel s nákupem a specifikací */
-.pd-gal{position:sticky;top:calc(var(--pm-nav-h,75px) + clamp(16px,2vw,28px));align-self:start;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,28px);}
+/* levý sloupec (galerie + popis) roluje spolu se stránkou — sticky zrušeno */
+.pd-gal{align-self:start;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,28px);}
 .pd-prose p{margin:0 0 16px;color:var(--text-soft);line-height:1.7;max-width:62ch;text-wrap:pretty;}
 .pd-prose p:last-child{margin-bottom:0;}
 .pd-info .pd-specs{margin-top:clamp(22px,2.6vw,34px);}
@@ -2319,7 +2323,7 @@ body.eshop .pd-cta{display:none;}
 .pd-specs dd{margin:0 0 11px;font-size:var(--pm-text-sm);color:var(--text);border-bottom:1px solid var(--border);padding-bottom:11px;}
 .pd-specs dd:last-child{border-bottom:0;margin-bottom:0;}
 .pd-rel{margin-top:4px;}
-@media(max-width:900px){.pd{grid-template-columns:minmax(0,1fr);}.pd-gal{position:static;}}
+@media(max-width:900px){.pd{grid-template-columns:minmax(0,1fr);}}
 
 /* přepínač eshopového režimu (interní náhled) */
 .eshop-toggle{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:12px;
@@ -2594,9 +2598,7 @@ a.pcard:hover .pcard-box img,a.pcertcard:hover .pcard-box img{opacity:1;}
 .pd-shot-cover img{padding:0;object-fit:cover;}
 .pd-stock.is-low{color:var(--pm-warning);background:color-mix(in srgb,var(--pm-warning) 12%,transparent);border-color:color-mix(in srgb,var(--pm-warning) 45%,transparent);}
 .pd-stock.is-full{color:var(--text-mute);background:var(--surface-raised);border-color:var(--border);}
-.cap-bar{width:100%;max-width:320px;height:6px;border-radius:var(--pm-radius-pill);background:var(--surface-raised);border:1px solid var(--border);overflow:hidden;}
-.cap-bar i{display:block;height:100%;background:var(--accent);}
-.cap-note{margin:-8px 0 0;font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);}
+.cap-note{margin:-6px 0 0;font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);}
 .pd-course .pd-prose h3{font-family:var(--pm-font-display);font-weight:700;font-size:clamp(1.1rem,1.5vw,1.3rem);letter-spacing:-.01em;margin:26px 0 12px;}
 .pd-course .pd-prose h3:first-child{margin-top:0;}
 .pd-course .pd-prose ul{margin:0 0 16px;padding-left:22px;display:flex;flex-direction:column;gap:8px;max-width:62ch;}

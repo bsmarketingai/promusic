@@ -50,7 +50,6 @@
           '<div class="pd-price">' + esc(c.cena) + "<small>" + esc(c.cenaNote || "") + "</small></div>" +
           '<div class="pd-stock is-' + k.s + '" role="status"><ui-icon name="ui-users" aria-hidden="true"></ui-icon>' +
             '<span class="pd-stock-t">' + esc(k.t) + "</span></div>" +
-          '<div class="cap-bar" aria-hidden="true"><i style="width:' + Math.round(((c.taken || 0) / (c.places || 1)) * 100) + '%"></i></div>' +
           '<p class="cap-note mono">Obsazenost ' + (c.taken || 0) + " / " + (c.places || 0) + " míst</p>" +
           '<div class="pd-buy">' +
             '<div class="qty" role="group" aria-label="Počet účastníků">' +

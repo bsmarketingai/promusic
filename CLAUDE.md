@@ -47,3 +47,4 @@ Stávající web klienta: https://promusic.cz/
 - Po editaci `.js`/`.css` **bumpni `?v=N`** v `<link>`/`<script>`, jinak drží cache.
 - Náhledový screenshot nástroj snímá foto-sekce s transformy černě (artefakt). Ověřuj přes `eval_js_user_view` / `screenshot_user_view`.
 - **Kontroluj po sobě.** Když přidáš komponentu, ověř, že má hover/glow, správnou specificitu a že se nikde nezduplikovala.
+- **Každou změnu designu zapisuj do `baglog.html`** — automaticky, bez vyzvání, ve stejném tahu jako samotnou úpravu. Struktura: nejnovější den nahoře (`.chday` → `.when` s datem a počtem změn), položka `.chitem` s tagem (Struktura / Layout / Komponenty / Velikost / Funkce / Barvy), tučným shrnutím a jednou vysvětlující větou. Dnešní den = přidat položku do existujícího bloku a přepočítat počet změn. Nezapisují se nové stránky bez designového dopadu a drobné textové korektury.
