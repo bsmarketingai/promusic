@@ -6,7 +6,7 @@
    sekce s vlastním podkladem (vlna, fotka, statement, hero) zůstávají beze změny
    a do rytmu se nepočítají. */
 (function () {
-  var K = "pm-mode", KH = "pm-header", KL = "pm-logo";
+  var K = "pm-mode", KH = "pm-header", KL = "pm-logo", KHR = "pm-hero";
   var MODES = ["dark", "light", "duo"];
 
   function get(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } }
@@ -14,6 +14,7 @@
 
   function mode() { var m = get(K, "dark"); return MODES.indexOf(m) > -1 ? m : "dark"; }
   function header() { return get(KH, "dark") === "light" ? "light" : "dark"; }
+  function hero() { var h = get(KHR, "h1"); return ["h2", "h2-3d", "h3", "h5"].indexOf(h) > -1 ? h : "h1"; }
   function logo() { return get(KL, "color") === "mono" ? "mono" : "color"; }
 
   function tagDuo(on) {
@@ -23,7 +24,7 @@
     Array.prototype.forEach.call(app.children, function (s) {
       if (s.tagName !== "SECTION" && s.tagName !== "HEADER") return;
       s.classList.remove("pm-light");
-      var own = s.matches(".wave-band,.statement,.band-photo,.b-techbg,.listhead,.hero") || s.querySelector(":scope > .bg");
+      var own = s.matches(".wave-band,.statement,.band-photo,.b-techbg,.listhead,.hero,.hstrip,.hmason,.hmix") || s.querySelector(":scope > .bg");
       if (own) return;
       if (on && i % 2 === 1) s.classList.add("pm-light");
       i++;
@@ -35,6 +36,7 @@
     r.setAttribute("data-mode", m);
     r.setAttribute("data-header", header());
     r.setAttribute("data-logo", logo());
+    r.setAttribute("data-hero", hero());
     if (document.getElementById("app")) tagDuo(m === "duo");
   }
 
@@ -42,10 +44,11 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
 
   window.PMMode = {
-    mode: mode, header: header, logo: logo, MODES: MODES,
+    mode: mode, header: header, logo: logo, hero: hero, MODES: MODES,
+    setHero: function (h) { set(KHR, h); apply(); },
     setMode: function (m) { set(K, m); apply(); },
     setHeader: function (h) { set(KH, h); apply(); },
     setLogo: function (l) { set(KL, l); apply(); }
   };
-  window.addEventListener("storage", function (e) { if (e.key === K || e.key === KH || e.key === KL) apply(); });
+  window.addEventListener("storage", function (e) { if (e.key === K || e.key === KH || e.key === KL || e.key === KHR) apply(); });
 })();

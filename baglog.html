@@ -6,7 +6,7 @@
 <title>PRO MUSIC — Backlog změn</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=16" />
-<link rel="stylesheet" href="ui.css?v=279" />
+<link rel="stylesheet" href="ui.css?v=295" />
 </head>
 <body class="dir-b">
 <div id="app">
@@ -27,6 +27,22 @@
 
   <section class="sec band band-flat reveal"><div class="wrap-wide">
     <div class="chlog">
+      <div class="chday">
+        <div class="when">22. 9. 2026<small>11 změn</small></div>
+        <div class="chitems">
+      <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>H5: pult přes plnou šířku okna</b><span>Mixpult už není omezen šířkou obsahu — sahá k okrajům okna s tenkým okrajem; claim a CTA nad ním zůstávají zarovnané s hlavičkou webu.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>Homepage: varianta hera H5 „Mixpult"</b><span>Projekty jako kanály mixážního pultu přes celou výšku okna: aktivní kanál (SOLO) se roztáhne na barevnou fotku s obsahem, živým LED metrem a faderem jako průběhem autoplay; ostatní jsou úzké šedé pruhy se svislým popiskem. Pod pultem scribble strip s názvy kanálů, vpravo master sekce se šipkami; klávesy ← → a 1–7, tablet max. 5 kanálů, mobil jako vodorovný akordeon.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>H3: ghost tlačítka na kartách mozaiky</b><span>V mozaice je vedle CTA claimu víc karet naráz — plná tlačítka „Zobrazit projekt“ nahrazena ghost variantou, aby primární akcí zůstalo jen „Probrat projekt“.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Karty projektů (H2 / H2-3D / H3): oprava svítící linky na spodní hraně</b><span>Tmavý přechod přes fotku se měřil bez 1px okraje a v něm se opakoval jeho průhledný začátek; teď sahá až k hraně karty.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>Homepage: varianta hera H3 — masonry mozaika</b><span>Claim s CTA a 7 projektů v mozaice 4 sloupců různé šíře, dlaždice střídají formát na šířku a na výšku a vyplňují celou výšku okna jako H1; pevný počet dlaždic, malé dlaždice skrývají popis a tlačítko. Na mobilu 2 → 1 sloupec.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Funkce</span><div class="what"><b>Náhledový panel: ladění 3D ringu</b><span>Při Hero H2-3D se v panelu objeví posuvníky pro šířku a poměr karet, poloměr, mezeru, perspektivu, náklon, bod pohledu, natočení, utlumení a délku přechodu, přepínač zadní strany karet a auto-rotace; hodnoty se drží v prohlížeči a jdou zkopírovat do schránky.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Velikost</span><div class="what"><b>H2-3D: karty na šířku</b><span>Karty v ringu mají formát na šířku (~16:10, až 720 px), aby lépe vyplnily obvod ringu přes celou šíři stránky; H2 zůstává s kartami na výšku.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Velikost</span><div class="what"><b>H2-3D: ring přes celou šíři stránky</b><span>Poloměr ringu se odvíjí od šířky okna (≈ 62vw) a perspektiva roste úměrně s ním, takže boční karty sahají k okrajům okna a přední karta zůstává v původní velikosti; zadní karty tlumí vlastní vrstva místo filtru (opravené řazení hloubky).</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Karty hera H2: hover přes kanonický outline-glow</b><span>Místo plného oranžového okraje mají karty pásu stejný světelný okraj sledující kurzor jako zbytek webu; scrim a klidový okraj se přesunuly do jednoho pseudo-prvku.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>Homepage: varianta hera H2-3D — karty v otočném 3D ringu</b><span>Tytéž karty jako H2 rozmístěné po kružnici v čistém CSS (perspektiva, preserve-3d, poloměr dopočítaný z šířky a počtu karet); šipky, swipe, klávesy i klik na zadní kartu otáčí celým ringem, zadní karty jsou utlumené. Přepínač Hero H1 / H2 / H2-3D v náhledovém panelu.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>Homepage: druhá varianta hera (H2) — horizontální pás projektů</b><span>Full-bleed pás 7 karet projektů a instalací (fotka, kategorie, název, popis, CTA) s šipkami, průběhem a tažením myší; první karta sedí na hraně obsahu, při scrollu jede k okraji okna. Přepíná se v náhledovém panelu (Hero H1 / H2).</span></div></div>
+        </div>
+      </div>
       <div class="chday">
         <div class="when">18. 9. 2026<small>14 změn</small></div>
         <div class="chitems">

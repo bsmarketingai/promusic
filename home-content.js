@@ -98,7 +98,77 @@ const refTiles = [
       </a>
     </div>`;
 
+  /* HERO H2 — horizontální pás projektů a instalací */
+  const strip = [
+    { img: P + "eurovize/nemo-kruh-final.jpg", k: "Touring / Rental / produkce", t: "Eurovision Song Contest 2024", d: "Malmö · ozvučení finálových večerů.", href: "live-eurovize-2024.html" },
+    { img: P + "rammstein/stadion-plameny.jpg", k: "Touring / Rental / produkce", t: "Rammstein — Stadium Tour", d: "34 koncertů v 17 zemích Evropy.", href: "live-rammstein.html" },
+    { img: P + "karlin/sal-full.png", k: "Instalace", t: "Hudební divadlo Karlín", d: "Největší instalace L-ISA v ČR.", href: "instalace-hd-karlin-schema.html" },
+    { img: P + "ed-sheeran/ohnostroj.jpg", k: "Touring / Rental / produkce", t: "Ed Sheeran — Mathematics Tour", d: "Stadionový rig Ayrton.", href: "live-ed-sheeran.html" },
+    { img: P + "djkt-plzen/sal-pohled.jpg", k: "Instalace", t: "Nová scéna DJKT Plzeň", d: "Světová premiéra L-Acoustics Ambiance.", href: "#" },
+    { img: P + "steel-arena/projekce-barvy.jpg", k: "Instalace", t: "Steel Aréna Košice", d: "Světelný systém Ayrton pro arénu.", href: "#" },
+    { img: "assets/novinky/028.jpg", k: "Instalace", t: "UFFO Trutnov", d: "L-ISA Auditorium v Trutnově.", href: "novinka.html?a=l-isa-auditorium-v-trutnove-1697" },
+  ];
+
+  /* H3 — dlaždice mozaiky: --g = podíl výšky ve sloupci (poměr stran vzniká z šířky sloupce × podílu) */
+  const mcard = (c, g) => `<a class="hscard mcard outline-glow" href="${c.href}" style="--g:${g}">
+        <img src="${c.img}" alt="" />
+        <span class="hscard-body"><span class="hscard-k">${c.k}</span><strong class="hscard-t">${c.t}</strong><span class="hscard-d">${c.d}</span>
+        <span class="btn btn-ghost btn-sm">Zobrazit projekt<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></span>
+      </a>`;
+
   const html = `
+
+  <!-- HERO H3 — masonry mozaika přes celou výšku okna (přepínač Hero v náhledovém panelu) -->
+  <section class="hmason" aria-label="Úvod a vybrané projekty">
+    <div class="hmason-grid">
+      <div class="hmason-col">
+        <div class="hmason-claim">
+          <span class="eyebrow">Profesionální audio &amp; light · od 1997</span>
+          <h1 class="display">Professional show equipment</h1>
+          <p class="lead">Dodáváme špičkové profesionální technologie — a&nbsp;rozumíme tomu, aby to celé fungovalo. Od koncertních pódií po instalace v&nbsp;divadlech a&nbsp;arénách.</p>
+          <div class="cta-actions">
+            <ui-button variant="primary" href="kontakt.html">Probrat projekt →</ui-button>
+            <ui-button variant="ghost" href="reference.html">Vybrané projekty →</ui-button>
+          </div>
+        </div>
+        ${mcard(strip[0], 1.05)}
+      </div>
+      <div class="hmason-col">${mcard(strip[1], 1.7)}${mcard(strip[2], 1)}</div>
+      <div class="hmason-col">${mcard(strip[3], 1)}${mcard(strip[4], 1.7)}</div>
+      <div class="hmason-col">${mcard(strip[5], 1.35)}${mcard(strip[6], 1)}</div>
+    </div>
+  </section>
+
+  <!-- HERO H2 — pás projektů (přepínač Hero v náhledovém panelu) -->
+  <section class="hstrip" aria-label="Vybrané projekty">
+    <div class="wrap hstrip-head">
+      <div>
+        <span class="eyebrow">Profesionální audio &amp; light · od 1997</span>
+        <h1 class="display">Professional show equipment</h1>
+      </div>
+      <div class="cta-actions">
+        <ui-button variant="primary" href="kontakt.html">Probrat projekt →</ui-button>
+        <ui-button variant="ghost" href="reference.html">Vybrané projekty →</ui-button>
+      </div>
+    </div>
+    <div class="hstrip-scene" style="--n:${strip.length}">
+    <div class="hstrip-track ring" id="hstripTrack" style="--n:${strip.length};--active:0">
+      ${strip.map((c, i) => `<a class="hscard outline-glow" href="${c.href}" draggable="false" style="--i:${i}">
+        <img src="${c.img}" alt="" draggable="false" loading="${i < 4 ? "eager" : "lazy"}" />
+        <span class="hscard-body"><span class="hscard-k">${c.k}</span><strong class="hscard-t">${c.t}</strong><span class="hscard-d">${c.d}</span>
+        <span class="btn btn-primary btn-sm">Zobrazit projekt<ui-icon class="btn-ico" name="ui-arrow-right" aria-hidden="true"></ui-icon></span></span><span class="hscard-dim" aria-hidden="true"></span>
+      </a>`).join("")}
+    </div>
+    </div>
+    <div class="wrap hstrip-foot">
+      <div class="hstrip-bar"><i id="hstripBar"></i></div>
+      <span class="hstrip-count" id="hstripCount">01 / ${String(strip.length).padStart(2, "0")}</span>
+      <div class="hstrip-nav">
+        <button type="button" class="hstrip-btn" data-dir="-1" aria-label="Předchozí"><ui-icon name="ui-chevron-left"></ui-icon></button>
+        <button type="button" class="hstrip-btn" data-dir="1" aria-label="Další"><ui-icon name="ui-chevron-right"></ui-icon></button>
+      </div>
+    </div>
+  </section>
 
   <!-- HERO -->
   <header class="hero">
@@ -294,6 +364,85 @@ const refTiles = [
     if (slides.length) { go(0); start(); }
     var cardsWrap = document.getElementById("heroCards");
     if (cardsWrap) setTimeout(function () { cardsWrap.classList.add("ready"); }, 1500);
+  })();
+
+  /* ===== HERO H2 — pás projektů: šipky, průběh, tažení myší ===== */
+  (function () {
+    var tr = document.getElementById("hstripTrack");
+    if (!tr) return;
+    var bar = document.getElementById("hstripBar"), cnt = document.getElementById("hstripCount");
+    var cards = [].slice.call(tr.children), N = cards.length;
+    var btns = [].slice.call(document.querySelectorAll(".hstrip-btn"));
+    var act = 0;
+    function is3d() { return document.documentElement.getAttribute("data-hero") === "h2-3d"; }
+    function mod(a) { return ((a % N) + N) % N; }
+    function setActive(a) {
+      act = a; tr.style.setProperty("--active", a);
+      var m = mod(a);
+      cards.forEach(function (c, i) { var d = Math.abs(i - m); c.style.setProperty("--d", Math.min(d, N - d)); c.classList.toggle("is-front", i === m); });
+      update();
+    }
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : tr.clientWidth; }
+    function update() {
+      if (is3d()) {
+        var m = mod(act);
+        bar.style.width = (100 / N) + "%"; bar.style.transform = "translateX(" + (m * 100) + "%)";
+        cnt.textContent = pad(m + 1) + " / " + pad(N);
+        btns[0].disabled = btns[1].disabled = false;
+        return;
+      }
+      var max = tr.scrollWidth - tr.clientWidth, x = tr.scrollLeft;
+      var p = max > 0 ? x / max : 0;
+      var vis = tr.clientWidth / tr.scrollWidth;
+      bar.style.width = (vis * 100) + "%";
+      bar.style.transform = "translateX(" + (p * (1 / vis - 1) * 100) + "%)";
+      var i = x >= max - 2 ? N : Math.min(N, Math.round(x / step()) + 1);
+      cnt.textContent = pad(i) + " / " + pad(N);
+      btns[0].disabled = x <= 2; btns[1].disabled = x >= max - 2;
+    }
+    btns.forEach(function (b) { b.addEventListener("click", function () {
+      var dir = +b.getAttribute("data-dir");
+      if (is3d()) setActive(act + dir); else tr.scrollBy({ left: step() * dir, behavior: "smooth" });
+    }); });
+    /* 3D: klik na zadní kartu ji jen natočí dopředu */
+    cards.forEach(function (c, i) { c.addEventListener("click", function (e) {
+      if (!is3d() || i === mod(act)) return;
+      e.preventDefault();
+      var d = i - mod(act); if (d > N / 2) d -= N; if (d < -N / 2) d += N;
+      setActive(act + d);
+    }); });
+    tr.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    var down = false, moved = false, sx = 0, sl = 0;
+    tr.addEventListener("pointerdown", function (e) {
+      if (is3d()) { if (e.button === 0) { down = true; moved = false; sx = e.clientX; } return; }
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      down = true; moved = false; sx = e.clientX; sl = tr.scrollLeft;
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      var dx = e.clientX - sx;
+      if (!moved && Math.abs(dx) > 5) { moved = true; tr.classList.add("is-drag"); }
+      if (is3d()) { if (Math.abs(dx) > 50) { setActive(act + (dx < 0 ? 1 : -1)); sx = e.clientX; } return; }
+      if (moved) tr.scrollLeft = sl - dx;
+    });
+    window.addEventListener("pointerup", function () {
+      if (!down) return; down = false;
+      if (moved) {
+        tr.classList.remove("is-drag");
+        if (is3d()) return;
+        var i = Math.round(tr.scrollLeft / step());
+        tr.scrollTo({ left: i * step(), behavior: "smooth" });
+      }
+    });
+    tr.addEventListener("click", function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+    window.addEventListener("keydown", function (e) {
+      if (!is3d() || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
+      var r = tr.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+      if (e.key === "ArrowRight") setActive(act + 1); else if (e.key === "ArrowLeft") setActive(act - 1);
+    });
+    setActive(0);
   })();
 
   /* ===== REFERENCE FILTR (chips: hover + selected + filtrování dlaždic) ===== */

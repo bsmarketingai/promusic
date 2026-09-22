@@ -2100,7 +2100,7 @@ ui-live-card .ncard,ui-inst-card .ncard{height:100%;}
   transition:border-color var(--pm-dur) var(--pm-ease),color var(--pm-dur) var(--pm-ease);}
 .pvbar-toggle:hover{border-color:var(--accent);color:var(--accent);}
 .pvbar-toggle .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;}
-.pvbar-panel{display:flex;flex-direction:column;gap:16px;min-width:242px;padding:18px;border-radius:var(--pm-radius-lg);
+.pvbar-panel{display:flex;flex-direction:column;gap:16px;min-width:242px;width:300px;padding:18px;max-height:calc(100vh - 90px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;border-radius:var(--pm-radius-lg);
   border:1px solid var(--border-strong);background:color-mix(in srgb,var(--bg-deep) 88%,transparent);backdrop-filter:blur(18px);
   box-shadow:0 20px 50px rgba(0,0,0,.55);}
 .pvbar[data-open="false"] .pvbar-panel{display:none;}
@@ -2124,6 +2124,21 @@ ui-live-card .ncard,ui-inst-card .ncard{height:100%;}
 .pvcolor input[type="color"]::-webkit-color-swatch{border:1px solid var(--border-strong);border-radius:4px;}
 .pvcolor-v{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.06em;color:var(--text-soft);}
 .pvnote{font-size:var(--pm-text-2xs);line-height:1.55;color:var(--text-mute);text-wrap:pretty;}
+/* ladění 3D ringu (jen při Hero H2-3D) */
+.pvring{display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid var(--border);}
+.pvring[hidden]{display:none;}
+.pvring-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.pvring-head > label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+.pvrange{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;}
+.pvrange span{font-size:var(--pm-text-2xs);color:var(--text-soft);}
+.pvrange output{font-family:var(--pm-font-mono);font-size:10px;letter-spacing:.04em;color:var(--text);}
+.pvrange input{grid-column:1 / -1;width:100%;accent-color:var(--accent);height:14px;margin:0;cursor:pointer;}
+.pvring{gap:10px;}
+.pvring .pvseg button{height:30px;}
+.pvbtns{display:flex;gap:6px;}
+.pvbtns button{flex:1;height:32px;cursor:pointer;border-radius:var(--pm-radius-sm);border:1px solid var(--border-strong);background:transparent;color:var(--text-soft);
+  font-family:var(--pm-font-display);font-size:var(--pm-text-2xs);font-weight:700;transition:color var(--pm-dur) var(--pm-ease),border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease);}
+.pvbtns button:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-tint);}
 @media(max-width:700px){.pvbar{left:12px;bottom:12px;}.pvbar-panel{min-width:0;width:calc(100vw - 24px);max-width:290px;}}
 
 
@@ -2763,3 +2778,228 @@ html[data-mode="light"] :is(.b-techbg,.band-photo,.statement) .btn-ghost{border-
 .sec-wave-end > *{position:relative;z-index:1;}
 /* dvě takové sekce za sebou: druhá začíná pod hřebenem té první */
 .sec-wave-end + .sec-wave-end,.sec-wave-end + .sec{padding-top:calc(var(--pm-wave-h) + var(--pm-wave-gap));}
+
+
+/* ===================== HERO H2 — horizontální pás projektů =====================
+   Přepíná se přes html[data-hero] (ui-mode.js, náhledový panel). Pás je full-bleed:
+   první karta začíná na levé hraně obsahu (.wrap), při scrollu jede až k okraji okna;
+   poslední karta dojede na pravý okraj (bez pravého odsazení). */
+html:not([data-hero="h2"]):not([data-hero="h2-3d"]) .hstrip{display:none;}
+html[data-hero="h2"] .hero,html[data-hero="h2-3d"] .hero,html[data-hero="h3"] .hero{display:none;}
+html:not([data-hero="h3"]) .hmason{display:none;}
+html:not([data-hero="h5"]) .hmix{display:none;}
+html[data-hero="h5"] .hero{display:none;}
+.hstrip{--hs-in:max(var(--pm-gutter),calc((100% - 1520px) / 2 + var(--pm-gutter)));position:relative;padding:clamp(112px,9vw,140px) 0 clamp(30px,3vw,48px);background:var(--bg);}
+.hstrip-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px 40px;flex-wrap:wrap;margin-bottom:clamp(22px,2.4vw,36px);}
+.hstrip-head h1.display{margin:14px 0 0;font-size:clamp(2rem,4.4vw,4.2rem);line-height:.98;letter-spacing:-.04em;text-wrap:balance;}
+.hstrip-head .cta-actions{margin:0;justify-content:flex-start;}
+.hstrip-track{position:relative;display:flex;gap:clamp(12px,1.4vw,20px);overflow-x:auto;overscroll-behavior-x:contain;
+  padding:0 0 0 var(--hs-in);scroll-padding-left:var(--hs-in);scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;}
+.hstrip-track::-webkit-scrollbar{display:none;}
+.hstrip-track.is-drag{scroll-snap-type:none;cursor:grabbing;}
+.hstrip-track.is-drag .hscard{pointer-events:none;}
+.hscard{position:relative;flex:none;width:clamp(270px,29vw,450px);height:clamp(380px,56vh,580px);border-radius:var(--pm-radius-lg,16px);overflow:hidden;
+  scroll-snap-align:start;text-decoration:none;color:#fff;background:var(--surface-raised);isolation:isolate;user-select:none;-webkit-user-select:none;}
+.hscard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .9s var(--pm-ease);}
+/* ::before = kanonický outline-glow (světlo sleduje kurzor), ::after = scrim + klidový okraj */
+.hscard::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;border:1px solid rgba(255,255,255,.1);pointer-events:none;background:linear-gradient(180deg,rgba(7,6,5,0) 30%,rgba(7,6,5,.68) 58%,rgba(7,6,5,.95)) border-box;}
+/* border-box: gradient se jinak měří k padding-boxu a v 1px okraji se opakuje jeho průhledný začátek → svítící linka dole */
+.hscard:hover img{transform:scale(1.04);}
+.hscard:hover::after{border-color:transparent;}
+.hscard-body{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:clamp(20px,2.2vw,32px);}
+.hscard-k{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:#fff;}
+.hscard-t{font-family:var(--pm-font-display);font-weight:800;font-size:clamp(1.3rem,1.9vw,1.85rem);line-height:1.05;letter-spacing:-.025em;text-wrap:balance;}
+.hscard-d{font-size:var(--pm-text-sm);line-height:1.45;color:rgba(255,255,255,.86);max-width:34ch;}
+.hscard .btn{margin-top:10px;}
+.hstrip-foot{display:flex;align-items:center;gap:20px;margin-top:clamp(18px,2vw,28px);}
+.hstrip-bar{flex:1;height:2px;background:var(--border);border-radius:2px;overflow:hidden;}
+.hstrip-bar i{display:block;height:100%;width:30%;background:var(--accent);border-radius:inherit;}
+.hstrip-count{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);letter-spacing:.08em;color:var(--text-muted,rgba(236,230,218,.7));}
+.hstrip-nav{display:flex;gap:10px;}
+.hstrip-btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:20px;cursor:pointer;background:transparent;color:var(--text);
+  border:1.5px solid var(--border-strong);transition:background var(--pm-dur) var(--pm-ease),border-color var(--pm-dur) var(--pm-ease),color var(--pm-dur) var(--pm-ease),box-shadow var(--pm-dur) var(--pm-ease);}
+.hstrip-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent);background:var(--accent-tint);box-shadow:0 0 22px rgba(224,84,43,.35);}
+.hstrip-btn:disabled{opacity:.3;cursor:default;}
+@media(max-width:549px){.hscard{width:80vw;height:clamp(360px,62vh,480px);}.hstrip-count{display:none;}}
+@media(hover:none){.hstrip-track{cursor:auto;}}
+@media(prefers-reduced-motion:reduce){.hscard img{transition:none;}.hscard:hover img{transform:none;}}
+
+/* ===================== HERO H2-3D — ring karet =====================
+   Stejné karty jako H2, mění se jen rozmístění v prostoru. Scéna = perspektiva,
+   .ring = preserve-3d (bez overflow/filter/opacity — ty by 3D zplacatily),
+   karty po kružnici přes --i; otáčí se celý ring podle --active (JS). Ring se posune
+   o -poloměr, aby přední karta stála v rovině z = 0 (nezvětšuje se perspektivou). */
+html[data-hero="h2-3d"] .hstrip{overflow-x:clip;}
+/* ring přes celou šíři: poloměr ≈ 62vw (min. dopočet z karet), perspektiva úměrná poloměru.
+   rotateX(-8deg) posune přední kartu dolů o ~R·sin8° — spodní padding to vyrovnává.
+   boční karty se tak promítnou až k okrajům okna, přední karta zůstává v 1:1 */
+/* karty na šířku (~16:10) — lépe vyplní obvod ringu */
+/* --rg-* = ladicí hodnoty z náhledového panelu (preview-bar.js); bez nich platí výchozí */
+html[data-hero="h2-3d"] .hstrip-scene{--card-w:var(--rg-cw,clamp(420px,40vw,720px));--card-h:calc(var(--card-w) * var(--rg-ratio,.625));
+  --radius:max(calc((var(--card-w) / 2) / tan(180deg / var(--n, 7)) + var(--rg-gap,24px)),var(--rg-r,62vw));
+  perspective:calc(var(--radius) * var(--rg-persp,2.2));perspective-origin:50% var(--rg-oy,40%);
+  padding:clamp(10px,2vw,30px) 0 calc(var(--radius) * max(0, sin(calc(-1 * var(--rg-tilt,-8deg)))) + 24px);touch-action:pan-y;}
+html[data-hero="h2-3d"] .ring{
+  display:block;position:relative;width:var(--card-w);height:var(--card-h);margin:0 auto;padding:0;overflow:visible;
+  scroll-snap-type:none;transform-style:preserve-3d;
+  transform:translateZ(calc(-1 * var(--radius))) rotateX(var(--rg-tilt,-8deg)) rotateY(calc(-360deg / var(--n) * var(--active) + var(--rg-spin,0deg)));
+  transition:transform var(--rg-dur,.8s) cubic-bezier(.2,.8,.2,1);}
+html[data-hero="h2-3d"] .ring .hscard{--angle:calc(360deg / var(--n) * var(--i));
+  position:absolute;inset:0;width:auto;height:auto;backface-visibility:var(--rg-bf,visible);
+  transform:rotateY(var(--angle)) translateZ(var(--radius));
+  isolation:auto;}
+/* utlumení zadních karet vlastní vrstvou uvnitř karty — filter/opacity na kartě by v Chromu
+   rozbily řazení hloubky (zadní karty se kreslí přes přední) */
+.hscard-dim{display:none;}
+html[data-hero="h2-3d"] .ring .hscard-dim{display:block;position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;
+  background:rgb(7,6,5);opacity:calc(var(--rg-dim,.2) * var(--d, 0));transition:opacity var(--rg-dur,.8s) cubic-bezier(.2,.8,.2,1);}
+html[data-hero="h2-3d"] .ring .hscard:not(.is-front){cursor:pointer;}
+html[data-hero="h2-3d"] .ring .hscard:not(.is-front) .btn{pointer-events:none;}
+html[data-hero="h2-3d"] .ring.is-drag .hscard{pointer-events:none;}
+@media(max-width:549px){html[data-hero="h2-3d"] .hstrip-scene{--card-w:82vw;--card-h:clamp(260px,58vw,340px);}}
+@media(prefers-reduced-motion:reduce){html[data-hero="h2-3d"] .ring,html[data-hero="h2-3d"] .ring .hscard-dim{transition:none;}}
+
+/* ===================== HERO H3 — masonry mozaika =====================
+   Vyplní celou výšku okna jako H1 (pod fixní hlavičkou). 4 sloupce různé šíře,
+   v každém 2 dlaždice s různým podílem výšky (--g) → střídají se karty na šířku
+   a na výšku, ale počet je pevný (claim + 7 projektů), takže se vše vždy vejde.
+   Karty přebírají vzhled .hscard (H2), liší se jen rozměrem. */
+.hmason{position:relative;height:100vh;height:100svh;min-height:640px;max-height:1200px;padding:94px var(--pm-gutter) var(--pm-gutter);background:var(--bg);}
+.hmason-grid{height:100%;display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:clamp(10px,1vw,16px);}
+.hmason-col{display:flex;flex-direction:column;gap:clamp(10px,1vw,16px);min-height:0;}
+.hmason-claim{flex:0 0 auto;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(4px,1vw,14px) clamp(4px,1vw,14px) clamp(8px,1.4vw,22px);}
+.hmason-claim h1.display{margin:14px 0 0;font-size:clamp(2rem,min(3.9vw,6.2vh),4.6rem);line-height:.98;letter-spacing:-.04em;text-wrap:balance;}
+.hmason-claim .lead{margin-top:16px;font-size:clamp(.98rem,1.1vw,1.15rem);max-width:44ch;}
+.hmason-claim .cta-actions{margin-top:22px;justify-content:flex-start;}
+.hscard.mcard{width:auto;height:auto;flex:var(--g,1) 1 0;min-height:0;container-type:size;}
+/* claim si bere výšku podle obsahu, karta pod ním dostane zbytek sloupce */
+.hmason-col:first-child .mcard{flex:1 1 0;min-height:200px;}
+.mcard .hscard-body{padding:clamp(16px,1.6vw,26px);gap:6px;}
+.mcard .hscard-t{font-size:clamp(1.05rem,1.45vw,1.6rem);}
+/* nízké / úzké dlaždice: jen kategorie + název, tlačítko jen u dost vysokých */
+@container (max-height:420px){.mcard .hscard-body .btn{display:none;}}
+@container (max-height:280px){.mcard .hscard-d{display:none;}}
+@container (max-width:260px){.mcard .hscard-d{display:none;}.mcard .hscard-body .btn{display:none;}}
+/* M a menší: mozaika 2 sloupce, výška podle obsahu (na mobilu se celá obrazovka nevyplňuje) */
+@media(max-width:999px){
+  .hmason{height:auto;min-height:0;max-height:none;padding-top:100px;}
+  .hmason-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:dense;}
+  .hmason-col{display:contents;}
+  .hmason-claim{grid-column:1 / -1;padding:10px 0 18px;}
+  .hscard.mcard,.hmason-col:first-child .mcard{flex:none;min-height:0;height:calc(var(--g,1) * clamp(200px,34vw,300px));}
+}
+@media(max-width:549px){.hmason-grid{grid-template-columns:1fr;}.hscard.mcard{height:clamp(240px,70vw,340px);}}
+
+/* ===================== HERO H5 — „Mixpult" (channel strip hero) =====================
+   Každý projekt = kanál pultu. Aktivní (SOLO) flex-grow 6, ostatní úzké pruhy s LED metry.
+   Šasi (mezery 4 px + scribble strip) = --surface, kanály = --bg-deep. Pod pultem scribble
+   strip s popisky zarovnanými pod kanály (stejné flex-grow). Master sekce vpravo nese šipky.
+   Barvy LED: 1–8 text, 9–10 --pm-warning, 11–12 --accent. Hero H5 vkládá hero-mixpult.js. */
+.hmix{--mx-ease:cubic-bezier(.7,0,.2,1);--mx-r:var(--pm-radius-lg);display:flex;height:100vh;height:100svh;min-height:700px;max-height:1240px;padding:104px 0 clamp(20px,2vw,32px);background:var(--bg);}
+.hmix-in{width:100%;display:flex;flex-direction:column;min-height:0;}
+.hmix-head{width:100%;box-sizing:border-box;display:flex;align-items:flex-end;justify-content:space-between;gap:18px 40px;flex-wrap:wrap;margin-bottom:clamp(16px,1.8vw,26px);}
+.hmix-head h1.display{margin:12px 0 0;font-size:clamp(2rem,min(3.6vw,6.4vh),4.2rem);line-height:.98;letter-spacing:-.04em;}
+.hmix-head .cta-actions{margin:0;justify-content:flex-start;}
+/* pult přes plnou šířku okna (jen tenký okraj), hlavička s claimem zůstává zarovnaná s hlavičkou webu */
+.mixdesk{flex:1;min-height:460px;display:flex;flex-direction:column;gap:4px;padding:4px;margin:0 clamp(8px,.9vw,16px);border-radius:var(--mx-r);background:var(--surface);}
+.mixrow{flex:1;min-height:0;display:flex;gap:4px;}
+.mixch{position:relative;flex:1 1 0;min-width:72px;overflow:hidden;border-radius:4px;background:var(--bg-deep);isolation:isolate;transition:flex-grow .7s var(--mx-ease);}
+.mixch:first-child{border-radius:calc(var(--mx-r) - 4px) 4px 4px calc(var(--mx-r) - 4px);}
+.mixch.is-active{flex-grow:6;}
+.mixch:not(.is-active):hover{flex-grow:1.6;}
+.mixch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:grayscale(1) brightness(.45);transition:filter .4s var(--pm-ease);}
+.mixch:not(.is-active):hover img{filter:grayscale(0) brightness(.55);}
+.mixch.is-active img{filter:none;}
+.mixch::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .5s var(--pm-ease);
+  background:linear-gradient(180deg,rgba(13,11,10,0) 45%,rgba(13,11,10,.72) 72%,#0d0b0a) border-box;}
+.mixch.is-active::after{opacity:1;}
+.mixch-hit{position:absolute;inset:0;z-index:2;margin:0;padding:0;border:0;background:none;cursor:pointer;border-radius:inherit;}
+.mixch-hit:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;}
+.mixch.is-active .mixch-hit{cursor:default;}
+.mixch-no{position:absolute;top:16px;left:0;right:0;z-index:3;text-align:center;pointer-events:none;font-family:var(--pm-font-mono);font-size:11px;letter-spacing:.12em;color:var(--text-mute);transition:opacity .3s;}
+.mixch.is-active .mixch-no{opacity:0;}
+.mixch-v{position:absolute;left:50%;top:50%;z-index:3;pointer-events:none;writing-mode:vertical-rl;transform:translate(-50%,-50%) rotate(180deg);white-space:nowrap;
+  max-height:calc(100% - 250px);overflow:hidden;text-overflow:ellipsis;font-family:var(--pm-font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft);transition:opacity .3s,color .4s;}
+.mixch:not(.is-active):hover .mixch-v{color:var(--text);}
+.mixch.is-active .mixch-v{opacity:0;}
+/* LED meter */
+.meter{position:absolute;bottom:20px;left:50%;z-index:3;pointer-events:none;transform:translateX(-50%);display:flex;flex-direction:column-reverse;gap:3px;}
+.meter i{display:block;width:4px;height:10px;border-radius:1px;background:rgba(255,255,255,.08);transition:background 90ms linear;}
+.mixch:not(.is-active) .meter i:nth-child(-n+3){background:var(--text-faint);}
+.mixch:not(.is-active):hover .meter i:nth-child(-n+7){background:var(--text-mute);}
+.meter i.on{background:var(--text);}
+.meter i.on:nth-child(n+9){background:var(--pm-warning);}
+.meter i.on:nth-child(n+11){background:var(--accent);}
+.mixch.is-active .meter{left:auto;right:46px;transform:none;}
+/* fader = průběh autoplay */
+.fader{--p:0;position:absolute;right:24px;bottom:20px;z-index:3;width:18px;height:153px;pointer-events:none;opacity:0;transition:opacity .3s;}
+.fader::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.18);border-radius:2px;}
+.fader b{position:absolute;left:0;bottom:0;width:18px;height:8px;border-radius:2px;background:var(--text);box-shadow:0 0 0 1px rgba(0,0,0,.5);
+  transform:translateY(calc(var(--p) * -145px));transition:transform .3s var(--pm-ease);}
+.mixch.is-active .fader{opacity:1;}
+/* SOLO štítek + obsah */
+.mixch-solo{position:absolute;top:18px;left:20px;z-index:3;display:flex;align-items:center;gap:12px;pointer-events:none;font-family:var(--pm-font-mono);font-size:11px;letter-spacing:.12em;color:var(--text-soft);opacity:0;transition:opacity .3s;}
+.mixch-tag{display:inline-flex;align-items:center;gap:7px;padding:4px 9px;border-radius:var(--pm-radius-pill);background:rgba(13,11,10,.7);color:var(--text);}
+.mixch-tag b{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
+.mixch.is-active .mixch-solo{opacity:1;transition-delay:.25s;}
+.mixch-body{position:absolute;left:0;bottom:0;z-index:3;width:min(620px,100%);box-sizing:border-box;padding:clamp(22px,2.4vw,40px) 96px clamp(22px,2.4vw,36px) clamp(22px,2.4vw,40px);
+  display:flex;flex-direction:column;align-items:flex-start;gap:10px;visibility:hidden;opacity:0;transform:translateY(12px);transition:opacity .2s,transform .2s,visibility 0s .2s;}
+.mixch.is-active .mixch-body{visibility:visible;opacity:1;transform:none;transition:opacity .45s var(--pm-ease) .25s,transform .45s var(--pm-ease) .25s,visibility 0s;}
+.mixch-body{min-width:420px;}
+.mixch-k{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--accent-bright);}
+.mixch-t{font-family:var(--pm-font-display);font-weight:800;font-size:clamp(1.8rem,2.9vw,3rem);line-height:1;letter-spacing:-.03em;color:#fff;text-wrap:balance;}
+.mixch-d{font-size:var(--pm-text-sm);line-height:1.45;color:rgba(255,255,255,.86);}
+.mixch-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.mixch-chips span{font-family:var(--pm-font-mono);font-size:11px;letter-spacing:.06em;padding:4px 10px;border-radius:var(--pm-radius-pill);border:1px solid rgba(255,255,255,.28);color:var(--text);}
+.mixch-body .btn{margin-top:6px;}
+/* master sekce */
+.mixmst{position:relative;flex:0 0 88px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:44px 0 20px;
+  border-radius:4px calc(var(--mx-r) - 4px) calc(var(--mx-r) - 4px) 4px;background:var(--bg-deep);}
+.mixarrs{display:flex;flex-direction:column;gap:8px;}
+.mixarr{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:18px;cursor:pointer;background:transparent;color:var(--text);border:1.5px solid var(--border-strong);
+  transition:background var(--pm-dur) var(--pm-ease),border-color var(--pm-dur) var(--pm-ease),color var(--pm-dur) var(--pm-ease),box-shadow var(--pm-dur) var(--pm-ease);}
+.mixarr:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint);box-shadow:0 0 22px rgba(224,84,43,.35);}
+.mixmst-m{display:flex;gap:6px;}
+.meter-mst{position:static;transform:none;}
+/* scribble strip */
+.mixstrip{flex:0 0 32px;display:flex;gap:4px;align-items:stretch;}
+/* .mixlab musí mít stejný flex box jako .mixch (bez paddingu) — jinak se popisky rozjedou vůči kanálům; odsazení nese vnitřní span */
+.mixlab{flex:1 1 0;min-width:72px;box-sizing:border-box;padding:0;display:flex;align-items:center;cursor:pointer;overflow:hidden;
+  font-family:var(--pm-font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);transition:flex-grow .7s var(--mx-ease),color var(--pm-dur);}
+.mixlab > span{display:block;min-width:0;padding:0 10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.mixlab b{font-weight:400;color:var(--text-faint);margin-right:6px;}
+.mixlab:hover,.mixlab.is-peek{color:var(--text-soft);}
+.mixlab.is-peek{flex-grow:1.6;}
+.mixlab.is-active{flex-grow:6;color:var(--text);}
+.mixlab.is-active b{color:var(--accent-bright);}
+.mixctl{flex:0 0 88px;display:flex;align-items:center;justify-content:center;gap:5px;font-family:var(--pm-font-mono);font-size:10.5px;letter-spacing:.06em;color:var(--text-soft);}
+.mixctl b{font-weight:400;color:var(--accent-bright);}
+/* tablet: max 5 kanálů v okně, okno se posouvá s aktivním */
+@media(min-width:768px) and (max-width:1023px){
+  .mixch,.mixlab{min-width:56px;}
+  .mixch.is-out,.mixlab.is-out{display:none;}
+  .mixch-body{min-width:360px;}
+}
+/* mobil: pult otočený o 90° — vodorovné řádky pod sebou */
+@media(max-width:767px){
+  .hmix{height:auto;min-height:0;max-height:none;padding-top:100px;}
+  .hmix-head{flex-direction:column;align-items:flex-start;}
+  .mixdesk{min-height:0;}
+  .mixrow{flex-direction:column;}
+  .mixch,.mixch:first-child{flex:none;min-width:0;height:52px;border-radius:4px;transition:height .6s var(--mx-ease);}
+  .mixch:first-child{border-radius:calc(var(--mx-r) - 4px) calc(var(--mx-r) - 4px) 4px 4px;}
+  .mixch:last-of-type{border-radius:4px 4px calc(var(--mx-r) - 4px) calc(var(--mx-r) - 4px);}
+  .mixch.is-active{height:56svh;min-height:360px;}
+  .mixch:not(.is-active):hover{flex-grow:0;}
+  .mixch-no{top:50%;left:14px;right:auto;transform:translateY(-50%);}
+  .mixch-v{writing-mode:horizontal-tb;left:64px;transform:translateY(-50%);max-height:none;max-width:calc(100% - 180px);font-size:12px;}
+  .meter{flex-direction:row;top:50%;bottom:auto;left:auto;right:14px;transform:translateY(-50%);}
+  .meter i{width:5px;height:8px;}
+  .mixch.is-active .meter{top:auto;bottom:18px;right:18px;transform:none;}
+  .fader,.mixmst,.mixstrip{display:none;}
+  .mixch-body{min-width:0;width:100%;padding:20px 20px 46px;}
+  .mixch-solo{left:14px;top:14px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .mixch,.mixlab,.mixch img,.mixch::after,.mixch-body,.mixch.is-active .mixch-body,.fader b{transition:none !important;}
+}
