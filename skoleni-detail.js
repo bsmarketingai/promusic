@@ -7,6 +7,67 @@
   function ul(a) { return "<ul>" + a.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>"; }
   function lines(a) { return (a || []).map(esc).join("<br />"); }
 
+  /* Poptávka školení v modalu — odeslání je zatím fingované (bez backendu). */
+  function row(id, label, ctl, req, top) {
+    return '<div class="ui-form-row' + (top ? " is-top" : "") + '"><label class="ui-form-l" for="' + id + '">' + label +
+      (req ? '<span class="req" aria-hidden="true">*</span>' : "") + "</label>" + ctl +
+      '<span class="ui-form-err" id="' + id + '-e"></span></div>';
+  }
+  function openInquiry(c) {
+    if (!window.UIModal) return;
+    var box = window.UIModal.open({
+      title: "Poptávka školení",
+      body: '<form class="ui-form" novalidate>' +
+        row("inq-course", "Školení", '<input id="inq-course" class="ui-control" type="text" readonly value="' + esc(c.n) + '" />') +
+        row("inq-mail", "Váš e-mail", '<input id="inq-mail" name="email" class="ui-control" type="email" autocomplete="email" placeholder="@" required />', 1) +
+        row("inq-tel", "Váš telefon", '<input id="inq-tel" name="tel" class="ui-control" type="tel" autocomplete="tel" required />', 1) +
+        row("inq-firm", "Firma / fyzická osoba", '<input id="inq-firm" name="firma" class="ui-control" type="text" autocomplete="organization" required />', 1) +
+        row("inq-ppl", "Počet osob", '<select id="inq-ppl" name="osob" class="ui-control">' +
+          Array.from({ length: 12 }, function (_, i) { var n = i + 1; return '<option value="' + n + '">' + n + (n === 1 ? " osoba" : n < 5 ? " osoby" : " osob") + "</option>"; }).join("") + "</select>", 1) +
+        row("inq-note", "Poznámka", '<textarea id="inq-note" name="pozn" class="ui-control" rows="4"></textarea>', 0, 1) +
+        '<div class="ui-form-foot"><span class="ui-hint">* povinné údaje</span>' +
+        '<button type="submit" class="btn btn-primary">Odeslat poptávku</button></div></form>'
+    });
+    var form = box.querySelector("form");
+    var checks = [
+      ["inq-mail", function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "" : v ? "Zadejte platný e-mail." : "Vyplňte e-mail."; }],
+      ["inq-tel", function (v) { return v.replace(/\D/g, "").length >= 9 ? "" : v ? "Zadejte platné telefonní číslo." : "Vyplňte telefon."; }],
+      ["inq-firm", function (v) { return v ? "" : "Vyplňte firmu nebo jméno."; }]
+    ];
+    function validate(only) {
+      var first = null;
+      checks.forEach(function (k) {
+        if (only && only !== k[0]) return;
+        var el = box.querySelector("#" + k[0]), msg = k[1](el.value.trim());
+        el.setAttribute("aria-invalid", msg ? "true" : "false");
+        box.querySelector("#" + k[0] + "-e").textContent = msg;
+        if (msg && !first) first = el;
+      });
+      return first;
+    }
+    checks.forEach(function (k) {
+      box.querySelector("#" + k[0]).addEventListener("input", function () {
+        if (this.getAttribute("aria-invalid") === "true") validate(k[0]);
+      });
+    });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var bad = validate();
+      if (bad) { bad.focus(); return; }
+      var btn = form.querySelector('[type="submit"]');
+      btn.disabled = true; btn.textContent = "Odesílám…";
+      setTimeout(function () {
+        box.querySelector(".ui-modal-body").innerHTML =
+          '<div class="ui-form-done" role="status"><span class="ui-form-done-ico"><ui-icon name="ui-check" aria-hidden="true"></ui-icon></span>' +
+          "<h3>Poptávka školení byla úspěšně odeslána.</h3>" +
+          "<p>Na váš e-mail obdržíte potvrzení, že poptávku evidujeme a budeme vás kontaktovat, jakmile se kurz kapacitně naplní.</p>" +
+          '<button type="button" class="btn btn-ghost ui-form-close">Zavřít</button></div>';
+        box.querySelector(".ui-form-close").addEventListener("click", window.UIModal.close);
+        if (window.UIArmGlow) window.UIArmGlow();
+      }, 700);
+    });
+  }
+
   function build(root) {
     var all = window.PM_COURSES || [];
     var slug = new URLSearchParams(location.search).get("k");
@@ -53,8 +114,7 @@
           '<p class="pd-perex">' + esc(c.perex) + "</p>" +
           '<div class="pd-stock" role="status"><ui-icon name="academy-schedule" aria-hidden="true"></ui-icon><span class="pd-stock-t">Termín domluvíme na poptávku</span></div>' +
           '<div class="cta-actions pd-cta">' +
-            '<ui-button variant="ghost" size="md" href="mailto:academy@promusic.cz?subject=' + encodeURIComponent(c.n) + '">Zeptat se na kurz</ui-button>' +
-            '<ui-button variant="primary" size="md" href="prihlaska-skoleni.html?k=' + encodeURIComponent(c.slug) + '">Poptat školení →</ui-button>' +
+            '<ui-button variant="primary" size="md" class="cd-inquire">Poptat školení →</ui-button>' +
           "</div>" +
           '<dl class="pd-facts">' +
             "<dt>Předpoklady</dt><dd>" + lines(m.pre) + "</dd>" +
@@ -77,6 +137,8 @@
       var pick = same.concat(others.filter(function (x) { return same.indexOf(x) < 0; })).slice(0, 4);
       rel.innerHTML = pick.map(window.PM_COURSE_CARD).join("");
     }
+    var inq = root.querySelector(".cd-inquire");
+    if (inq) inq.addEventListener("click", function () { openInquiry(c); });
     if (window.UIArmGlow) window.UIArmGlow();
     if (window.UILoader && window.UILoader.scanGlow) window.UILoader.scanGlow();
   }

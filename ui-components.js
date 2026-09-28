@@ -328,4 +328,51 @@
   if (document.readyState !== "loading") armAll();
   else document.addEventListener("DOMContentLoaded", armAll);
   window.UIArmGlow = armAll;
+
+  /* ================= UIModal =================
+     UIModal.open({ title, body }) → vrací .ui-modal-box. Zavírá křížek, klik mimo, Esc.
+     Fokus drží v okně, po zavření vrací na spouštěč. */
+  var modalRoot = null, lastFocus = null;
+  function closeModal() {
+    if (!modalRoot) return;
+    var m = modalRoot; modalRoot = null;
+    m.classList.remove("is-open");
+    document.documentElement.classList.remove("ui-modal-lock");
+    setTimeout(function () { m.remove(); }, 220);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function openModal(o) {
+    if (modalRoot) closeModal();
+    lastFocus = document.activeElement;
+    var m = document.createElement("div");
+    m.className = "ui-modal";
+    m.innerHTML = '<div class="ui-modal-box" role="dialog" aria-modal="true" aria-labelledby="ui-modal-t">' +
+      '<div class="ui-modal-head"><h2 id="ui-modal-t" class="ui-modal-title"></h2>' +
+      '<button type="button" class="ui-modal-x" aria-label="Zavřít"><ui-icon name="ui-close" aria-hidden="true"></ui-icon></button></div>' +
+      '<div class="ui-modal-body"></div></div>';
+    m.querySelector(".ui-modal-title").textContent = o.title || "";
+    m.querySelector(".ui-modal-body").innerHTML = o.body || "";
+    m.addEventListener("mousedown", function (e) { if (e.target === m) closeModal(); });
+    m.querySelector(".ui-modal-x").addEventListener("click", closeModal);
+    document.body.appendChild(m);
+    modalRoot = m;
+    document.documentElement.classList.add("ui-modal-lock");
+    requestAnimationFrame(function () { m.classList.add("is-open"); });
+    armAll();
+    var f = m.querySelector("input:not([readonly]),textarea");
+    if (f) setTimeout(function () { f.focus(); }, 60);
+    return m.querySelector(".ui-modal-box");
+  }
+  document.addEventListener("keydown", function (e) {
+    if (!modalRoot) return;
+    if (e.key === "Escape") { closeModal(); return; }
+    if (e.key === "Tab") {
+      var f = modalRoot.querySelectorAll("input:not([readonly]),textarea,button:not([disabled]),a[href]");
+      if (!f.length) return;
+      var a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+      else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+    }
+  });
+  window.UIModal = { open: openModal, close: closeModal };
 })();

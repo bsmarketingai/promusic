@@ -1655,6 +1655,37 @@ ui-header,ui-footer,ui-mobile-menu{display:block;}
 textarea.ui-control{resize:vertical;min-height:110px;}
 .ui-hint{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);color:var(--text-mute);}
 
+/* ===== MODAL (UIModal) + FORMULÁŘOVÉ ŘÁDKY =====
+   Hlavička s názvem a křížkem; řádky label | pole, na mobilu pod sebou. */
+.ui-modal-lock,.ui-modal-lock body{overflow:hidden;}
+.ui-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(7,6,5,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .22s var(--pm-ease);}
+.ui-modal.is-open{opacity:1;}
+.ui-modal-box{width:min(760px,100%);max-height:calc(100vh - 40px);overflow:auto;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--pm-radius-lg);box-shadow:var(--pm-shadow-lg);transform:translateY(14px);transition:transform .26s var(--pm-ease);}
+.ui-modal.is-open .ui-modal-box{transform:none;}
+.ui-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px clamp(20px,3vw,32px);background:var(--surface-raised);border-bottom:1px solid var(--border);}
+.ui-modal-title{margin:0;font-family:var(--pm-font-display);font-weight:700;font-size:clamp(1.3rem,2.2vw,1.7rem);letter-spacing:-.01em;line-height:1.15;}
+.ui-modal-x{width:40px;height:40px;flex:none;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--border-strong);border-radius:var(--pm-radius-pill);color:var(--text-soft);font-size:18px;cursor:pointer;transition:color var(--pm-dur-fast) var(--pm-ease),border-color var(--pm-dur-fast) var(--pm-ease),background var(--pm-dur-fast) var(--pm-ease);}
+.ui-modal-x:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-tint);}
+.ui-modal-body{padding:clamp(20px,3vw,32px);}
+.ui-form{display:grid;gap:16px;}
+.ui-form-row{display:grid;grid-template-columns:180px minmax(0,1fr);gap:6px 20px;align-items:center;}
+.ui-form-row.is-top{align-items:start;}
+.ui-form-row.is-top .ui-form-l{padding-top:14px;}
+.ui-form-l{font-family:var(--pm-font-body);font-size:var(--pm-text-sm);color:var(--text-soft);}
+.ui-form-l .req{color:var(--accent);margin-left:3px;}
+select.ui-control{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px;max-width:220px;background-image:linear-gradient(45deg,transparent 50%,var(--accent) 50%),linear-gradient(135deg,var(--accent) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;}
+select.ui-control option{background:var(--surface);color:var(--text);}
+.ui-control[readonly]{color:var(--text-soft);background:var(--surface-raised);cursor:default;}
+.ui-control[readonly]:hover{border-color:var(--border-strong);}
+.ui-form-err{grid-column:2;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);color:var(--pm-danger);}
+.ui-form-err:empty{display:none;}
+.ui-form-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:8px;padding-top:20px;border-top:1px solid var(--border);}
+.ui-form-done{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:8px 0;}
+.ui-form-done-ico{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:var(--pm-radius-pill);background:var(--accent-tint);color:var(--accent);font-size:24px;}
+.ui-form-done h3{margin:0;font-family:var(--pm-font-display);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;}
+.ui-form-done p{margin:0;color:var(--text-soft);line-height:1.6;max-width:56ch;}
+@media (max-width:640px){.ui-form-row{grid-template-columns:1fr;}.ui-form-row.is-top .ui-form-l{padding-top:0;}.ui-form-err{grid-column:1;}.ui-form-foot .btn{width:100%;justify-content:center;}}
+
 /* ===== SEARCH ===== */
 .ui-search{position:relative;display:flex;align-items:center;gap:10px;
   background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--pm-radius-sm);
