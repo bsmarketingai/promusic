@@ -1,104 +1,82 @@
-/* PRO MUSIC ACADEMY — detail školení (skoleni-detail.html?k=<slug>).
-   Šablona je stejná jako detail Second Hand produktu (.pd) — místo skladovosti
-   se stejným způsobem ukazuje OBSAZENOST, pod fotkou je detailní popis kurzu. */
+/* PRO MUSIC ACADEMY — detail kurzu (skoleni-detail.html?k=<slug>), data: academy-courses.js.
+   Šablona detailu Second Hand (.pd): vlevo fotka + popis (cíle, program, vybavení, benefity),
+   vpravo název, perex, CTA a podmínky kurzu. Termín se domlouvá na poptávku. */
 (function () {
   "use strict";
-
-  function esc(s) {
-    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
-    });
-  }
-
-  /* strukturovaný text: "odstavec" | {h, p:[]} | {h, ul:[]} */
-  function prose(body) {
-    return (body || []).map(function (b) {
-      if (typeof b === "string") return "<p>" + esc(b) + "</p>";
-      var out = b.h ? "<h3>" + esc(b.h) + "</h3>" : "";
-      if (b.p) out += b.p.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
-      if (b.ul) out += "<ul>" + b.ul.map(function (li) { return "<li>" + esc(li) + "</li>"; }).join("") + "</ul>";
-      return out;
-    }).join("");
-  }
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
+  function ul(a) { return "<ul>" + a.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>"; }
+  function lines(a) { return (a || []).map(esc).join("<br />"); }
 
   function build(root) {
-    var all = window.PM_ACADEMY || [];
-    var q = new URLSearchParams(location.search);
-    var slug = q.get("k");
+    var all = window.PM_COURSES || [];
+    var slug = new URLSearchParams(location.search).get("k");
     var c = all.filter(function (x) { return x.slug === slug; })[0] || all[0];
-    if (!c) { root.innerHTML = '<p class="mono">Školení nenalezeno.</p>'; return; }
-
-    var k = window.PM_ACADEMY_CAP(c);
-    var free = k.free;
+    if (!c) { root.innerHTML = '<p class="mono">Kurz nenalezen.</p>'; return; }
+    var m = c.mod;
     document.title = "PRO MUSIC Academy — " + c.n;
     var crumb = document.querySelector(".cd-crumb");
     if (crumb) crumb.textContent = c.n;
+
+    var obj = ul(c.obj.map(function (o) {
+      return typeof o === "string" ? esc(o) : esc(o.t) + ul(o.sub.map(esc));
+    }));
+    var agenda = c.agenda.map(function (s) {
+      return "<h4>" + esc(s.h) + "</h4>" + ul(s.it.map(function (i) {
+        return "<strong>" + esc(i[0]) + "</strong> · " + esc(i[1]) + "<br />" + esc(i[2].split("; ").join(" · "));
+      }));
+    }).join("");
+    var eq = c.eq.map(function (e) { return (c.eq.length > 1 ? "<h4>" + esc(e[0]) + "</h4>" : "") + ul(e[1].map(esc)); }).join("");
+    var ben =
+      "<p>Po absolvování získáte certifikát" + (c.perk ? ", " + esc(c.perk) : "") +
+      " a roční aktivaci nebo prodloužení účtu na online platformě L-Acoustics Education. Členství ve skupině " + esc(c.group) + " vám na platformě otevře:</p>" +
+      ul(["vždy aktuální studijní materiály " + esc(c.group) + " v Learning center", "fórum všech certifikovaných absolventů a lektorů kurzu " + esc(c.group)]) +
+      (c.avixa ? "<p>Po certifikaci získáte 3,5 AVIXA RU pro obnovení statusu " + esc(c.avixa) + ".</p>" : "");
 
     root.innerHTML =
       '<div class="pd">' +
         '<div class="pd-gal">' +
           '<div class="pd-shot pd-shot-cover">' +
-            '<div class="pd-flags"><span class="pd-flag is-accent">' + esc(c.dateLabel) + '</span><span class="pd-flag">' + esc(c.cat) + "</span></div>" +
-            (c.img ? '<img src="' + esc(c.img) + '" alt="' + esc(c.n) + '" />' : "") +
+            '<img src="' + esc(c.img) + '" alt="' + esc(c.n) + '" />' +
           "</div>" +
-          '<div class="pd-prose">' + prose(c.body) + "</div>" +
+          '<div class="pd-prose">' +
+            "<h3>Cíle kurzu</h3>" + obj +
+            "<h3>Program</h3>" + agenda +
+            "<h3>Potřebné vybavení</h3>" + eq +
+            "<h3>Co získáte</h3>" + ben +
+            (c.prod.length ? '<h3>Související produkty</h3><div class="cd-prod">' + c.prod.map(function (p) { return '<span class="chip">' + esc(p) + "</span>"; }).join("") + "</div>" : "") +
+          "</div>" +
         "</div>" +
         '<div class="pd-info">' +
-          '<span class="pd-eyebrow">' + esc(c.dateLabel) + " · " + esc(c.dni) + "</span>" +
+          '<span class="pd-eyebrow">Kurz L-Acoustics · ' + esc(m.dur[0].replace("Prezenčně: ", "")) + "</span>" +
           "<h1>" + esc(c.n) + "</h1>" +
-          (c.perex ? '<p class="pd-perex">' + esc(c.perex) + "</p>" : "") +
-          '<div class="pd-price">' + esc(c.cena) + "<small>" + esc(c.cenaNote || "") + "</small></div>" +
-          '<div class="pd-stock is-' + k.s + '" role="status"><ui-icon name="ui-users" aria-hidden="true"></ui-icon>' +
-            '<span class="pd-stock-t">' + esc(k.t) + "</span></div>" +
-          '<p class="cap-note mono">Obsazenost ' + (c.taken || 0) + " / " + (c.places || 0) + " míst</p>" +
-          '<div class="pd-buy">' +
-            '<div class="qty" role="group" aria-label="Počet účastníků">' +
-              '<button class="qty-b" data-s="-1" aria-label="Ubrat účastníka">–</button>' +
-              '<input class="qty-i mono" type="text" inputmode="numeric" value="1" aria-label="Počet účastníků" />' +
-              '<button class="qty-b" data-s="1" aria-label="Přidat účastníka">+</button>' +
-            "</div>" +
-            '<a class="btn btn-primary btn-md pd-cart" href="prihlaska-skoleni.html?k=' + esc(c.slug) + '">' +
-              '<ui-icon class="btn-ico" name="contact-form" aria-hidden="true"></ui-icon>' +
-              (k.s === "full" ? "Zapsat jako náhradníka" : "Přihlásit se na školení") + "</a>" +
-          "</div>" +
+          '<div class="cd-profblock"><span class="cd-proflabel">Pro koho je kurz určen</span><div class="cd-profs" aria-label="Pro koho je kurz určen">' + c.prof.map(function (p) { return '<span class="cd-prof">' + esc(p) + "</span>"; }).join("") + "</div></div>" +
+          '<p class="pd-perex">' + esc(c.perex) + "</p>" +
+          '<div class="pd-stock" role="status"><ui-icon name="academy-schedule" aria-hidden="true"></ui-icon><span class="pd-stock-t">Termín domluvíme na poptávku</span></div>' +
           '<div class="cta-actions pd-cta">' +
             '<ui-button variant="ghost" size="md" href="mailto:academy@promusic.cz?subject=' + encodeURIComponent(c.n) + '">Zeptat se na kurz</ui-button>' +
+            '<ui-button variant="primary" size="md" href="prihlaska-skoleni.html?k=' + encodeURIComponent(c.slug) + '">Poptat školení →</ui-button>' +
           "</div>" +
           '<dl class="pd-facts">' +
-            "<dt>Termín</dt><dd>" + esc(c.dateLabel) + "</dd>" +
-            "<dt>Rozsah</dt><dd>" + esc(c.dni) + "</dd>" +
-            "<dt>Místo</dt><dd>" + esc(c.misto) + "</dd>" +
-            "<dt>Lektor</dt><dd>" + esc(c.lektor) + "</dd>" +
-            (c.facts || []).map(function (f) { return "<dt>" + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd>"; }).join("") +
+            "<dt>Předpoklady</dt><dd>" + lines(m.pre) + "</dd>" +
+            "<dt>Délka</dt><dd>" + lines(m.dur) + "</dd>" +
+            "<dt>Účastníci</dt><dd>" + esc(m.cap) + "</dd>" +
+            "<dt>Forma výuky</dt><dd>" + lines(m.fmt) + "</dd>" +
+            "<dt>Metody výuky</dt><dd>" + esc(m.meth) + "</dd>" +
+            "<dt>Jazyk</dt><dd>Výuka v češtině<br />Materiály v technické angličtině</dd>" +
+            "<dt>Lektor</dt><dd>Odborník na živý zvuk, kterého vybírá, školí, certifikuje a pravidelně doškoluje vzdělávací tým L-Acoustics</dd>" +
+            "<dt>Certifikace</dt><dd>" + lines(m.cert) + "</dd>" +
           "</dl>" +
-          ((c.specs || []).length ? '<div class="pd-specs"><h3>Program</h3><dl>' + c.specs.map(function (s) {
-            return "<dt>" + esc(s[0]) + "</dt><dd>" + esc(s[1]) + "</dd>";
-          }).join("") + "</dl></div>" : "") +
         "</div>" +
       "</div>";
 
-    var elQty = root.querySelector(".qty-i");
-    function clampQty() {
-      var v = parseInt(elQty.value, 10);
-      if (!(v > 0)) v = 1;
-      if (free > 0 && v > free) v = free;
-      elQty.value = v;
-    }
-    root.querySelector(".pd-buy").addEventListener("click", function (e) {
-      var b = e.target.closest(".qty-b"); if (!b) return;
-      elQty.value = (parseInt(elQty.value, 10) || 1) + parseInt(b.getAttribute("data-s"), 10);
-      clampQty();
-    });
-    elQty.addEventListener("change", clampQty);
-
-    /* další termíny */
+    /* další kurzy — nejdřív ze stejného learning profilu */
     var rel = document.querySelector(".cd-rel");
-    if (rel && window.PM_ACADEMY_ROW) {
-      rel.innerHTML = all.filter(function (x) { return x.slug !== c.slug; })
-        .sort(function (a, b) { return String(a.date).localeCompare(String(b.date)); })
-        .slice(0, 3).map(window.PM_ACADEMY_ROW).join("");
+    if (rel && window.PM_COURSE_CARD) {
+      var others = all.filter(function (x) { return x.slug !== c.slug; });
+      var same = others.filter(function (x) { return x.prof.some(function (p) { return c.prof.indexOf(p) > -1; }); });
+      var pick = same.concat(others.filter(function (x) { return same.indexOf(x) < 0; })).slice(0, 4);
+      rel.innerHTML = pick.map(window.PM_COURSE_CARD).join("");
     }
-
     if (window.UIArmGlow) window.UIArmGlow();
     if (window.UILoader && window.UILoader.scanGlow) window.UILoader.scanGlow();
   }

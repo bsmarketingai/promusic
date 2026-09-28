@@ -20,8 +20,8 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `instalace-kulturni-domy-saly-divadla.html` | Segmentová landing — kulturní domy, sály, divadla |
 | `technologie-schema-ozvuceni.html` | Vysvětlovací stránka — schéma ozvučení |
 | `znacky.html` | Značky, které zastupujeme |
-| `skoleni.html` | PRO MUSIC Academy — výpis plánovaných školení (filtr kategorií, řádkové karty) |
-| `skoleni-detail.html` | Detail školení — `?k=<slug>`, šablona detailu produktu s obsazeností |
+| `skoleni.html` | PRO MUSIC Academy — katalog kurzů L-Acoustics (karty .ncard, filtr learning profilů `?f=`) |
+| `skoleni-detail.html` | Detail kurzu — `?k=<slug>`, šablona detailu produktu, termín na poptávku |
 | `prihlaska-skoleni.html` | Přihláška na školení (výběrové karty, návaznosti, souhrn) |
 | `novinky.html` | Výpis novinek (filtr téma + značka, stránkování po 12) |
 | `novinka.html` | Detail novinky — `?a=<slug>`, text + foto/video |
@@ -57,9 +57,11 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `secondhand-data.js` · `secondhand.js` | Second Hand — data výpisu + render (filtr značky, stránkování). Karty vedou na `produkt.html` |
 | `produkt-data.js` · `produkt.js` | Second Hand — obsah detailů produktů + render detailu |
 | `news.js` | Novinky: render výpisu (`.nlist-root`, `?f=` téma, `?b=` značka, `?p=`) a detailu (`.nart-root`) |
-| `academy-data.js` | **Data školení Academy** — `PM_ACADEMY` + kategorie (`PM_ACADEMY_CATS`). Jediné místo, kde se přidává termín. |
+| `academy-data.js` | Zástupné termíny školení — dnes už jen pro blok „Nejbližší školení“ na homepage |
 | `skoleni-list.js` | Výpis školení: filtr kategorií (`?f=`), řádkové karty, obsazenost (`PM_ACADEMY_CAP`) |
-| `skoleni-detail.js` | Detail školení — render šablony `.pd` z `academy-data.js` |
+| `academy-courses.js` | **Katalog kurzů L-Acoustics** (CZ) — `PM_COURSES`, `PM_COURSE_PROFILES` |
+| `skoleni-kurzy.js` | Výpis kurzů (`.alist-root`), karta `PM_COURSE_CARD` |
+| `skoleni-detail.js` | Detail kurzu — render šablony `.pd` z `academy-courses.js` |
 | `skoleni.js` | Logika přihlášky (výběr kurzů, předpoklady, souhrn, validace) — `prihlaska-skoleni.html` |
 | `karlin-schema.js` | Interaktivní schéma ozvučení (Karlín) |
 | `page-transition.js` | Přechod mezi stránkami — „pódiové světlo" |

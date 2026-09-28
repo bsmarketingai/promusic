@@ -30,7 +30,7 @@ Stávající web klienta: https://promusic.cz/
 1. **Case study HD Karlín** v plné podobě (dnes existuje jen `instalace-hd-karlin-schema.html` se schématem).
 2. **Steel Aréna Košice** a **DJKT Plzeň** — case studies zatím nejsou, na homepage vedou na `#`.
 3. Detail produktu existuje pro 2 položky (`produkt.html?p=rf-venue-combine4`, `?p=at-lp140xp`) — ostatní karty vedou na první detail.
-4. **Academy**: hotový výpis termínů (`skoleni.html`), detail kurzu (`skoleni-detail.html?k=`) a přihláška (`prihlaska-skoleni.html`) — obsah kurzů v `academy-data.js` je zástupný, chybí reálné termíny/ceny/kapacity, texty FAQ a kontakt na koordinátora. Servis zatím není. (Novinky hotové: 89 článků z podkladu klienta ve `news-index.js` / `news-bodies.js`.)
+4. **Academy**: katalog 18 kurzů L-Acoustics v CZ (`academy-courses.js` → `skoleni.html`, detail `skoleni-detail.html?k=`), bez termínů — termín na poptávku. Fotky zatím z l-acoustics.com (stáhnout k nám). Chybí texty FAQ, kontakt na koordinátora; přihláška zatím nečte `?k=`; homepage blok „Nejbližší školení“ stále bere zástupné termíny z `academy-data.js`. Servis zatím není. (Novinky hotové: 89 článků z podkladu klienta ve `news-index.js` / `news-bodies.js`.)
 5. **EN mutace** obsahu.
 6. Self-hostované fonty + vektorové logo pro produkci.
 
