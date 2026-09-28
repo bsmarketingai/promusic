@@ -63,7 +63,6 @@ h3{font-size:var(--pm-text-h3);}
 .btn-ghost:hover::before{opacity:1;}
 .btn-lg{padding:17px 30px;font-size:var(--pm-text-body);}
 .btn-sm{padding:10px 17px;font-size:var(--pm-text-xs);gap:7px;}
-.btn-sm .btn-ico{width:15px;height:15px;}
 
 /* ===== CHIPS / TAGS ===== */
 .chip{font-family:var(--pm-font-body);font-size:var(--pm-text-sm);border:1px solid var(--border-strong);
@@ -102,7 +101,7 @@ h3{font-size:var(--pm-text-h3);}
 .hsearch{position:relative;display:flex;align-items:center;gap:8px;min-width:0;}
 .hsearch-btn{width:40px;height:40px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
   background:transparent;border:1px solid var(--border-strong);border-radius:50%;color:var(--text-soft);
-  cursor:pointer;font-size:18px;transition:color var(--pm-dur-fast) var(--pm-ease),border-color var(--pm-dur-fast) var(--pm-ease),background var(--pm-dur-fast) var(--pm-ease);}
+  cursor:pointer;font-size:20px;transition:color var(--pm-dur-fast) var(--pm-ease),border-color var(--pm-dur-fast) var(--pm-ease),background var(--pm-dur-fast) var(--pm-ease);}
 .hsearch-btn:hover{color:var(--accent);border-color:var(--accent);}
 .hsearch.is-open .hsearch-btn{color:var(--accent);border-color:var(--accent);background:var(--accent-tint);}
 .hsearch-field{display:flex;align-items:center;gap:6px;width:0;opacity:0;pointer-events:none;overflow:hidden;
@@ -154,7 +153,50 @@ h3{font-size:var(--pm-text-h3);}
 .hsearch-all{grid-column:1/-1;display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:4px;
   padding:12px;border-top:1px solid var(--border);font-family:var(--pm-font-body);font-weight:600;font-size:var(--pm-text-sm);color:var(--text-soft);}
 .hsearch-all:hover{color:var(--accent);}
-@media(max-width:999px){.hsearch{display:none;}}
+/* mobil: ikona hledání zůstává v hlavičce; otevřené pole překryje logo, košík i CTA */
+@media(max-width:999px){
+  .hsearch{margin-left:auto;}
+  .hsearch ~ .nav-cta-mob{margin-left:0;}
+  .nav.search-open .nav-logo-link,.nav.search-open .nav-cta-mob,.nav.search-open .hcart{display:none;}
+  .nav.search-open .hsearch{margin-left:0;}
+  .hsearch-panel{position:fixed;top:calc(var(--pm-nav-h,75px) - 6px);left:12px;right:12px;grid-template-columns:minmax(0,1fr);max-height:calc(100vh - 110px);}
+}
+
+/* ===== HLAVIČKA · KOŠÍK (UICart) =====
+   Ikona s počtem kusů; na hover / focus popup s položkami a CTA. */
+.hcart{position:relative;display:flex;align-items:center;}
+.hcart[hidden]{display:none;}
+.hcart-btn{position:relative;width:40px;height:40px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--border-strong);border-radius:50%;color:var(--text-soft);font-size:20px;
+  transition:color var(--pm-dur-fast) var(--pm-ease),border-color var(--pm-dur-fast) var(--pm-ease),background var(--pm-dur-fast) var(--pm-ease);}
+.hcart-btn:hover,.hcart:hover .hcart-btn,.hcart:focus-within .hcart-btn{color:var(--accent);border-color:var(--accent);background:var(--accent-tint);}
+.hcart-n{position:absolute;top:-6px;right:-7px;min-width:20px;height:20px;padding:0 5px;border-radius:var(--pm-radius-pill);
+  background:var(--accent);color:var(--on-accent);font-family:var(--pm-font-mono);font-size:11px;font-weight:700;line-height:20px;text-align:center;
+  box-shadow:0 0 0 2px var(--bg-deep);}
+.hcart-n.is-bump{animation:hcartBump .45s var(--pm-ease);}
+@keyframes hcartBump{40%{transform:scale(1.3);}}
+.hcart-pop{position:absolute;top:calc(100% + 14px);right:0;width:min(380px,calc(100vw - 24px));z-index:90;
+  background:var(--bg-deep);border:1px solid var(--border);border-radius:var(--pm-radius-lg);box-shadow:var(--pm-shadow-lg);padding:8px 8px 10px;
+  opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .2s var(--pm-ease),transform .2s var(--pm-ease),visibility .2s;}
+.hcart-pop::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px;}
+@media(hover:hover){.hcart:hover .hcart-pop{opacity:1;visibility:visible;transform:none;}}
+.hcart:focus-within .hcart-pop{opacity:1;visibility:visible;transform:none;}
+.hcart-list{display:flex;flex-direction:column;max-height:min(50vh,340px);overflow:auto;}
+.hcart-item{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:14px;align-items:center;padding:10px;}
+.hcart-item + .hcart-item{border-top:1px solid var(--border);}
+.hcart-img{width:56px;height:56px;border-radius:var(--pm-radius-sm);background:#fff;overflow:hidden;display:block;}
+.hcart-img img{width:100%;height:100%;object-fit:contain;padding:5px;display:block;}
+.hcart-meta{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.hcart-meta a{font-family:var(--pm-font-display);font-weight:700;font-size:.95rem;line-height:1.25;letter-spacing:-.005em;color:var(--text);}
+.hcart-meta a:hover{color:var(--accent);}
+.hcart-meta span{font-size:var(--pm-text-sm);color:var(--text-mute);}
+.hcart-side{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.hcart-del{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:transparent;
+  color:var(--text-mute);font-size:17px;cursor:pointer;transition:color var(--pm-dur-fast) var(--pm-ease),background var(--pm-dur-fast) var(--pm-ease);}
+.hcart-del:hover{color:var(--accent);background:var(--accent-tint);}
+.hcart-price{font-family:var(--pm-font-display);font-weight:800;font-size:1rem;color:var(--accent);white-space:nowrap;}
+.hcart-go{width:100%;justify-content:center;margin-top:6px;}
+@media(max-width:999px){.hcart-pop{position:fixed;top:calc(var(--pm-nav-h,75px) - 6px);right:12px;}}
 
 /* ===== VÝSLEDKY HLEDÁNÍ (hledani.html) =====
    Jedna karta pro všechny tři druhy výsledku: foto · název · zkrácený popis · Zobrazit. */
@@ -1660,13 +1702,34 @@ textarea.ui-control{resize:vertical;min-height:110px;}
 .ui-modal-lock,.ui-modal-lock body{overflow:hidden;}
 .ui-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(7,6,5,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .22s var(--pm-ease);}
 .ui-modal.is-open{opacity:1;}
-.ui-modal-box{width:min(760px,100%);max-height:calc(100vh - 40px);overflow:auto;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--pm-radius-lg);box-shadow:var(--pm-shadow-lg);transform:translateY(14px);transition:transform .26s var(--pm-ease);}
+.ui-modal-box{width:min(760px,100%);max-height:calc(100vh - 40px);display:flex;flex-direction:column;overflow:hidden;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--pm-radius-lg);box-shadow:var(--pm-shadow-lg);transform:translateY(14px);transition:transform .26s var(--pm-ease);}
 .ui-modal.is-open .ui-modal-box{transform:none;}
-.ui-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px clamp(20px,3vw,32px);background:var(--surface-raised);border-bottom:1px solid var(--border);}
+.ui-modal-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px clamp(20px,3vw,32px);background:var(--surface-raised);border-bottom:1px solid var(--border);}
 .ui-modal-title{margin:0;font-family:var(--pm-font-display);font-weight:700;font-size:clamp(1.3rem,2.2vw,1.7rem);letter-spacing:-.01em;line-height:1.15;}
 .ui-modal-x{width:40px;height:40px;flex:none;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--border-strong);border-radius:var(--pm-radius-pill);color:var(--text-soft);font-size:18px;cursor:pointer;transition:color var(--pm-dur-fast) var(--pm-ease),border-color var(--pm-dur-fast) var(--pm-ease),background var(--pm-dur-fast) var(--pm-ease);}
 .ui-modal-x:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-tint);}
-.ui-modal-body{padding:clamp(20px,3vw,32px);}
+.ui-modal-body{flex:1 1 auto;min-height:0;overflow:auto;padding:clamp(20px,3vw,32px);}
+/* patička = navigace modalu (zpět vlevo, primární akce vpravo) — stejná pro všechny modaly */
+.ui-modal-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;padding:18px clamp(20px,3vw,32px);background:var(--surface-raised);border-top:1px solid var(--border);}
+.ui-modal-foot > :only-child{margin-left:auto;}
+@media (max-width:640px){.ui-modal-foot .btn{flex:1 1 100%;justify-content:center;}}
+/* obsah modalu „přidáno do košíku“ */
+.cartm{display:flex;flex-direction:column;gap:24px;}
+.cartm-prod{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:clamp(18px,3vw,32px);align-items:center;}
+.cartm-img{aspect-ratio:1;border-radius:var(--pm-radius-md,12px);background:#fff;overflow:hidden;}
+.cartm-img img{width:100%;height:100%;object-fit:contain;padding:14px;display:block;}
+.cartm-info{display:flex;flex-direction:column;gap:14px;min-width:0;}
+.cartm-n{margin:0;font-family:var(--pm-font-display);font-weight:700;font-size:clamp(1.2rem,2vw,1.45rem);letter-spacing:-.01em;line-height:1.2;text-wrap:pretty;}
+.cartm-price{display:flex;flex-direction:column;gap:2px;font-family:var(--pm-font-display);font-weight:800;font-size:clamp(1.7rem,3vw,2.2rem);letter-spacing:-.02em;line-height:1.05;color:var(--accent);}
+.cartm-price small{font-family:var(--pm-font-body);font-weight:400;font-size:var(--pm-text-sm);letter-spacing:0;color:var(--text-mute);}
+.cartm-stock{margin:0;font-size:var(--pm-text-sm);color:var(--text-soft);}
+.cartm-stock b{margin-left:4px;font-weight:600;color:var(--pm-success);}
+.cartm-sum{display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:1px solid var(--border);}
+.cartm-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;color:var(--text-soft);}
+.cartm-row strong{font-family:var(--pm-font-display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em;color:var(--accent);}
+.cartm-note{margin:0;font-size:var(--pm-text-sm);color:var(--text-mute);}
+.cartm-note b{color:var(--text);font-weight:600;}
+@media (max-width:560px){.cartm-prod{grid-template-columns:minmax(0,1fr);}.cartm-img{max-width:200px;}}
 .ui-form{display:grid;gap:16px;}
 .ui-form-row{display:grid;grid-template-columns:180px minmax(0,1fr);gap:6px 20px;align-items:center;}
 .ui-form-row.is-top{align-items:start;}
@@ -1770,6 +1833,11 @@ ui-icon svg{display:block;}
    ikona (telefon, mail) — větší, odsazená vpravo a bez posunu na hover. */
 .btn > .btn-ico:first-child:not(:last-child){font-size:1.15em;margin-left:0;margin-right:.55em;}
 .btn > .btn-ico-lead:first-child{font-size:1.5em;margin-right:-2px;}
+/* ikony v tlačítkách: vždy 20 × 20 px (box = SVG), ve všech velikostech tlačítka.
+   U .btn-sm záporný svislý margin — ikona nesmí zvětšit výšku tlačítka (40 px). */
+.btn > .btn-ico,.btn.btn-sm > .btn-ico{font-size:20px;width:20px;height:20px;}
+.btn > .btn-ico:first-child:not(:last-child){margin-right:0;}
+.btn > .btn-ico,.btn.btn-sm > .btn-ico{margin-top:-3px;margin-bottom:-3px;}
 .btn:hover > .btn-ico:first-child:not(:last-child){transform:none;}
 .btn:hover .btn-ico{transform:translateX(2px);}
 .btn .btn-ico{transition:transform .2s var(--pm-ease);}
@@ -2346,11 +2414,8 @@ ui-live-card .ncard,ui-inst-card .ncard{height:100%;}
 .pd-var.is-active .pd-var-dot{border-color:var(--accent);}
 .pd-var.is-active .pd-var-dot::after{opacity:1;transform:scale(1);}
 .pd-vq{color:var(--text-mute);font-size:var(--pm-text-sm);}
-/* eshopový režim — zapíná přepínač vpravo dole */
-.pd-buy{display:none;gap:12px;align-items:center;flex-wrap:wrap;}
-body.eshop .pd-buy{display:flex;}
-body.eshop .pd-cta{display:none;}
-.pd-buy .qty{display:inline-flex;align-items:center;border:1px solid var(--border-strong);border-radius:var(--pm-radius-pill);background:var(--surface);overflow:hidden;}
+.pd-buy{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.pd-buy .qty,.ck-table .qty{display:inline-flex;align-items:center;border:1px solid var(--border-strong);border-radius:var(--pm-radius-pill);background:var(--surface);overflow:hidden;}
 .qty-b{width:44px;height:46px;border:0;background:transparent;color:var(--text-soft);font-size:1.15rem;line-height:1;cursor:pointer;
   transition:color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease);}
 .qty-b:hover{color:var(--accent);background:var(--accent-tint);}
@@ -2375,20 +2440,6 @@ body.eshop .pd-cta{display:none;}
 .pd-specs dd:last-child{border-bottom:0;margin-bottom:0;}
 .pd-rel{margin-top:4px;}
 @media(max-width:900px){.pd{grid-template-columns:minmax(0,1fr);}}
-
-/* přepínač eshopového režimu (interní náhled) */
-.eshop-toggle{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:12px;
-  padding:10px 14px;border-radius:var(--pm-radius-pill);border:1px solid var(--border-strong);
-  background:color-mix(in srgb,var(--pm-paper) 92%,transparent);backdrop-filter:blur(10px);box-shadow:var(--pm-shadow-lg);}
-.eshop-toggle .lbl{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.12em;text-transform:uppercase;color:var(--text-soft);}
-.eshop-sw{flex:none;width:46px;height:26px;border-radius:var(--pm-radius-pill);background:var(--surface-raised);border:1px solid var(--border-strong);
-  position:relative;cursor:pointer;transition:background var(--pm-dur) var(--pm-ease),border-color var(--pm-dur) var(--pm-ease);}
-.eshop-sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--text-mute);
-  transition:left var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease);}
-.eshop-sw[aria-checked="true"]{background:var(--accent);border-color:var(--accent);box-shadow:0 0 22px var(--ui-main-glow);}
-.eshop-sw[aria-checked="true"]::after{left:23px;background:var(--on-accent);}
-@media(max-width:999px){.eshop-toggle{bottom:calc(16px + 60px + 12px);}}
-@media(max-width:549px){.eshop-toggle{right:10px;bottom:calc(10px + 60px + 12px);padding:8px 11px;}.eshop-toggle .lbl{display:none;}}
 
 /* ===== GALERIE (6 sloupců) + LIGHTBOX ===== */
 .galgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(8px,1vw,14px);}
@@ -3043,3 +3094,211 @@ html[data-hero="h2-3d"] .ring.is-drag .hscard{pointer-events:none;}
 @media(prefers-reduced-motion:reduce){
   .mixch,.mixlab,.mixch img,.mixch::after,.mixch-body,.mixch.is-active .mixch-body,.fader b{transition:none !important;}
 }
+
+/* ═══════════════════════════════════════════════════════
+   KOŠÍK — 3 kroky (kosik.html + kosik.js)
+   Kroky (.ck-steps), tabulka položek (.ck-table), volby dopravy/platby (.ck-opt + .ui-radio),
+   účet (.ck-acard), souhrny (.ck-tot), spodní lišta s navigací (.ck-bar, sticky).
+   ═══════════════════════════════════════════════════════ */
+.sec-ck{padding-top:clamp(10px,1.6vw,20px);}
+.ck-body{display:flex;flex-direction:column;gap:clamp(28px,3.4vw,44px);}
+.ck-h{margin:0 0 18px;padding:0;font-family:var(--pm-font-display);font-weight:800;font-size:clamp(1.25rem,1.9vw,1.6rem);letter-spacing:-.02em;line-height:1.15;color:var(--text);}
+/* --- radio --- */
+.ui-radio{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin:0;cursor:pointer;border-radius:50%;
+  border:1.5px solid var(--border-strong);background:var(--surface-raised);position:relative;
+  transition:border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease);}
+.ui-radio:hover{border-color:var(--accent);}
+.ui-radio:checked{border-color:var(--accent);background:var(--accent-tint);}
+.ui-radio:checked::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--accent);}
+.ui-radio:focus-visible{outline:none;box-shadow:0 0 0 3px var(--ui-main-tint),0 0 18px var(--ui-main-glow);}
+.ui-radio:disabled{cursor:not-allowed;opacity:.45;}
+/* --- kroky --- */
+.ck-steps{list-style:none;margin:0 0 clamp(30px,4vw,52px);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+.ck-step{position:relative;}
+.ck-step > a,.ck-step > span{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;}
+.ck-step-t{order:-1;height:24px;line-height:24px;font-family:var(--pm-font-display);font-weight:700;font-size:1.02rem;letter-spacing:-.01em;color:var(--text-mute);white-space:nowrap;}
+.ck-step-n{position:relative;z-index:1;width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--pm-font-mono);font-weight:700;font-size:var(--pm-text-sm);color:var(--text-mute);background:var(--bg);border:2px solid var(--border-strong);
+  transition:border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease),color var(--pm-dur) var(--pm-ease);}
+.ck-step + .ck-step::before{content:"";position:absolute;top:57px;right:50%;width:100%;height:2px;background:var(--border-strong);}
+.ck-step.is-cur .ck-step-t{color:var(--text);}
+.ck-step.is-cur .ck-step-n{background:var(--accent);border-color:var(--accent);color:var(--on-accent);box-shadow:0 0 22px var(--ui-main-glow);}
+.ck-step.is-done .ck-step-n{border-color:var(--accent);color:var(--accent);}
+.ck-step.is-done + .ck-step::before{background:var(--accent);}
+.ck-step.is-done a:hover .ck-step-n{background:var(--accent-tint);}
+.ck-step.is-done a:hover .ck-step-t{color:var(--accent);}
+@media(max-width:640px){.ck-step-t{font-size:var(--pm-text-xs);white-space:normal;line-height:1.2;display:flex;align-items:flex-end;justify-content:center;height:30px;}.ck-step + .ck-step::before{top:63px;}}
+/* --- tabulka položek --- */
+.ck-table{display:flex;flex-direction:column;border-top:1px solid var(--border);}
+.ck-tr{display:grid;grid-template-columns:minmax(0,1fr) 110px 140px 140px 150px 40px;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);}
+.ck-th{padding:14px 0;white-space:nowrap;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);}
+.ck-th > :nth-child(n+3),.ck-tr > .ck-q,.ck-tr > .ck-unit,.ck-tr > .ck-sum{text-align:right;justify-self:end;}
+.ck-th > :nth-child(3){justify-self:center;text-align:center;}
+.ck-tr > .ck-q{justify-self:center;text-align:center;}
+.ck-prod{display:flex;align-items:center;gap:16px;min-width:0;}
+.ck-img{flex:none;width:72px;height:72px;border-radius:var(--pm-radius-sm);background:#fff;overflow:hidden;}
+.ck-img img{width:100%;height:100%;object-fit:contain;padding:6px;display:block;}
+.ck-name{font-family:var(--pm-font-display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em;line-height:1.25;color:var(--text);}
+.ck-name:hover{color:var(--accent);}
+.ck-stock{font-size:var(--pm-text-sm);font-weight:600;color:var(--pm-success);}
+.ck-stock.is-off{color:var(--text-mute);}
+.ck-q{font-size:var(--pm-text-sm);color:var(--text);}
+.ck-unit{font-size:var(--pm-text-sm);color:var(--text-soft);white-space:nowrap;}
+.ck-sum{font-family:var(--pm-font-display);font-weight:800;font-size:1.05rem;color:var(--text);white-space:nowrap;}
+.ck-del-c{justify-self:end;}
+.ck-lbl{display:none;}
+@media(max-width:1149px){
+  .ck-th{display:none;}
+  .ck-tr{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"prod del" "stock stock" "q q" "unit unit" "sum sum";gap:10px;padding:18px 0;}
+  .ck-prod{grid-area:prod;}.ck-del-c{grid-area:del;}.ck-stock{grid-area:stock;}.ck-q{grid-area:q;}.ck-unit{grid-area:unit;}.ck-sum{grid-area:sum;}
+  .ck-tr > .ck-stock,.ck-tr > .ck-q,.ck-tr > .ck-unit,.ck-tr > .ck-sum{justify-self:stretch;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;}
+  .ck-lbl{display:inline;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);}
+}
+/* --- země, doprava, platba --- */
+.ck-country select.ui-control{max-width:320px;}
+.ck-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,44px);align-items:start;}
+@media(max-width:819px){.ck-grid2{grid-template-columns:minmax(0,1fr);}}
+.ck-group{border:0;margin:0;padding:0;min-width:0;}
+.ck-group > .ck-h{float:left;width:100%;}
+.ck-opts{clear:both;display:flex;flex-direction:column;gap:10px;}
+.ck-group .ui-err{display:block;margin-top:10px;}
+.ck-opt{display:grid;grid-template-columns:auto 24px minmax(0,1fr) auto;gap:14px;align-items:center;min-height:60px;padding:12px 18px;cursor:pointer;
+  border:1px solid var(--border-strong);background:var(--surface-raised);border-radius:var(--pm-radius-md,12px);
+  transition:border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease),box-shadow var(--pm-dur) var(--pm-ease);}
+.ck-opt:hover{border-color:color-mix(in srgb,var(--accent) 60%,transparent);}
+.ck-opt:has(.ui-radio:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface-raised));box-shadow:0 0 22px var(--ui-main-glow);}
+.ck-opt:has(.ui-radio:focus-visible){box-shadow:0 0 0 3px var(--ui-main-tint);}
+.ck-opt-ic{font-size:24px;color:var(--text-soft);}
+.ck-opt:has(.ui-radio:checked) .ck-opt-ic{color:var(--accent);}
+.ck-opt-n{display:flex;flex-direction:column;gap:2px;font-size:var(--pm-text-body);color:var(--text);}
+.ck-opt-n small{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);color:var(--text-mute);}
+.ck-opt-p{font-family:var(--pm-font-display);font-weight:700;font-size:var(--pm-text-sm);color:var(--text-soft);white-space:nowrap;}
+.ck-opt.is-off{cursor:not-allowed;opacity:.55;}
+.ck-opt.is-off:hover{border-color:var(--border-strong);}
+/* --- krok 2: formulář + souhrn --- */
+.ck-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:clamp(24px,3.4vw,52px);align-items:start;}
+.ck-main{display:flex;flex-direction:column;gap:clamp(28px,3.4vw,44px);min-width:0;}
+.ck-aside{position:sticky;top:calc(var(--pm-nav-h,75px) + 24px);}
+@media(max-width:999px){.ck-2col{grid-template-columns:minmax(0,1fr);}.ck-aside{position:static;}}
+.ck-main .ck-block{border:1px solid var(--border);background:var(--surface);border-radius:var(--pm-radius-lg);padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;gap:18px;}
+.ck-main .ck-block > .ck-h{margin:0;}
+.ck-acct{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start;}
+@media(max-width:640px){.ck-acct{grid-template-columns:minmax(0,1fr);}}
+/* box účtu: hlavička (radio) + po výběru vlastní pole uvnitř */
+.ck-abox{border:1px solid var(--border-strong);background:var(--surface-raised);border-radius:var(--pm-radius-md,12px);
+  transition:border-color var(--pm-dur) var(--pm-ease),background var(--pm-dur) var(--pm-ease),box-shadow var(--pm-dur) var(--pm-ease);}
+.ck-abox:hover{border-color:color-mix(in srgb,var(--accent) 60%,transparent);}
+.ck-abox:has(.ck-acard .ui-radio:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface-raised));box-shadow:0 0 22px var(--ui-main-glow);}
+.ck-acard{display:grid;grid-template-columns:auto 28px minmax(0,1fr);gap:14px;align-items:center;padding:16px 18px;cursor:pointer;}
+.ck-acard-ic{font-size:28px;color:var(--text-soft);}
+.ck-abox:has(.ck-acard .ui-radio:checked) .ck-acard-ic{color:var(--accent);}
+.ck-abox .ck-panel{padding:4px 18px 18px;border-top:1px solid var(--border);padding-top:16px;}
+.ck-abox .ui-check{min-height:0;}
+.ck-acard strong{display:block;font-family:var(--pm-font-display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em;color:var(--text);}
+.ck-acard small{display:block;margin-top:3px;font-size:var(--pm-text-sm);color:var(--text-soft);}
+.ck-panel{display:flex;flex-direction:column;gap:16px;}
+.ck-checks{display:flex;flex-direction:column;gap:6px;padding-top:6px;border-top:1px solid var(--border);}
+.ck-checks .ui-check{min-height:0;padding-top:12px;}
+.ck-mini{display:flex;flex-direction:column;margin:0 -10px;}
+/* --- souhrny --- */
+.ck-tot{display:flex;flex-direction:column;}
+.ck-tot-r{display:flex;align-items:baseline;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--border);font-size:var(--pm-text-sm);color:var(--text);}
+.ck-tot-r b{font-family:var(--pm-font-display);font-weight:700;white-space:nowrap;}
+.ck-lbl-i{margin-right:8px;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);}
+.ck-tot-r.is-net{color:var(--text-soft);}
+.ck-tot-r.is-grand{border-bottom:0;padding-top:18px;color:var(--text-soft);}
+.ck-tot-r.is-grand strong{font-family:var(--pm-font-display);font-weight:800;font-size:clamp(1.6rem,2.6vw,2.1rem);letter-spacing:-.02em;color:var(--accent);white-space:nowrap;}
+.ck-body > .ck-block > .ck-tot{margin-top:6px;}
+/* --- krok 3: kontrola --- */
+.ck-review{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.6vw,20px);align-items:stretch;}
+/* karty kontroly — stejný povrch jako bloky kroku 2 */
+.ck-review > div{display:flex;flex-direction:column;border:1px solid var(--border);background:var(--surface);border-radius:var(--pm-radius-lg);padding:clamp(20px,2.6vw,32px);}
+.ck-review .ck-edit{margin-top:auto;padding-top:20px;align-self:flex-start;}
+@media(max-width:719px){.ck-review{grid-template-columns:minmax(0,1fr);}}
+.ck-dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 24px;margin:0;}
+.ck-dl dt{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);padding-top:3px;}
+.ck-dl dd{margin:0;color:var(--text);overflow-wrap:anywhere;}
+.ck-edit{display:inline-block;margin-top:16px;font-size:var(--pm-text-sm);color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+.ck-edit:hover{color:var(--accent-bright);}
+.ck-note{margin:0;color:var(--text-soft);line-height:1.6;white-space:pre-line;}
+/* --- spodní lišta s navigací (sticky) --- */
+/* full bleed: vylamuje se z .wrap-wide na celou šířku okna, obsah drží hrany obsahu (padding = okraj wrapu) */
+.sec-ck{overflow-x:clip;}
+.ck-bar{position:sticky;bottom:0;z-index:20;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px 24px;align-items:center;
+  margin-inline:calc(50% - 50vw);padding:16px calc(50vw - 50%);border-top:1px solid var(--border-strong);
+  background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.ck-bar-mid{display:flex;align-items:center;justify-content:center;gap:10px 36px;flex-wrap:wrap;min-width:0;}
+.ck-bar-sum{display:inline-flex;align-items:baseline;gap:10px;font-size:var(--pm-text-sm);color:var(--text-soft);white-space:nowrap;}
+.ck-bar-sum b{font-family:var(--pm-font-display);font-weight:700;font-size:1.1rem;color:var(--text);}
+.ck-bar-sum strong{font-family:var(--pm-font-display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em;color:var(--accent);}
+.ck-bar-mid .ck-terms{min-height:0;max-width:720px;}
+.ck-bar-mid .ui-err{flex-basis:100%;text-align:center;}
+.ck-bar-mid .ui-err:empty{display:none;}
+/* mobil: vpravo dole je FAB menu — tlačítko Pokračovat mu uhne */
+@media(max-width:999px){.ck-bar{padding-right:calc(50vw - 50% + 76px);}}
+@media(max-width:819px){
+  .ck-bar{grid-template-columns:auto minmax(0,1fr);}
+  .ck-bar-mid{grid-column:1/-1;grid-row:1;justify-content:space-between;}
+  .ck-next{justify-content:center;}
+}
+/* --- prázdný košík / hotovo --- */
+.ck-empty{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:clamp(30px,5vw,70px) 20px;border:1px dashed var(--border-strong);border-radius:var(--pm-radius-lg);}
+.ck-empty > ui-icon{font-size:44px;color:var(--text-mute);}
+.ck-empty h2{margin:0;font-family:var(--pm-font-display);font-weight:800;font-size:1.6rem;letter-spacing:-.02em;}
+.ck-empty p{margin:0;color:var(--text-soft);max-width:48ch;}
+.ck-done{margin:0 auto;}
+
+/* ═══════════════════════════════════════════════════════
+   RMA FORMULÁŘ — 5 kroků (rma.html + rma.js)
+   Staví na .ck-* košíku; navíc 5sloupcový stepper, mřížka voleb .ck-optgrid (checkbox i radio),
+   zástupná reCAPTCHA, náhled/rekapitulace a výsledek s RMA číslem.
+   ═══════════════════════════════════════════════════════ */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.ck-steps.is-5{grid-template-columns:repeat(5,minmax(0,1fr));}
+.ck-step-n ui-icon{font-size:18px;}
+@media(max-width:819px){.ck-steps.is-5 .ck-step-t{font-size:var(--pm-text-2xs);white-space:normal;line-height:1.2;display:flex;align-items:flex-end;justify-content:center;height:30px;}.ck-steps.is-5 .ck-step + .ck-step::before{top:63px;}}
+@media(max-width:549px){.ck-steps.is-5 .ck-step-t{visibility:hidden;}.ck-steps.is-5 .ck-step.is-cur .ck-step-t{visibility:visible;}.ck-steps.is-5 .ck-step-n{width:36px;height:36px;}.ck-steps.is-5 .ck-step + .ck-step::before{top:59px;}}
+.rma-bh{display:flex;flex-direction:column;gap:6px;}
+.rma-bh p{margin:0;font-size:var(--pm-text-sm);color:var(--text-soft);}
+.ck-optgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+.ck-opt.is-sm{grid-template-columns:auto minmax(0,1fr);min-height:52px;padding:10px 16px;}
+.ck-opt.is-sm .ck-opt-n{font-size:var(--pm-text-sm);}
+.ck-opt:has(.ui-cbox:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface-raised));box-shadow:0 0 22px var(--ui-main-glow);}
+.ck-opt:has(.ui-cbox:focus-visible){box-shadow:0 0 0 3px var(--ui-main-tint);}
+.rma-captcha{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;max-width:340px;min-height:64px;padding:12px 18px;cursor:pointer;
+  border:1px solid var(--border-strong);background:var(--surface-raised);border-radius:var(--pm-radius-md,12px);}
+.rma-captcha span{font-weight:600;color:var(--text);}
+.rma-captcha small{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.08em;color:var(--text-mute);}
+.rma-aside{gap:20px;}
+.rma-how{margin:0;padding:0 0 0 1.2em;display:flex;flex-direction:column;gap:10px;font-size:var(--pm-text-sm);line-height:1.5;color:var(--text-soft);}
+.rma-how b{color:var(--text);}
+.rma-addr{display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid var(--border);}
+.rma-addr address{font-style:normal;line-height:1.6;color:var(--text);}
+.rma-help{display:inline-flex;align-items:center;gap:10px;font-size:var(--pm-text-sm);font-weight:600;color:var(--accent);}
+.rma-help ui-icon{font-size:20px;}
+.rma-help:hover{color:var(--accent-bright);}
+.rma-check{display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);background:var(--accent-tint);border-radius:var(--pm-radius-md,12px);}
+.rma-check ui-icon{font-size:22px;color:var(--accent);flex:none;}
+.rma-check p{margin:0;color:var(--text);}
+.rma-dev{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:clamp(10px,2vw,24px) 0;}
+.rma-dev strong{font-family:var(--pm-font-display);font-weight:800;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-.03em;line-height:1.05;color:var(--text);overflow-wrap:anywhere;}
+.rma-dev .mono{font-size:clamp(1rem,1.6vw,1.25rem);letter-spacing:.06em;color:var(--text-soft);}
+.rma-review > .col-2{grid-column:1/-1;}
+.rma-done{display:flex;flex-direction:column;gap:clamp(24px,3vw,40px);}
+.rma-num{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:clamp(28px,5vw,64px) 20px;
+  border:1px solid color-mix(in srgb,var(--pm-success) 40%,transparent);border-radius:var(--pm-radius-lg);
+  background:linear-gradient(160deg,color-mix(in srgb,var(--pm-success) 9%,transparent),var(--surface) 55%);}
+.rma-num strong{font-weight:700;font-size:clamp(3.4rem,9vw,6.5rem);line-height:1;letter-spacing:.02em;color:var(--accent);text-shadow:0 0 40px var(--ui-main-glow);}
+.rma-num p{margin:8px 0 0;color:var(--text-soft);max-width:56ch;}
+.rma-num p b{color:var(--text);}
+.rma-next{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(14px,1.6vw,20px);}
+.rma-next > div{border:1px solid var(--border);background:var(--surface);border-radius:var(--pm-radius-lg);padding:clamp(20px,2.6vw,32px);}
+.rma-next .rma-addr{border-top:1px solid var(--border);padding-top:clamp(20px,2.6vw,32px);}
+.rma-warn{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;}
+.rma-warn > ui-icon{font-size:32px;color:var(--accent);}
+.rma-warn .ck-h{margin-bottom:10px;}
+.rma-warn p{margin:0 0 8px;color:var(--text-soft);line-height:1.6;}
+.rma-fee{font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);color:var(--text-mute)!important;}
+.rma-rh{margin:0;}
+.rma-done .cta-actions{margin:0;}
+@media(max-width:819px){.rma-next{grid-template-columns:minmax(0,1fr);}}

@@ -26,6 +26,7 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `novinky.html` | Výpis novinek (filtr téma + značka, stránkování po 12) |
 | `novinka.html` | Detail novinky — `?a=<slug>`, text + foto/video |
 | `produkt.html` | Detail produktu Second Hand — `?p=<slug>`, varianty, stepper, přepínač tlačítka Koupit |
+| `kosik.html` | Košík — 3 kroky `?krok=1|2|3` (položky + doprava/platba · kontaktní údaje · kontrola), odeslání fingované |
 | `hledani.html` | Výsledky hledání — `?q=`, tři skupiny (Reference · Novinky · Second Hand), jednotná karta výsledku |
 | `design-system.html` | Živý přehled design systému (interní) |
 | `guidelines/*.html` | Specimen karty design systému (interní) |
@@ -42,8 +43,8 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 |---|---|
 | `ui-theme.js` | Nastaví téma před vykreslením (zabrání probliknutí) |
 | `ui-mode.js` | Režim podkladu **dark / light / duo** + varianta hlavičky (`data-mode`, `data-header` na `<html>`, localStorage). Varianta hlavičky je **nezávislá na režimu** — světlou hlavičku lze zapnout i v dark režimu. V duo režimu tagguje každou druhou plochou sekci classou `.pm-light`. |
-| `ui-components.js` | Web components: `ui-button`, `ui-input`, `ui-dropdown`, `ui-search`, `ui-chip`, `ui-tag`, `ui-card`, `ui-lang-switch`, `ui-live-card`, `ui-inst-card` |
-| `ui-icons.js` | Kurátorská sada 103 ikon + `<ui-icon>`. **Jediný povolený zdroj ikon.** |
+| `ui-components.js` | `UIModal`, `UICart` (košík v localStorage `pm-cart` + hlavička) a web components: `ui-button`, `ui-input`, `ui-dropdown`, `ui-search`, `ui-chip`, `ui-tag`, `ui-card`, `ui-lang-switch`, `ui-live-card`, `ui-inst-card` |
+| `ui-icons.js` | Kurátorská sada 105 ikon + `<ui-icon>`. **Jediný povolený zdroj ikon.** |
 | `ui-loader.js` | Vkládá hlavičku / mobilní menu / patičku na každou stránku |
 | `ui-header.html` · `ui-mobile-menu.html` · `ui-footer.html` | Markup těch tří sdílených bloků (jediný zdroj pravdy; samostatně otevřené fungují jako náhled) |
 | `hledani.js` | Render stránky výsledků (index a filtrování bere z `window.PMSearch` v `site-search.js`) |
@@ -55,6 +56,7 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `news-index.js` | **Data novinek — metadata** (titulek, štítky, značka, perex, náhled). Zdroj pro výpis. |
 | `news-bodies.js` | **Data novinek — plné texty** (HTML + odkazy na videa). Načítá jen detail. |
 | `secondhand-data.js` · `secondhand.js` | Second Hand — data výpisu + render (filtr značky, stránkování). Karty vedou na `produkt.html` |
+| `kosik.js` | Logika košíku (kroky, validace, souhrny); položky z `UICart`, rozpracované údaje v localStorage `pm-checkout` |
 | `produkt-data.js` · `produkt.js` | Second Hand — obsah detailů produktů + render detailu |
 | `news.js` | Novinky: render výpisu (`.nlist-root`, `?f=` téma, `?b=` značka, `?p=`) a detailu (`.nart-root`) |
 | `academy-data.js` | Zástupné termíny školení — dnes už jen pro blok „Nejbližší školení“ na homepage |
@@ -115,7 +117,7 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 Ověření po přidání: `getComputedStyle(document.documentElement).getPropertyValue("--muj-token")` musí vrátit hodnotu, ne prázdný string.
 
 ## IKONOGRAFIE
-- **Kurátorská sada 103 ikon v `ui-icons.js`** — jediný povolený zdroj. Do stránek se nekreslí vlastní SVG; když ikona chybí, doplní se do sady.
+- **Kurátorská sada 105 ikon v `ui-icons.js`** — jediný povolený zdroj. Do stránek se nekreslí vlastní SVG; když ikona chybí, doplní se do sady.
 - Použití: `<ui-icon name="audio-mixer"></ui-icon>`. Dědí `font-size` a `currentColor`. Velikosti `.icon-sm/md/lg/xl`, nebo `size="26"`. V kroužku `.icon-badge`. V JS šablonách `pmIcon("ui-play")`.
 - Kategorie: `ui-` (22) · `shop-` (16) · `audio-` (15) · `service-` (11) · `academy-` (8) · `light-` (7) · `contact-` (6) · `venue-` (5) · `video-` (5) · `social-` (4) · `stage-` (4).
 - Přístupnost: ikona bez textu vedle potřebuje `label="…"`, jinak zůstane `aria-hidden`.

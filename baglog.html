@@ -6,7 +6,7 @@
 <title>PRO MUSIC — Backlog změn</title>
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=16" />
-<link rel="stylesheet" href="ui.css?v=303" />
+<link rel="stylesheet" href="ui.css?v=315" />
 </head>
 <body class="dir-b">
 <div id="app">
@@ -28,8 +28,18 @@
   <section class="sec band band-flat reveal"><div class="wrap-wide">
     <div class="chlog">
       <div class="chday">
-        <div class="when">28. 9. 2026<small>3 změny</small></div>
+        <div class="when">28. 9. 2026<small>13 změn</small></div>
         <div class="chitems">
+      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>RMA formulář v 5 krocích (rma.html)</b><span>Odesílatel → Zboží → Zásilka → Náhled → Odesláno s RMA číslem; staví na komponentách košíku, pole v kartách, sticky lišta Zpět · Pokračovat, boční panel s postupem a adresou servisu.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Stepper .ck-steps.is-5 a mřížka voleb .ck-optgrid</b><span>Pětikrokový ukazatel (hotové kroky s fajfkou, na mobilu jen popisek aktuálního) a řádkové volby .ck-opt.is-sm pro checkboxy i radia se stejným akcentním zvýrazněním.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Patička podle hlavního menu</b><span>Sloupce O nás · Reference · Nabídka kopírují strukturu hlavičky; odebrány neexistující odkazy (Servis, Academy „#“) a duplicity.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Třikrokový košík (kosik.html)</b><span>Nákupní košík → Kontaktní údaje → Kontrola údajů s ukazatelem kroků, tabulkou položek (stepper, odebrání), volbou země, dopravy a platby, přihlášením/registrací, fakturačními údaji a sticky spodní lištou Zpět · součty · Pokračovat (full bleed, jen horní šedá linka).</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Nový radio button .ui-radio + volby .ck-opt</b><span>Kulatý protějšek .ui-cbox; řádkové volby dopravy a platby i karty účtu se zvýrazní akcentem jako .selcard, nekompatibilní kombinace (dobírka × osobní odběr) jsou vypnuté s vysvětlením.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Velikost</span><div class="what"><b>Ikony v tlačítkách a hlavičce jednotně 20 × 20 px</b><span>Box i SVG shodně 20 × 20 px ve všech velikostech tlačítka (i .btn-sm) a v kruhových tlačítkách hlavičky (hledání, košík); výška tlačítek se nemění (ikona má záporný svislý margin).</span></div></div>
+            <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>Hledání v hlavičce i na mobilu</b><span>Ikona hledání zůstává v mobilní hlavičce vedle CTA Kontakt; otevřené pole překryje logo, košík i CTA a našeptávač je na plnou šířku obrazovky.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Košík v hlavičce + popup (UICart)</b><span>Po prvním nákupu se v hlavičce objeví ikona košíku s počtem kusů; na hover popup s položkami (náhled, název, ks, cena, odebrat) a CTA „Přejít do košíku“. Nová ikona ui-trash.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Funkce</span><div class="what"><b>Second Hand: Koupit + stepper jako výchozí CTA</b><span>Detail produktu s cenou má vždy počet kusů a Koupit (přepínač eshopového režimu zrušen); produkt bez ceny drží „Poptat tento kus“. Koupit otevře modal „přidáno do košíku“.</span></div></div>
+      <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>UIModal: jednotná patička s navigací</b><span>Modal má volitelný .ui-modal-foot (zpět vlevo, primární akce vpravo), tělo se roluje mezi pevnou hlavičkou a patičkou; poptávka školení i košík ho používají stejně.</span></div></div>
       <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Select ve stylu ui-control + počet osob v poptávce</b><span>Formulář poptávky školení má povinný výběr počtu osob 1–12; select.ui-control dostal vlastní šipku v barvě akcentu.</span></div></div>
       <div class="chitem is-new"><span class="chtag">Komponenty</span><div class="what"><b>Nová komponenta UIModal + formulářové řádky</b><span>Modální okno s hlavičkou a křížkem (Esc, klik mimo, fokus drží v okně) a řádky label | pole (.ui-form-row), na mobilu pod sebou.</span></div></div>
       <div class="chitem is-new"><span class="chtag">Funkce</span><div class="what"><b>Poptat školení otevírá formulář v modalu</b><span>Předvyplněný název kurzu, povinný e-mail, telefon a firma, nepovinná poznámka; odeslání zatím fingované s potvrzením. Tlačítko „Zeptat se na kurz“ odebráno.</span></div></div>
@@ -52,7 +62,7 @@
         </div>
       </div>
       <div class="chday">
-        <div class="when">22. 9. 2026<small>11 změn</small></div>
+        <div class="when">22. 9. 2026<small>13 změn</small></div>
         <div class="chitems">
       <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>H5: pult přes plnou šířku okna</b><span>Mixpult už není omezen šířkou obsahu — sahá k okrajům okna s tenkým okrajem; claim a CTA nad ním zůstávají zarovnané s hlavičkou webu.</span></div></div>
       <div class="chitem is-new"><span class="chtag">Layout</span><div class="what"><b>Homepage: varianta hera H5 „Mixpult"</b><span>Projekty jako kanály mixážního pultu přes celou výšku okna: aktivní kanál (SOLO) se roztáhne na barevnou fotku s obsahem, živým LED metrem a faderem jako průběhem autoplay; ostatní jsou úzké šedé pruhy se svislým popiskem. Pod pultem scribble strip s názvy kanálů, vpravo master sekce se šipkami; klávesy ← → a 1–7, tablet max. 5 kanálů, mobil jako vodorovný akordeon.</span></div></div>
@@ -102,7 +112,7 @@
         </div>
       </div>
       <div class="chday">
-        <div class="when">16. 9. 2026<small>11 změn</small></div>
+        <div class="when">16. 9. 2026<small>13 změn</small></div>
         <div class="chitems">
       <div class="chitem is-new"><span class="chtag">Velikost</span><div class="what"><b>CTA v hlavičce zmenšeno na malé (sm)</b><span>Velké tlačítko v nav baru přebíjelo logo i navigaci — nyní ~40 px místo 52 px. Komponenta ui-button přitom velikost sm vůbec neznala a tiše ji ignorovala; doplněna do systému.</span></div></div>
       <div class="chitem is-new"><span class="chtag">Struktura</span><div class="what"><b>Stálé instalace rozděleny na výpis a obsahové stránky</b><span>Popisné bloky přesunuty do „Co řešíme“ a „Fáze instalace“; „Divadla a sály“ jsou teď standardní výpis projektů s CTA na obě obsahové stránky.</span></div></div>
@@ -120,9 +130,9 @@
     </div>
   </div></section>
 </div>
-<script src="ui-icons.js?v=8"></script>
-<script src="ui-components.js?v=32"></script>
-<script src="ui-loader.js?v=45"></script>
+<script src="ui-icons.js?v=10"></script>
+<script src="ui-components.js?v=34"></script>
+<script src="ui-loader.js?v=49"></script>
 <script src="site-search.js?v=7"></script>
 <script src="site.js?v=18"></script>
 </body>

@@ -17,7 +17,7 @@
     if (!window.UIModal) return;
     var box = window.UIModal.open({
       title: "Poptávka školení",
-      body: '<form class="ui-form" novalidate>' +
+      body: '<form id="inq-form" class="ui-form" novalidate>' +
         row("inq-course", "Školení", '<input id="inq-course" class="ui-control" type="text" readonly value="' + esc(c.n) + '" />') +
         row("inq-mail", "Váš e-mail", '<input id="inq-mail" name="email" class="ui-control" type="email" autocomplete="email" placeholder="@" required />', 1) +
         row("inq-tel", "Váš telefon", '<input id="inq-tel" name="tel" class="ui-control" type="tel" autocomplete="tel" required />', 1) +
@@ -25,8 +25,9 @@
         row("inq-ppl", "Počet osob", '<select id="inq-ppl" name="osob" class="ui-control">' +
           Array.from({ length: 12 }, function (_, i) { var n = i + 1; return '<option value="' + n + '">' + n + (n === 1 ? " osoba" : n < 5 ? " osoby" : " osob") + "</option>"; }).join("") + "</select>", 1) +
         row("inq-note", "Poznámka", '<textarea id="inq-note" name="pozn" class="ui-control" rows="4"></textarea>', 0, 1) +
-        '<div class="ui-form-foot"><span class="ui-hint">* povinné údaje</span>' +
-        '<button type="submit" class="btn btn-primary">Odeslat poptávku</button></div></form>'
+        "</form>",
+      foot: '<span class="ui-hint">* povinné údaje</span>' +
+        '<button type="submit" form="inq-form" class="btn btn-primary">Odeslat poptávku</button>'
     });
     var form = box.querySelector("form");
     var checks = [
@@ -54,15 +55,14 @@
       e.preventDefault();
       var bad = validate();
       if (bad) { bad.focus(); return; }
-      var btn = form.querySelector('[type="submit"]');
+      var btn = box.querySelector('[type="submit"]');
       btn.disabled = true; btn.textContent = "Odesílám…";
       setTimeout(function () {
         box.querySelector(".ui-modal-body").innerHTML =
           '<div class="ui-form-done" role="status"><span class="ui-form-done-ico"><ui-icon name="ui-check" aria-hidden="true"></ui-icon></span>' +
           "<h3>Poptávka školení byla úspěšně odeslána.</h3>" +
-          "<p>Na váš e-mail obdržíte potvrzení, že poptávku evidujeme a budeme vás kontaktovat, jakmile se kurz kapacitně naplní.</p>" +
-          '<button type="button" class="btn btn-ghost ui-form-close">Zavřít</button></div>';
-        box.querySelector(".ui-form-close").addEventListener("click", window.UIModal.close);
+          "<p>Na váš e-mail obdržíte potvrzení, že poptávku evidujeme a budeme vás kontaktovat, jakmile se kurz kapacitně naplní.</p></div>";
+        box.querySelector(".ui-modal-foot").innerHTML = '<button type="button" class="btn btn-ghost" data-modal-close>Zavřít</button>';
         if (window.UIArmGlow) window.UIArmGlow();
       }, 700);
     });

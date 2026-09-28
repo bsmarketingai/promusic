@@ -349,9 +349,12 @@
     m.innerHTML = '<div class="ui-modal-box" role="dialog" aria-modal="true" aria-labelledby="ui-modal-t">' +
       '<div class="ui-modal-head"><h2 id="ui-modal-t" class="ui-modal-title"></h2>' +
       '<button type="button" class="ui-modal-x" aria-label="Zavřít"><ui-icon name="ui-close" aria-hidden="true"></ui-icon></button></div>' +
-      '<div class="ui-modal-body"></div></div>';
+      '<div class="ui-modal-body"></div>' + (o.foot ? '<div class="ui-modal-foot"></div>' : "") + "</div>";
+    if (o.cls) m.querySelector(".ui-modal-box").className += " " + o.cls;
     m.querySelector(".ui-modal-title").textContent = o.title || "";
     m.querySelector(".ui-modal-body").innerHTML = o.body || "";
+    if (o.foot) m.querySelector(".ui-modal-foot").innerHTML = o.foot;
+    m.addEventListener("click", function (e) { if (e.target.closest("[data-modal-close]")) closeModal(); });
     m.addEventListener("mousedown", function (e) { if (e.target === m) closeModal(); });
     m.querySelector(".ui-modal-x").addEventListener("click", closeModal);
     document.body.appendChild(m);
@@ -375,4 +378,56 @@
     }
   });
   window.UIModal = { open: openModal, close: closeModal };
+
+  /* ================= UICart =================
+     Košík v localStorage `pm-cart`: [{ id, n, img, href, p (cena s DPH / ks), q }].
+     Vykresluje .hcart v hlavičce (ikona + počet + hover popup). */
+  var CART_KEY = "pm-cart";
+  function cEsc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function kc(n) { return Math.round(n).toLocaleString("cs-CZ").replace(/\s/g, "\u00a0") + "\u00a0Kč"; }
+  function cartGet() { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch (e) { return []; } }
+  function cartSet(a) {
+    try { localStorage.setItem(CART_KEY, JSON.stringify(a)); } catch (e) {}
+    renderCart();
+    window.dispatchEvent(new CustomEvent("pm-cart-change"));
+  }
+  function cartQty(id, q) { cartSet(cartGet().map(function (x) { if (x.id === id) x.q = q; return x; })); }
+  function cartClear() { cartSet([]); }
+  function cartCount(a) { return (a || cartGet()).reduce(function (s, x) { return s + x.q; }, 0); }
+  function cartSum(a) { return (a || cartGet()).reduce(function (s, x) { return s + x.p * x.q; }, 0); }
+  function cartAdd(it) {
+    var a = cartGet(), f = a.filter(function (x) { return x.id === it.id; })[0];
+    if (f) f.q += it.q; else a.push(it);
+    cartSet(a); bump(); return a;
+  }
+  function cartRemove(id) { cartSet(cartGet().filter(function (x) { return x.id !== id; })); }
+  function bump() {
+    document.querySelectorAll(".hcart-n").forEach(function (n) {
+      n.classList.remove("is-bump"); void n.offsetWidth; n.classList.add("is-bump");
+    });
+  }
+  function renderCart() {
+    var a = cartGet();
+    document.querySelectorAll(".hcart").forEach(function (el) {
+      el.hidden = !a.length;
+      var n = el.querySelector(".hcart-n"); if (n) n.textContent = cartCount(a);
+      var btn = el.querySelector(".hcart-btn"); if (btn) btn.setAttribute("aria-label", "Košík — " + cartCount(a) + " ks");
+      var list = el.querySelector(".hcart-list"); if (!list) return;
+      list.innerHTML = a.map(function (x) {
+        return '<div class="hcart-item">' +
+          '<a class="hcart-img" href="' + cEsc(x.href || "#") + '">' + (x.img ? '<img src="' + cEsc(x.img) + '" alt="" />' : "") + "</a>" +
+          '<div class="hcart-meta"><a href="' + cEsc(x.href || "#") + '">' + cEsc(x.n) + "</a><span>" + x.q + " ks</span></div>" +
+          '<div class="hcart-side"><button type="button" class="hcart-del" data-cart-del="' + cEsc(x.id) + '" aria-label="Odebrat ' + cEsc(x.n) + ' z košíku"><ui-icon name="ui-trash" aria-hidden="true"></ui-icon></button>' +
+          '<span class="hcart-price">' + kc(x.p * x.q) + "</span></div></div>";
+      }).join("");
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var d = e.target.closest("[data-cart-del]"); if (!d) return;
+    e.preventDefault(); cartRemove(d.getAttribute("data-cart-del"));
+  });
+  window.addEventListener("storage", function (e) { if (e.key === CART_KEY) { renderCart(); window.dispatchEvent(new CustomEvent("pm-cart-change")); } });
+  window.addEventListener("ui-nav-ready", renderCart);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderCart); else renderCart();
+  window.UICart = { get: cartGet, add: cartAdd, remove: cartRemove, set: cartQty, clear: cartClear, count: cartCount, sum: cartSum, fmt: kc, render: renderCart };
 })();

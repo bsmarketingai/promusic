@@ -8,7 +8,7 @@
      loader bere pouze komponentní root (header.nav / #mobmenu / footer.foot / .navfab). -->
 <script src="ui-theme.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=16" />
-<link rel="stylesheet" href="ui.css?v=303" />
+<link rel="stylesheet" href="ui.css?v=315" />
 </head>
 <body class="dir-a dir-b">
 
@@ -88,7 +88,7 @@
     </nav>
 
     <!-- hledání (ikona → rozbalovací input + našeptávač) -->
-    <div class="hsearch desk">
+    <div class="hsearch">
       <button type="button" class="hsearch-btn" aria-label="Hledat" aria-expanded="false"><ui-icon name="shop-search" aria-hidden="true"></ui-icon></button>
       <form class="hsearch-field" role="search" autocomplete="off">
         <input class="hsearch-input" type="text" placeholder="Reference, novinky, second hand…" aria-label="Hledat na webu" />
@@ -104,6 +104,12 @@
     <ui-button class="desk" variant="primary" size="sm" lead-icon="ui-phone" href="kontakt.html">Kontakt</ui-button>
     <a class="btn btn-primary nav-cta-mob" href="kontakt.html" aria-label="Kontakt"><ui-icon class="btn-ico btn-ico-lead" name="ui-phone" aria-hidden="true"></ui-icon>Kontakt</a>
 
+    <!-- košík (zobrazí se až s první položkou; obsah vykresluje UICart v ui-components.js) -->
+    <div class="hcart" hidden>
+      <a class="hcart-btn" href="kosik.html" aria-label="Košík"><ui-icon name="shop-cart" aria-hidden="true"></ui-icon><span class="hcart-n">0</span></a>
+      <div class="hcart-pop"><div class="hcart-list"></div><a class="btn btn-primary hcart-go" href="kosik.html">Přejít do košíku</a></div>
+    </div>
+
     <!-- hamburger (skrytý, FAB je primární trigger) -->
     <button class="hamburger" aria-label="Menu"><ui-icon name="ui-menu" aria-hidden="true"></ui-icon></button>
 
@@ -116,8 +122,8 @@
   <span class="fab-x"><ui-icon name="ui-close" aria-hidden="true"></ui-icon></span>
 </button>
 
-<script src="ui-icons.js?v=8"></script>
-<script src="ui-components.js?v=32"></script>
+<script src="ui-icons.js?v=10"></script>
+<script src="ui-components.js?v=34"></script>
 <script>/* náhled: zapojit outline-glow a chování bez loaderu */
 document.querySelectorAll(".btn,.outline-glow,.megafeat,.foot-col a,.ui-card").forEach(function(el){el.addEventListener("pointermove",function(e){var r=el.getBoundingClientRect();el.style.setProperty("--mx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");el.style.setProperty("--my",((e.clientY-r.top)/r.height*100).toFixed(1)+"%");});});</script>
 </body>

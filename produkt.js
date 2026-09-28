@@ -1,6 +1,6 @@
 /* PRO MUSIC — SECOND HAND: detail produktu.
    Render z produkt-data.js podle ?p=<slug>. Varianty, quantity stepper,
-   přepínač eshopového režimu (tlačítko Koupit) v localStorage `pm-eshop`. */
+   Koupit → UICart + modal „přidáno do košíku“. Bez ceny → CTA Poptat. */
 (function () {
   "use strict";
 
@@ -10,6 +10,34 @@
     });
   }
   function ks(n) { return n + " ks"; }
+
+  function priceNum(s) { var n = parseInt(String(s || "").replace(/\D/g, ""), 10); return n > 0 ? n : 0; }
+  function pl(n, a, b, c) { return n === 1 ? a : n > 1 && n < 5 ? b : c; }
+
+  /* modal „přidáno do košíku“ — sdílený UIModal (hlavička, křížek, patička s navigací) */
+  function openAdded(it, q, base, stock) {
+    var U = window.UICart, a = U.get(), cnt = U.count(a);
+    window.UIModal.open({
+      title: q + " ks " + pl(q, "přidán", "přidány", "přidáno") + " do košíku",
+      cls: "ui-modal-cart",
+      body: '<div class="cartm">' +
+        '<div class="cartm-prod">' +
+          '<div class="cartm-img">' + (it.img ? '<img src="' + esc(it.img) + '" alt="' + esc(it.n) + '" />' : "") + "</div>" +
+          '<div class="cartm-info">' +
+            '<h3 class="cartm-n">' + esc(it.n) + "</h3>" +
+            '<div class="cartm-price">' + U.fmt(it.p) + "<small>" + U.fmt(base) + " bez DPH</small></div>" +
+            '<p class="cartm-stock">Dostupnost:<b>' + (stock > 0 ? "Skladem" : "Na dotaz") + "</b></p>" +
+          "</div>" +
+        "</div>" +
+        '<div class="cartm-sum">' +
+          '<div class="cartm-row"><span>Celková cena přidaného zboží</span><strong>' + U.fmt(it.p * q) + "</strong></div>" +
+          '<p class="cartm-note">V košíku máte celkem <b>' + cnt + " " + pl(cnt, "produkt", "produkty", "produktů") + "</b> dohromady za <b>" + U.fmt(U.sum(a)) + "</b>.</p>" +
+        "</div>" +
+      "</div>",
+      foot: '<button type="button" class="btn btn-ghost" data-modal-close>Zpět do obchodu</button>' +
+        '<a class="btn btn-primary" href="kosik.html">Objednat zboží<ui-icon class="btn-ico" name="ui-chevron-right" aria-hidden="true"></ui-icon></a>'
+    });
+  }
 
   function stockLabel(n) {
     return n > 0 ? "Skladem " + ks(n) : "Na dotaz";
@@ -52,15 +80,15 @@
                 '<span class="pd-var-dot" aria-hidden="true"></span><span class="pd-var-n">' + esc(v.n) + "</span>" +
                 '<span class="pd-vq">' + esc(ks(v.q)) + " skladem</span></button>";
             }).join("") + "</div></div>" : "") +
-          '<div class="pd-buy">' +
+          (priceNum(d.cena) ? '<div class="pd-buy">' +
             '<div class="qty" role="group" aria-label="Počet kusů">' +
               '<button class="qty-b" data-s="-1" aria-label="Ubrat kus">–</button>' +
               '<input class="qty-i mono" type="text" inputmode="numeric" value="1" aria-label="Počet kusů" />' +
               '<button class="qty-b" data-s="1" aria-label="Přidat kus">+</button>' +
             "</div>" +
             '<button class="btn btn-primary btn-md pd-cart"><ui-icon class="btn-ico" name="shop-cart" aria-hidden="true"></ui-icon>Koupit</button>' +
-          "</div>" +
-          '<div class="cta-actions pd-cta"><ui-button variant="primary" size="md" href="mailto:info@promusic.cz?subject=' + encodeURIComponent(d.n) + '">Poptat tento kus →</ui-button><ui-button variant="ghost" size="md" href="kontakt.html">Kontakt</ui-button></div>' +
+          "</div>" :
+          '<div class="cta-actions pd-cta"><ui-button variant="primary" size="md" href="mailto:info@promusic.cz?subject=' + encodeURIComponent(d.n) + '">Poptat tento kus →</ui-button><ui-button variant="ghost" size="md" href="kontakt.html">Kontakt</ui-button></div>') +
           '<dl class="pd-facts">' + (d.facts || []).map(function (f) {
             return "<dt>" + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd>";
           }).join("") + "</dl>" +
@@ -73,6 +101,7 @@
     var elStock = root.querySelector(".pd-stock-t"), elQty = root.querySelector(".qty-i");
 
     function clampQty() {
+      if (!elQty) return;
       var v = parseInt(elQty.value, 10);
       if (!(v > 0)) v = 1;
       if (stock > 0 && v > stock) v = stock;
@@ -92,12 +121,22 @@
       clampQty();
     });
 
-    root.querySelector(".pd-buy").addEventListener("click", function (e) {
+    var buy = root.querySelector(".pd-buy");
+    if (buy) buy.addEventListener("click", function (e) {
+      if (e.target.closest(".pd-cart")) {
+        clampQty();
+        if (!window.UICart || !window.UIModal) return;
+        var q = parseInt(elQty.value, 10) || 1, base = priceNum(d.cena), v = vars ? vars[vi] : null;
+        var it = { id: slug + (v ? "-" + vi : ""), n: d.n + (v ? " · " + v.n : ""), img: d.img, href: "produkt.html?p=" + slug, p: Math.round(base * 1.21), q: q, s: stock };
+        window.UICart.add(it);
+        openAdded(it, q, base, stock);
+        return;
+      }
       var b = e.target.closest(".qty-b"); if (!b) return;
       elQty.value = (parseInt(elQty.value, 10) || 1) + parseInt(b.getAttribute("data-s"), 10);
       clampQty();
     });
-    elQty.addEventListener("change", clampQty);
+    if (elQty) elQty.addEventListener("change", clampQty);
 
     /* další produkty — všechny vedou na detail */
     var rel = document.querySelector(".pd-rel");
@@ -147,24 +186,7 @@
     document.documentElement.style.overflow = "";
   }
 
-  function eshop() {
-    var sw = document.getElementById("eshopSw"); if (!sw) return;
-    var on = false;
-    try { on = localStorage.getItem("pm-eshop") === "1"; } catch (e) {}
-    function apply() {
-      document.body.classList.toggle("eshop", on);
-      sw.setAttribute("aria-checked", on ? "true" : "false");
-    }
-    sw.addEventListener("click", function () {
-      on = !on;
-      try { localStorage.setItem("pm-eshop", on ? "1" : "0"); } catch (e) {}
-      apply();
-    });
-    apply();
-  }
-
   /* render musí proběhnout SYNCHRONNĚ (skript je na konci <body>, kořen už existuje),
      aby lightbox v site.js našel [data-lightbox] — ten se váže při svém načtení. */
   document.querySelectorAll(".pd-root").forEach(build);
-  eshop();
 })();
