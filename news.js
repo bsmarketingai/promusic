@@ -195,6 +195,7 @@
       if (window.UILoader && window.UILoader.scanGlow) window.UILoader.scanGlow();
     });
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  /* skripty jsou na konci body → kořeny už existují; vykreslit hned, aby lightbox v site.js našel galerie článku */
+  if (document.readyState === "loading" && !document.querySelector(".nart-root,.nlist-root,.nbrand")) document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();

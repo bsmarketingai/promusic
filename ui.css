@@ -2320,6 +2320,45 @@ ui-live-card .ncard,ui-inst-card .ncard{height:100%;}
 .artnav .is-off{min-width:1px;}
 @media(max-width:560px){.artnav{flex-direction:column;align-items:stretch;}.artnav .btn{width:100%;justify-content:center;}.artnav .is-off{display:none;}}
 
+/* ---- bohaté bloky článku (novinka.html, .artbody) ---- */
+.artbody .art-claim{font-family:var(--pm-font-display);font-weight:800;font-size:clamp(1.6rem,3.4vw,2.6rem);line-height:1.08;letter-spacing:-.03em;color:var(--text);margin:0 0 .8em;text-wrap:balance;}
+.artbody .art-claim em{font-style:normal;color:inherit;}
+.artbody h3{font-size:clamp(1.15rem,1.8vw,1.4rem);letter-spacing:-.02em;color:var(--text);margin:0 0 .5em;}
+.art-fig{margin:clamp(22px,3vw,36px) 0;}
+.art-fig img{display:block;width:100%;height:auto;border-radius:var(--pm-radius-md);}
+.art-fig figcaption{margin-top:10px;font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);color:var(--text-mute);letter-spacing:.04em;}
+.art-fig-product{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--pm-radius-lg);padding:clamp(12px,3vw,32px);}
+.art-stats{margin:clamp(26px,4vw,44px) 0;padding:clamp(22px,3vw,32px) 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+@media(max-width:600px){.art-stats{--stat-cols:2 !important;}}
+.art-io{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:0 0 1.4em;background:var(--border);border:1px solid var(--border);border-radius:var(--pm-radius-md);overflow:hidden;}
+.art-io-i{background:var(--bg);padding:clamp(16px,2vw,22px);display:flex;flex-direction:column;gap:6px;}
+.art-io-i:last-child:nth-child(odd){grid-column:1/-1;}
+.art-io-k{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);}
+.artbody .art-io-i p{margin:0;font-size:.98rem;line-height:1.6;}
+@media(max-width:600px){.art-io{grid-template-columns:minmax(0,1fr);}}
+.art-gal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(8px,1vw,12px);margin:0 0 1.4em;}
+.art-gal a{position:relative;display:block;grid-column:span 2;aspect-ratio:16/10;border-radius:var(--pm-radius-md);overflow:hidden;background:#fff;}
+.art-gal a:nth-child(-n+2){grid-column:span 3;}
+.art-gal img{width:100%;height:100%;object-fit:contain;transition:transform .5s var(--pm-ease);}
+.art-gal a:hover img{transform:scale(1.04);}
+.art-gal .cap{position:absolute;left:0;right:0;bottom:0;padding:18px 12px 9px;font-family:var(--pm-font-mono);font-size:var(--pm-text-2xs);letter-spacing:.06em;text-transform:uppercase;color:var(--pm-white);background:linear-gradient(transparent,rgba(7,6,5,.78));opacity:0;transition:opacity var(--pm-dur) var(--pm-ease);}
+.art-gal a:hover .cap{opacity:1;}
+.artbody .art-gal a{text-decoration:none;}
+@media(max-width:600px){.art-gal a,.art-gal a:nth-child(-n+2){grid-column:span 3;}}
+.art-spec{margin:0 0 1.6em;border-top:1px solid var(--border);}
+.art-spec > div{display:grid;grid-template-columns:minmax(0,13em) minmax(0,1fr);gap:16px;padding:11px 0;border-bottom:1px solid var(--border);}
+.art-spec dt{font-family:var(--pm-font-mono);font-size:var(--pm-text-xs);letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute);padding-top:.25em;}
+.art-spec dd{margin:0;color:var(--text);font-size:.98rem;line-height:1.55;}
+@media(max-width:560px){.art-spec > div{grid-template-columns:minmax(0,1fr);gap:2px;}}
+.art-cta{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 28px;margin:clamp(30px,4vw,48px) 0 0;padding:clamp(22px,3vw,32px);background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--pm-radius-lg);}
+.art-cta-t{flex:1 1 320px;min-width:0;}
+.art-cta-t .eyebrow{margin-bottom:10px;}
+.artbody .art-cta-t p{margin:0;}
+.art-cta-a{display:flex;flex-wrap:wrap;gap:10px;}
+.artbody .art-cta .btn{text-decoration:none;}
+.artbody .art-cta .btn-primary{color:var(--on-accent);}
+.artbody .art-cta .btn-ghost{color:var(--text);}
+
 /* ---- detail značky: kategorie produktů ---- */
 .bcats{display:flex;flex-wrap:wrap;gap:10px;}
 .bspecs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,22px);}
