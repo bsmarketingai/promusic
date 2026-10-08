@@ -16,10 +16,24 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `live-a-turne.html` | Výpis projektů Touring / Rental / produkce (chip filtrace + stránkování) |
 | `stale-instalace.html` | Výpis instalací (chip filtrace + stránkování) |
 | `live-ed-sheeran.html` | Case study — Ed Sheeran, Mathematics Tour |
+| `live-rammstein.html` | Case study — Rammstein 2019 |
+| `live-eurovize-2024.html` | Case study — Eurovize 2024 |
+| `reference.html` | Souhrn referencí (data z `projects-data.js`) |
+| `instalace-co-resime.html` | Instalace — co řešíme |
+| `instalace-jak-to-delame.html` | Instalace — jak to děláme (proces) |
 | `instalace-hd-karlin-schema.html` | Case study — HD Karlín, vč. interaktivního schématu |
 | `instalace-kulturni-domy-saly-divadla.html` | Segmentová landing — kulturní domy, sály, divadla |
 | `technologie-schema-ozvuceni.html` | Vysvětlovací stránka — schéma ozvučení |
 | `znacky.html` | Značky, které zastupujeme |
+| `znacka-l-acoustics.html` | Detail značky — L-Acoustics |
+| `o-spolecnosti-kdo-jsme.html` | O společnosti — kdo jsme |
+| `o-spolecnosti-nabizime.html` | O společnosti — co nabízíme |
+| `o-spolecnosti-partneri.html` | O společnosti — partneři (`partneri-data.js`, `partneri.js`) |
+| `o-spolecnosti-cyklisticky-tym.html` | O společnosti — cyklistický tým |
+| `kontakt.html` | Kontakt |
+| `rma.html` | Servis / RMA formulář (`rma.js`), reklamační řád v `assets/docs/` |
+| `second-hand.html` | Second Hand — výpis (`secondhand-data.js`, `secondhand.js`) |
+| `404.html` | Chybová stránka (GH Pages ji servíruje automaticky, kotví se na kořen webu) |
 | `skoleni.html` | PRO MUSIC Academy — katalog kurzů L-Acoustics (karty .ncard, filtr learning profilů `?f=`) |
 | `skoleni-detail.html` | Detail kurzu — `?k=<slug>`, šablona detailu produktu, termín na poptávku |
 | `prihlaska-skoleni.html` | Přihláška na školení (výběrové karty, návaznosti, souhrn) |
@@ -28,13 +42,15 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `produkt.html` | Detail produktu Second Hand — `?p=<slug>`, varianty, stepper, přepínač tlačítka Koupit |
 | `kosik.html` | Košík — 3 kroky `?krok=1|2|3` (položky + doprava/platba · kontaktní údaje · kontrola), odeslání fingované |
 | `hledani.html` | Výsledky hledání — `?q=`, tři skupiny (Reference · Novinky · Second Hand), jednotná karta výsledku |
+| `H5-mixpult.html` | Samostatný prototyp hero s mixpultem (`hero-mixpult.js`) |
 | `design-system.html` | Živý přehled design systému (interní) |
+| `baglog.html` | Backlog designových změn (interní) |
 | `guidelines/*.html` | Specimen karty design systému (interní) |
 
 ### Styly
 | soubor | co to je |
 |---|---|
-| `styles.css` | Vstupní bod — `@import`uje `tokens/*` |
+| `styles.css` | Ruční slitá kopie `tokens/*` (není @import — viz POZOR níže) |
 | `tokens/colors.css` · `typography.css` · `spacing.css` · `motion.css` · `fonts.css` · `breakpoints.css` · `theme.css` | Design tokeny (CSS proměnné) |
 | `ui.css` | Veškerá komponentní & sekční vrstva (jeden soubor, sekce oddělené komentářovými bloky) |
 
@@ -67,10 +83,16 @@ Statický web, bez build kroku — nasazuje se přímo na **GitHub Pages**.
 | `skoleni.js` | Logika přihlášky (výběr kurzů, předpoklady, souhrn, validace) — `prihlaska-skoleni.html` |
 | `karlin-schema.js` | Interaktivní schéma ozvučení (Karlín) |
 | `page-transition.js` | Přechod mezi stránkami — „pódiové světlo" |
+| `hero-mixpult.js` | Hero homepage — interaktivní mixpult |
+| `preview-bar.js` | Náhledový panel (přepínač dark / light / duo, hlavička) |
+| `partneri-data.js` · `partneri.js` | Partneři — data + render |
+| `rma.js` | Logika RMA formuláře |
 
 ### Assety a podklady
 - `assets/brand/promusic-logo.png` — logo (pro produkci dodat SVG)
-- `assets/projekty/{ed-sheeran,djkt-plzen,steel-arena,karlin}/*` — fotky realizací
+- `assets/projekty/{ed-sheeran,rammstein,eurovize,djkt-plzen,steel-arena,karlin}/*` — fotky projektů
+- `assets/novinky/q638/` — fotky, videa a datasheet článku DiGiCo Quantum 638
+- `assets/brands/` (loga značek) · `assets/partneri/` · `assets/firma/` · `assets/cyklo/` · `assets/secondhand/` · `assets/docs/`
 - `assets/novinky/001.jpg … 089.jpg` — náhledy novinek (číslo = pořadí v `news-index.js`)
 - `uploads/*` — surové materiály od klienta (loga značek, fotky) — **není součástí webu**
 - `research/*.md` — rešerše a strategie (firma, značky, layout, menu, positioning)
